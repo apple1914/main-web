@@ -1,0 +1,1 @@
+export const THIS_BACKEND_URL = "https://localhost:6000"
