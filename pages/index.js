@@ -1,6 +1,6 @@
 import React from 'react';
 import NavbarTwo from '../components/_App/NavbarTwo';
-import MainBanner from '../components/HomeOne/MainBanner';
+import MainBanner from '../components/HomeTwo/MainBanner';
 import OurFeatures from '../components/HomeTwo/OurFeatures';
 import AboutUs from '../components/HomeTwo/AboutUs';
 import Services from '../components/HomeTwo/Services';
@@ -13,7 +13,7 @@ import ContactWithUs from '../components/HomeTwo/ContactWithUs';
 import BlogPost from '../components/Common/BlogPost';
 import Footer from '../components/_App/Footer';
 
-const Index2 = () => {
+const Index = () => {
     return (
         <>
             <NavbarTwo />
@@ -49,4 +49,4 @@ const Index2 = () => {
     )
 }
 
-export default Index2;
+export default Index;
