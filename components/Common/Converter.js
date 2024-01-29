@@ -278,7 +278,7 @@ export default function Converter() {
             {enableDepositButton == true && (
               <Link
                 href={{
-                  pathname: "/user/depost",
+                  pathname: "/user/deposit",
                   query: {
                     depositCurrency: myDepositCurrency,
                     amount: myDepositAmount,
