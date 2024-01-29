@@ -1,98 +1,106 @@
+"use client"
 import React from 'react';
 import NavbarTwo from '../components/_App/NavbarTwo';
 import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/_App/Footer';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from "next/navigation";
+import useAuthStore from "../signInLogic/auth";
+import { miscDataNames } from '../utils/miscConstants';
+import { useEffect, useState } from "react";
+import { getCookie } from "cookies-next";
 
 const SignUp = () => {
+    const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
+    const authSignUp = useAuthStore((state) => state.authSignUp);
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const [email, setEmail] = useState("");
+    const [pwd, setPwd] = useState("");
+
+    useEffect(() => {
+        if (user != null && !authInProgress) {
+          const checkoutType = searchParams.get("checkoutType") || "checkout";
+          alert("user signed in already, SHOULD ROUTE TO CHECKOUT")
+          router.push("/")
+        //   router.push(`/user/${checkoutType}` + "?" + searchParams.toString());
+          //
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [user, authInProgress]);
+
+      const submitSignUpForm = async (e) => {
+        e.preventDefault();
+    
+        // const { result, error } = await signUp({ email, password });
+    
+        const miscData = {};
+    
+        for (const key of Object.keys(miscDataNames)) {
+          const cookieName =
+          miscDataNames[key];
+          const data = getCookie(cookieName);
+          miscData[cookieName] = data;
+        }
+    
+        const error = await authSignUp(email, pwd, miscData);
+        alert(JSON.stringify(error))
+
+    
+        if (error == null) {
+        //   const checkoutType = searchParams.get("checkoutType") || "checkout";
+        //   router.push(`/user/${checkoutType}` + "?" + searchParams.toString());
+            alert("success! should route to checkoyut here")
+            router.push("/")
+        }
+    
+        return console.log(error);
+      };
+
+
+
     return (
         <>
             <NavbarTwo />
             
-            <PageBanner 
-                pageTitle="Sign Up" 
-                homePageUrl="/" 
-                homePageText="Home" 
-                activePageText="Sign Up" 
-            /> 
-
             <div className="user-area-all-style sign-up-area ptb-100">
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
                             <div className="contact-form-action">
                                 <div className="form-heading text-center">
-                                    <h3 className="form-title">Create an account!</h3>
-                                    <p className="form-desc">With your social network.</p>
+                                    <h3 className="form-title">Create Account</h3>
                                 </div>
 
-                                <form method="post">
+                                <form method="post" onSubmit={submitSignUpForm}>
                                     <div className="row">
-                                        <div className="col-lg-4 col-md-4 col-sm-12">
-                                            <button className="default-btn" type="submit">
-                                                Google
-                                            </button>
-                                        </div>
-                                        <div className="col-lg-4 col-md-4 col-sm-12">
-                                            <button className="default-btn" type="submit">
-                                                Facebook
-                                            </button>
-                                        </div>
-                                        <div className="col-lg-4 col-md-4 col-sm-12">
-                                            <button className="default-btn" type="submit">
-                                                Twitter
-                                            </button>
-                                        </div>
+                                       
+                                        <div className="col-md-12 col-sm-12">
+                                            <div className="form-group">
+                                                                    <input
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                type="email"
+                                                className="form-control"
+                                                id="email"
+                                                required
+                                                placeholder="Enter Your Email"
+                                                name="email"
+                                            />
 
-                                        <div className="col-lg-6 col-sm-12">
-                                            <div className="form-group">
-                                                <input className="form-control" type="text" name="name" placeholder="First Name" />
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-6 col-sm-12">
-                                            <div className="form-group">
-                                                <input className="form-control" type="text" name="name" placeholder="Last Name" />
                                             </div>
                                         </div>
                                         <div className="col-md-12 col-sm-12">
                                             <div className="form-group">
-                                                <input className="form-control" type="text" name="name" placeholder="Enter your Username" />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-12 col-sm-12">
-                                            <div className="form-group">
-                                                <input className="form-control" type="email" name="email" placeholder="Email Address" />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-12 col-sm-12">
-                                            <div className="form-group">
-                                                <input className="form-control" type="text" name="password" placeholder="Password" />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-12 col-sm-12 ">
-                                            <div className="form-group">
-                                                <input className="form-control" type="text" name="password" placeholder="Confirm Password" />
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="col-md-12 col-sm-12 col-xs-12 form-condition">
-                                            <div className="agree-label">
-                                                <input type="checkbox" id="chb1" />
-                                                <label htmlFor="chb1">
-                                                    I agree with flexa 
-                                                    <Link href="/privacy-policy">
-                                                    Privacy Policy
-                                                    </Link>
-                                                </label>
-                                            </div>
-                                            <div className="agree-label">
-                                                <input type="checkbox" id="chb2" />
-                                                <label htmlFor="chb2">
-                                                    I agree with flexa 
-                                                    <Link href="/terms-conditions">
-                                                    Terms & Conditions
-                                                    </Link>
-                                                </label>
+                                            <input
+                                                    onChange={(e) => setPwd(e.target.value)}
+                                                    type="text"
+                                                    className="form-control"
+                                                    id="pwd"
+                                                    required
+                                                    placeholder="Password"
+                                                    name="pwd"
+                                                />
+
                                             </div>
                                         </div>
 
@@ -105,7 +113,7 @@ const SignUp = () => {
                                         <div className="col-12">
                                             <p className="account-desc">
                                                 Already have an account?
-                                                <Link href="/log-in">Log In</Link>
+                                                <Link href="/sign-in">Log In</Link>
                                             </p>
                                         </div>
                                     </div>

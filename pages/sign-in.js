@@ -1,67 +1,90 @@
+"use client"
 import React from 'react';
 import NavbarTwo from '../components/_App/NavbarTwo';
 import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/_App/Footer';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from "next/navigation";
+import useAuthStore from "../signInLogic/auth";
+import { miscDataNames } from '../utils/miscConstants';
+import { useEffect, useState } from "react";
+import { getCookie } from "cookies-next";
 
 const SignIn = () => {
+    const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
+    const authSignIn = useAuthStore((state) => state.authSignIn);
+
+    const router = useRouter();
+    const searchParams = useSearchParams();//dont delete we will need this later for query params saving which checkout type and currency etc
+    const [email, setEmail] = useState("");
+    const [pwd, setPwd] = useState("");
+
+    const submitSignInForm = async (e) => {
+        e.preventDefault();
+    
+        const err = await authSignIn(email, pwd);
+    
+        if (err == null) {
+            alert("SUCCESS LOGIN! should route to checkout")
+        //   const checkoutType = searchParams.get("checkoutType") || "checkout";
+        //   router.push(`/user/${checkoutType}` + "?" + searchParams.toString());
+            router.push("/")
+        }
+      };
+
+      useEffect(() => {
+        if (user != null && !authInProgress) {
+            alert("user already logged in, should route to checkout")
+            router.push("/");
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [user, authInProgress]);
+
     return (
         <>
             <NavbarTwo />
-            
-            <PageBanner 
-                pageTitle="Sign In" 
-                homePageUrl="/" 
-                homePageText="Home" 
-                activePageText="Sign In" 
-            /> 
-
             <div className="user-area-all-style log-in-area ptb-100">
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
                             <div className="contact-form-action">
                                 <div className="form-heading text-center">
-                                    <h3 className="form-title">Log In to your account!</h3>
-                                    <p className="form-desc">With your social network.</p>
+                                    <h3 className="form-title">Log In</h3>
                                 </div>
 
-                                <form method="post">
+                                <form method="post" onSubmit={submitSignInForm}>
                                     <div className="row">
-                                        <div className="col-lg-4 col-md-4 col-sm-12">
-                                            <button className="default-btn" type="submit">
-                                                Google
-                                            </button>
-                                        </div>
-                                        <div className="col-lg-4 col-md-4 col-sm-12">
-                                            <button className="default-btn" type="submit">
-                                                Facebook
-                                            </button>
-                                        </div>
-                                        <div className="col-lg-4 col-md-4 col-sm-12">
-                                            <button className="default-btn" type="submit">
-                                                Twitter
-                                            </button>
-                                        </div>
 
-                                        <div className="col-12">
+                                    <div className="col-12">
                                             <div className="form-group">
-                                                <input className="form-control" type="text" name="name" placeholder="Username or Email" />
+                                            <input
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                type="email"
+                                                className="form-control"
+                                                id="email"
+                                                required
+                                                placeholder="Enter Your Email"
+                                                name="email"
+                                            />
+
                                             </div>
                                         </div>
                                         <div className="col-12">
                                             <div className="form-group">
-                                                <input className="form-control" type="password" name="password" placeholder="Password" />
+                                            <input
+                                                    onChange={(e) => setPwd(e.target.value)}
+                                                    type="text"
+                                                    className="form-control"
+                                                    id="pwd"
+                                                    required
+                                                    placeholder="Password"
+                                                    name="pwd"
+                                                />
+
                                             </div>
                                         </div>
-
-                                        <div className="col-lg-6 col-sm-6 form-condition">
-                                            <div className="agree-label">
-                                                <input type="checkbox" id="chb1" />
-                                                <label htmlFor="chb1">Remember Me</label>
-                                            </div>
-                                        </div>
-
+                                        
+                                     
                                         <div className="col-lg-6 col-sm-6">
                                             <Link href="/recover-password">
                                             Forgot my password?

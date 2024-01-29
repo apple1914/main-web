@@ -172,3 +172,9 @@ export const createCsTicket = async ({ email,category,problemText}) => {
 
 
 
+
+
+export const saveUserInfo = async ({username,miscInfo,contactInfo}) => {
+  console.log("saveUserInfo",username,miscInfo,contactInfo)
+  return
+}
