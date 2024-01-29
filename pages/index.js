@@ -1,48 +1,45 @@
 import React from 'react';
-import Navbar from '../components/_App/Navbar';
+import NavbarTwo from '../components/_App/NavbarTwo';
 import MainBanner from '../components/HomeOne/MainBanner';
-import WhyChooseUs from '../components/HomeOne/WhyChooseUs';
-import AboutUsContent from '../components/About/AboutUsContent';
-import OurVision from '../components/About/OurVision';
-import Services from '../components/HomeOne/Services';
-import GetAFreeQuoteForm from '../components/Common/GetAFreeQuoteForm';
-import FunFacts from '../components/Common/FunFacts';
-import AchievementContent from '../components/About/AchievementContent';
-import ContactWithAgent from '../components/Common/ContactWithAgent';
-import Testimonials from '../components/Common/Testimonials';
+import OurFeatures from '../components/HomeTwo/OurFeatures';
+import AboutUs from '../components/HomeTwo/AboutUs';
+import Services from '../components/HomeTwo/Services';
 import OffersArea from '../components/Common/OffersArea';
+import WhyChooseUs from '../components/HomeTwo/WhyChooseUs';
+import TeamSlider from '../components/Common/TeamSlider';
+import FunFactsStyleTwo from '../components/Common/FunFactsStyleTwo';
+import TestimonialStyleTwo from '../components/Common/TestimonialStyleTwo';
+import ContactWithUs from '../components/HomeTwo/ContactWithUs';
 import BlogPost from '../components/Common/BlogPost';
 import Footer from '../components/_App/Footer';
 
-const Index = () => {
+const Index2 = () => {
     return (
         <>
-            <Navbar />
+            <NavbarTwo />
 
             <MainBanner />
 
-            <WhyChooseUs />
+            <OurFeatures />
 
-            <AboutUsContent />
-
-            <OurVision />
+            <AboutUs />
 
             <Services />
 
-            <GetAFreeQuoteForm />
-
-            <FunFacts />
-
-            <div className="pt-100">
-                <AchievementContent />
-            </div>
-
-            <ContactWithAgent />
-
-            <Testimonials />
-
             <div className="pb-100">
                 <OffersArea />
+            </div>
+
+            <WhyChooseUs />
+
+            <TeamSlider />
+
+            <FunFactsStyleTwo />
+
+            <TestimonialStyleTwo />
+
+            <div className="pb-100">
+                <ContactWithUs />
             </div>
 
             <BlogPost />
@@ -52,4 +49,4 @@ const Index = () => {
     )
 }
 
-export default Index;
+export default Index2;
