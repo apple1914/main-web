@@ -68,7 +68,10 @@ const MainBanner = () => {
               >
                 <img src="/images/banner/banner-img.png" alt="Image" />
               </div> */}
+              <div className="bg-white rounded shadow-md py-5 px-5 w-75 mx-auto">
               <Converter />
+
+              </div>
             </div>
           </div>
         </div>
