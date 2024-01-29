@@ -16,10 +16,8 @@ const OffersArea = () => {
 						<div className="business-content">
 							<h3>Save up to 30% when you buy small business insurance in online</h3>
 
-                            <Link href="/contact">
-                                <a className="default-btn active ml-0">
-                                    Contact Us
-                                </a>
+                            <Link href="/contact" className="default-btn active ml-0">
+							Contact Us
                             </Link>
 
 							<p>Call Us Today: <br /> +82546-564-234</p>

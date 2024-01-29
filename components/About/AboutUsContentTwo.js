@@ -1,7 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
 
-const AboutUs = () => {
+const AboutUsContentTwo = () => {
     return (
         <div className="about-area ptb-100">
 			<div className="container">
@@ -31,10 +30,6 @@ const AboutUs = () => {
 									</div>
 								</div>
 							</div>
-
-                            <Link href="/about"  className="default-btn">
-							Know Details
-                            </Link>
 						</div>
 					</div>
 
@@ -52,4 +47,4 @@ const AboutUs = () => {
     )
 }
 
-export default AboutUs;
+export default AboutUsContentTwo;

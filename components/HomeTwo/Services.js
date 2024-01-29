@@ -20,7 +20,7 @@ const Services = () => {
                                 <p>Startup ipsum dolor sit amet consuring elised faisism dolor sit amet.</p>
 
                                 <Link href="/insurance-details">
-                                    <a><i className="bx bx-chevrons-right"></i></a>
+                                    <i className="bx bx-chevrons-right"></i>
                                 </Link>
                             </div>
                         </div>
@@ -34,7 +34,7 @@ const Services = () => {
                                 <p>Leader ipsum dolor sit amet consuring lised faisism dolor sit amet.</p>
 
                                 <Link href="/insurance-details">
-                                    <a><i className="bx bx-chevrons-right"></i></a>
+                                    <i className="bx bx-chevrons-right"></i>
                                 </Link>
                             </div>
                         </div>
@@ -48,7 +48,7 @@ const Services = () => {
                                 <p>Leader ipsum dolor sit amet consuring lised faisism dolor sit amet.</p>
 
                                 <Link href="/insurance-details">
-                                    <a><i className="bx bx-chevrons-right"></i></a>
+                                    <i className="bx bx-chevrons-right"></i>
                                 </Link>
                             </div>
                         </div>
@@ -62,7 +62,7 @@ const Services = () => {
                                 <p>Leader ipsum dolor sit amet consuring lised faisism dolor sit amet.</p>
 
                                 <Link href="/insurance-details">
-                                    <a><i className="bx bx-chevrons-right"></i></a>
+                                   <i className="bx bx-chevrons-right"></i>
                                 </Link>
                             </div>
                         </div>
@@ -76,7 +76,7 @@ const Services = () => {
                                 <p>Leader ipsum dolor sit amet consuring lised faisism dolor sit amet.</p>
 
                                 <Link href="/insurance-details">
-                                    <a><i className="bx bx-chevrons-right"></i></a>
+                                    <i className="bx bx-chevrons-right"></i>
                                 </Link>
                             </div>
                         </div>
@@ -90,7 +90,7 @@ const Services = () => {
                                 <p>Leader ipsum dolor sit amet consuring lised faisism dolor sit amet.</p>
 
                                 <Link href="/insurance-details">
-                                    <a><i className="bx bx-chevrons-right"></i></a>
+                                    <i className="bx bx-chevrons-right"></i>
                                 </Link>
                             </div>
                         </div>

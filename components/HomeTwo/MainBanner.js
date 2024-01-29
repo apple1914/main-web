@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-
+import Converter from "../Common/Converter"
 const MainBanner = () => {
   return (
     <>
@@ -48,18 +48,18 @@ const MainBanner = () => {
                   data-aos-once="true"
                 >
                   <Link href="/contact">
-                    <a className="default-btn">Get Started</a>
+                  Get Started
                   </Link>
 
                   <Link href="/contact">
-                    <a className="default-btn active">Find An Agent</a>
+                  Find An Agent
                   </Link>
                 </div>
               </div>
             </div>
 
             <div className="col-lg-6 pr-0">
-              <div
+              {/* <div
                 className="banner-img"
                 data-aos="fade-up"
                 data-aos-delay="600"
@@ -67,7 +67,8 @@ const MainBanner = () => {
                 data-aos-once="true"
               >
                 <img src="/images/banner/banner-img.png" alt="Image" />
-              </div>
+              </div> */}
+              <Converter />
             </div>
           </div>
         </div>

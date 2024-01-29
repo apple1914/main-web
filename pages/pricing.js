@@ -32,7 +32,7 @@ const Pricing = () => {
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
 
                                 <Link href="#">
-                                    <a className="default-btn">Contact Us</a>
+                                Contact Us
                                 </Link>
                             </div>
                         </div>
@@ -49,7 +49,7 @@ const Pricing = () => {
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
 
                                 <Link href="#">
-                                    <a className="default-btn">Contact Us</a>
+                                Contact Us
                                 </Link>
                             </div>
                         </div>
@@ -65,8 +65,8 @@ const Pricing = () => {
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
 
-                                <Link href="#">
-                                    <a className="default-btn">Contact Us</a>
+                                <Link href="#" className="default-btn">
+                                    Contact Us
                                 </Link>
                             </div>
                         </div>

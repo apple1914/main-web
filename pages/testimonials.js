@@ -228,31 +228,29 @@ const Testimonials = () => {
                                 <ul className="pagination">
                                     <li className="page-item">
                                         <Link href="#">
-                                            <a className="page-link page-links">
+                                            {/* <a className="page-link page-links"> */}
                                                 <i className='bx bx-chevrons-left'></i>
-                                            </a>
+                                            {/* </a> */}
                                         </Link>
                                     </li>
                                     <li className="page-item active">
                                         <Link href="#">
-                                            <a className="page-link">1</a>
+                                            1
                                         </Link>
                                     </li>
                                     <li className="page-item">
                                         <Link href="#">
-                                            <a className="page-link">2</a>
+                                            2
                                         </Link>
                                     </li>
                                     <li className="page-item">
                                         <Link href="#">
-                                            <a className="page-link">3</a>
+                                            3
                                         </Link>
                                     </li>
                                     <li className="page-item">
                                         <Link href="#">
-                                            <a className="page-link">
                                                 <i className='bx bx-chevrons-right'></i>
-                                            </a>
                                         </Link>
                                     </li>
                                 </ul>

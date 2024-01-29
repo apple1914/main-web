@@ -11,10 +11,8 @@ const Custom404 = () => {
 						<h3>Oops! Page Not Found</h3>
 						<p>The page you were looking for could not be found.</p>
 
-                        <Link href="/">
-                            <a className="default-btn page-btn active">
-                                Return To Home Page
-                            </a>
+                        <Link href="/" lassName="default-btn page-btn active">
+                        Return To Home Page
                         </Link>
 					</div>
 				</div>

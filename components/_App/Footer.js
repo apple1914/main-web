@@ -12,9 +12,7 @@ const Footer = () => {
                         <div className="col-lg-3 col-md-6">
                             <div className="single-widget">
                                 <Link href="/">
-                                    <a>
                                         <img src="/images/logo2.png" alt="Image" />
-                                    </a>
                                 </Link>
 
                                 <p>Lorem ipsum dolor sitamet,cons adipiscing elit, sed do eiusmod te incididunt ut labore et dolore Lorem ipsum dolor sitamet,cons adipiscing dolore Lorem ipsum dolor.</p>
@@ -78,32 +76,32 @@ const Footer = () => {
                                 <ul>
                                     <li>
                                         <Link href="/insurance-details">
-                                            <a>Insurance</a>
+                                        Insurance
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/car-insurance">
-                                            <a>Car Insurance</a>
+                                        Car Insurance
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/home-insurance">
-                                            <a>Home Insurance</a>
+                                        Home Insurance
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/insurance-details">
-                                            <a>Investment</a>
+                                            Investment
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/health-insurance">
-                                            <a>Health Insurance</a>
+                                            Health Insurance
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/business-insurance">
-                                            <a>Business</a>
+                                            Business
                                         </Link>
                                     </li>
                                 </ul>

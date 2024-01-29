@@ -64,7 +64,7 @@ const SignIn = () => {
 
                                         <div className="col-lg-6 col-sm-6">
                                             <Link href="/recover-password">
-                                                <a className="forget">Forgot my password?</a>
+                                            Forgot my password?
                                             </Link>
                                         </div>
 
@@ -77,7 +77,7 @@ const SignIn = () => {
                                         <div className="col-12">
                                             <p className="account-desc">
                                                 Not a member?
-                                                <Link href="/sign-up"><a>Sign Up</a></Link>
+                                                <Link href="/sign-up">Sign Up</Link>
                                             </p>
                                         </div>
                                     </div>

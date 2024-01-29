@@ -10,7 +10,6 @@ import TeamSlider from '../components/Common/TeamSlider';
 import FunFactsStyleTwo from '../components/Common/FunFactsStyleTwo';
 import TestimonialStyleTwo from '../components/Common/TestimonialStyleTwo';
 import ContactWithUs from '../components/HomeTwo/ContactWithUs';
-import BlogPost from '../components/Common/BlogPost';
 import Footer from '../components/_App/Footer';
 
 const Index = () => {
@@ -42,7 +41,6 @@ const Index = () => {
                 <ContactWithUs />
             </div>
 
-            <BlogPost />
             
             <Footer />
         </>

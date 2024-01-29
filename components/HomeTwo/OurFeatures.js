@@ -19,7 +19,7 @@ const OurFeatures = () => {
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
 
                             <Link href="/insurance-details">
-                                <a><i className="flaticon-right"></i></a>
+                                <i className="flaticon-right"></i>
                             </Link>
 						</div>
 					</div>
@@ -31,7 +31,7 @@ const OurFeatures = () => {
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
 
 							<Link href="/insurance-details">
-                                <a><i className="flaticon-right"></i></a>
+                                <i className="flaticon-right"></i>
                             </Link>
 						</div>
 					</div>
@@ -43,7 +43,7 @@ const OurFeatures = () => {
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
 
 							<Link href="/insurance-details">
-                                <a><i className="flaticon-right"></i></a>
+                                <i className="flaticon-right"></i>
                             </Link>
 						</div>
 					</div>
@@ -55,7 +55,7 @@ const OurFeatures = () => {
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
 
 							<Link href="/insurance-details">
-                                <a><i className="flaticon-right"></i></a>
+                               <i className="flaticon-right"></i>
                             </Link>
 						</div>
 					</div>

@@ -81,7 +81,7 @@ const SignUp = () => {
                                                 <label htmlFor="chb1">
                                                     I agree with flexa 
                                                     <Link href="/privacy-policy">
-                                                        <a>Privacy Policy</a>
+                                                    Privacy Policy
                                                     </Link>
                                                 </label>
                                             </div>
@@ -90,7 +90,7 @@ const SignUp = () => {
                                                 <label htmlFor="chb2">
                                                     I agree with flexa 
                                                     <Link href="/terms-conditions">
-                                                        <a>Terms & Conditions</a>
+                                                    Terms & Conditions
                                                     </Link>
                                                 </label>
                                             </div>
@@ -105,7 +105,7 @@ const SignUp = () => {
                                         <div className="col-12">
                                             <p className="account-desc">
                                                 Already have an account?
-                                                <Link href="/log-in"><a>Log In</a></Link>
+                                                <Link href="/log-in">Log In</Link>
                                             </p>
                                         </div>
                                     </div>
