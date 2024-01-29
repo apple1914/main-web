@@ -136,7 +136,7 @@ export default function Converter() {
         </div>
       </div>
       <p className="text-muted text-center w-100 mx-auto">
-        The current exchange rate  is{" "}
+        Exchange rate: {" "}
         <span className="fw-500">
           1 {myDepositCurrency} = {exchangeRate} {myWithdrawalCurrency}
         </span>
@@ -145,7 +145,7 @@ export default function Converter() {
             placement="bottom"
             overlay={
               <Tooltip id={`tooltip-bottom`}>
-                Applicable for first withdrawal only
+                *first withdrawal only
               </Tooltip>
             }
           >
