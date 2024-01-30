@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { Toaster } from "react-hot-toast";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -135,6 +136,8 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+            <Toaster/>
+
         </>
     );
 }

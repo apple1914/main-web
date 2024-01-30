@@ -1,18 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
+import SignOutButton from "../Common/SignOutButton"
 // import TopHeader from './TopHeader';
 
 const NavbarTwo = () => {
     const [menu, setMenu] = React.useState(true)
     const [sidebarModal, setSidebar] = React.useState(false)
-    const [searchModal, setSearch] = React.useState(false)
     const toggleSidebarModal = () => {
         setSidebar(!sidebarModal)
     }
-    const toggleSearchModal = () => {
-        setSearch(!searchModal)
-    }
-
+   
     const toggleNavbar = () => {
         setMenu(!menu)
     }
@@ -203,10 +200,8 @@ const NavbarTwo = () => {
 
                                 <div className="others-option">
                                     <div className="option-item">
-                                        <i className="search-btn bx bx-search" onClick={e => {
-                                            e.preventDefault(); 
-                                            toggleSearchModal()
-                                        }}></i>
+                                        <SignOutButton/>
+                                        
                                     </div>
 
 
@@ -218,30 +213,7 @@ const NavbarTwo = () => {
                 </div>
             </header>
 
-            {/* Search Overlay */}
-            <div className={`search-overlay ${searchModal ? 'search-overlay-active' : null}`}>  
-                <div className="d-table">
-                    <div className="d-table-cell">
-                        <div className="search-overlay-layer"></div>
-                        <div className="search-overlay-layer"></div>
-                        <div className="search-overlay-layer"></div>
-                        
-                        <div className="search-overlay-close" onClick={e => {e.preventDefault(); toggleSearchModal()}}>
-                            <span className="search-overlay-close-line"></span>
-                            <span className="search-overlay-close-line"></span>
-                        </div>
-
-                        <div className="search-overlay-form">
-                            <form>
-                                <input type="text" className="input-search" placeholder="Search here..." />
-                                <button type="submit">
-                                    <i className='bx bx-search'></i>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         
             {/* Sidebar Modal */}
             <div className={`sidebar-modal ${sidebarModal ? 'active' : null}`}>  

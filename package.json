@@ -14,6 +14,7 @@
         "aos": "^2.3.4",
         "axios": "^0.22.0",
         "cookies-next": "^4.1.1",
+        "firebase": "^10.7.2",
         "fslightbox-react": "^1.6.2-2",
         "mongodb": "^6.3.0",
         "next": "^13.4.2",
@@ -23,7 +24,9 @@
         "react-accessible-accordion": "^5.0.0",
         "react-bootstrap": "^2.10.0",
         "react-dom": "^18.2.0",
+        "react-hot-toast": "^2.4.1",
         "sass": "^1.44.0",
-        "swiper": "^8.3.2"
+        "swiper": "^8.3.2",
+        "zustand": "^4.5.0"
     }
 }
