@@ -1,36 +1,12 @@
-"use client"
-import React,{useState} from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper";
+import React from "react";
+
 import Converter from "./Converter"
 import TransactionOutcome from "./TransactionOutcome"
 import PickWithdrawalDestination from "./PickWithdrawalDestination";
 import FauxTransak from "./FauxTransak"
 
-const WithdrawalLevels = ({lng}) => {
+const WithdrawalLevels = ({formData,setFormData,level,incrementLevel,lng}) => {
 
-  const [formData, setFormData] = useState({
-    fiatAmount: 0.00,
-    fiatCurrency: "",
-    withdrawalAddressId: "",
-    transakUspeshno: null,
-    depositId: "",
-    convertedFiatCurrency: "",
-  });
-
-
-  const [level, setLevel] = useState(0);
-  const stepNameMapper = [
-    "Details",
-    "Withdrawal Card Info",
-    "Payment",
-    "Status",
-  ];
-
-
-  function incrementLevel() {
-    setLevel(level + 1);
-  }
 
     switch (level) {
         case 0:
