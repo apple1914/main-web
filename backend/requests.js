@@ -1,4 +1,4 @@
-// import { auth } from "../firebase/config"
+import { auth } from "../signInLogic/firebaseAuthenticationConfig"
 import axios from "axios";
 
 import {THIS_BACKEND_URL} from "../utils/importantUrls"
@@ -17,6 +17,7 @@ export const fetchWithdrawalAddresses = async () => {
           Authorization: `Bearer ${token}`,
         },
       };
+
       const data = await axios.get(`${THIS_BACKEND_URL}/withdrawalAddress`, payloadHeader).then((res)=>res.data).catch((err)=> {
         console.log("ERRRRRR with fetchWithdrawalAddresses", err)
       })
@@ -50,9 +51,11 @@ export const addWithdrawalAddress = async({nickname,address,blockchain,cryptocur
       const payloadBody = {
         nickname,address,blockchain,cryptocurrency
       }
+      // alert(THIS_BACKEND_URL)
       const res = await axios.post(`${THIS_BACKEND_URL}/withdrawalAddress`,payloadBody, payloadHeader);
       return res.data
     } catch (e) {
+      // alert("errrrror!")
       console.log(e);
     }
 }

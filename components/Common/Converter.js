@@ -20,10 +20,10 @@ import {
 } from "../../backend/requests";
 
 
-const nextStep = () => {
-  alert("redefine me later")
-}
-export default function Converter() {
+export default function Converter({incrementLevel,
+  setFormData,
+  formData,
+  lng,}) {
   
   const [myDepositAmount, setMyDepositAmount] = useState(1000);
   const [myDepositCurrency, setMyDepositCurrency] = useState("USD");
@@ -41,8 +41,15 @@ export default function Converter() {
   const [conversionRateLoader, setConversionRateLoader] =
     useState(true);
 
-  const submit = () => {
-    console.log("SUBMIT!")
+  const submit = (e) => {
+    e.preventDefault();
+    if (formData && setFormData && incrementLevel && !invalid) {
+      formData.fiatAmount = myDepositAmount;
+      formData.fiatCurrency = myDepositCurrency;
+      formData.convertedFiatCurrency = myWithdrawalCurrency;
+      setFormData(formData);
+      incrementLevel();
+    }
   };
 
   useEffect(() => {
@@ -53,7 +60,7 @@ export default function Converter() {
       null;
 
     if (withdrawalCurrency != null) {
-      setMyWithdrawalCurrencies(withdrawalCurrency);
+      setMyWithdrawalCurrency(withdrawalCurrency);
     }
     const depositCurrency =
       searchParams.get("depositCurrency") ||
@@ -61,7 +68,7 @@ export default function Converter() {
       getCookie("depositCurrency");
 
     if (depositCurrency != null) {
-      setMyDepositCurrencies(depositCurrency);
+      setMyDepositCurrency(depositCurrency);
     }
     const amount = searchParams.get("amount");
     if (
@@ -230,7 +237,7 @@ export default function Converter() {
         )}
       </p>
       <div className="d-grid w-100 mx-auto">
-        {nextStep ? (
+        {incrementLevel ? (
           <button
             className={`btn btn-primary ${
               invalid || conversionRateLoader ? "disabled" : ""
@@ -251,7 +258,7 @@ export default function Converter() {
           <>
             <Link
               href={{
-                pathname: "/user/checkout",
+                pathname: "/withdrawal",
                 query: {
                   depositCurrency: myDepositCurrency,
                   withdrawalCurrency: myWithdrawalCurrency,
@@ -275,30 +282,6 @@ export default function Converter() {
                 
               )}
             </Link>
-            {enableDepositButton == true && (
-              <Link
-                href={{
-                  pathname: "/user/depost",
-                  query: {
-                    depositCurrency: myDepositCurrency,
-                    amount: myDepositAmount,
-                  },
-                }}
-                className={`mt-3 btn btn-outline-primary text-primary ${
-                  invalid || conversionRateLoader ? "disabled" : ""
-                }`}
-              >
-                {conversionRateLoader ? (
-                  <span
-                    className="spinner-border spinner-border-sm"
-                    role="status"
-                    aria-hidden="true"
-                  />
-                ) : (
-                  <p>Deposit money</p>
-                )}
-              </Link>
-            )}
           </>
         )}
       </div>
