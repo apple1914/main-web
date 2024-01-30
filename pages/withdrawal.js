@@ -1,5 +1,19 @@
 // import Stepper from "@/components/Stepper";
-import WithdrawalLevels from "../components/Common/WithdrawalLevels";
+import CheckoutMain from "../components/Common/CheckoutMain";
+
+import NavbarTwo from '../components/_App/NavbarTwo';
+import MainBanner from '../components/HomeTwo/MainBanner';
+import OurFeatures from '../components/HomeTwo/OurFeatures';
+import AboutUs from '../components/HomeTwo/AboutUs';
+import Services from '../components/HomeTwo/Services';
+import OffersArea from '../components/Common/OffersArea';
+import WhyChooseUs from '../components/HomeTwo/WhyChooseUs';
+import TeamSlider from '../components/Common/TeamSlider';
+import FunFactsStyleTwo from '../components/Common/FunFactsStyleTwo';
+import TestimonialStyleTwo from '../components/Common/TestimonialStyleTwo';
+import ContactWithUs from '../components/HomeTwo/ContactWithUs';
+import Footer from '../components/_App/Footer';
+
 
 function Withdrawal() {
   //@ts-ignore
@@ -8,19 +22,14 @@ function Withdrawal() {
 
   
   return (
-    <div id="content" className="py-4 bg-white">
-      <div className="container">
-        <div className="mx-auto text-center pt-5">Withdrawal</div>
-        <div className="row pt-5">
-          <div className="col-md-9 col-lg-7 col-xl-6 mx-auto">
-            <WithdrawalLevels lng={lng}/>
-          </div>
-        </div>
-        {/* <div className="pt-5">
-          <Stepper lng={lng} level={level}/>
-        </div> */}
-      </div>
-    </div>
+    <>
+    <NavbarTwo />
+
+    <CheckoutMain lng={lng}/>
+    <Footer />
+
+    </>
+    
   );
 }
 

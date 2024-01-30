@@ -8,6 +8,13 @@ import { fetchWithdrawalAddresses } from "../../backend/requests";
 import { Form, Button } from "react-bootstrap";
 import useAuthStore from "../../signInLogic/auth";
 
+
+// import dynamic from 'next/dynamic'
+ 
+// const DynamicHeader = dynamic(() => import('../components/header'), {
+//   ssr: false,
+// })
+
 export default function PickWithdrawalDestination({
   incrementLevel,
   formData,
@@ -37,12 +44,7 @@ export default function PickWithdrawalDestination({
     incrementLevel();
   };
 
-  // const triggerUpdateRecipients = () => {
-  //   fetchWithdrawalAddresses().then((data) => {
-  //     updateRecipients(data);
-  //     setLoading(false);
-  //   });
-  // };
+
 
   useEffect(() => {
     if (!!user) {
@@ -59,16 +61,23 @@ export default function PickWithdrawalDestination({
   }, []);
 
   return (
-    <div className="bg-white shadow-lg rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4">
+    <div className="bg-white shadow rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-10">
       <div className="d-flex w-100 justify-content-between align-items-center">
         <h3 className="text-5 fw-400 mb-0">{"Select Recipient"}</h3>
       </div>
       <hr className="mx-n3 mx-sm-n5 mb-4" />
+      <Offramper
+        // triggerUpdateRecipients={triggerUpdateRecipients}
+        lng={lng}
+        incrementLevel={incrementLevel}
+        formData={formData}
+        setFormData={setFormData}
+      />
+      {hasNoAvailableDestinations == false && <div className="text-center my-3">or</div>}
       {hasNoAvailableDestinations === false &&
         (loading ? (
           <div className="d-flex justify-content-center">
             <div className="spinner-border" role="status">
-              <span className="sr-only">{"Loading..."}</span>
             </div>
           </div>
         ) : (
@@ -103,14 +112,8 @@ export default function PickWithdrawalDestination({
             </div>
           </form>
         ))}
-      {hasNoAvailableDestinations == false && <div className="text-center my-3">or</div>}
-      <Offramper
-        // triggerUpdateRecipients={triggerUpdateRecipients}
-        lng={lng}
-        incrementLevel={incrementLevel}
-        formData={formData}
-        setFormData={setFormData}
-      />
+      {/* {hasNoAvailableDestinations == false && <div className="text-center my-3">or</div>} */}
+     
     </div>
   );
 }
