@@ -21,13 +21,13 @@ const SignUp = () => {
     useEffect(() => {
         if (user != null && !authInProgress) {
           const checkoutType = searchParams.get("checkoutType") || "checkout";
-          alert("user signed in already, SHOULD ROUTE TO CHECKOUT")
+          console.log("user is present already, SHOULD ROUTE TO CHECKOUT")
           router.push("/")
         //   router.push(`/user/${checkoutType}` + "?" + searchParams.toString());
           //
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [user, authInProgress]);
+      }, []);
 
       const submitSignUpForm = async (e) => {
         e.preventDefault();

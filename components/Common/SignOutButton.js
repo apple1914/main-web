@@ -12,8 +12,14 @@ export const SignOutButton = () => {
 
 
     const submitSignOut = async (e) => {
+        if (!user) {
+            console.log("not signed in at click")
+        } else {
+            console.log("signed in at click")
+        }
         e.preventDefault();
         authSignOut()
+        console.log("signed-out-now")
         router.push("/sign-in")
     }
 

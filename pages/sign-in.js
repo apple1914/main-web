@@ -25,7 +25,7 @@ const SignIn = () => {
         const err = await authSignIn(email, pwd);
     
         if (err == null) {
-            alert("SUCCESS LOGIN! should route to checkout")
+            console.log("SUCCESS LOGIN! should route to checkout")
         //   const checkoutType = searchParams.get("checkoutType") || "checkout";
         //   router.push(`/user/${checkoutType}` + "?" + searchParams.toString());
             router.push("/")
@@ -34,11 +34,11 @@ const SignIn = () => {
 
       useEffect(() => {
         if (user != null && !authInProgress) {
-            alert("user already logged in, should route to checkout")
+            console.log("user logged in already, should route to checkout")
             router.push("/");
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [user, authInProgress]);
+      }, []);
 
     return (
         <>
