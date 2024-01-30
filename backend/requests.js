@@ -178,6 +178,7 @@ export const createCsTicket = async ({ email,category,problemText}) => {
 
 
 export const saveUserInfo = async ({username,miscInfo,contactInfo}) => {
-  console.log("saveUserInfo",username,miscInfo,contactInfo)
-  return
+  const url = `${THIS_BACKEND_URL}/users/saveUserInfo`
+  const payload = {username,miscInfo,contactInfo}
+  return axios.post(url,payload).then((res)=>res.data).catch((err)=>{console.log(err)})
 }
