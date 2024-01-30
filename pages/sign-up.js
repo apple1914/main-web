@@ -44,14 +44,13 @@ const SignUp = () => {
         }
     
         const error = await authSignUp(email, pwd, miscData);
-        alert(JSON.stringify(error))
+        // alert(JSON.stringify(error))
 
     
         if (error == null) {
-        //   const checkoutType = searchParams.get("checkoutType") || "checkout";
-        //   router.push(`/user/${checkoutType}` + "?" + searchParams.toString());
-            alert("success! should route to checkoyut here")
-            router.push("/")
+            const myQuery = !!searchParams ? searchParams.toString() : ""
+            router.push(`/withdrawal` + "?" + myQuery);
+            return
         }
     
         return console.log(error);
@@ -113,7 +112,15 @@ const SignUp = () => {
                                         <div className="col-12">
                                             <p className="account-desc">
                                                 Already have an account?
-                                                <Link href="/sign-in">Log In</Link>
+                                            <Link
+                                                href={{
+                                                    pathname: `/sign-in`,   
+                                                    query: Object.fromEntries(searchParams.entries()),
+                                                }}
+                                                className={`btn-link`}
+                                                >
+                                                Log In
+                                            </Link>
                                             </p>
                                         </div>
                                     </div>
