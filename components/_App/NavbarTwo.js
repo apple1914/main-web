@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import SignOutButton from "../Common/SignOutButton"
+import SignInOutButton from "../Common/SignInOutButton"
 // import TopHeader from './TopHeader';
 
 const NavbarTwo = () => {
@@ -200,7 +200,7 @@ const NavbarTwo = () => {
 
                                 <div className="others-option">
                                     <div className="option-item">
-                                        <SignOutButton/>
+                                        <SignInOutButton/>
                                         
                                     </div>
 

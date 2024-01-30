@@ -3,6 +3,7 @@ import React from 'react';
 
 import useAuthStore from "../../signInLogic/auth";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 export const SignOutButton = () => {
     const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
@@ -12,26 +13,29 @@ export const SignOutButton = () => {
 
 
     const submitSignOut = async (e) => {
-        if (!user) {
-            console.log("not signed in at click")
-        } else {
-            console.log("signed in at click")
-        }
         e.preventDefault();
         authSignOut()
-        console.log("signed-out-now")
+        toast.success("Signed Out!")
+        
+    }
+
+    const submitGoToLogin = async (e) => {
+        e.preventDefault()
         router.push("/sign-in")
+    }
+    if (user) {
+        return (<button className="btn btn-primary bx" onClick={e => {
+            submitSignOut(e)
+         }}>Sign Out</button>)
+    } else {
+        return  (<button className="btn btn-primary bx" onClick={e => {
+            submitGoToLogin(e)
+         }}>Sign In</button>)
     }
 
    
 
        
-
-    return (
-        <button className="btn btn-primary bx" onClick={e => {
-            submitSignOut(e)
-         }}>Sign Out</button>
-    )
 }
 
 export default SignOutButton;
