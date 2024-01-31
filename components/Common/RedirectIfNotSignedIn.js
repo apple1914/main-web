@@ -1,15 +1,16 @@
 "use client";
 import useAuthStore from "../../signInLogic/auth";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter,useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
 export default function RedirectIfNotSignedIn() {
   const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     if (user === null && !authInProgress) {
+      // router.push({path:"/sign-up",query:searchParams.entries()})
       !!searchParams ? router.push(
         "/sign-up" +
           "?" +
