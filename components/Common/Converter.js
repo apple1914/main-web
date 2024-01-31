@@ -19,6 +19,7 @@ import {
 } from "../../backend/requests";
 import useAuthStore from "../../signInLogic/auth";
 import { useRouter } from 'next/router'
+import {Str} from "@supercharge/strings"
 
 
 export default function Converter({incrementLevel,
@@ -59,10 +60,13 @@ export default function Converter({incrementLevel,
   useEffect(() => {
     if (router.isReady) {
       const routerQuery = router.query
+
+    
+
       const withdrawalCurrency =
-        routerQuery["convertedFiatCurrency"] ||
+      routerQuery["withdrawalCurrency"] ||
         routerQuery["toCurrency"] ||
-        getCookie("convertedFiatCurrency") ||
+        getCookie("withdrawalCurrency") ||
         null;
 
       console.log("withdrawalCurrency",withdrawalCurrency)
@@ -271,7 +275,7 @@ export default function Converter({incrementLevel,
                 pathname: "/withdrawal",
                 query: {
                   fiatCurrency: myDepositCurrency,
-                  convertedFiatCurrency: myWithdrawalCurrency,
+                  withdrawalCurrency: myWithdrawalCurrency,
                   amount: myDepositAmount,
                 },
               }}

@@ -1,9 +1,8 @@
 import React from "react";
 
 import Converter from "./Converter"
-import TransactionOutcome from "./TransactionOutcome"
 import PickWithdrawalDestination from "./PickWithdrawalDestination";
-import Transak from "./Transak"
+import DepositInitIfNoFunds from "./DepositInitIfNoFunds"
 
 const WithdrawalLevels = ({formData,setFormData,level,incrementLevel,lng}) => {
 
@@ -36,16 +35,13 @@ const WithdrawalLevels = ({formData,setFormData,level,incrementLevel,lng}) => {
         case 2:
         return (
             <>
-            <Transak
-                incrementLevel={incrementLevel}
+            <DepositInitIfNoFunds
                 formData={formData}
-                setFormData={setFormData}
                 lng={lng}
             />
             </>
         );
-        case 3:
-            return <TransactionOutcome formData={formData} lng={lng} />;
+       
         default:
             return (
                 <>

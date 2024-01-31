@@ -11,8 +11,6 @@ const CheckoutMain = ({lng}) => {
     fiatAmount: 0.00,
     fiatCurrency: "",
     withdrawalAddressId: "",
-    transakUspeshno: null,
-    depositId: "",
     convertedFiatCurrency: "",
   });
 
