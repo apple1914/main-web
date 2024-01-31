@@ -3,7 +3,7 @@ import React from "react";
 import Converter from "./Converter"
 import TransactionOutcome from "./TransactionOutcome"
 import PickWithdrawalDestination from "./PickWithdrawalDestination";
-import FauxTransak from "./FauxTransak"
+import Transak from "./Transak"
 
 const WithdrawalLevels = ({formData,setFormData,level,incrementLevel,lng}) => {
 
@@ -36,12 +36,11 @@ const WithdrawalLevels = ({formData,setFormData,level,incrementLevel,lng}) => {
         case 2:
         return (
             <>
-            <FauxTransak
+            <Transak
                 incrementLevel={incrementLevel}
                 formData={formData}
                 setFormData={setFormData}
                 lng={lng}
-                checkoutType="1"
             />
             </>
         );
