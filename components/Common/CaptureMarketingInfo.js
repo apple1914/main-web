@@ -1,24 +1,34 @@
 "use client";
 
 import { setCookie } from "cookies-next";
-import {useSearchParams } from "next/navigation";
+import {router } from "next/navigation";
 
-import { miscDataNames } from "../../utils/miscConstants";
+import { cookieMappingContext } from "../../utils/miscConstants";
 
+import { useRouter } from 'next/router'
+import { useEffect } from "react";
 
 
 export default function CaptureMarketingInfo() {
-  const searchParams = useSearchParams();
+  const router = useRouter();
 
-  searchParams.forEach((value, key) => {
-    //then save value
-    if (Object.keys(miscDataNames).includes(key)) {
-      const valueToSave = value
-      const properVariableName = miscDataNames[key]
-      setCookie(properVariableName, valueToSave);
+  useEffect(()=> {
+    if (router.isReady) {
+      const myQuery = router.query
+      for (const [key,value] of Object.entries(myQuery)) {
+        if (Object.keys(cookieMappingContext).includes(key)) {
+          const cookieName =
+          cookieMappingContext[key];
+          setCookie(cookieName, value);
+        }
+      }
+     
     }
-  });
 
+  },[router.isReady])
+
+
+  
   return (
     <>
     </>

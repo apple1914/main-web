@@ -4,7 +4,6 @@ import Converter from "./Converter"
 import TransactionOutcome from "./TransactionOutcome"
 import PickWithdrawalDestination from "./PickWithdrawalDestination";
 import FauxTransak from "./FauxTransak"
-import RedirectIfNotSignedIn from "./RedirectIfNotSignedIn"
 
 const WithdrawalLevels = ({formData,setFormData,level,incrementLevel,lng}) => {
 
@@ -19,7 +18,7 @@ const WithdrawalLevels = ({formData,setFormData,level,incrementLevel,lng}) => {
                 setFormData={setFormData}
                 lng={lng}
             />
-            <RedirectIfNotSignedIn  />
+            
             </div>
         );
         case 1:
@@ -32,7 +31,6 @@ const WithdrawalLevels = ({formData,setFormData,level,incrementLevel,lng}) => {
                 setFormData={setFormData}
                 lng={lng}
             />
-            <RedirectIfNotSignedIn  />
             </>
         );
         case 2:
@@ -45,7 +43,6 @@ const WithdrawalLevels = ({formData,setFormData,level,incrementLevel,lng}) => {
                 lng={lng}
                 checkoutType="1"
             />
-            <RedirectIfNotSignedIn  />
             </>
         );
         case 3:
@@ -61,7 +58,6 @@ const WithdrawalLevels = ({formData,setFormData,level,incrementLevel,lng}) => {
                     lng={lng}
                     />
                 </div>
-                <RedirectIfNotSignedIn  />
                 </>
             );
     }
