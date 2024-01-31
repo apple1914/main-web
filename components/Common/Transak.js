@@ -1,7 +1,7 @@
 "use client";
 
 
-import { createDeposit } from "@/backend/requests";
+import { createDeposit } from "../../backend/requests";
 import { useEffect, useState } from "react";
 import { Transak, TransakConfig } from "@transak/transak-sdk";
 
@@ -17,6 +17,7 @@ export default function TransakWidget({
   const [loading, setLoading] = useState(true);
 
   const runTransak = (settings) => {
+    alert(JSON.stringify(settings))
     const transak = new Transak(settings);
 
     transak.init();
