@@ -1,7 +1,7 @@
 // import Stepper from "@/components/Stepper";
 import CheckoutMain from "../components/Common/CheckoutMain";
 
-import NavbarTwo from '../components/_App/NavbarTwo';
+import Navbar3 from '../components/_App/Navbar3';
 import MainBanner from '../components/HomeTwo/MainBanner';
 import OurFeatures from '../components/HomeTwo/OurFeatures';
 import AboutUs from '../components/HomeTwo/AboutUs';
@@ -25,7 +25,7 @@ function Withdrawal() {
   
   return (
     <>
-    <NavbarTwo />
+    <Navbar3 />
 
     <CheckoutMain lng={lng}/>
     <Footer />
