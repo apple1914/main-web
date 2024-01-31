@@ -1,11 +1,10 @@
 "use client";
 
 import { setCookie } from "cookies-next";
-import {router } from "next/navigation";
+import {useRouter } from "next/navigation";
 
 import { cookieMappingContext } from "../../utils/miscConstants";
 
-import { useRouter } from 'next/router'
 import { useEffect } from "react";
 
 

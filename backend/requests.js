@@ -182,3 +182,35 @@ export const saveUserInfo = async ({username,miscInfo,contactInfo}) => {
   const payload = {username,miscInfo,contactInfo}
   return axios.post(url,payload).then((res)=>res.data).catch((err)=>{console.log(err)})
 }
+
+
+export const fetchOnrampSettings = async ({depositId}) => {
+  try {
+    const user = auth.currentUser;
+    const token = user && (await user.getIdToken());
+
+    const payloadHeader = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const url = `${THIS_BACKEND_URL}/deposits/${depositId}`
+
+
+    const data = await axios.get(url, payloadHeader).then((res)=>res.data).catch((err)=> {
+      console.log("ERRRRRR with fetchOnrampSettings", err)
+    })
+
+    console.log("Data here is", data)
+    const withdrawalAddresses = data.map((withdawalAddress) => {
+      const withdrawalAddressId = withdawalAddress.withdrawalAddressId
+      const nickname = withdawalAddress.nickname
+      return {withdrawalAddressId,nickname}
+    })
+    console.log("withdrawalAddresses here is", withdrawalAddresses)
+
+    return withdrawalAddresses
+  } catch (e) {
+    console.log(e);
+  }}

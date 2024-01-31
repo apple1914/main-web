@@ -11,6 +11,7 @@
     "author": "EnvyTheme",
     "license": "ISC",
     "dependencies": {
+        "@supercharge/strings": "^2.0.0",
         "@transak/transak-sdk": "^2.1.2",
         "aos": "^2.3.4",
         "axios": "^0.22.0",
