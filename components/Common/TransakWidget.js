@@ -92,5 +92,5 @@ export default function TransakWidget() {
   }
 
  
-  return <><p>Transak payment is loading...</p></>;
+  return <></>;
 }
