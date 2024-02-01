@@ -2,8 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import SignInOutButton from "../Common/SignInOutButton"
 // import TopHeader from './TopHeader';
+import { useTranslation } from 'next-i18next'
 
 const NavbarTwo = () => {
+    const {t} = useTranslation("common")
+
     const [menu, setMenu] = React.useState(true)
     const [sidebarModal, setSidebar] = React.useState(false)
     const toggleSidebarModal = () => {
@@ -63,7 +66,7 @@ const NavbarTwo = () => {
 
                                         <li className="nav-item">
                                             <Link onClick={toggleNavbar} className="nav-link" href="/about" activeClassName="active">
-                                            About
+                                            {t("About")}
                                             </Link>
                                         </li>
 
@@ -325,3 +328,5 @@ const NavbarTwo = () => {
 }
 
 export default NavbarTwo;
+
+

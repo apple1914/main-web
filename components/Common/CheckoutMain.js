@@ -4,8 +4,11 @@
 import React,{useState} from "react";
 import WithdrawalLevels from "./WithdrawalLevels";
 import Leveler from "./Leveler"
+import { useTranslation } from "next-i18next";
 
-const CheckoutMain = ({lng}) => {
+const CheckoutMain = () => {
+  const { t } = useTranslation("common");//usage - just use t("adfdsf") and it will work!
+
 
   const [formData, setFormData] = useState({
     fiatAmount: 0.00,
@@ -33,11 +36,16 @@ const CheckoutMain = ({lng}) => {
         <div className="mx-auto text-center pt-5">Withdrawal</div>
         <div className="row pt-5">
           <div className="col-md-9 col-lg-7 col-xl-6 mx-auto">
-            <WithdrawalLevels formData={formData} setFormData={setFormData} level={level} incrementLevel={incrementLevel} lng={lng}/>
+            <WithdrawalLevels formData={formData} setFormData={setFormData} level={level} incrementLevel={incrementLevel} />
           </div>
         </div>
+        <div>
+        {/* {t("About")} */}
+        </div>
+
         <div className="pt-5">
-          <Leveler lng={lng} level={level}/>
+          <Leveler 
+           level={level}/>
         </div>
       </div>
     </div>

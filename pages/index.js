@@ -12,10 +12,13 @@ import TestimonialStyleTwo from '../components/Common/TestimonialStyleTwo';
 import ContactWithUs from '../components/HomeTwo/ContactWithUs';
 import Footer from '../components/_App/Footer';
 import CaptureMarketingInfo from '../components/Common/CaptureMarketingInfo';
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Index = () => {
+    const { t } = useTranslation("common");
     return (
-        <>
+        <>  
             <NavbarTwo />
 
             <MainBanner />
@@ -50,3 +53,17 @@ const Index = () => {
 }
 
 export default Index;
+
+
+
+export async function getStaticProps(context) {
+    // extract the locale identifier from the URL
+    const { locale } = context
+  
+    return {
+      props: {
+        // pass the translation props to the page component
+        ...(await serverSideTranslations(locale)),
+      },
+    }
+  }
