@@ -20,12 +20,14 @@ import {
 import useAuthStore from "../../signInLogic/auth";
 import { useRouter } from 'next/router'
 import {Str} from "@supercharge/strings"
+import { useTranslation } from 'next-i18next'
 
 
 export default function Converter({incrementLevel,
   setFormData,
   formData,
   lng,}) {
+    const {t} = useTranslation("common")
   const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
 
   
