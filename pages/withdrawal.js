@@ -1,7 +1,7 @@
 // import Stepper from "@/components/Stepper";
 import CheckoutMain from "../components/Common/CheckoutMain";
 
-import Navbar3 from '../components/_App/Navbar3';
+import NavbarTwo from '../components/_App/NavbarTwo';
 import Footer from '../components/_App/Footer';
 import RedirectIfNotSignedIn from "../components/Common/RedirectIfNotSignedIn"
 import CaptureMarketingInfo from '../components/Common/CaptureMarketingInfo';
@@ -16,7 +16,7 @@ function Withdrawal(props) {
   
   return (
     <>
-    <Navbar3 />
+    <NavbarTwo />
 
     <CheckoutMain />
     <Footer />

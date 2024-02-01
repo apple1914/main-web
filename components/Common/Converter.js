@@ -19,7 +19,6 @@ import {
 } from "../../backend/requests";
 import useAuthStore from "../../signInLogic/auth";
 import { useRouter } from 'next/router'
-import {Str} from "@supercharge/strings"
 import { useTranslation } from 'next-i18next'
 
 

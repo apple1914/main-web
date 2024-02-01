@@ -1,9 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import SignInOutButton from "../Common/SignInOutButton"
+import SignOutButton from "../Common/SignOutButton"
 // import TopHeader from './TopHeader';
 import { useTranslation } from 'next-i18next'
-
 const NavbarTwo = () => {
     const {t} = useTranslation("common")
 
@@ -36,7 +35,7 @@ const NavbarTwo = () => {
             <header className="header-area fixed-top">
                 {/* TopHeader */}
                 {/* <TopHeader /> */}
-                ß
+                
                 <div id="navbar" className="navbar-area nav-style-two">
                     <div className="main-nav">
                         <nav className="navbar navbar-expand-lg navbar-light">
@@ -116,6 +115,10 @@ const NavbarTwo = () => {
                                                             <Link onClick={toggleNavbar} className="nav-link" href="/recover-password" activeClassName="active">
                                                                 Recover Password
                                                             </Link>
+                                                        </li>
+                                                        <li className="nav-item">
+                                                                <SignOutButton/>
+                                        
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -201,15 +204,7 @@ const NavbarTwo = () => {
                                     </ul>
                                 </div>
 
-                                <div className="others-option">
-                                    <div className="option-item">
-                                        <SignInOutButton/>
-                                        
-                                    </div>
-
-
-                             
-                                </div>
+                              
                             </div>
                         </nav>
                     </div>

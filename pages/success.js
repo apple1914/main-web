@@ -8,7 +8,6 @@ import {useRouter} from "next/navigation"
 
 const Success = () => {
     const router = useRouter()
-    alert("ja"+JSON.stringify(router.query))
     
     return (
         <>

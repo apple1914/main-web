@@ -19,19 +19,13 @@ export const SignOutButton = () => {
         
     }
 
-    const submitGoToLogin = async (e) => {
-        e.preventDefault()
-        router.push("/sign-in")
-    }
-    if (user) {
-        return (<button className="btn btn-primary bx" onClick={e => {
+    if (user && !authInProgress) {
+        return (<button className="btn btn-primary-outline text-white" onClick={e => {
             submitSignOut(e)
          }}>Sign Out</button>)
-    } else {
-        return  (<button className="btn btn-primary bx" onClick={e => {
-            submitGoToLogin(e)
-         }}>Sign In</button>)
-    }
+    } 
+    return  (<>asd</>)
+    
 
    
 
