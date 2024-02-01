@@ -36,13 +36,13 @@ const NavbarTwo = () => {
             <header className="header-area fixed-top">
                 {/* TopHeader */}
                 {/* <TopHeader /> */}
-                
+                ß
                 <div id="navbar" className="navbar-area nav-style-two">
                     <div className="main-nav">
                         <nav className="navbar navbar-expand-lg navbar-light">
                             <div className="container">
                                 <Link href="/" onClick={toggleNavbar} className="navbar-brand">
-                                <img src="/images/logo.png" alt="logo" />
+                                <img src="/images/santepay-logo.png" alt="logo" height={100} width={100}/>
                                 </Link>
 
                                 <button 
