@@ -1,6 +1,8 @@
 import React from 'react';
+import { useTranslation } from "next-i18next";
 
 const FunFactsStyleTwo = () => {
+	const {t} = useTranslation("common")
     return (
         <div className="counter-area-two pt-100 pb-70 jarallax">
 			<div className="container">
