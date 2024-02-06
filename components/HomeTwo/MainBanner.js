@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import Converter from "../Common/Converter"
+import { useTranslation } from "next-i18next";
 const MainBanner = () => {
+  const {t} = useTranslation("common")
   return (
     <>
       <div className="main-banner-area">
@@ -9,14 +11,7 @@ const MainBanner = () => {
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="banner-text">
-                <span
-                  data-aos="fade-up"
-                  data-aos-delay="200"
-                  data-aos-duration="1200"
-                  data-aos-once="true"
-                >
-                  Investment Retirement Insurance
-                </span>
+               
 
                 <h1
                   data-aos="fade-up"
@@ -24,7 +19,7 @@ const MainBanner = () => {
                   data-aos-duration="1200"
                   data-aos-once="true"
                 >
-                  The Right Protection to Keep You Moving Forward
+                  {t("Withdraw money to cards of any country in 15 minutes")}
                 </h1>
 
                 <div
@@ -34,40 +29,17 @@ const MainBanner = () => {
                   data-aos-once="true"
                 >
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Quis ipsum.
+                   {t("You can deposit to your balance from 100+ countries.")}
+                   {t("Withdraw to cards of 150+ countries.")}
+                   {t("With Santepay your money becomes international.")}
                   </p>
                 </div>
 
-                <div
-                  className="banner-btn"
-                  data-aos="fade-up"
-                  data-aos-delay="500"
-                  data-aos-duration="1200"
-                  data-aos-once="true"
-                >
-                  <Link href="/contact">
-                  Get Started
-                  </Link>
-
-                  <Link href="/contact">
-                  Find An Agent
-                  </Link>
-                </div>
               </div>
             </div>
 
             <div className="col-lg-6 pr-0">
-              {/* <div
-                className="banner-img"
-                data-aos="fade-up"
-                data-aos-delay="600"
-                data-aos-duration="1200"
-                data-aos-once="true"
-              >
-                <img src="/images/banner/banner-img.png" alt="Image" />
-              </div> */}
+            
               <div className="bg-white rounded shadow-md py-5 px-5 w-75 mx-auto">
               <Converter />
 
