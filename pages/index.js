@@ -16,7 +16,6 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Index = () => {
-    const { t } = useTranslation("common");
     return (
         <>  
             <NavbarTwo />
