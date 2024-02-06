@@ -86,7 +86,7 @@ export default function Offramper({
         </div>
         <div className="modal-body p-0 bg-white rounded">
           <iframe
-            src={`${OFFRAMPER_WIDGET_URL}/staging/${formData.convertedFiatCurrency}?lng=${lng}`}
+            src={`${OFFRAMPER_WIDGET_URL}/production/${formData.convertedFiatCurrency}?lng=${lng}`}
             frameBorder="0"
             width="100%"
             height="500px"
