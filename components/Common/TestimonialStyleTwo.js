@@ -1,14 +1,16 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper";
+import { useTranslation } from "next-i18next";
 
 const TestimonialStyleTwo = () => {
+  const {t} = useTranslation("common")
   return (
     <div className="testimonial-area ptb-100">
       <div className="container">
         <div className="section-title">
-          <span>Testimonials</span>
-          <h2>What Our Clients Say</h2>
+          <span>{t("Testimonials")}</span>
+          <h2>{t("What our customers say")}</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
@@ -38,15 +40,12 @@ const TestimonialStyleTwo = () => {
             <div className="single-client">
               <div className="client-text">
                 <img src="/images/testimonials/client10.jpg" alt="Image" />
-                <h3>Denial Peer</h3>
-                <span>Marketer</span>
+                <h3>Anna</h3>
+                <span>Immigrant</span>
               </div>
 
               <p>
-                Lorem, ipsum dolor sit amet consectetur quam adipisicing elit.
-                Itaque exercitationem quia modi ipsam veniam obcaecati
-                temporibus rerum quam velit ab eius, reiciendis rem a nemo
-                facilis porro ad corrupti nulla rerum quam, velit temporibus.
+                {t("I live aborad, but I still have to pay bills back home and support my fmaily. I deposit money to Santepay using my German debit card, and when I need to, I make a withdrawal to my cards back home")}
               </p>
 
               <ul>
@@ -77,15 +76,12 @@ const TestimonialStyleTwo = () => {
             <div className="single-client">
               <div className="client-text">
                 <img src="/images/testimonials/client11.jpg" alt="Image" />
-                <h3>Anna Dew</h3>
-                <span>Developer</span>
+                <h3>Inokentii</h3>
+                <span>Immigrant</span>
               </div>
 
               <p>
-                Lorem, ipsum dolor sit amet consectetur quam adipisicing elit.
-                Itaque exercitationem quia modi ipsam veniam obcaecati
-                temporibus rerum quam velit ab eius, reiciendis rem a nemo
-                facilis porro ad corrupti nulla rerum quam, velit temporibus.
+                {t("I relocated to Poland in 2014. I get my salary here, then I deposit it to Santepay, and I can withdraw it to my cards back home whenever I need to")}
               </p>
 
               <ul>
