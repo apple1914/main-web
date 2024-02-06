@@ -35,7 +35,7 @@ const Index = () => {
 
             <WhyChooseUs />
 
-            <TeamSlider />
+            {/* <TeamSlider /> */}
 
             <FunFactsStyleTwo />
 

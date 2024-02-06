@@ -19,7 +19,7 @@ const MainBanner = () => {
                   data-aos-duration="1200"
                   data-aos-once="true"
                 >
-                  {t("Withdraw money to cards of any country in 15 minutes")}
+                  {t("Your money without borders")}
                 </h1>
 
                 <div
@@ -29,9 +29,9 @@ const MainBanner = () => {
                   data-aos-once="true"
                 >
                   <p>
-                   {t("You can deposit to your balance from 100+ countries.")}
-                   {t("Withdraw to cards of 150+ countries.")}
-                   {t("With Santepay your money becomes international.")}
+                   {t("Instantly withdraw money to your card in your home country")}
+                   {t("Pay and deposit from any foreign card")}
+                   {t("Santepay makes your money international")}
                   </p>
                 </div>
 
