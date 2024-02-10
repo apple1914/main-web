@@ -1,7 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
+import { useTranslation } from "next-i18next";
+import { PROMOTED_BASE_URL } from "../../utils/importantUrls"
 
 const OffersArea = () => {
+	const {t} = useTranslation("common")
+	const utm_campaign =  "default";
     return (
         <div className="business-contact-area">
 			<div className="container">
@@ -14,13 +18,13 @@ const OffersArea = () => {
 
 					<div className="col-lg-6 col-md-6 p-0">
 						<div className="business-content">
-							<h3>Save up to 30% when you buy small business insurance in online</h3>
+							<h3>{t("Send your first transfer home without any fees!")}</h3>
 
-                            <Link href="/contact" className="default-btn active ml-0">
-							Contact Us
+                            <Link href={`/withdrawal`} className="default-btn active ml-0">
+							{t("Send now")}
                             </Link>
 
-							<p>Call Us Today: <br /> +82546-564-234</p>
+							<p>{t("Contact us")}<br /> {t("Email: hello@santepay.com")}</p>
 						</div>
 					</div>
 				</div>
