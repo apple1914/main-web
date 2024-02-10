@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import Converter from "../Common/Converter"
 import { useTranslation } from "next-i18next";
+import ReactStars from 'react-stars'
+
 const MainBanner = () => {
   const {t} = useTranslation("common")
   return (
@@ -29,13 +31,25 @@ const MainBanner = () => {
                   data-aos-once="true"
                 >
                   <p>
-                   {t("Instantly withdraw money to your card in your home country")}
-                   {t("Pay and deposit from any foreign card")}
+                   {t("Instantly withdraw money to your card in your home country")}{". "}
+                   {t("Pay and deposit from any foreign card")}{". "}
                    {t("Santepay makes your money international")}
                   </p>
                 </div>
 
               </div>
+              <div className="w-25 mx-auto mb-3" data-aos="fade-up"
+                  data-aos-delay="400"
+                  data-aos-duration="1200"
+                  data-aos-once="true">
+                  <ReactStars
+                          count={5}
+                          size={24}
+                          value={5}
+                          color2={'#00B67A'} 
+                          edit={false}
+                          /> 
+                  </div>
             </div>
 
             <div className="col-lg-6 pr-0">

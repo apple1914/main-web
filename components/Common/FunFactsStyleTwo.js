@@ -42,6 +42,15 @@ const FunFactsStyleTwo = () => {
 							<p>{t("Celebrating our 3rd year in business")}</p>
 						</div>
 					</div>
+
+					<div className="col-lg-3 col-md-6 col-sm-6">
+						<div className="single-counter">
+							<h2>
+                                5 <span className="target">$</span>
+							</h2>
+							<p>{t("Minimum transfer amount is just $5")}</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

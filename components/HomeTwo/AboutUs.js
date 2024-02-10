@@ -11,7 +11,7 @@ const AboutUs = () => {
 				<div className="row align-items-center">
 					<div className="col-lg-6 col-md-6">
 						<div className="about-content">
-							<span>{t("About us")}</span>z
+							<span>{t("About us")}</span>
 							<h2>{t("How does it work?")}</h2>
 
 							<p>{t("After payment and deposit, your money with converted into USDT, and immediately become available for instant withdrawal to your cards in any country")}</p>	

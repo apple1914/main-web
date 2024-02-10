@@ -11,6 +11,7 @@ import "../styles/meanmenu.css";
 import "react-accessible-accordion/dist/fancy-example.css";
 import "swiper/css";
 import "swiper/css/bundle";
+import "currency-flags/dist/currency-flags.css";
 
 // Global Style
 import "../styles/style.css";

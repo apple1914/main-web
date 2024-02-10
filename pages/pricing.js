@@ -4,8 +4,12 @@ import PageBanner from '../components/Common/PageBanner';
 import AboutUsContentTwo from '../components/About/AboutUsContentTwo';
 import Footer from '../components/_App/Footer';
 import Link from 'next/link';
+import { useTranslation } from "next-i18next";
+import { PROMOTED_BASE_URL } from "../utils/importantUrls"
 
 const Pricing = () => {
+    const {t} = useTranslation("common")
+    const utm_campaign = "default"
     return (
         <>
             <NavbarTwo />
@@ -23,50 +27,48 @@ const Pricing = () => {
                         <div className="col-lg-4">
                             <div className="single-pricing">
                                 <div className="price-header">
-                                    <h3>Basic</h3>
-                                    <p>Retirement Plan</p>
+                                    <h3>{t("First transfer")}</h3>
                                 </div>
                                 <div className="price">
-                                    <h2><sup>$</sup> 250 <sub>/ month</sub></h2>
+                                    <h2><sup>$</sup> 0 <sub></sub></h2>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                                <p>{t("Your first withdrawal is always free and there is no hidden comission")}</p>
 
-                                <Link href="#">
-                                Contact Us
+                                <Link href="/withdrawal">
+                                {t("Send now")}
                                 </Link>
                             </div>
                         </div>
 
+                       
+
                         <div className="col-lg-4">
                             <div className="single-pricing">
                                 <div className="price-header">
-                                    <h3>Standard</h3>
-                                    <p>Retirement Plan</p>
+                                    <h3>{t("Your 2nd+ transfer")}</h3>
                                 </div>
                                 <div className="price">
-                                    <h2><sup>$</sup> 350 <sub>/ month</sub></h2>
+                                    <h2><sup>%</sup> 4 <sub></sub></h2>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                                <p>{t("Standard fee is just 4% after your first withdrawal")}</p>
 
-                                <Link href="#">
-                                Contact Us
+                                <Link href="/withdrawal">
+                                {t("Send now")}
                                 </Link>
                             </div>
                         </div>
-
                         <div className="col-lg-4">
                             <div className="single-pricing">
                                 <div className="price-header">
-                                    <h3>Premium</h3>
-                                    <p>Retirement Plan</p>
+                                    <h3>{t("No hidden fees")}</h3>
                                 </div>
                                 <div className="price">
-                                    <h2><sup>$</sup> 650 <sub>/ month</sub></h2>
+                                    <h2><sup></sup> FX <sub></sub></h2>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                                <p>{t("You will see the exact fee you're being charged & there are no extra fees hidden into the exchange rate")}</p>
 
-                                <Link href="#" className="default-btn">
-                                    Contact Us
+                                <Link href="/withdrawal">
+                                {t("Send now")}
                                 </Link>
                             </div>
                         </div>

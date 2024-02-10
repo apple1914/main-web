@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 import baseUrl from '../../utils/baseUrl'
+import { useTranslation } from "next-i18next";
 
 const alertContent = () => {
     alert('success')
@@ -17,6 +18,8 @@ const INITIAL_STATE = {
 };
 
 const FaqForm = () => {
+	const {t} = useTranslation("common")
+
 
 	const [contact, setContact] = useState(INITIAL_STATE);
 
@@ -49,7 +52,7 @@ const FaqForm = () => {
 						<div className="contact-wrap">
 							<div className="contact-form">
 								<div className="section-title">
-									<h2>Ask Questions</h2>
+									<h2>{t("Ask us anything!")}</h2>
 								</div>
 
 								<form onSubmit={handleSubmit}>
@@ -122,7 +125,7 @@ const FaqForm = () => {
 										</div>
 										<div className="col-lg-12 col-sm-12">
 											<button type="submit" className="default-btn page-btn">
-												Send Message
+												{t("Send Message")}
 											</button>
 										</div>
 									</div>

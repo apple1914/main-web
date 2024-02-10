@@ -165,7 +165,7 @@ export default function Converter({incrementLevel,
             }}
             placeholder=""
           />
-          <span className="input-group-text p-0">
+          <span className="input-group-text p-0 bg-white">
             <i
               className={`currency-flag currency-flag-${myDepositCurrency.toLowerCase()} m-1 ms-3 rounded`}
             ></i>
@@ -207,7 +207,7 @@ export default function Converter({incrementLevel,
             readOnly={true}
             placeholder=""
           />
-          <span className="input-group-text p-0">
+          <span className="input-group-text p-0 bg-white">
             <i
               className={`currency-flag currency-flag-${myWithdrawalCurrency.toLowerCase()} m-1 ms-3 border-0 rounded`}
             ></i>

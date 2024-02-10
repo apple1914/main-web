@@ -71,25 +71,19 @@ const NavbarTwo = () => {
 
                                         <li className="nav-item">
                                             <Link href="#" onClick={e => e.preventDefault()} className="nav-link">
-                                                    Pages <i className='bx bx-chevron-down'></i>
+                                                    {t("Pages")} <i className='bx bx-chevron-down'></i>
                                             </Link>
 
                                             <ul className="dropdown-menu">
-                                                <li className="nav-item">
-                                                    <Link onClick={toggleNavbar} className="nav-link" href="/team" activeClassName="active">
-                                                        Team
-                                                    </Link>
-                                                </li>
-
-                                                <li className="nav-item">
+                                            <li className="nav-item">
                                                     <Link onClick={toggleNavbar} className="nav-link" href="/pricing" activeClassName="active">
-                                                        Pricing
+                                                        {t("Pricing")}
                                                     </Link>
                                                 </li>
 
                                                 <li className="nav-item">
                                                     <Link onClick={toggleNavbar} className="nav-link" href="/testimonials" activeClassName="active">
-                                                        Testimonials
+                                                        {t("Testimonials")}
                                                     </Link>
                                                 </li>
 
@@ -125,80 +119,32 @@ const NavbarTwo = () => {
 
                                                 <li className="nav-item">
                                                     <Link onClick={toggleNavbar} className="nav-link" href="/faq" activeClassName="active">
-                                                       FAQ
+                                                       {t("FAQ")}
                                                     </Link>
                                                 </li>
 
-                                                <li className="nav-item">
-                                                    <Link onClick={toggleNavbar} className="nav-link" href="/coming-soon" activeClassName="active">
-                                                       Coming Soon
-                                                    </Link>
-                                                </li>
 
                                                 <li className="nav-item">
                                                     <Link onClick={toggleNavbar} className="nav-link" href="/terms-conditions" activeClassName="active">
-                                                       Terms & Conditions
+                                                       {t("Terms & Conditions")}
                                                     </Link>
                                                 </li>
 
                                                 <li className="nav-item">
                                                     <Link onClick={toggleNavbar} className="nav-link" href="/privacy-policy" activeClassName="active">
-                                                       Privacy Policy
-                                                    </Link>
-                                                </li>
-
-                                                <li className="nav-item">
-                                                    <Link onClick={toggleNavbar} className="nav-link" href="/404" activeClassName="active">
-                                                       404 Error Page
-                                                    </Link>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li className="nav-item">
-                                            <Link onClick={e => e.preventDefault()} className="nav-link" href="#">
-                                                    Insurance <i className='bx bx-chevron-down'></i>
-                                            </Link>
-
-                                            <ul className="dropdown-menu">
-                                                <li className="nav-item">
-                                                    <Link onClick={toggleNavbar} className="nav-link" href="/travel-insurance" activeClassName="active">
-                                                        Travel Insurance
-                                                    </Link>
-                                                </li>
-
-                                                <li className="nav-item">
-                                                    <Link onClick={toggleNavbar} className="nav-link" href="/business-insurance" activeClassName="active">
-                                                        Business Insurance
-                                                    </Link>
-                                                </li>
-
-                                                <li className="nav-item">
-                                                    <Link onClick={toggleNavbar} className="nav-link" href="/health-insurance" activeClassName="active">
-                                                        Health Insurance
-                                                    </Link>
-                                                </li>
-
-                                                <li className="nav-item">
-                                                    <Link onClick={toggleNavbar} className="nav-link" href="/car-insurance" activeClassName="active">
-                                                        Car Insurance
-                                                    </Link>
-                                                </li>
-    
-                                                <li className="nav-item">
-                                                    <Link onClick={toggleNavbar} className="nav-link" href="/insurance-details" activeClassName="active">
-                                                        Insurance Details
+                                                       {t("Privacy Policy")}
                                                     </Link>
                                                 </li>
                                             </ul>
                                         </li>
 
                                         
+                                        
 
 
                                         <li className="nav-item">
                                             <Link onClick={toggleNavbar} className="nav-link" href="/contact" activeClassName="active">
-                                            Contact
+                                            {t("Contact us")}
                                             </Link>
                                         </li>
                                     </ul>

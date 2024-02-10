@@ -6,6 +6,9 @@ import OurVision from '../components/About/OurVision';
 import AboutUsContentTwo from '../components/About/AboutUsContentTwo';
 import AchievementContent from '../components/About/AchievementContent';
 import Footer from '../components/_App/Footer';
+import WhyChooseUs from '../components/HomeTwo/WhyChooseUs';
+import OurFeatures from '../components/HomeTwo/OurFeatures';
+import AboutUs from '../components/HomeTwo/AboutUs';
 
 const About = () => {
     return (
@@ -18,17 +21,10 @@ const About = () => {
                 homePageText="Home" 
                 activePageText="About" 
             /> 
+        <AboutUs />
+        <OurFeatures />
+        <WhyChooseUs />
 
-            <AboutUsContent />
-
-            <OurVision />
-
-            <AboutUsContentTwo />
-
-            <div className="pt-100">
-                <AchievementContent />
-            </div>
-            
             <Footer />
         </>
     )

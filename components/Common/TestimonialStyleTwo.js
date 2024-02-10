@@ -40,8 +40,8 @@ const TestimonialStyleTwo = () => {
             <div className="single-client">
               <div className="client-text">
                 <img src="/images/testimonials/client10.jpg" alt="Image" />
-                <h3>Anna</h3>
-                <span>Immigrant</span>
+                <h3>Marat</h3>
+                <span>{t("Customer")}</span>
               </div>
 
               <p>
@@ -77,7 +77,7 @@ const TestimonialStyleTwo = () => {
               <div className="client-text">
                 <img src="/images/testimonials/client11.jpg" alt="Image" />
                 <h3>Inokentii</h3>
-                <span>Immigrant</span>
+                <span>{t("Customer")}</span>
               </div>
 
               <p>
@@ -108,44 +108,7 @@ const TestimonialStyleTwo = () => {
             </div>
           </SwiperSlide>
 
-          <SwiperSlide>
-            <div className="single-client">
-              <div className="client-text">
-                <img src="/images/testimonials/client12.jpg" alt="Image" />
-                <h3>Jecty Smith</h3>
-                <span>UI UX Designer</span>
-              </div>
-
-              <p>
-                Lorem, ipsum dolor sit amet consectetur quam adipisicing elit.
-                Itaque exercitationem quia modi ipsam veniam obcaecati
-                temporibus rerum quam velit ab eius, reiciendis rem a nemo
-                facilis porro ad corrupti nulla rerum quam, velit temporibus.
-              </p>
-
-              <ul>
-                <li>
-                  <i className="bx bxs-star"></i>
-                </li>
-                <li>
-                  <i className="bx bxs-star"></i>
-                </li>
-                <li>
-                  <i className="bx bxs-star"></i>
-                </li>
-                <li>
-                  <i className="bx bxs-star"></i>
-                </li>
-                <li>
-                  <i className="bx bxs-star"></i>
-                </li>
-              </ul>
-
-              <div className="quotes">
-                <i className="flaticon-left-quotes-sign"></i>
-              </div>
-            </div>
-          </SwiperSlide>
+        
         </Swiper>
       </div>
     </div>

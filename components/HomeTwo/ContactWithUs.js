@@ -16,7 +16,7 @@ const ContactWithUs = () => {
 						<div className="contact-call">
 							<h3>
 								<i className="flaticon-call"></i>
-								+824-456-876-521
+								Email: hello@santepay.com
 							</h3>
 						</div>
 					</div>
