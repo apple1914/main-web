@@ -17,7 +17,7 @@ const OurFeatures = () => {
 					<div className="col-lg-3 col-sm-6">
 						<div className="single-choose">
 							<span className="flaticon-team"></span>
-							<h3>{t("Instand withdrawal to your cards in any country")}</h3>
+							<h3>{t("Instant withdrawal to your cards in any country")}</h3>
 							<p>{t("Withdraw money to your cards back home in just 15 minute")}</p>
 
                             {/* <Link href="/insurance-details">

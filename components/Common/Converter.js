@@ -60,6 +60,7 @@ export default function Converter({incrementLevel,
 
   useEffect(() => {
     if (router.isReady) {
+      console.log("router is ready",router.isReady)
       const routerQuery = router.query
 
     

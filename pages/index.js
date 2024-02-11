@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import NavbarTwo from '../components/_App/NavbarTwo';
 import MainBanner from '../components/HomeTwo/MainBanner';
 import OurFeatures from '../components/HomeTwo/OurFeatures';
@@ -46,7 +46,10 @@ const Index = () => {
 
             
             <Footer />
+            {/* <Suspense> */}
             <CaptureMarketingInfo/>
+            {/* </Suspense> */}
+            
         </>
     )
 }
