@@ -38,7 +38,7 @@ const MainBanner = () => {
                 </div>
 
               </div>
-              <div className="w-25 mx-auto mb-3" data-aos="fade-up"
+              <div className="d-flex justify-content-center mb-3" data-aos="fade-up"
                   data-aos-delay="400"
                   data-aos-duration="1200"
                   data-aos-once="true">
