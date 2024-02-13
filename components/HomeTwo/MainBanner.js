@@ -53,11 +53,15 @@ const MainBanner = () => {
             </div>
 
             <div className="col-lg-6 pr-0">
-            
-              <div className="bg-white rounded shadow-md py-5 px-5 w-75 mx-auto">
+             <div className="d-flex justify-content-center">
+             <div className="bg-white rounded shadow-md py-5 px-4 px-sm-5 col-11 col-sm-8">
               <Converter />
 
               </div>
+             </div>
+           
+              
+             
             </div>
           </div>
         </div>
