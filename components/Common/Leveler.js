@@ -8,7 +8,7 @@ export default function Leveler({ level, lng }) {
     <>
       <div className="row mt-4 mb-5">
         <div className="col-lg-11 mx-auto">
-          <div className="row checkout-levels">
+          <div className="row checkout-levels w-50 mx-auto">
             <div
               className={
                 level === 0 ? "col-3 step active" : "col-3 step complete"

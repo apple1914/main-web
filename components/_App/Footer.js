@@ -15,26 +15,26 @@ const Footer = () => {
                         <div className="col-lg-3 col-md-6">
                             <div className="single-widget">
                                 <Link href="/">
-                                        <img src="/images/logo2.png" alt="Image" />
+                                        <img src="/images/santepay-logo.png" alt="Image" width={100} height={100}/>
                                 </Link>
 
 
                                 <div className="social-area">
                                     <ul>
                                         <li>
-                                            <a href="https://www.facebook.com/" target="_blank"><i className="bx bxl-facebook"></i></a>
+                                            <a href="https://www.facebook.com/santepay" target="_blank"><i className="bx bxl-facebook"></i></a>
                                         </li>
                                         <li>
-                                            <a href="https://twitter.com/" target="_blank"><i className="bx bxl-twitter"></i></a>
+                                            <a href="https://twitter.com/santepay" target="_blank"><i className="bx bxl-twitter"></i></a>
                                         </li>
                                         <li>
-                                            <a href="https://www.linkedin.com/" target="_blank"><i className="bx bxl-linkedin"></i></a>
+                                            <a href="https://www.linkedin.com/santepay" target="_blank"><i className="bx bxl-linkedin"></i></a>
                                         </li>
                                         <li>
-                                            <a href="https://www.youtube.com/" target="_blank"><i className="bx bxl-youtube"></i></a>
+                                            <a href="https://www.youtube.com/santepay" target="_blank"><i className="bx bxl-youtube"></i></a>
                                         </li>
                                         <li>
-                                            <a href="https://www.instagram.com/" target="_blank"><i className="bx bxl-instagram"></i></a>
+                                            <a href="https://www.instagram.com/santepay" target="_blank"><i className="bx bxl-instagram"></i></a>
                                         </li>
                                     </ul>
                                 </div>
