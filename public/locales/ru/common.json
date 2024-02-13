@@ -130,5 +130,6 @@
     "Withdrawal Destination":"Детали вывода",
     "Amount":"Сумма",
     "Balance":"Баланс",
-    "Status":"Статус"
+    "Status":"Статус",
+    "Add New Card For Withdrawal":"Добавить новую карту для вывода"
 }

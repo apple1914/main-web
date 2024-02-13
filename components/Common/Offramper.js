@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { addWithdrawalAddress } from "../../backend/requests";
 import { OFFRAMPER_WIDGET_URL } from "../../utils/importantUrls";
+import { useTranslation } from "next-i18next";
 
 export default function Offramper({
   lng,
@@ -19,7 +20,7 @@ export default function Offramper({
     cryptocurrency:undefined,
     nickname:undefined
   });
-  // const { t } = useTranslation(lng);
+  const { t } = useTranslation("common");
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
@@ -72,12 +73,12 @@ export default function Offramper({
         className="btn btn-outline-primary text-primary my-1 mx-1 w-100 mx-auto"
         onClick={handleShow}
       >
-        {"Add New Recipient"}
+        {t("Add New Card For Withdrawal")}
       </button>
 
       <Modal show={show} onHide={handleClose} centered>
         <div className="modal-header">
-          <h5 className="modal-title fw-400">{"Add Recipient"}</h5>
+          <h5 className="modal-title fw-400">{t("Add New Card For Withdrawal")}</h5>
           {/* <button
                 type="button"
                 className="btn-close"
