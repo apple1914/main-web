@@ -20,6 +20,7 @@ import {
 import useAuthStore from "../../signInLogic/auth";
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import { setCookie } from "cookies-next";
 
 
 export default function Converter({incrementLevel,
@@ -56,6 +57,15 @@ export default function Converter({incrementLevel,
       incrementLevel();
     }
   };
+
+  const handleChangeDepositCurrency = (value) => {
+    setMyDepositCurrency(value)
+    setCookie("fiatCurrency",value)
+  }
+  const handleChangeWithdrawCurrency = (value) => {
+    setMyWithdrawalCurrency(val)
+    setCookie("withdrawalCurrency",value)
+  }
   
 
   useEffect(() => {
@@ -179,7 +189,7 @@ export default function Converter({incrementLevel,
               required={true}
               value={myDepositCurrency}
               onChange={(e) => {
-                setMyDepositCurrency(e.target.value);
+                handleChangeDepositCurrency(e.target.value);
               }}
             >
               {myDepositCurrencies.map((x) => (
@@ -221,7 +231,7 @@ export default function Converter({incrementLevel,
               required={true}
               value={myWithdrawalCurrency}
               onChange={(e) => {
-                setMyWithdrawalCurrency(e.target.value);
+                handleChangeWithdrawCurrency(e.target.value);
               }}
             >
               {myWithdrawalCurrencies.map((curr) => (
