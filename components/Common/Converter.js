@@ -63,7 +63,7 @@ export default function Converter({incrementLevel,
     setCookie("fiatCurrency",value)
   }
   const handleChangeWithdrawCurrency = (value) => {
-    setMyWithdrawalCurrency(val)
+    setMyWithdrawalCurrency(value)
     setCookie("withdrawalCurrency",value)
   }
   
