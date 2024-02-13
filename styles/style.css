@@ -7049,5 +7049,110 @@ Nice select Area Style*/
   color: #12b48b;
 }
 
+
+
+
+.checkout-levels > .step {
+  padding: 0;
+  position: relative;
+}
+
+.checkout-levels > .step .step-name {
+  font-size: 16px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.checkout-levels > .step > .step-dot {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  display: block;
+  background: #fff;
+  border: 1px solid #31abfc;
+  top: 45px;
+  left: 50%;
+  margin-top: 15px;
+  margin-left: -15px;
+  border-radius: 50%;
+}
+
+.checkout-levels > .step > .step-dot:after {
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  position: absolute;
+  top: 9px;
+  left: 9px;
+}
+
+.checkout-levels > .step.complete > .step-dot {
+  background: #31abfc;
+}
+
+.checkout-levels > .step.complete > .step-dot:after {
+  color: #fff;
+  top: 3px;
+  left: 7px;
+}
+
+.checkout-levels > .step.active > .step-dot:after {
+  background: #31abfc;
+  content: "";
+}
+
+.checkout-levels > .step > .progress {
+  position: relative;
+  background: #bbb;
+  border-radius: 0px;
+  height: 1px;
+  box-shadow: none;
+  margin: 22px 0;
+}
+
+.checkout-levels > .step > .progress > .progress-bar {
+  width: 0px;
+  box-shadow: none;
+  background: #28a745;
+}
+
+.checkout-levels > .step.complete > .progress > .progress-bar {
+  width: 100%;
+}
+
+.checkout-levels > .step.active > .progress > .progress-bar {
+  width: 50%;
+}
+
+.checkout-levels > .step:first-child.active > .progress > .progress-bar {
+  width: 0%;
+}
+
+.checkout-levels > .step:last-child.active > .progress > .progress-bar {
+  width: 100%;
+}
+
+.checkout-levels > .step.disabled > .step-dot {
+  border-color: #bbb;
+}
+
+.checkout-levels > .step:first-child > .progress {
+  left: 50%;
+  width: 50%;
+}
+
+.checkout-levels > .step:last-child > .progress {
+  width: 50%;
+}
+
+.checkout-levels > .step.disabled a.step-dot {
+  pointer-events: none;
+}
+
+@media (max-width: 575.98px) {
+  .checkout-levels > .step .step-name {
+    font-size: 14px;
+  }
+}
 /* End New CSS For Home 5, 6 */
 /*# sourceMappingURL=style.css.map */
