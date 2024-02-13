@@ -6,7 +6,7 @@ export default function Leveler({ level, lng }) {
   const { t } = useTranslation("common");
   return (
     <>
-      <div className="row mt-4 mb-5">
+      <div className="row">
         <div className="col-lg-11 mx-auto">
           <div className="row checkout-levels w-50 mx-auto">
             <div
@@ -14,7 +14,7 @@ export default function Leveler({ level, lng }) {
                 level === 0 ? "col-3 step active" : "col-3 step complete"
               }
             >
-              <div className="step-name">{t("Amount")}</div>
+              <div className="step-name d-none d-sm-block">{t("Amount")}</div>
               {/* <div className="progress">
                 <div className="progress-bar"></div>
               </div> */}
@@ -29,7 +29,7 @@ export default function Leveler({ level, lng }) {
                   : "col-3 step"
               }
             >
-              <div className="step-name">{t("Withdrawal Destination")}</div>
+              <div className="step-name d-none d-sm-block">{t("Withdrawal Destination")}</div>
 
               {/* <div className="progress">
                 <div className="progress-bar"></div>
@@ -45,7 +45,7 @@ export default function Leveler({ level, lng }) {
                   : "col-3 step"
               }
             >
-              <div className="step-name">{t("Balance")}</div>
+              <div className="step-name d-none d-sm-block">{t("Balance")}</div>
               {/* <div className="progress">
                 <div className="progress-bar"></div>
               </div> */}
@@ -60,7 +60,7 @@ export default function Leveler({ level, lng }) {
                   : "col-3 step"
               }
             >
-              <div className="step-name">{t("Status")}</div>
+              <div className="step-name d-none d-sm-block">{t("Status")}</div>
               {/* <div className="progress">
                 <div className="progress-bar"></div>
               </div> */}

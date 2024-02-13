@@ -89,7 +89,7 @@ export default function Offramper({
             src={`${OFFRAMPER_WIDGET_URL}/production/${formData.convertedFiatCurrency}?lng=${lng}&email=${email}`}
             frameBorder="0"
             width="100%"
-            height="500px"
+            height="600px"
             allowFullScreen
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
           ></iframe>
