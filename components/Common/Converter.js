@@ -234,11 +234,11 @@ export default function Converter({incrementLevel,
         </div>
       </div>
       <p className="text-muted text-center w-100 mx-auto">
-        Exchange rate: {" "}
+        {/* Exchange rate: {" "}
         <span className="fw-500">
           1 {myDepositCurrency} = {exchangeRate} {myWithdrawalCurrency}
-        </span>
-        {discount !== 0 && (
+        </span> */}
+        {/* {discount !== 0 && (
           <OverlayTrigger
             placement="bottom"
             overlay={
@@ -249,7 +249,7 @@ export default function Converter({incrementLevel,
           >
             <span style={{ cursor: "pointer" }}>*</span>
           </OverlayTrigger>
-        )}
+        )} */}
       </p>
       <div className="d-grid w-100 mx-auto">
         {incrementLevel ? (
@@ -266,7 +266,7 @@ export default function Converter({incrementLevel,
                 aria-hidden="true"
               />
             ) : (
-              "Continue"
+              t("Continue")
             )}
           </button>
         ) : (
@@ -292,7 +292,7 @@ export default function Converter({incrementLevel,
                 />
               ) : (
                 <p>
-                  Withdraw money to any card
+                 {t("Withdraw to card")}
                 </p>
                 
               )}

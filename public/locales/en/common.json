@@ -123,5 +123,10 @@
     "All money transfers are handled by our partners in under 15 minutes":"All money transfers are handled by our partners in under 15 minutes",
     "No hidden fees":"No hidden fees",
     "You will see the exact fee you're being charged & there are no extra fees hidden into the exchange rate":"You will see the exact fee you're being charged & there are no extra fees hidden into the exchange rate",
-    "Standard fee is just 4% after your first transfer":"Standard fee is just 4% after your first transfer"
+    "Standard fee is just 4% after your first transfer":"Standard fee is just 4% after your first transfer",
+    "Withdrawal":"Withdrawal",
+    "Withdrawal Destination":"Withdrawal Destination",
+    "Amount":"Amount",
+    "Balance":"Balance",
+    "Status":"Status"
 }

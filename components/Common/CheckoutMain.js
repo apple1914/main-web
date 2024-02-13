@@ -19,12 +19,7 @@ const CheckoutMain = ({lng}) => {
 
 
   const [level, setLevel] = useState(0);
-  const stepNameMapper = [
-    "Details",
-    "Withdrawal Card Info",
-    "Payment",
-    "Status",
-  ];
+  
 
 
   function incrementLevel() {
@@ -34,7 +29,7 @@ const CheckoutMain = ({lng}) => {
     return (
         <div id="content" className="py-4 bg-white">
       <div className="container">
-        <div className="mx-auto text-center pt-5">Withdrawal</div>
+        <div className="mx-auto text-center pt-5">{t("Withdrawal")}</div>
         <div className="row pt-5">
           <div className="col-md-9 col-lg-7 col-xl-6 mx-auto">
             <WithdrawalLevels lng={lng} formData={formData} setFormData={setFormData} level={level} incrementLevel={incrementLevel} />
