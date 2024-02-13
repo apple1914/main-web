@@ -21,7 +21,7 @@ function Withdrawal(props) {
 
     <CheckoutMain lng={lng}/>
     <Footer />
-    <CaptureMarketingInfo />
+    {/* <CaptureMarketingInfo /> */}
     <RedirectIfNotSignedIn/>
 
     </>

@@ -28,7 +28,8 @@ const CheckoutMain = ({lng}) => {
 
 
   function incrementLevel() {
-    setLevel(level + 1);
+    const newLevel = level + 1
+    setLevel(newLevel);
   }
     return (
         <div id="content" className="py-4 bg-white">

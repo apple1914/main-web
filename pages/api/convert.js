@@ -46,9 +46,9 @@ export default async function handler(req, res) {
 
         const answer = Number(amount) * (1-TOTAL_FEE) * value / price
 
-        console.log("intermediate values in convert are:", {
-            amount,price,value,TOTAL_FEE,answer
-        })
+        // console.log("intermediate values in convert are:", {
+        //     amount,price,value,TOTAL_FEE,answer
+        // })
         return res.json(answer)
     
         } catch (e) {

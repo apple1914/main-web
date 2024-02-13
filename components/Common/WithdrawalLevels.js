@@ -23,7 +23,6 @@ const WithdrawalLevels = ({formData,setFormData,level,incrementLevel,lng}) => {
         case 1:
         return (
             <>
-            {/* <div className="shadow-lg rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4"> */}
             <PickWithdrawalDestination
                 incrementLevel={incrementLevel}
                 formData={formData}
