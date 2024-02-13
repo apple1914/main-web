@@ -7055,11 +7055,11 @@ Nice select Area Style*/
 .checkout-levels > .step {
   padding: 0;
   position: relative;
+  margin-bottom: 80px;
 }
 
 .checkout-levels > .step .step-name {
   font-size: 16px;
-  margin-bottom: 5px;
   text-align: center;
 }
 
@@ -7072,8 +7072,8 @@ Nice select Area Style*/
   border: 1px solid #31abfc;
   top: 45px;
   left: 50%;
-  margin-top: 15px;
   margin-left: -15px;
+  margin-top: 15px;
   border-radius: 50%;
 }
 
