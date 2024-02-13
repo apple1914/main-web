@@ -66,13 +66,14 @@ export default function PickWithdrawalDestination({
         <h3 className="text-5 fw-400 mb-0">{"Select Recipient"}</h3>
       </div>
       <hr className="mx-n3 mx-sm-n5 mb-4" />
-      <Offramper
+      {!!user && (<Offramper
         // triggerUpdateRecipients={triggerUpdateRecipients}
         lng={lng}
         incrementLevel={incrementLevel}
         formData={formData}
         setFormData={setFormData}
-      />
+        email={user.email}
+      />)}
       {hasNoAvailableDestinations == false && <div className="text-center my-3">or</div>}
       {hasNoAvailableDestinations === false &&
         (loading ? (

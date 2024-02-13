@@ -11,6 +11,7 @@ import { useTranslation } from "next-i18next";
 
 function Withdrawal(props) {
   //@ts-ignore
+  const {lng} = props
 
 
   
@@ -18,7 +19,7 @@ function Withdrawal(props) {
     <>
     <NavbarTwo />
 
-    <CheckoutMain />
+    <CheckoutMain lng={lng}/>
     <Footer />
     <CaptureMarketingInfo />
     <RedirectIfNotSignedIn/>
@@ -39,7 +40,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       // pass the translation props to the page component
-      ...(await serverSideTranslations(locale)),
+      ...(await serverSideTranslations(locale)),lng:locale
     },
   }
 }
