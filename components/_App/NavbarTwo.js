@@ -68,6 +68,11 @@ const NavbarTwo = () => {
                                             {t("About")}
                                             </Link>
                                         </li>
+                                        <li className="nav-item">
+                                            <Link onClick={toggleNavbar} className="nav-link" href="/how-it-works" activeClassName="active">
+                                            {t("HowItWorks")}
+                                            </Link>
+                                        </li>
 
                                         <li className="nav-item">
                                             <Link href="#" onClick={e => e.preventDefault()} className="nav-link">
@@ -89,25 +94,25 @@ const NavbarTwo = () => {
 
                                                 <li className="nav-item">
                                                     <Link onClick={toggleNavbar} className="nav-link" href="#">
-                                                            User <i className='bx bx-chevron-down'></i>
+                                                            {t("User")} <i className='bx bx-chevron-down'></i>
                                                     </Link>
 
                                                     <ul className="dropdown-menu">
                                                         <li className="nav-item">
                                                             <Link onClick={toggleNavbar} className="nav-link" href="/sign-up" activeClassName="active">
-                                                                Sign Up
+                                                                {t("Sign Up")}
                                                             </Link>
                                                         </li> 
 
                                                         <li className="nav-item">
                                                             <Link onClick={toggleNavbar} className="nav-link" href="/sign-in" activeClassName="active">
-                                                                Sign In
+                                                                {t("Sign In")}
                                                             </Link>
                                                         </li> 
 
                                                         <li className="nav-item">
                                                             <Link onClick={toggleNavbar} className="nav-link" href="/recover-password" activeClassName="active">
-                                                                Recover Password
+                                                                {t("Recover Password")}
                                                             </Link>
                                                         </li>
                                                         <li className="nav-item">

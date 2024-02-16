@@ -76,7 +76,7 @@ const Pricing = () => {
                 </div>
             </div>
      
-            <AboutUsContentTwo />
+            {/* <AboutUsContentTwo /> */}
             
             <Footer />
         </>

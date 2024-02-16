@@ -6,26 +6,26 @@ import OurVision from '../components/About/OurVision';
 import AboutUsContentTwo from '../components/About/AboutUsContentTwo';
 import AchievementContent from '../components/About/AchievementContent';
 import Footer from '../components/_App/Footer';
-import WhyChooseUs from '../components/HomeTwo/WhyChooseUs';
-import AboutUs from '../components/HomeTwo/AboutUs';
+import OurFeatures from '../components/HomeTwo/OurFeatures';
+import HowItWorks from '../components/HomeTwo/HowItWorks';
 
-const About = () => {
+const HowItWorksPage = () => {
     return (
         <>
             <NavbarTwo />
 
             <PageBanner 
-                pageTitle="About" 
+                pageTitle="How It Works" 
                 homePageUrl="/" 
                 homePageText="Home" 
-                activePageText="About" 
+                activePageText="HowItWorks" 
             /> 
-        <AboutUs />
-        <WhyChooseUs />
+        <HowItWorks />
+        <OurFeatures />
 
             <Footer />
         </>
     )
 }
 
-export default About;
+export default HowItWorksPage;

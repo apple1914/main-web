@@ -11,11 +11,11 @@ const TestimonialStyleTwo = () => {
         <div className="section-title">
           <span>{t("Testimonials")}</span>
           <h2>{t("What our customers say")}</h2>
-          <p>
+          {/* <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
             ipsum suspendisse ultrices gravida.
-          </p>
+          </p> */}
         </div>
 
         <Swiper
@@ -45,7 +45,7 @@ const TestimonialStyleTwo = () => {
               </div>
 
               <p>
-                {t("I live aborad, but I still have to pay bills back home and support my fmaily. I deposit money to Santepay using my German debit card, and when I need to, I make a withdrawal to my cards back home")}
+                {t("testimonials.p1")}
               </p>
 
               <ul>
@@ -81,7 +81,7 @@ const TestimonialStyleTwo = () => {
               </div>
 
               <p>
-                {t("I relocated to Poland in 2014. I get my salary here, then I deposit it to Santepay, and I can withdraw it to my cards back home whenever I need to")}
+                {t("testimonials.p2")}
               </p>
 
               <ul>

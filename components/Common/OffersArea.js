@@ -5,7 +5,6 @@ import { PROMOTED_BASE_URL } from "../../utils/importantUrls"
 
 const OffersArea = () => {
 	const {t} = useTranslation("common")
-	const utm_campaign =  "default";
     return (
         <div className="business-contact-area">
 			<div className="container">
@@ -18,7 +17,7 @@ const OffersArea = () => {
 
 					<div className="col-lg-6 col-md-6 p-0">
 						<div className="business-content">
-							<h3>{t("Send your first transfer home without any fees!")}</h3>
+							<h3>{t("offersArea.p1")}</h3>
 
                             <Link href={`/withdrawal`} className="default-btn active ml-0">
 							{t("Send now")}

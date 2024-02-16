@@ -7,28 +7,28 @@ const WhyChooseUs = () => {
         <div className="chooses-us-area-two pt-100 pb-70">
 			<div className="container">
 				<div className="section-title">
-					<span>{t("Why choose us")}</span>
-					<h2>{t("Our strengths")}</h2>
+					<span>{t("whyChooseUs.f0a")}</span>
+					<h2>{t("whyChooseUs.f0a")}</h2>
 				</div>
 
 				<div className="choose-us-wrap">
 					<ul>
 						<li>
 							<i className="flaticon-health-care"></i>
-							<h3>{t("Fast")}</h3>
-							<p>{t("Withdraw money to your cards back home in just 15 minutes")}</p>
+							<h3>{t("whyChooseUs.f1a")}</h3>
+							<p>{t("whyChooseUs.f1b")}</p>
 						</li>
 
 						<li>
 							<i className="flaticon-kindness"></i>
-							<h3>{t("Low minimum amount")}</h3>
-							<p>{t("Smallest amount for transfer is just $5 so you can give it a try with a tiny sum")}</p>
+							<h3>{t("whyChooseUs.f2a")}</h3>
+							<p>{t("whyChooseUs.f2b")}</p>
 						</li>
 
 						<li>
 							<i className="flaticon-support"></i>
-							<h3>{t("We care about our customers")}</h3>
-							<p>{t("If you have any questions or problems, our customer support agents are always happy to assist you")}</p>
+							<h3>{t("whyChooseUs.f3a")}</h3>
+							<p>{t("whyChooseUs.f3b")}</p>
 						</li>
 					</ul>
 				</div>

@@ -302,7 +302,7 @@ export default function Converter({incrementLevel,
                 />
               ) : (
                 <p>
-                 {t("Withdraw to card")}
+                 {t("converter.cta1")}
                 </p>
                 
               )}

@@ -4,11 +4,14 @@ import React from 'react';
 import useAuthStore from "../../signInLogic/auth";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "next-i18next";
 
 export const SignOutButton = () => {
     const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
     const authSignOut = useAuthStore((state) => state.authSignOut);
     const router = useRouter()
+    const { t } = useTranslation("common")
+
 
 
 
@@ -22,9 +25,9 @@ export const SignOutButton = () => {
     if (user && !authInProgress) {
         return (<button className="btn btn-primary-outline text-white" onClick={e => {
             submitSignOut(e)
-         }}>Sign Out</button>)
+         }}>{t("Sign Out")}</button>)
     } 
-    return  (<>asd</>)
+    return  (<></>)
     
 
    

@@ -3,6 +3,8 @@ import NavbarTwo from '../components/_App/NavbarTwo';
 import MainBanner from '../components/HomeTwo/MainBanner';
 import OurFeatures from '../components/HomeTwo/OurFeatures';
 import AboutUs from '../components/HomeTwo/AboutUs';
+import HowItWorks from '../components/HomeTwo/HowItWorks';
+
 import Services from '../components/HomeTwo/Services';
 import OffersArea from '../components/Common/OffersArea';
 import WhyChooseUs from '../components/HomeTwo/WhyChooseUs';
@@ -24,7 +26,7 @@ const Index = () => {
 
             <OurFeatures />
 
-            <AboutUs />
+            {/* <AboutUs /> */}
 
             <Services />
 

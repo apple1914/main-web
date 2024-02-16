@@ -1,8 +1,10 @@
 import Leveler from "./Leveler"
+import { useTranslation } from "next-i18next";
 
 
 export default function PaymentStatusComponent({ isSuccess }) {
   //@ts-ignore
+  const {t} = useTranslation("common")
   return (
     <div className="content py-4">
       <div className="container">
@@ -16,7 +18,7 @@ export default function PaymentStatusComponent({ isSuccess }) {
               {isSuccess ? (
                 <>
                   <div className="my-4">
-                    <p className="lead">{"Payment Success! Your money will be delivered soon"}</p>
+                    <p className="lead">{t("status.success")}</p>
                   </div>
                  
                 </>
@@ -25,7 +27,7 @@ export default function PaymentStatusComponent({ isSuccess }) {
                   <div className="my-4">
                     <p className="lead">{"Failed"}</p>
                   </div>
-                  <p className="text-3 mb-4">{"Try one more time"}</p>
+                  <p className="text-3 mb-4">{t("status.failure")}</p>
                 </>
               )}
             </div>

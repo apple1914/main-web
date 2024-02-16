@@ -63,7 +63,7 @@ export default function PickWithdrawalDestination({
   return (
     <div className="bg-white shadow rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-10">
       <div className="d-flex w-100 justify-content-between align-items-center">
-        <h3 className="text-5 fw-400 mb-0">{"Select Recipient"}</h3>
+        <h3 className="text-5 fw-400 mb-0">{t("pickWithdrawalDestination.h1")}</h3>
       </div>
       <hr className="mx-n3 mx-sm-n5 mb-4" />
       {!!user && (<Offramper
@@ -108,7 +108,7 @@ export default function PickWithdrawalDestination({
             </Form.Group>
             <div className="d-grid w-100 mx-auto mt-3">
               <button type="submit" className="btn btn-primary">
-                Submit
+                {t("Continue")}
               </button>
             </div>
           </form>
