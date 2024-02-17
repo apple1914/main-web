@@ -1,8 +1,10 @@
 import React from 'react';
 import NavbarTwo from '../components/_App/NavbarTwo';
 import MainBanner from '../components/HomeTwo/MainBanner';
-import OurFeatures from '../components/HomeTwo/OurFeatures';
+import SideBenefitCards from '../components/HomeTwo/SideBenefitCards';
 import AboutUs from '../components/HomeTwo/AboutUs';
+import HowItWorks from '../components/HomeTwo/HowItWorks';
+
 import Services from '../components/HomeTwo/Services';
 import OffersArea from '../components/Common/OffersArea';
 import WhyChooseUs from '../components/HomeTwo/WhyChooseUs';
@@ -22,11 +24,13 @@ const Index = () => {
 
             <MainBanner />
 
-            <OurFeatures />
-
-            <AboutUs />
-
             <Services />
+
+            <SideBenefitCards />
+
+            {/* <AboutUs /> */}
+
+            
 
             <div className="pb-100">
                 <OffersArea />

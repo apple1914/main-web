@@ -6,6 +6,7 @@ import Footer from '../components/_App/Footer';
 import Link from 'next/link';
 import { useTranslation } from "next-i18next";
 import { PROMOTED_BASE_URL } from "../utils/importantUrls"
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Pricing = () => {
     const {t} = useTranslation("common")
@@ -76,7 +77,7 @@ const Pricing = () => {
                 </div>
             </div>
      
-            <AboutUsContentTwo />
+            {/* <AboutUsContentTwo /> */}
             
             <Footer />
         </>
@@ -84,3 +85,17 @@ const Pricing = () => {
 }
 
 export default Pricing;
+
+
+
+export async function getStaticProps(context) {
+    // extract the locale identifier from the URL
+    const { locale } = context
+  
+    return {
+      props: {
+        // pass the translation props to the page component
+        ...(await serverSideTranslations(locale)),
+      },
+    }
+  }

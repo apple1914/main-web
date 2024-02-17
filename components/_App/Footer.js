@@ -12,7 +12,7 @@ const Footer = () => {
             <footer className="footer-top-area pt-100 pb-70">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-3 col-md-6">
+                        <div className="col-lg-4 col-md-6">
                             <div className="single-widget">
                                 <Link href="/">
                                         <img src="/images/santepay-logo.png" alt="Image" width={100} height={100}/>
@@ -41,7 +41,7 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <div className="col-lg-3 col-md-6">
+                        <div className="col-lg-4 col-md-6">
                             <div className="single-widget contact">
                                 <h3>{t("Contact us")}</h3>
 
@@ -56,11 +56,43 @@ const Footer = () => {
                                         </a>
                                     </li>
                                     
-                                    <li>
+                                    {/* <li>
                                         <i className="flaticon-maps-and-flags"></i>
                                         <span>{t("Address")}:</span> 
                                         {t("5 600th st Konyaalti, Antalya, Turkey")}
-                                    </li>
+                                    </li> */}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div className="col-lg-4 col-md-6">
+                            <div className="single-widget">
+                                {/* <h3>Service Links</h3> */}
+
+                                <ul>
+                                <li className="nav-item">
+                                                    <Link className="nav-link" href="/faq" activeClassName="active">
+                                                       {t("FAQ")}
+                                                    </Link>
+                                                </li>
+
+
+                                                <li className="nav-item">
+                                                    <Link className="nav-link" href="/terms-conditions" activeClassName="active">
+                                                       {t("Terms & Conditions")}
+                                                    </Link>
+                                                </li>
+
+                                                <li className="nav-item">
+                                                    <Link className="nav-link" href="/privacy-policy" activeClassName="active">
+                                                       {t("Privacy Policy")}
+                                                    </Link>
+                                                </li>
+                                                <li className="nav-item">
+                                                    <Link className="nav-link" href="/testimonials" activeClassName="active">
+                                                        {t("Testimonials")}
+                                                    </Link>
+                                                </li>
                                 </ul>
                             </div>
                         </div>

@@ -8,6 +8,7 @@ import { useRouter,useSearchParams } from "next/navigation";
 import useAuthStore from "../signInLogic/auth";
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const SignIn = () => {
     const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
@@ -121,3 +122,18 @@ const SignIn = () => {
 }
 
 export default SignIn;
+
+
+
+
+export async function getStaticProps(context) {
+    // extract the locale identifier from the URL
+    const { locale } = context
+  
+    return {
+      props: {
+        // pass the translation props to the page component
+        ...(await serverSideTranslations(locale)),
+      },
+    }
+  }

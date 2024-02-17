@@ -73,7 +73,7 @@ export default function Offramper({
         className="btn btn-outline-primary text-primary my-1 mx-1 w-100 mx-auto"
         onClick={handleShow}
       >
-        {t("Add New Card For Withdrawal")}
+        {t("offramper.button")}
       </button>
 
       <Modal show={show} onHide={handleClose} centered>

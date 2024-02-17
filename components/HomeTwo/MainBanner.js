@@ -21,7 +21,7 @@ const MainBanner = () => {
                   data-aos-duration="1200"
                   data-aos-once="true"
                 >
-                  {t("Your money without borders")}
+                  {t("home.slogan")}
                 </h1>
 
                 <div
@@ -31,9 +31,9 @@ const MainBanner = () => {
                   data-aos-once="true"
                 >
                   <p>
-                   {t("Instantly withdraw money to your card in your home country")}{". "}
-                   {t("Pay and deposit from any foreign card")}{". "}
-                   {t("Santepay makes your money international")}
+                   {t("home.h21")}{". "}
+                   {/* {t("home.h22")}{". "} */}
+                   {/* {t("home.h23")} */}
                   </p>
                 </div>
 

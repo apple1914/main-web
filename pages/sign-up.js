@@ -10,6 +10,10 @@ import { analyticsSourceContext } from '../utils/miscConstants';
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo"
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from "next-i18next";
+
+
 const SignUp = () => {
     const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
     const authSignUp = useAuthStore((state) => state.authSignUp);
@@ -18,6 +22,7 @@ const SignUp = () => {
 
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
+    const {t} = useTranslation("common")
 
     useEffect(() => {
         console.log("BLAH")
@@ -66,7 +71,7 @@ const SignUp = () => {
                         <div className="col-12">
                             <div className="contact-form-action">
                                 <div className="form-heading text-center">
-                                    <h3 className="form-title">Create Account</h3>
+                                    <h3 className="form-title">{t("Create account")}</h3>
                                 </div>
 
                                 <form method="post" onSubmit={submitSignUpForm}>
@@ -80,7 +85,7 @@ const SignUp = () => {
                                                 className="form-control"
                                                 id="email"
                                                 required
-                                                placeholder="Enter Your Email"
+                                                placeholder="Email"
                                                 name="email"
                                             />
 
@@ -94,7 +99,7 @@ const SignUp = () => {
                                                     className="form-control"
                                                     id="pwd"
                                                     required
-                                                    placeholder="Password"
+                                                    placeholder={t("Password")}
                                                     name="pwd"
                                                 />
 
@@ -103,13 +108,13 @@ const SignUp = () => {
 
                                         <div className="col-12">
                                             <button className="default-btn btn-two" type="submit">
-                                                Sign Up
+                                                {t("Sign Up")}
                                             </button>
                                         </div>
                                         
                                         <div className="col-12">
                                             <p className="account-desc">
-                                                Already have an account?
+                                               {t("Already have an account?")}
                                             <Link
                                                 href={{
                                                     pathname: `/sign-in`,   
@@ -117,7 +122,7 @@ const SignUp = () => {
                                                 }}
                                                 className={`btn-link`}
                                                 >
-                                                Log In
+                                                {t("Sign In")}
                                             </Link>
                                             </p>
                                         </div>
@@ -136,3 +141,18 @@ const SignUp = () => {
 }
 
 export default SignUp;
+
+
+
+
+export async function getStaticProps(context) {
+    // extract the locale identifier from the URL
+    const { locale } = context
+  
+    return {
+      props: {
+        // pass the translation props to the page component
+        ...(await serverSideTranslations(locale)),
+      },
+    }
+  }

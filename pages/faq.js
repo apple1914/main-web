@@ -4,6 +4,7 @@ import PageBanner from '../components/Common/PageBanner';
 import FaqContent from '../components/FAQ/FaqContent';
 import FaqForm from '../components/FAQ/FaqForm';
 import Footer from '../components/_App/Footer';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const FAQ = () => {
     return (
@@ -27,3 +28,17 @@ const FAQ = () => {
 }
 
 export default FAQ;
+
+
+
+export async function getStaticProps(context) {
+    // extract the locale identifier from the URL
+    const { locale } = context
+  
+    return {
+      props: {
+        // pass the translation props to the page component
+        ...(await serverSideTranslations(locale)),
+      },
+    }
+  }

@@ -73,13 +73,26 @@ const NavbarTwo = () => {
                                             {t("HowItWorks")}
                                             </Link>
                                         </li>
-                                        <li className="nav-item">
-                                            <Link onClick={toggleNavbar} className="nav-link" href="/pricing" activeClassName="active">
-                                            {t("Pricing")}
-                                            </Link>
-                                        </li>
 
                                         <li className="nav-item">
+                                            <Link href="#" onClick={e => e.preventDefault()} className="nav-link">
+                                                    {t("Pages")} <i className='bx bx-chevron-down'></i>
+                                            </Link>
+
+                                            <ul className="dropdown-menu">
+                                            <li className="nav-item">
+                                                    <Link onClick={toggleNavbar} className="nav-link" href="/pricing" activeClassName="active">
+                                                        {t("Pricing")}
+                                                    </Link>
+                                                </li>
+
+                                                <li className="nav-item">
+                                                    <Link onClick={toggleNavbar} className="nav-link" href="/testimonials" activeClassName="active">
+                                                        {t("Testimonials")}
+                                                    </Link>
+                                                </li>
+
+                                                <li className="nav-item">
                                                     <Link onClick={toggleNavbar} className="nav-link" href="#">
                                                             {t("User")} <i className='bx bx-chevron-down'></i>
                                                     </Link>
@@ -109,7 +122,26 @@ const NavbarTwo = () => {
                                                     </ul>
                                                 </li>
 
-                                        
+                                                <li className="nav-item">
+                                                    <Link onClick={toggleNavbar} className="nav-link" href="/faq" activeClassName="active">
+                                                       {t("FAQ")}
+                                                    </Link>
+                                                </li>
+
+
+                                                <li className="nav-item">
+                                                    <Link onClick={toggleNavbar} className="nav-link" href="/terms-conditions" activeClassName="active">
+                                                       {t("Terms & Conditions")}
+                                                    </Link>
+                                                </li>
+
+                                                <li className="nav-item">
+                                                    <Link onClick={toggleNavbar} className="nav-link" href="/privacy-policy" activeClassName="active">
+                                                       {t("Privacy Policy")}
+                                                    </Link>
+                                                </li>
+                                            </ul>
+                                        </li>
 
                                         
                                         
@@ -117,7 +149,7 @@ const NavbarTwo = () => {
 
                                         <li className="nav-item">
                                             <Link onClick={toggleNavbar} className="nav-link" href="/contact" activeClassName="active">
-                                            {t("Customer support")}
+                                            {t("Contact us")}
                                             </Link>
                                         </li>
                                     </ul>
