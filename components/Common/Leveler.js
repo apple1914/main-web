@@ -29,7 +29,7 @@ export default function Leveler({ level, lng }) {
                   : "col-3 step"
               }
             >
-              <div className="step-name d-none d-sm-block">{t("Withdrawal Destination")}</div>
+              <div className="step-name d-none d-sm-block">{t("stepper.s2")}</div>
 
               {/* <div className="progress">
                 <div className="progress-bar"></div>
@@ -45,7 +45,7 @@ export default function Leveler({ level, lng }) {
                   : "col-3 step"
               }
             >
-              <div className="step-name d-none d-sm-block">{t("Balance")}</div>
+              <div className="step-name d-none d-sm-block">{t("Payment")}</div>
               {/* <div className="progress">
                 <div className="progress-bar"></div>
               </div> */}

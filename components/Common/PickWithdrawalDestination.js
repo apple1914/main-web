@@ -7,6 +7,7 @@ import { fetchWithdrawalAddresses } from "../../backend/requests";
 // import { useTranslation } from "@/app/i18n/client";
 import { Form, Button } from "react-bootstrap";
 import useAuthStore from "../../signInLogic/auth";
+import { useTranslation } from "next-i18next";
 
 
 // import dynamic from 'next/dynamic'
@@ -21,7 +22,7 @@ export default function PickWithdrawalDestination({
   setFormData,
   lng,
 }) {
-  // const { t } = useTranslation(lng);
+  const { t } = useTranslation("common");
   const user = useAuthStore((state) => state.user);
   const [withdrawalAddresses, setQWithdrawalDestinations] = useState([]);
   const [withdrawalAddressId, setWithdrawalAddressId] = useState();
@@ -63,7 +64,7 @@ export default function PickWithdrawalDestination({
   return (
     <div className="bg-white shadow rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-10">
       <div className="d-flex w-100 justify-content-between align-items-center">
-        <h3 className="text-5 fw-400 mb-0">{t("pickWithdrawalDestination.h1")}</h3>
+        {hasNoAvailableDestinations == false && <h3 className="text-5 fw-400 mb-0">{t("pickWithdrawalDestination.h1")}</h3>}
       </div>
       <hr className="mx-n3 mx-sm-n5 mb-4" />
       {!!user && (<Offramper

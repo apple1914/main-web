@@ -13,55 +13,7 @@ const OurFeatures = () => {
 					<p>{t("features.f0c")}</p>
 				</div>
 
-				<div className="row">
-					<div className="col-lg-3 col-sm-6">
-						<div className="single-choose">
-							<span className="flaticon-team"></span>
-							<h3>{t("features.f1a")}</h3>
-							<p>{t("features.f1b")}</p>
-
-                            {/* <Link href="/insurance-details">
-                                <i className="flaticon-right"></i>
-                            </Link> */}
-						</div>
-					</div>
-
-					<div className="col-lg-3 col-sm-6">
-						<div className="single-choose">
-							<span className="flaticon-money"></span>
-							<h3>{t("features.f2a")}</h3>
-							<p>{t("features.f2b")}</p>
-
-							{/* <Link href="/insurance-details">
-                                <i className="flaticon-right"></i>
-                            </Link> */}
-						</div>
-					</div>
-
-					<div className="col-lg-3 col-sm-6">
-						<div className="single-choose">
-							<span className="flaticon-support"></span>
-							<h3>{t("features.f3a")}</h3>
-							<p>{t("features.f3b")}</p>
-
-							{/* <Link href="/insurance-details">
-                                <i className="flaticon-right"></i>
-                            </Link> */}
-						</div>
-					</div>
-
-					<div className="col-lg-3 col-sm-6">
-						<div className="single-choose">
-							<span className="flaticon-contract"></span>
-							<h3>{t("features.f4a")}</h3>
-							<p>{t("features.f4b")}</p>
-
-							{/* <Link href="/insurance-details">
-                               <i className="flaticon-right"></i>
-                            </Link> */}
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</div>
     )

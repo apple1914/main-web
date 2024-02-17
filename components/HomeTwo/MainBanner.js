@@ -32,8 +32,8 @@ const MainBanner = () => {
                 >
                   <p>
                    {t("home.h21")}{". "}
-                   {t("home.h22")}{". "}
-                   {t("home.h23")}
+                   {/* {t("home.h22")}{". "} */}
+                   {/* {t("home.h23")} */}
                   </p>
                 </div>
 

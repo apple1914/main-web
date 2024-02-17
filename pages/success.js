@@ -6,6 +6,8 @@ import NavbarTwo from '../components/_App/NavbarTwo';
 import PaymentStatusComponent from '../components/Common/PaymentStatusComponent';
 import {useRouter} from "next/navigation"
 import Footer from '../components/_App/Footer';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
 
 const Success = () => {
     const router = useRouter()
@@ -21,3 +23,16 @@ const Success = () => {
 }
 
 export default Success;
+
+
+export async function getStaticProps(context) {
+    // extract the locale identifier from the URL
+    const { locale } = context
+  
+    return {
+      props: {
+        // pass the translation props to the page component
+        ...(await serverSideTranslations(locale)),
+      },
+    }
+  }

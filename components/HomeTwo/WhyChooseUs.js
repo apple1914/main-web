@@ -8,7 +8,7 @@ const WhyChooseUs = () => {
 			<div className="container">
 				<div className="section-title">
 					<span>{t("whyChooseUs.f0a")}</span>
-					<h2>{t("whyChooseUs.f0a")}</h2>
+					<h2>{t("whyChooseUs.f0b")}</h2>
 				</div>
 
 				<div className="choose-us-wrap">

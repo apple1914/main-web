@@ -302,7 +302,7 @@ export default function Converter({incrementLevel,
                 />
               ) : (
                 <p>
-                 {t("converter.cta1")}
+                 {t("Continue")}
                 </p>
                 
               )}

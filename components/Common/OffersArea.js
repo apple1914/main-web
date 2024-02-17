@@ -20,7 +20,7 @@ const OffersArea = () => {
 							<h3>{t("offersArea.p1")}</h3>
 
                             <Link href={`/withdrawal`} className="default-btn active ml-0">
-							{t("Send now")}
+							{t("Continue")}
                             </Link>
 
 							<p>{t("Contact us")}<br /> {t("Email: hello@santepay.com")}</p>

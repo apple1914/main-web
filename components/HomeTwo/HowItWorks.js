@@ -13,18 +13,9 @@ const HowItWorks = () => {
 						<div className="about-content">
 							<span>{t("HowItWorks")}</span>
 							<h2>{t("How does it work?")}</h2>
-
-							<p>{t("After payment and deposit, your money with converted into USDT, and immediately become available for instant withdrawal to your cards in any country")}</p>	
-
-							<p>{t("Withdrawals to your card in any counry take just 15 minutes and are available 24/7")}</p>
-
-							<p>{t("You can withdraw money to any country anytime")}</p>
-
-							<p>{t("Still having some doubts?")}</p>
-
-							<p>{t("You can test out our service with a small sum first")}</p>
-
-							<p>{t("Minimum amount for payment is just $5")}</p>
+							<p>
+								{t("HowItWorks.p1")}
+							</p>
 
 
 

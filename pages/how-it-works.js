@@ -8,6 +8,7 @@ import AchievementContent from '../components/About/AchievementContent';
 import Footer from '../components/_App/Footer';
 import OurFeatures from '../components/HomeTwo/OurFeatures';
 import HowItWorks from '../components/HomeTwo/HowItWorks';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const HowItWorksPage = () => {
     return (
@@ -29,3 +30,17 @@ const HowItWorksPage = () => {
 }
 
 export default HowItWorksPage;
+
+
+
+export async function getStaticProps(context) {
+    // extract the locale identifier from the URL
+    const { locale } = context
+  
+    return {
+      props: {
+        // pass the translation props to the page component
+        ...(await serverSideTranslations(locale)),
+      },
+    }
+  }
