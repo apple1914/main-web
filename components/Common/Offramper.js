@@ -78,7 +78,7 @@ export default function Offramper({
 
       <Modal show={show} onHide={handleClose} centered>
         <div className="modal-header">
-          <h5 className="modal-title fw-400">{t("Add New Card For Withdrawal")}</h5>
+          {/* <h5 className="modal-title fw-400">{t("Add New Card For Withdrawal")}</h5> */}
           {/* <button
                 type="button"
                 className="btn-close"
