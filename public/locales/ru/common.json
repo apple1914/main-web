@@ -182,6 +182,9 @@
     "minutes - our average time to receive the funds":"минут - среднее время ожидания для получения средств на карту",
     "Payment":"Оплата",
     "stepper.s2":"Куда?",
-    "offramper.button":"Указать новую карту для получения средств"
-
+    "offramper.button":"Указать новую карту для получения средств",
+    "scheduledMaintenance.title":"Запланированный перерыв",
+    "scheduledMaintenance.p1":"Извиняемся, у нас сейчас запланированный перерыв.",
+    "scheduledMaintenance.p2":"Вы все еще можете продолжить с функцией 'вывести на карту'. Данная операция будет обслужанна после возобновления работы",
+    "scheduledMaintenance.timerMessage":"Осталось до возобновления работы:"
 }

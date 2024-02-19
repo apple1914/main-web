@@ -9,5 +9,8 @@ module.exports = {
   trailingSlash: true,
   optimizeFonts: false,
   reactStrictMode: true,
+  env: {
+    IS_WITHDRAWALS_PAUSED: process.env.IS_WITHDRAWALS_PAUSED,
+  },
   i18n
 };

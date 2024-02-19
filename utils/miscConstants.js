@@ -6,3 +6,5 @@ export const cookieMappingContext = {
   "utm_campaign":"utm_campaign"
 }
 
+
+export const isWithdrawalsPaused = process.env.IS_WITHDRAWALS_PAUSED === 'true'
