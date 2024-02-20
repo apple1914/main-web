@@ -176,5 +176,6 @@
     "scheduledMaintenance.title":"Scheduled maintenance",
     "scheduledMaintenance.p1":"We apologize, our system is undergoing scheduled maintenance.",
     "scheduledMaintenance.p2":"You may continue with this checkout, but your operation will be serviced after operations are resumed.",
-    "scheduledMaintenance.timerMessage":"Time left until operations are resumed:"
+    "scheduledMaintenance.timerMessage":"Time left until operations are resumed:",
+    "Switch language":"Switch language"
 }

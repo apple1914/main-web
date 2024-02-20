@@ -3,6 +3,8 @@ import Link from 'next/link';
 import SignOutButton from "../Common/SignOutButton"
 // import TopHeader from './TopHeader';
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router';
+
 const NavbarTwo = () => {
     const {t} = useTranslation("common")
 
@@ -14,6 +16,13 @@ const NavbarTwo = () => {
    
     const toggleNavbar = () => {
         setMenu(!menu)
+    }
+    const router = useRouter()
+
+    const switchLngClick= (locale) => {
+        const path = router.asPath;
+ 
+        return router.push(path, path, { locale });
     }
 
     React.useEffect(() => {
@@ -61,6 +70,7 @@ const NavbarTwo = () => {
 
                                 <div className={classOne} id="navbarSupportedContent">
                                     <ul className="navbar-nav m-auto">
+                                        {/* <LngSwitcher /> */}
                                         
 
                                         <li className="nav-item">
@@ -78,6 +88,34 @@ const NavbarTwo = () => {
                                             {t("Pricing")}
                                             </Link>
                                         </li>
+
+                                        <li className="nav-item">
+                                                    <Link onClick={toggleNavbar} className="nav-link" href="#">
+                                                            {t("Switch language")} <i className='bx bx-chevron-down'></i>
+                                                    </Link>
+
+                                                    <ul className="dropdown-menu">
+                                                      
+
+                                                        <li className="nav-item">
+                                                        <button className="bg-transparent text-white" onClick={(e)=> {
+                                                                e.preventDefault() 
+                                                                switchLngClick("en")
+                                                                }}> 
+                                                                English
+                                                                </button>
+                                                        </li>
+
+                                                        <li className="nav-item">
+                                                            <button className="bg-transparent text-white"  onClick={(e)=> {
+                                                                e.preventDefault() 
+                                                                switchLngClick("ru")
+                                                                }}> 
+                                                                Русский
+                                                                </button>
+                                                        </li> 
+                                                    </ul>
+                                                </li>
 
                                         <li className="nav-item">
                                                     <Link onClick={toggleNavbar} className="nav-link" href="#">

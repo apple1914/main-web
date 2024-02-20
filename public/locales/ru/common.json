@@ -186,5 +186,6 @@
     "scheduledMaintenance.title":"Запланированный перерыв",
     "scheduledMaintenance.p1":"Извиняемся, у нас сейчас запланированный перерыв.",
     "scheduledMaintenance.p2":"Вы все еще можете продолжить с функцией 'вывести на карту'. Данная операция будет обслужанна после возобновления работы",
-    "scheduledMaintenance.timerMessage":"Осталось до возобновления работы:"
+    "scheduledMaintenance.timerMessage":"Осталось до возобновления работы:",
+    "Switch language":"Поменять язык"
 }
