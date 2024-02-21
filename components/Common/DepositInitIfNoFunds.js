@@ -52,6 +52,7 @@ export default function DepositInitIfNoFunds({
         fiatCurrency: formData.fiatCurrency,
         withdrawal: withdrawal || null,
       };
+      
       createDeposit(createDepositPayload).then((depositInfo) => {
         const {onrampPayload} = depositInfo
         //transakSettings = onrampPayload FYI
