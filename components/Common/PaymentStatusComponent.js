@@ -8,9 +8,6 @@ export default function PaymentStatusComponent({ isSuccess }) {
   return (
     <div className="content py-4">
       <div className="container">
-        <div></div>
-        <div></div>
-        <div></div>
 
         <div className="row">
           <div className="col-md-9 col-lg-7 col-xl-6 mx-auto w-auto">

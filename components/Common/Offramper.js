@@ -58,6 +58,7 @@ export default function Offramper({
     ) {
       addWithdrawalAddress(withdrawalAddressData).then((data) => {
         // alert("addWithdrawalAddress otuput" + JSON.stringify(data))
+
         formData.withdrawalAddressId = data.withdrawalAddressId;
         setFormData(formData);
         incrementLevel();

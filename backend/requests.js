@@ -51,8 +51,11 @@ export const addWithdrawalAddress = async({nickname,address,blockchain,cryptocur
       const payloadBody = {
         nickname,address,blockchain,cryptocurrency
       }
-      // alert(THIS_BACKEND_URL)
-      const res = await axios.post(`${THIS_BACKEND_URL}/withdrawalAddress`,payloadBody, payloadHeader);
+      const res = await axios.post(`${THIS_BACKEND_URL}/withdrawalAddress`,payloadBody, payloadHeader).catch((err)=> {
+        alert(JSON.stringify(err))
+        alert(JSON.stringify(err.response))
+        alert(JSON.stringify(err.response?.data))
+      })
       return res.data
     } catch (e) {
       // alert("errrrror!")

@@ -15,6 +15,7 @@ export default async function handler(req, res) {
         if (!amount || !fromCurrency || !toCurrency) {
             throw new Error("wrong inputs")
         }
+        console.log("inputs here are", req.query)
     
         const client = await clientPromise;
         const db = client.db("serverless");
@@ -26,9 +27,14 @@ export default async function handler(req, res) {
             .collection("withdrawValues")
             .findOne({currency:toCurrency})
 
+            console.log("toCurrencyDoc fromCurrencyDoc are", {fromCurrencyDoc,toCurrencyDoc})
+
+
         if (!fromCurrencyDoc || !toCurrencyDoc) {
             return res.json(0.0)
         }
+
+
     
         const {prices,fiatAmountMinimum} = fromCurrencyDoc
 
