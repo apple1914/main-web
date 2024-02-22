@@ -1,5 +1,6 @@
 const path = require("path");
 const { i18n } = require('./next-i18next.config')
+// import { withHighlightConfig } from '@highlight-run/next/config'
 
 module.exports = {
   // distDir: 'build',

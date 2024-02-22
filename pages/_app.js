@@ -1,7 +1,7 @@
 import React from "react";
 import AOS from "aos";
 import { appWithTranslation } from "next-i18next";
-
+import { CONSTANTS } from '../utils/highlightConstants.js'
 import "../node_modules/aos/dist/aos.css";
 import "../styles/bootstrap.min.css";
 import "../styles/animate.css";
