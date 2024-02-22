@@ -1,12 +1,15 @@
 const path = require("path");
 const { i18n } = require('./next-i18next.config')
-// import { withHighlightConfig } from '@highlight-run/next/config'
+const { withHighlightConfig } = require('@highlight-run/next/config')
 
-module.exports = {
+module.exports = withHighlightConfig({
   // distDir: 'build',
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
+  experimental: {
+		instrumentationHook: true,
+	},
   trailingSlash: true,
   optimizeFonts: false,
   reactStrictMode: true,
@@ -15,4 +18,4 @@ module.exports = {
     IS_TEST_ENV: process.env.IS_TEST_ENV,
   },
   i18n
-};
+})
