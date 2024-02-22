@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from "next/head"
 import GoTop from './GoTop'
-
+import { Analytics } from "@vercel/analytics/react"
 const Layout = ({ children }) => {
     return(
         <>
@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
             </Head>
 
             {children}
-
+            <Analytics />
             <GoTop 
                 scrollStepInPx="100" 
                 delayInMs="10.50" 
