@@ -11,6 +11,7 @@
     "author": "EnvyTheme",
     "license": "ISC",
     "dependencies": {
+        "@highlight-run/next": "^7.3.8",
         "@transak/transak-sdk": "^2.1.2",
         "@vercel/analytics": "^1.2.2",
         "aos": "^2.3.4",
