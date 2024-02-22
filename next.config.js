@@ -11,6 +11,7 @@ module.exports = {
   reactStrictMode: true,
   env: {
     IS_WITHDRAWALS_PAUSED: process.env.IS_WITHDRAWALS_PAUSED,
+    IS_TEST_ENV: process.env.IS_TEST_ENV,
   },
   i18n
 };

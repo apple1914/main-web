@@ -12,6 +12,7 @@
     "license": "ISC",
     "dependencies": {
         "@transak/transak-sdk": "^2.1.2",
+        "@vercel/analytics": "^1.2.2",
         "aos": "^2.3.4",
         "axios": "^0.22.0",
         "cookies-next": "^4.1.1",
