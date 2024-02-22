@@ -6,7 +6,7 @@ import NavbarTwo from '../components/_App/NavbarTwo';
 import PaymentStatusComponent from '../components/Common/PaymentStatusComponent';
 import {useRouter} from "next/navigation"
 import Footer from '../components/_App/Footer';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'//
 
 
 const Success = () => {
