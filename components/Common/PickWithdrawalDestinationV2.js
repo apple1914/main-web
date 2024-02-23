@@ -9,7 +9,6 @@ import { Form, Button } from "react-bootstrap";
 import useAuthStore from "../../signInLogic/auth";
 import { useTranslation } from "next-i18next";
 
-
 // import dynamic from 'next/dynamic'
  
 // const DynamicHeader = dynamic(() => import('../components/header'), {
@@ -67,7 +66,7 @@ export default function PickWithdrawalDestination({
   }, []);
 
   return (
-    <div className="bg-white shadow rounded p-3 min-vh-100">
+    <div className="bg-white shadow rounded p-3">
       
       <div className="d-flex w-100 justify-content-between align-items-center">
         {hasNoAvailableDestinations == false && <h3 className="text-5 fw-400 mb-0">{t("pickWithdrawalDestination.h1")}</h3>}
@@ -75,57 +74,19 @@ export default function PickWithdrawalDestination({
       {/* <hr className="mx-n3 mx-sm-n5 mb-4" /> */}
       
       <div className="d-grid w-100 mx-auto">
-        <button 
+        <Button 
             className="btn btn-primary"
             onClick={handleShow}
           >
+            {/* {t("offramper.button")} */}
+            Указать новую карту для получения средств
             {t("offramper.button")}
-          </button>
+          </Button>
     </div>
 
-      {!!user && (<Offramper
-        // triggerUpdateRecipients={triggerUpdateRecipients}
-        lng={lng}
-        incrementLevel={incrementLevel}
-        formData={formData}
-        setFormData={setFormData}
-        email={user.email}
-        show={show}
-        setShow={setShow}
-      />)}
-      {hasNoAvailableDestinations == false && <div className="text-center my-3">or</div>}
     
-          <form onSubmit={() => handleSubmitSelectedAddress()}>
-            <Form.Group controlId="formBasicCheckbox">
-              {withdrawalAddresses.map((destination) => {
-                return (
-                  <div className="border rounded py-2 my-2">
-                    <Form.Check
-                      id={destination.withdrawalAddressId}
-                      className="mx-2"
-                      value={destination.withdrawalAddressId}
-                      type="checkbox"
-                      aria-label="radio 2"
-                      label={destination.nickname}
-                      onChange={() => {
-                        handleSelectRecipient(destination.withdrawalAddressId);
-                      }}
-                      checked={
-                        !!withdrawalAddressId &&
-                        withdrawalAddressId === destination.withdrawalAddressId
-                      }
-                    />
-                  </div>
-                );
-              })}
-            </Form.Group>
-            {!hasNoAvailableDestinations && !loading && (<div className="d-grid w-100 mx-auto mt-3">
-              <button type="submit" className="btn btn-primary">
-                {t("Continue")}
-              </button>
-            </div>)}
-            
-          </form>
+    
+           
      
     </div>
   );

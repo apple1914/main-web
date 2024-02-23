@@ -11,9 +11,9 @@ export default function Offramper({
   lng,
   incrementLevel,
   formData,
-  setFormData,email
+  setFormData,email,show,setShow
 }) {
-  const [show, setShow] = useState(false);
+  
   const [withdrawalAddressData, setWithdrawalAddressData] = useState({
     address: undefined,
     blockchain: undefined,
@@ -23,9 +23,7 @@ export default function Offramper({
   const { t } = useTranslation("common");
 
   const handleClose = () => setShow(false);
-  const handleShow = () => {
-    setShow(true);
-  };
+  
 
   function listener(e) {
     const iframeData = e.data;
@@ -70,14 +68,7 @@ export default function Offramper({
 
   return (
     <>
-    <div className="d-grid w-100 mx-auto">
-    <button 
-        className="btn btn-primary"
-        onClick={handleShow}
-      >
-        {t("offramper.button")}
-      </button>
-    </div>
+    
       
 
       <Modal show={show} onHide={handleClose} centered>

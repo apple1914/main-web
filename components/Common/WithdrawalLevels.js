@@ -1,7 +1,7 @@
 import React from "react";
 
 import Converter from "./Converter"
-import PickWithdrawalDestination from "./PickWithdrawalDestination";
+import PickWithdrawalDestination from "./PickWithdrawalDestinationV2";
 import DepositInitIfNoFunds from "./DepositInitIfNoFunds"
 
 const WithdrawalLevels = ({formData,setFormData,level,incrementLevel,lng}) => {
