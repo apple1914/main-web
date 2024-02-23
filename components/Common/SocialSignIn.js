@@ -23,23 +23,6 @@ export default function SocialSignIn() {
 
   return (
     <>
-      <p
-        className="text-3 text-muted text-center my-4 w-100"
-        style={{
-          width: "100%",
-          borderBottom: "1px solid #ebecee",
-          lineHeight: "0.1em",
-        }}
-      >
-        <span
-          style={{
-            background: "#fff",
-            padding: "0 10px",
-          }}
-        >
-          or
-        </span>
-      </p>
       <div className="d-flex justify-content-evenly">
         <button
           onClick={() => {
