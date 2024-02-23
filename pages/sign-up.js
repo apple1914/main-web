@@ -12,7 +12,7 @@ import { getCookie } from "cookies-next";
 import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo"
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
-
+import SocialSignIn from '../components/Common/SocialSignIn';
 
 const SignUp = () => {
     const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
@@ -110,6 +110,9 @@ const SignUp = () => {
                                             <button className="default-btn btn-two" type="submit">
                                                 {t("Sign Up")}
                                             </button>
+                                        </div>
+                                        <div className="col-12">
+                                            <SocialSignIn/>
                                         </div>
                                         
                                         <div className="col-12">
