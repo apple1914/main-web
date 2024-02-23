@@ -4,7 +4,7 @@ import NavbarTwo from '../components/_App/NavbarTwo';
 import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/_App/Footer';
 import Link from 'next/link';
-import { useRouter,useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";//should be next/router for pages dir
 import useAuthStore from "../signInLogic/auth";
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
@@ -15,7 +15,7 @@ const SignIn = () => {
     const authSignIn = useAuthStore((state) => state.authSignIn);
 
     const router = useRouter();
-    const searchParams = useSearchParams()
+    // const searchParams = useSearchParams()
 
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
@@ -26,17 +26,15 @@ const SignIn = () => {
         const err = await authSignIn(email, pwd);
     
         if (err == null) {
-            console.log("SUCCESS LOGIN! should route to checkout")
-        //   const checkoutType = searchParams.get("checkoutType") || "checkout";
-        //   router.push(`/user/${checkoutType}` + "?" + searchParams.toString());
-            router.push({path:"/withdrawal",query:Object.fromEntries(searchParams.entries())})
+            router.push({pathname:"/withdrawal",query:router.query})
+            return
+
         }
       };
 
       useEffect(() => {
         if (user != null && !authInProgress) {
-            console.log("user logged in already, should route to checkout")
-            router.push({path:"/withdrawal",query:Object.fromEntries(searchParams.entries())})
+            router.push({pathname:"/withdrawal",query:router.query})
 
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -104,7 +102,7 @@ const SignIn = () => {
                                                 Not a member?
                                                 <Link href={{
                                                     pathname: `/sign-up`,   
-                                                    query: Object.fromEntries(searchParams.entries()),
+                                                    query: router.query,
                                                 }}>Sign Up</Link>
                                             </p>
                                         </div>
