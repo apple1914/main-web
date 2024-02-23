@@ -177,5 +177,18 @@
     "scheduledMaintenance.p1":"We apologize, our system is undergoing scheduled maintenance.",
     "scheduledMaintenance.p2":"You may continue with this checkout, but your operation will be serviced after operations are resumed.",
     "scheduledMaintenance.timerMessage":"Time left until operations are resumed:",
-    "Switch language":"Switch language"
+    "Switch language":"Switch language","transakExplainer.title":"Lorem Ipsum",
+    "transakExplainer.p1":"Lorem Ipsum",
+    "transakExplainerHowItWorks.button":"Lorem Ipsum",
+    "transakExplainerHowItWorks.title":"Lorem Ipsum",
+    "transakExplainerHowItWorks.p1":"Lorem Ipsum",
+    "transakExplainerHowItWorks.p2":"Lorem Ipsum",
+    "transakExplainerWhyCrypto.button":"Lorem Ipsum",
+    "transakExplainerWhyCrypto.title":"Lorem Ipsum",
+    "transakExplainerWhyCrypto.p1":"Lorem Ipsum",
+    "transakExplainerWhyCrypto.p2":"Lorem Ipsum",
+    "transakExplainerSafety.button":"Lorem Ipsum",
+    "transakExplainerSafety.title":"Lorem Ipsum",
+    "transakExplainerSafety.p1":"Lorem Ipsum",
+    "transakExplainerSafety.p2":"Lorem Ipsum"
 }
