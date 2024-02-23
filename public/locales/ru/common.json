@@ -187,5 +187,19 @@
     "scheduledMaintenance.p1":"Извиняемся, у нас сейчас запланированный перерыв.",
     "scheduledMaintenance.p2":"Вы все еще можете продолжить с функцией 'вывести на карту'. Данная операция будет обслужанна после возобновления работы",
     "scheduledMaintenance.timerMessage":"Осталось до возобновления работы:",
-    "Switch language":"Поменять язык"
+    "Switch language":"Поменять язык",
+    "transakExplainer.title":"Lorem Ipsum",
+    "transakExplainer.p1":"Lorem Ipsum",
+    "transakExplainerHowItWorks.button":"Lorem Ipsum",
+    "transakExplainerHowItWorks.title":"Lorem Ipsum",
+    "transakExplainerHowItWorks.p1":"Lorem Ipsum",
+    "transakExplainerHowItWorks.p2":"Lorem Ipsum",
+    "transakExplainerWhyCrypto.button":"Lorem Ipsum",
+    "transakExplainerWhyCrypto.title":"Lorem Ipsum",
+    "transakExplainerWhyCrypto.p1":"Lorem Ipsum",
+    "transakExplainerWhyCrypto.p2":"Lorem Ipsum",
+    "transakExplainerSafety.button":"Lorem Ipsum",
+    "transakExplainerSafety.title":"Lorem Ipsum",
+    "transakExplainerSafety.p1":"Lorem Ipsum",
+    "transakExplainerSafety.p2":"Lorem Ipsum"
 }

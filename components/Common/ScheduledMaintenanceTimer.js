@@ -12,7 +12,7 @@ const MINUTE = SECOND * 60;
 const HOUR = MINUTE * 60;
 
 export default function ScheduledMaintenanceTimer({
-  handleClickContinueDespiteMaintenance,utcHourMaintenanceEnds
+  handleClickContinue,utcHourMaintenanceEnds
 }) {
   
   const { t } = useTranslation("common");
@@ -72,7 +72,7 @@ export default function ScheduledMaintenanceTimer({
           className="btn btn-outline-primary text-primary mt-5 my-1 mx-1 w-100 mx-auto"
           onClick={(e)=> {
             e.preventDefault()
-            handleClickContinueDespiteMaintenance()
+            handleClickContinue()
           }}
          >
           {t("Continue")}
