@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import NavbarTwo from '../components/_App/NavbarTwo';
+import NavbarTwoFixed from '../components/_App/NavbarTwoFixed';
 import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/_App/Footer';
 import Link from 'next/link';
@@ -63,7 +63,7 @@ const SignUp = () => {
 
     return (
         <>
-            <NavbarTwo />
+            <NavbarTwoFixed />
             
             <div className="user-area-all-style sign-up-area ptb-100">
                 <div className="container">

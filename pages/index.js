@@ -1,5 +1,5 @@
 import React from 'react';
-import NavbarTwo from '../components/_App/NavbarTwo';
+import NavbarTwoFixed from '../components/_App/NavbarTwoFixed';
 import MainBanner from '../components/HomeTwo/MainBanner';
 import SideBenefitCards from '../components/HomeTwo/SideBenefitCards';
 import AboutUs from '../components/HomeTwo/AboutUs';
@@ -20,7 +20,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 const Index = () => {
     return (
         <>  
-            <NavbarTwo />
+            <NavbarTwoFixed />
 
             <MainBanner />
 

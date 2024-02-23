@@ -27,8 +27,8 @@ const CheckoutMain = ({lng}) => {
   }
     return (
         <div id="content" className="py-4 bg-white">
-      <div className="container">
-        <div className="mx-auto text-center pt-5">{t("checkoutMain.h1")}</div>
+      <div className="container pt-5">
+        {/* <div className="mx-auto text-center pt-5">{t("checkoutMain.h1")}</div> */}
         <div className="row pt-5">
           <div className="col-md-9 col-lg-7 col-xl-6 mx-auto">
             <WithdrawalLevels lng={lng} formData={formData} setFormData={setFormData} level={level} incrementLevel={incrementLevel} />
