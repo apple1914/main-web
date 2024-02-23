@@ -5,7 +5,7 @@ import SignOutButton from "../Common/SignOutButton"
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router';
 
-const NavbarTwo = () => {
+const NavbarTwoFixed = () => {
     const {t} = useTranslation("common")
 
     const [menu, setMenu] = React.useState(true)
@@ -27,13 +27,7 @@ const NavbarTwo = () => {
 
     React.useEffect(() => {
         let elementId = document.getElementById("navbar");
-        document.addEventListener("scroll", () => {
-            if (window.scrollY > 170) {
-                elementId.classList.add("is-sticky");
-            } else {
-                elementId.classList.remove("is-sticky");
-            }
-        });
+        elementId.classList.add("is-sticky");
     })
  
     const classOne = menu ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
@@ -41,7 +35,7 @@ const NavbarTwo = () => {
 
     return (
         <>
-            <header className="header-area fixed-top">
+            <header className="header-area fixed-top mb-5">
                 {/* TopHeader */}
                 {/* <TopHeader /> */}
                 
@@ -279,6 +273,6 @@ const NavbarTwo = () => {
     );
 }
 
-export default NavbarTwo;
+export default NavbarTwoFixed;
 
 
