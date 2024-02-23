@@ -27,7 +27,7 @@ export default function PickWithdrawalDestination({
   const [withdrawalAddresses, setQWithdrawalDestinations] = useState([]);
   const [withdrawalAddressId, setWithdrawalAddressId] = useState();
   const [loading, setLoading] = useState(true);
-  const [hasNoAvailableDestinations, setHasNoAvailableDestinations] = useState(false);
+  const [hasNoAvailableDestinations, setHasNoAvailableDestinations] = useState(true);
 
   const handleSelectRecipient = async (pickedWithdrawalAddressId) => {
     setWithdrawalAddressId(pickedWithdrawalAddressId);
