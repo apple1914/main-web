@@ -1,9 +1,10 @@
-import {saveUserInfo} from "../backend/requests"
+import {saveUserInfo,saveUserInfoIfNew} from "../backend/requests"
 import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
   signOut,
+  GoogleAuthProvider,signInWithPopup
 } from "firebase/auth";
 import { toast } from "react-hot-toast";
 import { create } from "zustand";
@@ -65,7 +66,34 @@ const useAuthStore = create((set) => ({
       }
       return err;
     }
-  }
+  },
+  authSignInWithGmail: async (miscInfo) => {
+    try {
+      const res = await signInWithPopup(auth, new GoogleAuthProvider());
+      const username = res.user.uid
+      const email = res.user.email
+      Object.keys(miscInfo).forEach((key) => {
+        if (!miscInfo[key] || miscInfo[key] === "") {
+          delete miscInfo[key];
+        }
+      });
+      saveUserInfoIfNew({username,contactInfo:{email},miscInfo})
+      
+
+      toast.success("Успешный вход!");
+      return;
+    } catch (err) {
+      console.log(err);
+      if (err.message === "Firebase: Error (auth/email-already-in-use).") {
+        toast.error("Email already in use");
+      } else if (err.message === "Firebase: Error (auth/invalid-email).") {
+        toast.error("Invalid email");
+      } else {
+        toast.error("Something went wrong, please try again later");
+      }
+      return err;
+    }
+  },
 }));
 
 auth.onAuthStateChanged((user) => {

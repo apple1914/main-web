@@ -185,6 +185,11 @@ export const saveUserInfo = async ({username,miscInfo,contactInfo}) => {
   const payload = {username,miscInfo,contactInfo}
   return axios.post(url,payload).then((res)=>res.data).catch((err)=>{console.log(err)})
 }
+export const saveUserInfoIfNew = async ({username,miscInfo,contactInfo}) => {
+  const url = `${THIS_BACKEND_URL}/users/saveUserInfoIfNew`
+  const payload = {username,miscInfo,contactInfo}
+  return axios.post(url,payload).then((res)=>res.data).catch((err)=>{console.log(err)})
+}
 
 
 export const fetchOnrampSettings = async ({depositId}) => {
