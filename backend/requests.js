@@ -37,6 +37,31 @@ export const fetchWithdrawalAddresses = async () => {
 }
 
 
+export const fetchWithdrawalAddressesV2 = async () => {
+  try {
+      const user = auth.currentUser;
+      const username = user.uid
+
+
+      const data = await axios.get(`/api/fetchwithdrawaladdresses?username=${username}`).then((res)=>res.data).catch((err)=> {
+        console.log("ERRRRRR with fetchWithdrawalAddresses", err)
+      })
+
+      console.log("Data here is", data)
+      const withdrawalAddresses = data.map((withdawalAddress) => {
+        const withdrawalAddressId = withdawalAddress.withdrawalAddressId
+        const nickname = withdawalAddress.nickname
+        return {withdrawalAddressId,nickname}
+      })
+      console.log("withdrawalAddresses here is", withdrawalAddresses)
+
+      return withdrawalAddresses
+    } catch (e) {
+      console.log(e);
+    }
+}
+
+
 export const addWithdrawalAddress = async({nickname,address,blockchain,cryptocurrency})=> {
   try {
       const user = auth.currentUser;
@@ -52,9 +77,25 @@ export const addWithdrawalAddress = async({nickname,address,blockchain,cryptocur
         nickname,address,blockchain,cryptocurrency
       }
       const res = await axios.post(`${THIS_BACKEND_URL}/withdrawalAddress`,payloadBody, payloadHeader).catch((err)=> {
-        alert(JSON.stringify(err))
-        alert(JSON.stringify(err.response))
-        alert(JSON.stringify(err.response?.data))
+        console.log(err.response?.data)
+      })
+      return res.data
+    } catch (e) {
+      // alert("errrrror!")
+      console.log(e);
+    }
+}
+
+export const addWithdrawalAddressV2 = async({nickname,address,blockchain,cryptocurrency})=> {
+  try {
+      const user = auth.currentUser;
+      const username = user.uid
+
+      const payloadBody = {
+        nickname,address,blockchain,cryptocurrency,username
+      }
+      const res = await axios.post(`/api/addwithdrawaladdress`,payloadBody).catch((err)=> {
+       console.log(err)
       })
       return res.data
     } catch (e) {
