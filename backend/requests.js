@@ -222,3 +222,10 @@ export const fetchOnrampSettings = async ({depositId}) => {
   } catch (e) {
     console.log(e);
   }}
+
+
+  export const saveBillingInfo = async (payload) => {
+    const user = auth.currentUser;
+    const answer = await axios.post(`/api/savebillinginfo`,{username:user.uid,...payload}).then((res)=>res.data);
+    return 
+  }
