@@ -28,6 +28,11 @@ export default function DepositInitIfNoFunds({
   const handleClickContinue = () => {
     depositInit()
   }
+  useEffect(()=> {
+    if (operationState === 'active') {
+      depositInit()
+    }
+  },[])
 
 
 
@@ -56,7 +61,7 @@ export default function DepositInitIfNoFunds({
   return <>
   {operationState === "stopped" && <IndefiniteMaintenance /> }
   {operationState === "paused" && <ScheduledMaintenanceTimer handleClickContinue={handleClickContinue} utcHourMaintenanceEnds={UTC_HOUR_MAINTENANCE_ENDS}/>}
-  {operationState === "active" && <TransakExplainer handleClickContinue={handleClickContinue}/> }
+  {/* {operationState === "active" && <TransakExplainer handleClickContinue={handleClickContinue}/> } */}
   </>;
 }
 
