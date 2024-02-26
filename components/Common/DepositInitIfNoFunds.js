@@ -1,6 +1,3 @@
-"use client";
-
-
 import { createDeposit } from "../../backend/requests";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -23,6 +20,7 @@ export default function DepositInitIfNoFunds({
   const router = useRouter()
   const operationState = getOperationsStateNow()
 
+
  
 
 
@@ -34,19 +32,18 @@ export default function DepositInitIfNoFunds({
 
 
 
+
   const depositInit = () => {
     if (formData) {
-      const withdrawal =
-      {
-        withdrawalAddressId: formData.withdrawalAddressId,
-        triggerWithdrawal: true,
+      const depositPayload = {
+        fiatAmount:formData.fiatAmount,
+        fiatCurrency:formData.fiatCurrency,
+        withdrawal:{
+          triggerWithdrawal:true,
+          withdrawalAddressId:formData.withdrawalAddressId
+        }
       }
-      const createDepositPayload = {
-        fiatAmount: formData.fiatAmount,
-        fiatCurrency: formData.fiatCurrency,
-        withdrawal: withdrawal || null,
-      };
-      createDeposit(createDepositPayload).then((depositInfo) => {
+      createDeposit(depositPayload).then((depositInfo) => {
         const {onrampPayload} = depositInfo
         //transakSettings = onrampPayload FYI
         setLoading(false);

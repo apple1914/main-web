@@ -106,25 +106,45 @@ export const addWithdrawalAddressV2 = async({nickname,address,blockchain,cryptoc
 
 
 
+// export const createDeposit = async ({ fiatAmount,
+//   fiatCurrency,
+//   blockchain,withdrawal}) => {
+//   try {
+//       const user = auth.currentUser;
+//       const token = user && (await user.getIdToken());
+
+//       const payloadHeader = {
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${token}`,
+//         },
+//       };
+//       const payloadBody = {
+//         fiatAmount,
+//         fiatCurrency,
+//         blockchain,withdrawal
+//       }
+//       const res = await axios.post(`${THIS_BACKEND_URL}/deposits`, payloadBody,payloadHeader);
+//       return res.data
+//     } catch (e) {
+//       console.log(e);
+//     }
+// }
+
 export const createDeposit = async ({ fiatAmount,
   fiatCurrency,
   blockchain,withdrawal}) => {
   try {
       const user = auth.currentUser;
-      const token = user && (await user.getIdToken());
 
-      const payloadHeader = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      };
       const payloadBody = {
         fiatAmount,
         fiatCurrency,
-        blockchain,withdrawal
+        blockchain,
+        withdrawal,
+        username:user.uid
       }
-      const res = await axios.post(`${THIS_BACKEND_URL}/deposits`, payloadBody,payloadHeader);
+      const res = await axios.post(`/api/createdeposit`, payloadBody);
       return res.data
     } catch (e) {
       console.log(e);
