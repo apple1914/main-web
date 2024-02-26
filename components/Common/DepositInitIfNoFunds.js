@@ -1,5 +1,4 @@
-import { createDeposit } from "../../lib/deposits";
-import useAuthStore from "../../signInLogic/auth";
+import { createDeposit } from "../../backend/requests";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ScheduledMaintenanceTimer from "./ScheduledMaintenanceTimer"
@@ -20,7 +19,6 @@ export default function DepositInitIfNoFunds({
   const [loading, setLoading] = useState(true);
   const router = useRouter()
   const operationState = getOperationsStateNow()
-  const user = useAuthStore((state) => state.user);
 
 
  
@@ -36,14 +34,16 @@ export default function DepositInitIfNoFunds({
 
 
   const depositInit = () => {
-    if (formData && !!user) {
-      createDeposit({
-        username,
+    if (formData) {
+      const depositPayload = {
         fiatAmount:formData.fiatAmount,
         fiatCurrency:formData.fiatCurrency,
-        triggerWithdrawal:true,
-        withdrawalAddressId:formData.withdrawalAddressId,
-      }).then((depositInfo) => {
+        withdrawal:{
+          triggerWithdrawal:true,
+          withdrawalAddressId:formData.withdrawalAddressId
+        }
+      }
+      createDeposit(depositPayload).then((depositInfo) => {
         const {onrampPayload} = depositInfo
         //transakSettings = onrampPayload FYI
         setLoading(false);
