@@ -13,6 +13,7 @@ import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo"
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
 import SocialSignIn from '../components/Common/SocialSignIn';
+import {identifyUser} from "../lib/tracking"
 
 const SignUp = () => {
     const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
@@ -33,6 +34,8 @@ const SignUp = () => {
         }
       }, [user,authInProgress]);
 
+      
+
       const submitSignUpForm = async (e) => {
         e.preventDefault();
     
@@ -46,12 +49,13 @@ const SignUp = () => {
           miscData[cookieName] = data;
         }
     
-        const error = await authSignUp(email, pwd, miscData);
+        const {success,error,username} = await authSignUp(email, pwd, miscData);
         // alert(JSON.stringify(error))
 
     
-        if (error == null) {
+        if (success === false) {
             console.log("NO ERRORS, will send them with query:", router.query,router.isReady)
+            identifyUser({username})
             router.push({pathname:"/withdrawal",query:Object.fromEntries(searchParams.entries())})
             return
         }

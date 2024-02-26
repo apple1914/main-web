@@ -22,7 +22,7 @@ const useAuthStore = create((set) => ({
       const res = await signInWithEmailAndPassword(auth, email, password);
       const username = res.user.uid
       toast.success("Success");
-      return;
+      return {success:true,username}
     } catch (err) {
       if (err.message === "Firebase: Error (auth/user-not-found).") {
         toast.error("User not found");
@@ -31,7 +31,7 @@ const useAuthStore = create((set) => ({
       } else {
         toast.error("Something went wrong, please try again later");
       }
-      return err;
+      return {success:false,err};
     }
   },
   authSignOut: async () => {
@@ -55,6 +55,7 @@ const useAuthStore = create((set) => ({
       saveUserInfo({username,contactInfo:{email},miscInfo})
 
       toast.success("Вы успешно зарегистрировались!");
+      return {success:true,username}
     } catch (err) {
       console.log(err);
       if (err.message === "Firebase: Error (auth/email-already-in-use).") {
@@ -64,7 +65,7 @@ const useAuthStore = create((set) => ({
       } else {
         toast.error("Something went wrong, please try again later");
       }
-      return err;
+      return {success:false,err};
     }
   },
   authSignInWithGmail: async (miscInfo) => {
@@ -81,7 +82,7 @@ const useAuthStore = create((set) => ({
       
 
       toast.success("Успешный вход!");
-      return;
+      return {success:true,username}
     } catch (err) {
       console.log(err);
       if (err.message === "Firebase: Error (auth/email-already-in-use).") {
@@ -91,7 +92,7 @@ const useAuthStore = create((set) => ({
       } else {
         toast.error("Something went wrong, please try again later");
       }
-      return err;
+      return  {success:false,err};
     }
   },
 }));

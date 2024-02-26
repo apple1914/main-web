@@ -9,7 +9,7 @@ import useAuthStore from "../signInLogic/auth";
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-
+import { identifyUser } from '../lib/tracking';
 const SignIn = () => {
     const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
     const authSignIn = useAuthStore((state) => state.authSignIn);
@@ -23,17 +23,18 @@ const SignIn = () => {
     const submitSignInForm = async (e) => {
         e.preventDefault();
     
-        const err = await authSignIn(email, pwd);
+        const {success,err,username} = await authSignIn(email, pwd);
     
-        if (err == null) {
+        if (success === true) {
+            identifyUser({username:username})
             router.push({pathname:"/withdrawal",query:router.query})
             return
-
         }
       };
 
       useEffect(() => {
         if (user != null && !authInProgress) {
+            identifyUser({username:user.uid})
             router.push({pathname:"/withdrawal",query:router.query})
 
         }
