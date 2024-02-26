@@ -25,14 +25,16 @@ export default function TransakExplainer({
           <h5 className="fw-400 text-center">{t("transakExplainer.title")}</h5>
           
           
-          <p className="fw-400 text-center">{t("transakExplainer.p1")}</p>
-          <TransakExplainerSafety />
+          <p className="fw-400 mt-4">{t("transakExplainer.p1")}</p>
+          <p className="fw-400">{t("transakExplainer.p2")}</p>
+
+          {/* <TransakExplainerSafety /> */}
           <TransakExplainerHowItWorks /> 
-          <TransakExplainerWhyCrypto /> 
+          {/* <TransakExplainerWhyCrypto />  */}
   
 
           <button 
-          className="btn btn-primary text-white mt-5 my-1 mx-1 w-100 mx-auto"
+          className="btn btn-primary text-white mt-3 my-1 mx-1 w-100 mx-auto"
           onClick={(e)=> {
             e.preventDefault()
             handleClickContinue()
