@@ -2,7 +2,7 @@
 
 
 import React from 'react';
-import NavbarTwo from '../components/_App/NavbarTwo';
+import NavbarTwoFixed from '../components/_App/NavbarTwoFixed';
 import PaymentStatusComponent from '../components/Common/PaymentStatusComponent';
 import {useRouter} from "next/navigation"
 import Footer from '../components/_App/Footer';
@@ -14,7 +14,7 @@ const Success = () => {
     
     return (
         <>
-            <NavbarTwo />
+            <NavbarTwoFixed />
             <PaymentStatusComponent isSuccess={true}/> 
 
            <Footer />

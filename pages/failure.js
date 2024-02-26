@@ -2,14 +2,14 @@
 
 
 import React from 'react';
-import NavbarTwo from '../components/_App/NavbarTwo';
+import NavbarTwoFixed from '../components/_App/NavbarTwoFixed';
 import PaymentStatusComponent from '../components/Common/PaymentStatusComponent';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Failure = () => {
     return (
         <>
-            <NavbarTwo />
+            <NavbarTwoFixed />
            <PaymentStatusComponent isSuccess={false}/> 
         </>
     )
