@@ -90,6 +90,26 @@ export const createDeposit = async ({ fiatAmount,
     }
 }
 
+export const createDepositV2 = async ({ fiatAmount,
+  fiatCurrency,
+  blockchain,withdrawal}) => {
+  try {
+      const user = auth.currentUser;
+
+      const payloadBody = {
+        fiatAmount,
+        fiatCurrency,
+        blockchain,
+        withdrawal,
+        username:user.uid
+      }
+      const res = await axios.post(`/api/createdeposit`, payloadBody);
+      return res.data
+    } catch (e) {
+      console.log(e);
+    }
+}
+
 
 
 
