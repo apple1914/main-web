@@ -4,17 +4,17 @@ import createDeposit from "../../lib/deposits"
 
 
 export default async function handler(req, res) {
-    try {      
+    // try {      
         const { fiatAmount, fiatCurrency,username } = req.body;
         const { triggerWithdrawal, withdrawalAddressId } = req.body?.withdrawal;
         console.log("here at /api/createdeposit")
       
-        if (triggerWithdrawal === true) {
-          if (!withdrawalAddressId) {
+        // if (triggerWithdrawal === true) {
+        //   if (!withdrawalAddressId) {
             
-            return res.status(400);
-          }
-        }
+        //     return res.status(400);
+        //   }
+        // }
       
         const result = await createDeposit({
           username,
@@ -29,8 +29,8 @@ export default async function handler(req, res) {
     
         // return res.json(result)
     
-        } catch (e) {
-            console.error("errror with createdposit api",e);
-            return res.status(500)
-        }
+        // } catch (e) {
+        //     console.error("errror with createdposit api",e);
+        //     return res.status(500)
+        // }
   }

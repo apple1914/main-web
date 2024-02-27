@@ -144,7 +144,7 @@ export const createDeposit = async ({ fiatAmount,
         withdrawal,
         username:user.uid
       }
-      const res = await axios.post(`/api/createdeposit`, payloadBody);
+      const res = await axios.post(`/api/createdeposit`, payloadBody)
       return res.data
     } catch (e) {
       console.log(e);
