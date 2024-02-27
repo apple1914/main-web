@@ -1,21 +1,21 @@
 "use client"
 import React from 'react';
-import NavbarTwo from '../components/_App/NavbarTwo';
+import NavbarTwoFixed from '../components/_App/NavbarTwoFixed';
 import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/_App/Footer';
 import Link from 'next/link';
-import { useRouter,useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";//should be next/router for pages dir
 import useAuthStore from "../signInLogic/auth";
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-
+import { H } from '@highlight-run/next/client'
 const SignIn = () => {
     const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
     const authSignIn = useAuthStore((state) => state.authSignIn);
 
     const router = useRouter();
-    const searchParams = useSearchParams()
+    // const searchParams = useSearchParams()
 
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
@@ -23,28 +23,34 @@ const SignIn = () => {
     const submitSignInForm = async (e) => {
         e.preventDefault();
     
-        const err = await authSignIn(email, pwd);
+        const {success,err,username} = await authSignIn(email, pwd);
     
-        if (err == null) {
-            console.log("SUCCESS LOGIN! should route to checkout")
-        //   const checkoutType = searchParams.get("checkoutType") || "checkout";
-        //   router.push(`/user/${checkoutType}` + "?" + searchParams.toString());
-            router.push({path:"/withdrawal",query:Object.fromEntries(searchParams.entries())})
+        if (success === true) {
+            goToNext({username})
+            return
         }
       };
 
       useEffect(() => {
         if (user != null && !authInProgress) {
-            console.log("user logged in already, should route to checkout")
-            router.push({path:"/withdrawal",query:Object.fromEntries(searchParams.entries())})
+            goToNext({username:user.uid})
 
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 
+    const goToNext = ({username}) => {
+        try {
+            H.identify(username)
+        } catch (e) {
+            console.log(e)
+        }
+        router.push({pathname:"/withdrawal",query:router.query})
+    }
+
     return (
         <>
-            <NavbarTwo />
+            <NavbarTwoFixed />
             <div className="user-area-all-style log-in-area ptb-100">
                 <div className="container">
                     <div className="row">
@@ -104,7 +110,7 @@ const SignIn = () => {
                                                 Not a member?
                                                 <Link href={{
                                                     pathname: `/sign-up`,   
-                                                    query: Object.fromEntries(searchParams.entries()),
+                                                    query: router.query,
                                                 }}>Sign Up</Link>
                                             </p>
                                         </div>

@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import NavbarTwo from '../components/_App/NavbarTwo';
+import NavbarTwoFixed from '../components/_App/NavbarTwoFixed';
 import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/_App/Footer';
 import Link from 'next/link';
@@ -12,7 +12,9 @@ import { getCookie } from "cookies-next";
 import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo"
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
-
+import SocialSignIn from '../components/Common/SocialSignIn';
+// import {identifyUser} from "../lib/tracking"
+import { H } from '@highlight-run/next/client'
 
 const SignUp = () => {
     const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
@@ -33,6 +35,8 @@ const SignUp = () => {
         }
       }, [user,authInProgress]);
 
+      
+
       const submitSignUpForm = async (e) => {
         e.preventDefault();
     
@@ -46,12 +50,19 @@ const SignUp = () => {
           miscData[cookieName] = data;
         }
     
-        const error = await authSignUp(email, pwd, miscData);
+        const {success,error,username} = await authSignUp(email, pwd, miscData);
         // alert(JSON.stringify(error))
+        console.log("riz here is :", {success,username})
 
     
-        if (error == null) {
+        if (success === true) {
             console.log("NO ERRORS, will send them with query:", router.query,router.isReady)
+            try {
+                H.identify(username)
+            } catch (err) {
+                console.log("err", err)
+            }
+            
             router.push({pathname:"/withdrawal",query:Object.fromEntries(searchParams.entries())})
             return
         }
@@ -63,7 +74,7 @@ const SignUp = () => {
 
     return (
         <>
-            <NavbarTwo />
+            <NavbarTwoFixed />
             
             <div className="user-area-all-style sign-up-area ptb-100">
                 <div className="container">
@@ -110,6 +121,9 @@ const SignUp = () => {
                                             <button className="default-btn btn-two" type="submit">
                                                 {t("Sign Up")}
                                             </button>
+                                        </div>
+                                        <div className="col-12">
+                                            <SocialSignIn/>
                                         </div>
                                         
                                         <div className="col-12">

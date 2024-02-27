@@ -6,8 +6,8 @@ export default function PaymentStatusComponent({ isSuccess }) {
   //@ts-ignore
   const {t} = useTranslation("common")
   return (
-    <div className="content py-4">
-      <div className="container">
+    <div className="content py-4 mt-5">
+      <div className="container mt-5">
 
         <div className="row">
           <div className="col-md-9 col-lg-7 col-xl-6 mx-auto w-auto">
@@ -22,9 +22,8 @@ export default function PaymentStatusComponent({ isSuccess }) {
               ) : (
                 <>
                   <div className="my-4">
-                    <p className="lead">{"Failed"}</p>
+                    <p className="lead">{t("status.failure")}</p>
                   </div>
-                  <p className="text-3 mb-4">{t("status.failure")}</p>
                 </>
               )}
             </div>

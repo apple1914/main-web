@@ -7,4 +7,4 @@ export const cookieMappingContext = {
 }
 
 
-export const isWithdrawalsPaused = process.env.IS_WITHDRAWALS_PAUSED === 'true'
+export const isWithdrawalsStopped = process.env.IS_WITHDRAWALS_PAUSED === 'true'

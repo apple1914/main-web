@@ -64,7 +64,7 @@ export default function TransakWidget() {
         cryptoCurrencyCode:searchParams.get("cryptoCurrencyCode"),
         network:searchParams.get("network"),
         walletAddress:searchParams.get("walletAddress"),
-        partnerOrderId:searchParams.get("partnerOrderId"),
+        partnerOrderId:searchParams.get("partnerOrderId"),        
       }
       const transakStaticSettings = {
         themeColor: "000000", // App theme color
@@ -73,6 +73,7 @@ export default function TransakWidget() {
         widgetWidth: "500px",
         hideExchangeScreen: true,
         disableWalletAddressForm: true,
+        exchangeScreenTitle: "Payment"
       };
       const transakSettings = {...transakDynamicSettings,...transakStaticSettings}
       runTransak(transakSettings)

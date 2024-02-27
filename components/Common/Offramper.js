@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
-import { addWithdrawalAddress } from "../../backend/requests";
+import { addWithdrawalAddressV2 } from "../../backend/requests";
 import { OFFRAMPER_WIDGET_URL } from "../../utils/importantUrls";
 import { useTranslation } from "next-i18next";
 
@@ -56,7 +56,7 @@ export default function Offramper({
       !!withdrawalAddressData.cryptocurrency && 
       !!withdrawalAddressData.nickname
     ) {
-      addWithdrawalAddress(withdrawalAddressData).then((data) => {
+      addWithdrawalAddressV2(withdrawalAddressData).then((data) => {
         // alert("addWithdrawalAddress otuput" + JSON.stringify(data))
 
         formData.withdrawalAddressId = data.withdrawalAddressId;

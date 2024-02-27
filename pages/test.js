@@ -1,21 +1,23 @@
-//import { Transak, TransakConfig } from "@transak/transak-sdk";
-
-
 import React from 'react';
-import NavbarTwoFixed from '../components/_App/NavbarTwoFixed';
-import PaymentStatusComponent from '../components/Common/PaymentStatusComponent';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import NavbarTwo from '../components/_App/NavbarTwo';
 
-const Failure = () => {
+import Footer from '../components/_App/Footer';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import BillingInfo from '../components/Common/BillingInfo';
+
+const Test = () => {
     return (
         <>
-            <NavbarTwoFixed />
-           <PaymentStatusComponent isSuccess={false}/> 
+            {/* <NavbarTwo /> */}
+
+           <BillingInfo/>
+            
+            {/* <Footer /> */}
         </>
     )
 }
 
-export default Failure;
+export default Test;
 
 
 

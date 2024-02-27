@@ -3,7 +3,7 @@ import { useEffect,  useState } from "react";
 
 import Offramper from "./Offramper";
 
-import { fetchWithdrawalAddresses } from "../../backend/requests";
+import { fetchWithdrawalAddressesV2 } from "../../backend/requests";
 // import { useTranslation } from "@/app/i18n/client";
 import { Form, Button } from "react-bootstrap";
 import useAuthStore from "../../signInLogic/auth";
@@ -27,7 +27,7 @@ export default function PickWithdrawalDestination({
   const [withdrawalAddresses, setQWithdrawalDestinations] = useState([]);
   const [withdrawalAddressId, setWithdrawalAddressId] = useState();
   const [loading, setLoading] = useState(true);
-  const [hasNoAvailableDestinations, setHasNoAvailableDestinations] = useState(false);
+  const [hasNoAvailableDestinations, setHasNoAvailableDestinations] = useState(true);
 
   const handleSelectRecipient = async (pickedWithdrawalAddressId) => {
     setWithdrawalAddressId(pickedWithdrawalAddressId);
@@ -49,7 +49,7 @@ export default function PickWithdrawalDestination({
 
   useEffect(() => {
     if (!!user) {
-      fetchWithdrawalAddresses().then((data) => {
+      fetchWithdrawalAddressesV2().then((data) => {
         if (!!data && data.length > 0) {
           updateWithdrawalAddresses(data);
           setHasNoAvailableDestinations(false);
