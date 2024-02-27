@@ -26,20 +26,23 @@ const SignIn = () => {
         const {success,err,username} = await authSignIn(email, pwd);
     
         if (success === true) {
-            identifyUser({username:username})
-            router.push({pathname:"/withdrawal",query:router.query})
+            goToNext()
             return
         }
       };
 
       useEffect(() => {
         if (user != null && !authInProgress) {
-            identifyUser({username:user.uid})
-            router.push({pathname:"/withdrawal",query:router.query})
+            goToNext()
 
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
+
+    const goToNext = () => {
+        identifyUser({username:username})
+        router.push({pathname:"/withdrawal",query:router.query})
+    }
 
     return (
         <>

@@ -13,7 +13,8 @@ import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo"
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
 import SocialSignIn from '../components/Common/SocialSignIn';
-import {identifyUser} from "../lib/tracking"
+// import {identifyUser} from "../lib/tracking"
+import { H } from '@highlight-run/next/client'
 
 const SignUp = () => {
     const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
@@ -51,11 +52,17 @@ const SignUp = () => {
     
         const {success,error,username} = await authSignUp(email, pwd, miscData);
         // alert(JSON.stringify(error))
+        console.log("riz here is :", {success,username})
 
     
-        if (success === false) {
+        if (success === true) {
             console.log("NO ERRORS, will send them with query:", router.query,router.isReady)
-            identifyUser({username})
+            try {
+                H.identify(username)
+            } catch (err) {
+                console.log("err", err)
+            }
+            
             router.push({pathname:"/withdrawal",query:Object.fromEntries(searchParams.entries())})
             return
         }
