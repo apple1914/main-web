@@ -9,7 +9,7 @@ import useAuthStore from "../signInLogic/auth";
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { identifyUser } from '../lib/tracking';
+import { H } from '@highlight-run/next/client'
 const SignIn = () => {
     const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
     const authSignIn = useAuthStore((state) => state.authSignIn);
@@ -26,21 +26,25 @@ const SignIn = () => {
         const {success,err,username} = await authSignIn(email, pwd);
     
         if (success === true) {
-            goToNext()
+            goToNext({username})
             return
         }
       };
 
       useEffect(() => {
         if (user != null && !authInProgress) {
-            goToNext()
+            goToNext({username:user.uid})
 
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 
-    const goToNext = () => {
-        identifyUser({username:username})
+    const goToNext = ({username}) => {
+        try {
+            H.identify(username)
+        } catch (e) {
+            console.log(e)
+        }
         router.push({pathname:"/withdrawal",query:router.query})
     }
 
