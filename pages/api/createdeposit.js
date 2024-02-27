@@ -30,7 +30,7 @@ export default async function handler(req, res) {
         // return res.json(result)
     
         } catch (e) {
-            console.error(e);
+            console.error("errror with createdposit api",e);
             return res.status(500)
         }
   }
