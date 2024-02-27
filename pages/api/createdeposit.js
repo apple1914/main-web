@@ -25,9 +25,9 @@ export default async function handler(req, res) {
         });
         console.log("result", result)
 
-        res.json(result);
+        return res.json(result);
     
-        return res.json(result)
+        // return res.json(result)
     
         } catch (e) {
             console.error(e);
