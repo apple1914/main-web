@@ -7,6 +7,7 @@ export default async function handler(req, res) {
     try {      
         const { fiatAmount, fiatCurrency,username } = req.body;
         const { triggerWithdrawal, withdrawalAddressId } = req.body?.withdrawal;
+        console.log("here at /api/createdeposit")
       
         if (triggerWithdrawal === true) {
           if (!withdrawalAddressId) {
@@ -22,6 +23,8 @@ export default async function handler(req, res) {
           triggerWithdrawal,
           withdrawalAddressId,
         });
+        console.log("result", result)
+
         res.json(result);
     
         return res.json(result)
