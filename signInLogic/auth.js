@@ -1,4 +1,4 @@
-import {saveUserInfo,saveUserInfoIfNew} from "../backend/requests"
+import {saveUserInfo} from "../backend/requests"
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -78,7 +78,7 @@ const useAuthStore = create((set) => ({
           delete miscInfo[key];
         }
       });
-      saveUserInfoIfNew({username,contactInfo:{email},miscInfo})
+      saveUserInfo({username,contactInfo:{email},miscInfo})
       
 
       toast.success("Успешный вход!");

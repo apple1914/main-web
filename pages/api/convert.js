@@ -1,10 +1,10 @@
-import { NextResponse } from 'next/server';
-import clientPromise from "../../lib/mongodb";
-import {binaryClosestIdx} from "../../utils/algos"
+import connectDB from '../../middleware/mongodb';
+
+import {convert} from "../../lib/currencies"
 
 
 
-export default async function handler(req, res) {
+const handler = async(req, res) => {
     try {
         // const url = new URL(req.url)
         const {fromCurrency,toCurrency,amount,discount} = req.query
@@ -15,50 +15,16 @@ export default async function handler(req, res) {
         if (!amount || !fromCurrency || !toCurrency) {
             throw new Error("wrong inputs")
         }
-        console.log("inputs here are", req.query)
-    
-        const client = await clientPromise;
-        const db = client.db("serverless");
-        const fromCurrencyDoc = await db
-            .collection("depositPrices")
-            .findOne({currency:fromCurrency})
-    
-        const toCurrencyDoc = await db
-            .collection("withdrawValues")
-            .findOne({currency:toCurrency})
-
-            console.log("toCurrencyDoc fromCurrencyDoc are", {fromCurrencyDoc,toCurrencyDoc})
-
-
-        if (!fromCurrencyDoc || !toCurrencyDoc) {
-            return res.json(0.0)
-        }
-
-
-    
-        const {prices,fiatAmountMinimum} = fromCurrencyDoc
-
-        const multiplier = amount / fiatAmountMinimum;
-
-        const levels = Object.keys(prices).map((string_) => parseFloat(string_));
-        const closestLevel = levels[binaryClosestIdx(levels, multiplier)];
-
-        const priceKey = closestLevel.toFixed(0).toString();
-
-        const price = prices[priceKey];
-
-        const {value} = toCurrencyDoc
-        const TOTAL_FEE = 0.06 - Number(discount)
-
-        const answer = Number(amount) * (1-TOTAL_FEE) * value / price
-
-        // console.log("intermediate values in convert are:", {
-        //     amount,price,value,TOTAL_FEE,answer
-        // })
-        return res.json(answer)
+       
+        const result = await convert({fromCurrency,toCurrency,amount,discount})
+        // await myNew.save()
+        return res.status(200).send(result)
+        
     
         } catch (e) {
             console.error(e);
             return res.status(500)
         }
   }
+
+  export default connectDB(handler)
