@@ -22,6 +22,7 @@
         "fslightbox-react": "^1.6.2-2",
         "i18next": "^23.8.2",
         "mongodb": "^6.3.0",
+        "mongoose": "^8.2.0",
         "next": "^13.4.2",
         "next-i18next": "^15.2.0",
         "nodemailer": "^6.7.2",

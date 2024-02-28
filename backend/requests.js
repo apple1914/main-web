@@ -3,7 +3,8 @@ import axios from "axios";
 
 import {THIS_BACKEND_URL} from "../utils/importantUrls"
 
-
+const MIXPANEL_SECRET = process.env.MIXPANEL_SECRET
+const MIXPANEL_TOKEN = process.env.MIXPANEL_TOKEN
 
 
 export const fetchWithdrawalAddresses = async () => {
@@ -242,15 +243,11 @@ export const createCsTicket = async ({ email,category,problemText}) => {
 
 
 export const saveUserInfo = async ({username,miscInfo,contactInfo}) => {
-  const url = `${THIS_BACKEND_URL}/users/saveUserInfo`
+  const url = `/api/saveuserinfo`
   const payload = {username,miscInfo,contactInfo}
   return axios.post(url,payload).then((res)=>res.data).catch((err)=>{console.log(err)})
 }
-export const saveUserInfoIfNew = async ({username,miscInfo,contactInfo}) => {
-  const url = `${THIS_BACKEND_URL}/users/saveUserInfoIfNew`
-  const payload = {username,miscInfo,contactInfo}
-  return axios.post(url,payload).then((res)=>res.data).catch((err)=>{console.log(err)})
-}
+
 
 
 export const fetchOnrampSettings = async ({depositId}) => {
@@ -290,3 +287,59 @@ export const fetchOnrampSettings = async ({depositId}) => {
     const answer = await axios.post(`/api/savebillinginfo`,{username:user.uid,...payload}).then((res)=>res.data);
     return 
   }
+
+
+
+
+
+
+export const reportEvent = async ({
+    username,
+    eventProps,
+    timestamp,
+    eventName,
+    insertId,
+  }) => {
+    const url = `https://api.mixpanel.com/import`;
+  
+    const newProperties = {
+      ...eventProps,
+      time: timestamp,
+      distinct_id: username,
+      token: MIXPANEL_TOKEN,
+      $insert_id: insertId,
+    };
+    const payload = [{ event:eventName, properties: newProperties }];
+  
+    const headers = {
+      "content-type": "application/json",
+      Authorization: "Basic " + Buffer.from(`${MIXPANEL_SECRET}:`).toString("base64")
+    };
+  
+    return axios
+      .post(url, payload, { headers: headers })
+      .then((res) => res.data)
+      .catch((err) => {
+        console.log(err.response.data);
+        });
+  };
+
+
+export const identifyUser = async ({ username, userProps }) => {
+    const mxpPaylo = [
+      {
+        $token: MIXPANEL_TOKEN,
+        $distinct_id: username,
+        $set: userProps,
+      },
+    ];
+    //should be solid
+    return axios
+      .post("https://api.mixpanel.com/engage#profile-set", mxpPaylo)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };

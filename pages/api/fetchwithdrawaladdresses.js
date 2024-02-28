@@ -1,28 +1,25 @@
-import { NextResponse } from 'next/server';
-import clientPromise from "../../lib/mongodb";
+import connectDB from '../../middleware/mongodb';
+import WithdrawalAddress from '../../models/withdrawalAddress';
 
-
-
-export default async function handler(req, res) {
+const handler = async(req, res) => {
     try {
         const {username} = req.query
-        const client = await clientPromise;
-        const db = client.db("serverless");
-        const myWithdrawlAdresses = await db
-            .collection("withdrawalAddress")
+       
+        const myWithdrawlAdresses = await WithdrawalAddress
             .find({username})
-            .limit(100)
-            .toArray();
+            
         const results = myWithdrawlAdresses.map((data)=> {
             return {
                 withdrawalAddressId:data._id,
                 nickname:data.nickname
             }
         })    
-        return res.json(results)
+        return res.status(200).send(results)
     
         } catch (e) {
             console.error(e);
-            return res.status(500)
+            return res.status(500).send()
         }
   }
+
+  export default connectDB(handler)

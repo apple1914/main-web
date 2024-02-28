@@ -13,7 +13,6 @@ import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo"
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
 import SocialSignIn from '../components/Common/SocialSignIn';
-// import {identifyUser} from "../lib/tracking"
 import { H } from '@highlight-run/next/client'
 
 const SignUp = () => {
