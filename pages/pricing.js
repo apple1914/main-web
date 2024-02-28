@@ -10,7 +10,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Pricing = () => {
     const {t} = useTranslation("common")
-    const utm_campaign = "default"
+    const utm_campaign = "default"//
     return (
         <>
             <NavbarTwo />
