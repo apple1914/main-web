@@ -59,6 +59,7 @@ const SignUp = () => {
             console.log("NO ERRORS, will send them with query:", router.query,router.isReady)
             try {
                 H.identify(username)
+                
             } catch (err) {
                 console.log("err", err)
             }

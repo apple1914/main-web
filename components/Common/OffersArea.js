@@ -11,7 +11,7 @@ const OffersArea = () => {
 				<div className="row align-items-center">
 					<div className="col-lg-6 col-md-6 p-0">
 						<div className="business-img">
-							<img src="/images/business-img.jpg" alt="Image" />
+							<img src="/images/counter-bg-6.jpg" alt="Image" />
 						</div>
 					</div>
 
