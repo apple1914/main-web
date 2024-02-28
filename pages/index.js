@@ -26,6 +26,8 @@ const Index = () => {
 
             <Services />
 
+            <WhyChooseUs />
+
             <SideBenefitCards />
 
             {/* <AboutUs /> */}
@@ -36,17 +38,17 @@ const Index = () => {
                 <OffersArea />
             </div>
 
-            <WhyChooseUs />
+            
 
             {/* <TeamSlider /> */}
 
             <FunFactsStyleTwo />
 
-            <TestimonialStyleTwo />
+            {/* <TestimonialStyleTwo /> */}
 
-            <div className="pb-100">
+            {/* <div className="pb-100">
                 <ContactWithUs />
-            </div>
+            </div> */}
 
             
             <Footer />
