@@ -1,20 +1,16 @@
-import { NextResponse } from 'next/server';
-import clientPromise from "../../lib/mongodb";
-import createDeposit from "../../lib/deposits"
+
+import {createDeposit} from "../../lib/deposits"
+import connectDB from '../../middleware/mongodb';
 
 
-export default async function handler(req, res) {
+const handler = async(req, res) => {
     // try {      
         const { fiatAmount, fiatCurrency,username } = req.body;
         const { triggerWithdrawal, withdrawalAddressId } = req.body?.withdrawal;
         console.log("here at /api/createdeposit")
-      
-        // if (triggerWithdrawal === true) {
-        //   if (!withdrawalAddressId) {
-            
-        //     return res.status(400);
-        //   }
-        // }
+
+    
+       
       
         const result = await createDeposit({
           username,
@@ -25,7 +21,7 @@ export default async function handler(req, res) {
         });
         console.log("result", result)
 
-        return res.json(result);
+        return res.status(200).send(result);
     
         // return res.json(result)
     
@@ -34,3 +30,5 @@ export default async function handler(req, res) {
         //     return res.status(500)
         // }
   }
+
+  export default connectDB(handler)

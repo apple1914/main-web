@@ -1,23 +1,14 @@
-import { NextResponse } from 'next/server';
-import clientPromise from "../../lib/mongodb";
 
+import connectDB from '../../middleware/mongodb';
+import WithdrawalAddress from '../../models/withdrawalAddress';
 
-
-export default async function handler(req, res) {
+const handler = async (req, res)  => {
     try {
-        // const url = new URL(req.url)
         const {address,blockchain,cryptocurrency,nickname,username} = req.body
-       
-        const client = await clientPromise;
-        const db = client.db("serverless");
         const definition = {address,blockchain,cryptocurrency,nickname,username}
-        const collection = db.collection("withdrawalAddress")
-        const insertResult = await collection.insertOne(definition);
-        // const newDoc = new WithdrawlAdress(definition)
-        // await newDoc.save()
-        // const result = {withdrawalAddressId:newDoc._id}
-        console.log("insertResult",insertResult)
-        const result = {withdrawalAddressId:insertResult.insertedId.toString()}
+        const newWA = new WithdrawalAddress(definition)
+        const insertedResult = await newWA.save()
+        const result = {withdrawalAddressId:insertedResult._id}
         
         console.log("SUCCESS!", result)
     
@@ -28,3 +19,5 @@ export default async function handler(req, res) {
             return res.status(500)
         }
   }
+
+  export default connectDB(handler)

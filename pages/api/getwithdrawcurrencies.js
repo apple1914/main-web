@@ -1,22 +1,17 @@
-import { NextResponse } from 'next/server';
-import clientPromise from "../../lib/mongodb";
+import connectDB from '../../middleware/mongodb';
+
+import {getWithdrawCurrencies} from "../../lib/currencies"
 
 
-
-
-export default async function handler(req, res) {
+const handler = async(req, res) => {
     try {
-        const client = await clientPromise;
-        const db = client.db("serverless");
-        const objects = await db
-            .collection("withdrawValues")
-            .find({})
-            .limit(100)
-            .toArray();
-        const results = objects.map((obj)=>obj.currency)
-        return res.json(results)
+        
+        const results = await getWithdrawCurrencies()
+        return res.status(200).send(results)
         } catch (e) {
             console.error(e);
             return res.status(500)
         }
   }
+
+  export default connectDB(handler)
