@@ -293,7 +293,7 @@ export const fetchOnrampSettings = async ({depositId}) => {
 
 
 
-export const reportEvent = async ({
+export const mxpReportEvent = async ({
     username,
     eventProps,
     timestamp,
@@ -325,7 +325,7 @@ export const reportEvent = async ({
   };
 
 
-export const identifyUser = async ({ username, userProps }) => {
+export const mxpIdentifyUser = async ({ username, userProps }) => {
     const mxpPaylo = [
       {
         $token: MIXPANEL_TOKEN,
