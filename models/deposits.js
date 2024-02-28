@@ -23,4 +23,4 @@ depositSchema.post('save', function(doc) {
       });
 var Deposits = mongoose.model('Deposits', depositSchema);
 
-export default Deposits;
+export default Deposits;//
