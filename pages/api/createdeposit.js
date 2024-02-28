@@ -1,5 +1,4 @@
-// import { NextResponse } from 'next/server';
-// import clientPromise from "../../lib/mongodb";
+
 import {createDeposit} from "../../lib/deposits"
 import connectDB from '../../middleware/mongodb';
 
