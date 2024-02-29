@@ -1,18 +1,12 @@
 
-import connectDB from '../../middleware/mongodb';
-import WithdrawalAddress from '../../models/withdrawalAddress';
+import {addWithdrawalAddress} from '../../lib/withdrawalAddress';
 
 const handler = async (req, res)  => {
     try {
         const {address,blockchain,cryptocurrency,nickname,username} = req.body
-        const definition = {address,blockchain,cryptocurrency,nickname,username}
-        const newWA = new WithdrawalAddress(definition)
-        const insertedResult = await newWA.save()
-        const result = {withdrawalAddressId:insertedResult._id}
-        
-        console.log("SUCCESS!", result)
+        const withdrawalAddressId = await addWithdrawalAddress( {address,blockchain,cryptocurrency,nickname,username} )
     
-        return res.json(result)
+        return res.json({withdrawalAddressId})
     
         } catch (e) {
             console.error(e);
@@ -20,4 +14,4 @@ const handler = async (req, res)  => {
         }
   }
 
-  export default connectDB(handler)
+  export default handler

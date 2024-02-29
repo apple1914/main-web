@@ -1,4 +1,5 @@
-import {saveUserInfo} from "../backend/requests"
+// import {saveUserInfo} from "../backend/requests"
+import {saveUserInfo} from "../lib/users"
 import {
   createUserWithEmailAndPassword,
   getAuth,
