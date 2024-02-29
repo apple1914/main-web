@@ -1,4 +1,3 @@
-import connectDB from '../../middleware/mongodb';
 
 import {getWithdrawCurrencies} from "../../lib/currencies"
 
@@ -13,4 +12,4 @@ const handler = async(req, res) => {
         }
   }
 
-  export default connectDB(handler)
+  export default handler
