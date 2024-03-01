@@ -11,7 +11,7 @@ const UTC_HOUR_MAINTENANCE_ENDS = 23
 
 
 export default function DepositInitIfNoFunds({
-  formData,
+  formData
 }) {
   //@ts-ignore
   // const { t } = useTranslation(lng);z
