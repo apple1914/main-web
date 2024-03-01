@@ -7,11 +7,18 @@ import RedirectIfNotSignedIn from "../components/Common/RedirectIfNotSignedIn"
 import CaptureMarketingInfo from '../components/Common/CaptureMarketingInfo';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
-
+import useAuthStore from "../signInLogic/auth";
+import {saveCustomEvent} from "../lib/userEvents"
 
 function Withdrawal(props) {
   //@ts-ignore
   const {lng} = props
+  const user = useAuthStore((state) => state.user);
+
+  const handleSaveCustomEvent = (eventName) => {
+    if (!eventName) return
+    saveCustomEvent({eventName,username:user.uid})
+  }
 
 
   
@@ -19,7 +26,7 @@ function Withdrawal(props) {
     <>
     <NavbarTwoFixed />
 
-    <CheckoutMain lng={lng}/>
+    <CheckoutMain lng={lng} handleSaveCustomEvent={handleSaveCustomEvent}/>
     <Footer />
     {/* <CaptureMarketingInfo /> */}
     <RedirectIfNotSignedIn/>
