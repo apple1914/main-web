@@ -10,16 +10,17 @@ const MIXPANEL_TOKEN = process.env.MIXPANEL_TOKEN
 export const fetchWithdrawalAddresses = async () => {
   try {
       const user = auth.currentUser;
-      const token = user && (await user.getIdToken());
+      const username = user.uid
+      // const token = user && (await user.getIdToken());
 
-      const payloadHeader = {
-        headers: {
-          "Content-Type": "application/json",//
-          Authorization: `Bearer ${token}`,
-        },
-      };
+      // const payloadHeader = {
+      //   headers: {
+      //     "Content-Type": "application/json",//
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // };
 
-      const data = await axios.get(`/api/fetchwithdrawaladdresses`, payloadHeader).then((res)=>res.data).catch((err)=> {
+      const data = await axios.get(`/api/fetchwithdrawaladdresses?username=${username}`).then((res)=>res.data).catch((err)=> {
         console.log("ERRRRRR with fetchWithdrawalAddresses", err)
       })
 
