@@ -1,4 +1,5 @@
-import {saveUserInfo} from "../backend/requests"
+// import {saveUserInfo} from "../backend/requests"
+import {saveUserInfo} from "../lib/users"
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -8,11 +9,9 @@ import {
 } from "firebase/auth";
 import { toast } from "react-hot-toast";
 import { create } from "zustand";
-import { app } from "./firebaseAuthenticationConfig";
+import {auth} from "../lib/firebase/firebase"
 
 
-
-const auth = getAuth(app);
 
 const useAuthStore = create((set) => ({
   user: null,

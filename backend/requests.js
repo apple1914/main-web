@@ -1,4 +1,4 @@
-import { auth } from "../signInLogic/firebaseAuthenticationConfig"
+import { auth } from "../lib/firebase/firebase"
 import axios from "axios";
 
 import {THIS_BACKEND_URL} from "../utils/importantUrls"
@@ -10,16 +10,17 @@ const MIXPANEL_TOKEN = process.env.MIXPANEL_TOKEN
 export const fetchWithdrawalAddresses = async () => {
   try {
       const user = auth.currentUser;
-      const token = user && (await user.getIdToken());
+      const username = user.uid
+      // const token = user && (await user.getIdToken());
 
-      const payloadHeader = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      };
+      // const payloadHeader = {
+      //   headers: {
+      //     "Content-Type": "application/json",//
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // };
 
-      const data = await axios.get(`${THIS_BACKEND_URL}/withdrawalAddress`, payloadHeader).then((res)=>res.data).catch((err)=> {
+      const data = await axios.get(`/api/fetchwithdrawaladdresses?username=${username}`).then((res)=>res.data).catch((err)=> {
         console.log("ERRRRRR with fetchWithdrawalAddresses", err)
       })
 
@@ -65,44 +66,25 @@ export const fetchWithdrawalAddressesV2 = async () => {
 
 export const addWithdrawalAddress = async({nickname,address,blockchain,cryptocurrency})=> {
   try {
-      const user = auth.currentUser;
-      const token = user && (await user.getIdToken());
-
-      const payloadHeader = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      const payloadBody = {
-        nickname,address,blockchain,cryptocurrency
-      }
-      const res = await axios.post(`${THIS_BACKEND_URL}/withdrawalAddress`,payloadBody, payloadHeader).catch((err)=> {
-        console.log(err.response?.data)
-      })
-      return res.data
-    } catch (e) {
-      // alert("errrrror!")
-      console.log(e);
+    const user = auth.currentUser;
+    const username = user.uid
+    const payloadBody = {
+      nickname,address,blockchain,cryptocurrency,username
     }
-}
 
-export const addWithdrawalAddressV2 = async({nickname,address,blockchain,cryptocurrency})=> {
-  try {
-      const user = auth.currentUser;
-      const username = user.uid
-
-      const payloadBody = {
-        nickname,address,blockchain,cryptocurrency,username
-      }
-      const res = await axios.post(`/api/addwithdrawaladdress`,payloadBody).catch((err)=> {
+     
+      const result = await axios.post(`/api/addwithdrawaladdress`,payloadBody).then((res)=>{
+        return res.data
+      }).catch((err)=> {
        console.log(err)
       })
-      return res.data
-    } catch (e) {
-      // alert("errrrror!")
-      console.log(e);
-    }
+      return result
+  } catch (err) {
+    console.log(err)
+  }
+    
+  
+   
 }
 
 
