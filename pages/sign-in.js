@@ -18,7 +18,7 @@ const SignIn = () => {
   const authSignIn = useAuthStore((state) => state.authSignIn);
 
   const router = useRouter();
-  // const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
@@ -47,7 +47,8 @@ const SignIn = () => {
     } catch (e) {
       console.log(e);
     }
-    router.push({ pathname: "/withdrawal", query: router.query });
+    const flowType = searchParams.get("flowType") || "withdrawal";
+    router.push({ pathname: "/" + flowType, query: router.query });
   };
 
   return (
