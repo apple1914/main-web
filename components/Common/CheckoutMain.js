@@ -11,6 +11,7 @@ const CheckoutMain = ({ lng, handleSaveCustomEvent }) => {
     fiatCurrency: "",
     withdrawalAddressId: "",
     convertedFiatCurrency: "",
+    flowType: "withdrawal",
   });
 
   const [level, setLevel] = useState(0);

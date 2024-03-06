@@ -11,6 +11,7 @@ const CheckoutDeposit = ({ lng, handleSaveCustomEvent }) => {
     fiatCurrency: "",
     withdrawalAddressId: "",
     convertedFiatCurrency: "",
+    flowType: "deposit",
   });
 
   const [level, setLevel] = useState(0);
