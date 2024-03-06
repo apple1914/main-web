@@ -16,6 +16,7 @@ import {
   convert,
   fetchWithdrawalCurrencies,
   fetchDepositFiatCurrencies,
+  getWithdrawals,
 } from "../../backend/requests";
 import useAuthStore from "../../signInLogic/auth";
 import { useRouter } from "next/router";
@@ -115,11 +116,11 @@ export default function Converter({
 
   useEffect(() => {
     if (!!user & !authInProgress) {
-      // getWithdrawals().then((withdrawals) => {
-      //   if (withdrawals && withdrawals.length > 0) {
-      //     setDiscount(0);
-      //   }
-      // });
+      getWithdrawals().then((withdrawals) => {
+        if (!!withdrawals && withdrawals.length > 0) {
+          setDiscount(0);
+        }
+      });
     }
   }, [user, authInProgress]);
 
@@ -236,24 +237,6 @@ export default function Converter({
           </span>
         </div>
       </div>
-      <p className="text-muted text-center w-100 mx-auto">
-        {/* Exchange rate: {" "}
-        <span className="fw-500">
-          1 {myDepositCurrency} = {exchangeRate} {myWithdrawalCurrency}
-        </span> */}
-        {/* {discount !== 0 && (
-          <OverlayTrigger
-            placement="bottom"
-            overlay={
-              <Tooltip id={`tooltip-bottom`}>
-                *first withdrawal only
-              </Tooltip>
-            }
-          >
-            <span style={{ cursor: "pointer" }}>*</span>
-          </OverlayTrigger>
-        )} */}
-      </p>
       <div className="d-grid w-100 mx-auto">
         {incrementLevel ? (
           <button
