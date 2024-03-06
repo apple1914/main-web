@@ -277,7 +277,29 @@ export default function Converter({
                   aria-hidden="true"
                 />
               ) : (
-                <p>{t("Continue")}</p>
+                <p>{t("Withdrawal")}</p>
+              )}
+            </Link>
+            <Link
+              href={{
+                pathname: "/deposit",
+                query: {
+                  fiatCurrency: myDepositCurrency,
+                  amount: myDepositAmount,
+                },
+              }}
+              className={`btn btn-outline-primary text-primary ${
+                invalid || conversionRateLoader ? "disabled" : ""
+              } mt-3`}
+            >
+              {conversionRateLoader ? (
+                <span
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+              ) : (
+                <p>{t("Deposit")}</p>
               )}
             </Link>
           </>
