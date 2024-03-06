@@ -1,5 +1,5 @@
 "use client";
-import { useEffect,  useState } from "react";
+import { useEffect, useState } from "react";
 
 import Offramper from "./Offramper";
 
@@ -9,9 +9,8 @@ import { Form, Button } from "react-bootstrap";
 import useAuthStore from "../../signInLogic/auth";
 import { useTranslation } from "next-i18next";
 
-
 // import dynamic from 'next/dynamic'
- 
+
 // const DynamicHeader = dynamic(() => import('../components/header'), {
 //   ssr: false,
 // })
@@ -27,7 +26,8 @@ export default function PickWithdrawalDestination({
   const [withdrawalAddresses, setQWithdrawalDestinations] = useState([]);
   const [withdrawalAddressId, setWithdrawalAddressId] = useState();
   const [loading, setLoading] = useState(true);
-  const [hasNoAvailableDestinations, setHasNoAvailableDestinations] = useState(true);
+  const [hasNoAvailableDestinations, setHasNoAvailableDestinations] =
+    useState(true);
 
   const handleSelectRecipient = async (pickedWithdrawalAddressId) => {
     setWithdrawalAddressId(pickedWithdrawalAddressId);
@@ -39,13 +39,11 @@ export default function PickWithdrawalDestination({
   }
 
   const handleSubmitSelectedAddress = () => {
-    formData.withdrawalAddressId = withdrawalAddressId
+    formData.withdrawalAddressId = withdrawalAddressId;
     setFormData(formData);
     // alert(withdrawalAddressId)
     incrementLevel();
   };
-
-
 
   useEffect(() => {
     if (!!user) {
@@ -64,23 +62,30 @@ export default function PickWithdrawalDestination({
   return (
     <div className="bg-white shadow rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-10">
       <div className="d-flex w-100 justify-content-between align-items-center">
-        {hasNoAvailableDestinations == false && <h3 className="text-5 fw-400 mb-0">{t("pickWithdrawalDestination.h1")}</h3>}
+        {hasNoAvailableDestinations == false && (
+          <h3 className="text-5 fw-400 mb-0">
+            {t("pickWithdrawalDestination.h1")}
+          </h3>
+        )}
       </div>
       <hr className="mx-n3 mx-sm-n5 mb-4" />
-      {!!user && (<Offramper
-        // triggerUpdateRecipients={triggerUpdateRecipients}
-        lng={lng}
-        incrementLevel={incrementLevel}
-        formData={formData}
-        setFormData={setFormData}
-        email={user.email}
-      />)}
-      {hasNoAvailableDestinations == false && <div className="text-center my-3">or</div>}
+      {!!user && (
+        <Offramper
+          // triggerUpdateRecipients={triggerUpdateRecipients}
+          lng={lng}
+          incrementLevel={incrementLevel}
+          formData={formData}
+          setFormData={setFormData}
+          email={user.email}
+        />
+      )}
+      {hasNoAvailableDestinations == false && (
+        <div className="text-center my-3">or</div>
+      )}
       {hasNoAvailableDestinations === false &&
         (loading ? (
           <div className="d-flex justify-content-center">
-            <div className="spinner-border" role="status">
-            </div>
+            <div className="spinner-border" role="status"></div>
           </div>
         ) : (
           <form onSubmit={() => handleSubmitSelectedAddress()}>
@@ -115,7 +120,6 @@ export default function PickWithdrawalDestination({
           </form>
         ))}
       {/* {hasNoAvailableDestinations == false && <div className="text-center my-3">or</div>} */}
-     
     </div>
   );
 }
