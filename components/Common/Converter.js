@@ -18,34 +18,37 @@ import {
   fetchDepositFiatCurrencies,
 } from "../../backend/requests";
 import useAuthStore from "../../signInLogic/auth";
-import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { setCookie } from "cookies-next";
+import { useSearchParams } from "next/navigation";
+const DEFAULT_WITHDRAWAL_CURRENCY = "PLN";
+const DEFAULT_DEPOSIT_CURRENCY = "USD";
 
-
-export default function Converter({incrementLevel,
+export default function Converter({
+  incrementLevel,
   setFormData,
   formData,
-  lng,}) {
-    const {t} = useTranslation("common")
-  const [user, authInProgress] = useAuthStore((state) => [state.user, state.authInProgress]);
+  lng,
+}) {
+  const { t } = useTranslation("common");
+  const [user, authInProgress] = useAuthStore((state) => [
+    state.user,
+    state.authInProgress,
+  ]);
 
-  
   const [myDepositAmount, setMyDepositAmount] = useState(1000);
-  const [myDepositCurrency, setMyDepositCurrency] = useState("USD");
+  const [myDepositCurrency, setMyDepositCurrency] = useState("");
   const [myWithdrawalAmount, setMyWithdrawalAmount] = useState("0");
-  const [myWithdrawalCurrency, setMyWithdrawalCurrency] = useState("PLN");
-  const [myDepositCurrencies, setMyDepositCurrencies] =
-    useState(['USD']);
-  const [myWithdrawalCurrencies, setMyWithdrawalCurrencies] = useState(
-    ['PLN']
-  );
+  const [myWithdrawalCurrency, setMyWithdrawalCurrency] = useState("");
+  const [myDepositCurrencies, setMyDepositCurrencies] = useState([""]);
+  const [myWithdrawalCurrencies, setMyWithdrawalCurrencies] = useState([""]);
   const [exchangeRate, setExchangeRate] = useState("1");
   const [invalid, setInvalid] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [discount, setDiscount] = useState(0.04);
-  const [conversionRateLoader, setConversionRateLoader] =
-    useState(true);
+  const [conversionRateLoader, setConversionRateLoader] = useState(true);
 
   const submit = (e) => {
     e.preventDefault();
@@ -59,52 +62,39 @@ export default function Converter({incrementLevel,
   };
 
   const handleChangeDepositCurrency = (value) => {
-    setMyDepositCurrency(value)
-    setCookie("fiatCurrency",value)
-  }
+    setMyDepositCurrency(value);
+    setCookie("fiatCurrency", value);
+  };
   const handleChangeWithdrawCurrency = (value) => {
-    setMyWithdrawalCurrency(value)
-    setCookie("withdrawalCurrency",value)
-  }
-  
+    setMyWithdrawalCurrency(value);
+    setCookie("withdrawalCurrency", value);
+  };
 
   useEffect(() => {
-    if (router.isReady) {
-      const routerQuery = router.query
+    const withdrawalCurrency =
+      searchParams.get("withdrawalCurrency") ||
+      searchParams.get("toCurrency") ||
+      getCookie("withdrawalCurrency") ||
+      DEFAULT_WITHDRAWAL_CURRENCY;
 
-    
+    setMyWithdrawalCurrency(withdrawalCurrency);
 
-      const withdrawalCurrency =
-      routerQuery["withdrawalCurrency"] ||
-        routerQuery["toCurrency"] ||
-        getCookie("withdrawalCurrency") ||
-        null;
+    const depositCurrency =
+      searchParams.get("fiatCurrency") ||
+      searchParams.get("fromCurrency") ||
+      getCookie("fiatCurrency") ||
+      DEFAULT_DEPOSIT_CURRENCY;
 
-      console.log("withdrawalCurrency",withdrawalCurrency)
+    setMyDepositCurrency(depositCurrency);
 
-      if (withdrawalCurrency != null) {
-        setMyWithdrawalCurrency(withdrawalCurrency);
-      }
-      const depositCurrency =
-        routerQuery["fiatCurrency"] ||
-        routerQuery["fromCurrency"] ||
-        getCookie("fiatCurrency")  || null
-
-      if (depositCurrency != null) {
-        setMyDepositCurrency(depositCurrency);
-      }
-      const amount = routerQuery["amount"]
-      if (
-        amount != null &&
-        depositMinimumsMap[myDepositCurrency] <= Number(amount)
-      ) {
-        setMyDepositAmount(Number(amount));
-      }
+    const amount = searchParams.get("amount");
+    if (
+      amount != null &&
+      depositMinimumsMap[myDepositCurrency] <= Number(amount)
+    ) {
+      setMyDepositAmount(Number(amount));
     }
-    
-  }, [router.isReady]);
-
-
+  }, []);
 
   useEffect(() => {
     Promise.all([
@@ -131,9 +121,10 @@ export default function Converter({incrementLevel,
       //   }
       // });
     }
-  }, [user,authInProgress])
+  }, [user, authInProgress]);
 
   const updateConversionRate = () => {
+    if (!myDepositCurrency || !myWithdrawalCurrency) return;
     setConversionRateLoader(true);
     convert(
       myDepositAmount,
@@ -159,14 +150,13 @@ export default function Converter({incrementLevel,
             onChange={(e) => {
               if (Number(e.target.value) >= 0) {
                 if (
-                  Number(e.target.value) <
-                  (depositMinimumsMap)[myDepositCurrency]
+                  Number(e.target.value) < depositMinimumsMap[myDepositCurrency]
                 ) {
                   setInvalid(true);
                 }
                 if (
                   Number(e.target.value) >=
-                  (depositMinimumsMap)[myDepositCurrency]
+                  depositMinimumsMap[myDepositCurrency]
                 ) {
                   setInvalid(false);
                 }
@@ -176,9 +166,11 @@ export default function Converter({incrementLevel,
             placeholder=""
           />
           <span className="input-group-text p-0 bg-white">
-            <i
-              className={`currency-flag currency-flag-${myDepositCurrency.toLowerCase()} m-1 ms-3 rounded`}
-            ></i>
+            {!!myDepositCurrency && (
+              <i
+                className={`currency-flag currency-flag-${myDepositCurrency.toLowerCase()} m-1 ms-3 rounded`}
+              ></i>
+            )}
             <Form.Control
               as={"select"}
               id="myDepositCurrency"
@@ -203,10 +195,9 @@ export default function Converter({incrementLevel,
       </div>
       <div className={`invalid-feedback ${invalid ? "d-block" : ""}`}>
         {"Minimum withdraw amount: "}
-        {(depositMinimumsMap)[myDepositCurrency]}
+        {depositMinimumsMap[myDepositCurrency]}
       </div>
       <div className="mb-3 w-100 mx-auto">
-        
         <div className="input-group">
           <input
             type="text"
@@ -218,9 +209,11 @@ export default function Converter({incrementLevel,
             placeholder=""
           />
           <span className="input-group-text p-0 bg-white">
-            <i
-              className={`currency-flag currency-flag-${myWithdrawalCurrency.toLowerCase()} m-1 ms-3 border-0 rounded`}
-            ></i>
+            {!!myWithdrawalCurrency && (
+              <i
+                className={`currency-flag currency-flag-${myWithdrawalCurrency.toLowerCase()} m-1 ms-3 border-0 rounded`}
+              ></i>
+            )}
             <Form.Control
               as={"select"}
               id="myWithdrawalCurrency"
@@ -301,10 +294,7 @@ export default function Converter({incrementLevel,
                   aria-hidden="true"
                 />
               ) : (
-                <p>
-                 {t("Continue")}
-                </p>
-                
+                <p>{t("Continue")}</p>
               )}
             </Link>
           </>
