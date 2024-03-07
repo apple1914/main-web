@@ -2,13 +2,23 @@
 import React, { useEffect, useState } from "react";
 import CheckoutMyBalanceLevels from "./CheckoutMyBalanceLevels";
 import { useTranslation } from "next-i18next";
-const CheckoutMyBalanceMain = ({ flowType, balance }) => {
+// import { getBalance } from "../../backend/requests";
+import useAuthStore from "../../signInLogic/auth";
+const CheckoutMyBalanceMain = ({ flowType }) => {
   const { t } = useTranslation("common"); //usage - just use t("adfdsf") and it will work!
-
+  const getBalance = useAuthStore((state) => state.getBalance);
+  // const [amount, setAmount] = useState(0.0);
+  // const [withdrawalAddressId, setWithdrawalAddressId] = useState("");
   const [formData, setFormData] = useState({
     amount: 0.0,
     withdrawalAddressId: "",
   });
+  const handleSetFormData = (newPayload) => {
+    alert("TRR" + JSON.stringify(newPayload));
+    setFormData(newPayload);
+  };
+
+  const [balance, setBalance] = useState(0.0);
 
   const [level, setLevel] = useState(0);
 
@@ -16,6 +26,20 @@ const CheckoutMyBalanceMain = ({ flowType, balance }) => {
     const newLevel = level + 1;
     setLevel(newLevel);
   }
+  useEffect(() => {
+    alert("formDat changed!:" + JSON.stringify(formData));
+  }, [formData.amount]);
+
+  useEffect(() => {
+    getBalance().then((bal) => {
+      setBalance(bal);
+    });
+  }, []);
+  // const refreshBalance = () => {
+  //   getBalance().then((bal) => {
+  //     setBalance(bal);
+  //   });
+  // };
   return (
     <div id="content" className="py-4 bg-white">
       <div className="container pt-5">
@@ -25,7 +49,7 @@ const CheckoutMyBalanceMain = ({ flowType, balance }) => {
             <CheckoutMyBalanceLevels
               flowType={flowType}
               formData={formData}
-              setFormData={setFormData}
+              handleSetFormData={handleSetFormData}
               level={level}
               incrementLevel={incrementLevel}
               balance={balance}

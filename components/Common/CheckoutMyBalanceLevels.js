@@ -1,15 +1,16 @@
+"use client";
 import React from "react";
-
 import SimpleUsdtAmount from "./SimpleUsdtAmount";
 import PickWithdrawalDestination from "./PickWithdrawalDestination";
 import DepositInitAddBalance from "./DepositInitAddBalance";
 import ConfirmWithdrawal from "./ConfirmWithdrawal";
 import depositMinimumsMap from "../../utils/depositMinimums.json";
+import { useTranslation } from "next-i18next";
 
 const CheckoutMyBalanceLevels = ({
   flowType,
   formData,
-  setFormData,
+  handleSetFormData,
   level,
   incrementLevel,
   balance,
@@ -18,7 +19,7 @@ const CheckoutMyBalanceLevels = ({
     return AddMyBalanceLevels({
       flowType,
       formData,
-      setFormData,
+      handleSetFormData,
       level,
       incrementLevel,
     });
@@ -27,7 +28,7 @@ const CheckoutMyBalanceLevels = ({
     return WithdrawMyBalanceLevels({
       flowType,
       formData,
-      setFormData,
+      handleSetFormData,
       level,
       incrementLevel,
       balance,
@@ -38,10 +39,11 @@ const CheckoutMyBalanceLevels = ({
 
 const AddMyBalanceLevels = ({
   formData,
-  setFormData,
+  handleSetFormData,
   level,
   incrementLevel,
 }) => {
+  const { t } = useTranslation("common");
   switch (level) {
     case 0:
       return (
@@ -50,7 +52,7 @@ const AddMyBalanceLevels = ({
             amount={formData.amount}
             handleChangeAmount={(value) => {
               formData.amount = value;
-              setFormData(formData);
+              handleSetFormData(formData);
             }}
             invalid={formData.amount < depositMinimumsMap["USD"]}
           />
@@ -80,11 +82,12 @@ const AddMyBalanceLevels = ({
 
 const WithdrawMyBalanceLevels = ({
   formData,
-  setFormData,
+  handleSetFormData,
   level,
   incrementLevel,
   balance,
 }) => {
+  const { t } = useTranslation("common");
   switch (level) {
     case 0:
       return (
@@ -93,7 +96,7 @@ const WithdrawMyBalanceLevels = ({
             amount={formData.amount}
             handleChangeAmount={(value) => {
               formData.amount = value;
-              setFormData(formData);
+              handleSetFormData(formData);
             }}
             invalid={
               formData.amount > balance &&
@@ -118,7 +121,7 @@ const WithdrawMyBalanceLevels = ({
           <PickWithdrawalDestination
             incrementLevel={incrementLevel}
             formData={formData}
-            setFormData={setFormData}
+            handleSetFormData={handleSetFormData}
           />
         </>
       );

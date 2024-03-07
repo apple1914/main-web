@@ -262,7 +262,6 @@ export default function Converter({ incrementLevel, setFormData, formData }) {
                   fiatCurrency: myDepositCurrency,
                   withdrawalCurrency: myWithdrawalCurrency,
                   amount: myDepositAmount,
-                  flowType: "withdrawal",
                 },
               }}
               className={`btn btn-primary text-white ${
@@ -281,12 +280,7 @@ export default function Converter({ incrementLevel, setFormData, formData }) {
             </Link>
             <Link
               href={{
-                pathname: "/deposit",
-                query: {
-                  fiatCurrency: myDepositCurrency,
-                  amount: myDepositAmount,
-                  flowType: "deposit",
-                },
+                pathname: "/mybalance/view",
               }}
               className={`btn btn-outline-primary text-primary ${
                 invalid || conversionRateLoader ? "disabled" : ""

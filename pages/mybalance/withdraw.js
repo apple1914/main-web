@@ -6,17 +6,15 @@ import RedirectIfNotSignedIn from "../../components/Common/RedirectIfNotSignedIn
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import useAuthStore from "../../signInLogic/auth";
 
-const Withdraw = async (props) => {
+const Withdraw = (props) => {
   //@ts-ignore
   const { lng } = props;
   const flowType = "/mybalance/withdraw";
-  const getBalance = useAuthStore((state) => state.getBalance);
-  const balance = await getBalance();
 
   return (
     <>
       <NavbarTwoFixed />
-      <CheckoutMyBalanceMain balance={balance} flowType={flowType} />
+      <CheckoutMyBalanceMain flowType={flowType} />
 
       <Footer />
       {/* <CaptureMarketingInfo /> */}

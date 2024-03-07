@@ -28,42 +28,25 @@ export default function SimpleUsdtAmount({
   const { t } = useTranslation("common");
 
   return (
-    <form id="form-send-money" onSubmit={submit}>
-      <div className="mb-3 w-100 mx-auto">
-        <div className="input-group">
-          <input
-            type="text"
-            className="form-control"
-            data-bv-field="amount"
-            id="amount"
-            value={amount}
-            onChange={(e) => {
-              handleChangeAmount(e.target.value);
-            }}
-            placeholder=""
-          />
-          <span className="input-group-text p-0 bg-white">
-            <i
-              className={`currency-flag currency-flag-usd m-1 ms-3 rounded`}
-            ></i>
-
-            <Form.Control
-              as={"select"}
-              id="myDepositCurrency"
-              data-style=""
-              data-container="body"
-              data-live-search="true"
-              className="selectpicker form-control bg-transparent border-0 ps-1"
-              required={true}
-              value={"USD"}
-            >
-              <option key={"USD"} value={"USD"}>
-                {"USD"}
-              </option>
-            </Form.Control>
-          </span>
-        </div>
+    <div className="mb-3 w-100 mx-auto">
+      <div className="input-group">
+        <input
+          type="number"
+          className="form-control"
+          data-bv-field="amount"
+          id="amount"
+          value={amount}
+          onChange={(e) => {
+            e.preventDefault();
+            alert(e.target.value);
+            handleChangeAmount(e.target.value);
+          }}
+          placeholder=""
+        />
+        <span className="input-group-text p-2 bg-white">
+          <i className={`currency-flag currency-flag-usd m-1 ms-3 rounded`}></i>
+        </span>
       </div>
-    </form>
+    </div>
   );
 }
