@@ -6,7 +6,7 @@ import DepositInitIfNoFunds from "./DepositInitIfNoFunds";
 // const IS_PAUSED = true;
 import IndefiniteMaintenance from "./IndefiniteMaintenance";
 
-const WithdrawalLevels = ({
+const DepositLevels = ({
   formData,
   setFormData,
   level,
@@ -60,4 +60,4 @@ const WithdrawalLevels = ({
   }
 };
 
-export default WithdrawalLevels;
+export default DepositLevels;

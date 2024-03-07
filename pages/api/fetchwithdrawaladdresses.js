@@ -1,19 +1,10 @@
-import connectDB from '../../middleware/mongodb';
-import WithdrawalAddress from '../../models/withdrawalAddress';
+import {fetchWithdrawalAddresses} from '../../lib/withdrawalAddress';
 
 const handler = async(req, res) => {
     try {
         const {username} = req.query
        
-        const myWithdrawlAdresses = await WithdrawalAddress
-            .find({username})
-            
-        const results = myWithdrawlAdresses.map((data)=> {
-            return {
-                withdrawalAddressId:data._id,
-                nickname:data.nickname
-            }
-        })    
+        const  results = await fetchWithdrawalAddresses({username})
         return res.status(200).send(results)
     
         } catch (e) {
@@ -22,4 +13,4 @@ const handler = async(req, res) => {
         }
   }
 
-  export default connectDB(handler)
+  export default handler

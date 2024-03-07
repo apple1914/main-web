@@ -19,7 +19,6 @@ module.exports = withHighlightConfig({
     TRANSAK_API_KEY_PROD:process.env.TRANSAK_API_KEY_PROD,
     TRANSAK_API_KEY_PROD:process.env.TRANSAK_API_KEY_TEST_LEVII,
     BSC_DISTRIBUTOR_ADDRESS_PUBLIC_KEY:process.env.BSC_DISTRIBUTOR_ADDRESS_PUBLIC_KEY,
-    MONGODB_URI:process.env.MONGODB_URI
   },
   i18n
 })

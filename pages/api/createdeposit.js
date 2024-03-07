@@ -1,6 +1,5 @@
 
 import {createDeposit} from "../../lib/deposits"
-import connectDB from '../../middleware/mongodb';
 
 
 const handler = async(req, res) => {
@@ -16,8 +15,7 @@ const handler = async(req, res) => {
           username,
           fiatAmount,
           fiatCurrency,
-          triggerWithdrawal,
-          withdrawalAddressId,
+          withdrawal:{triggerWithdrawal, withdrawalAddressId }
         });
         console.log("result", result)
 
@@ -31,4 +29,4 @@ const handler = async(req, res) => {
         // }
   }
 
-  export default connectDB(handler)
+  export default handler

@@ -1,5 +1,5 @@
 // import Stepper from "@/components/Stepper";
-import CheckoutMain from "../components/Common/CheckoutMain";
+import CheckoutDeposit from "../components/Common/CheckoutDeposit";
 
 import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
 import Footer from "../components/_App/Footer";
@@ -10,7 +10,7 @@ import { useTranslation } from "next-i18next";
 import useAuthStore from "../signInLogic/auth";
 import { saveCustomEvent } from "../lib/userEvents";
 
-function Withdrawal(props) {
+function Deposit(props) {
   //@ts-ignore
   const { lng } = props;
   const user = useAuthStore((state) => state.user);
@@ -26,7 +26,10 @@ function Withdrawal(props) {
     <>
       <NavbarTwoFixed />
 
-      <CheckoutMain lng={lng} handleSaveCustomEvent={handleSaveCustomEvent} />
+      <CheckoutDeposit
+        lng={lng}
+        handleSaveCustomEvent={handleSaveCustomEvent}
+      />
       <Footer />
       {/* <CaptureMarketingInfo /> */}
       <RedirectIfNotSignedIn />
@@ -34,7 +37,7 @@ function Withdrawal(props) {
   );
 }
 
-export default Withdrawal;
+export default Deposit;
 
 export async function getStaticProps(context) {
   // extract the locale identifier from the URL
