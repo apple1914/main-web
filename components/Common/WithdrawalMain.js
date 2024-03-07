@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import WithdrawalLevels from "./WithdrawalLevels";
 import Leveler from "./Leveler";
 import { useTranslation } from "next-i18next";
-const CheckoutMain = ({ lng, handleSaveCustomEvent }) => {
+const WithdrawalMain = ({ lng, handleSaveCustomEvent }) => {
   const { t } = useTranslation("common"); //usage - just use t("adfdsf") and it will work!
 
   const [formData, setFormData] = useState({
@@ -50,4 +50,4 @@ const CheckoutMain = ({ lng, handleSaveCustomEvent }) => {
   );
 };
 
-export default CheckoutMain;
+export default WithdrawalMain;

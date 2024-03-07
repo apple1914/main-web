@@ -1,5 +1,5 @@
 // import Stepper from "@/components/Stepper";
-import CheckoutMain from "../components/Common/CheckoutMain";
+import WithdrawalMain from "../components/Common/WithdrawalMain";
 
 import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
 import Footer from "../components/_App/Footer";
@@ -26,7 +26,7 @@ function Withdrawal(props) {
     <>
       <NavbarTwoFixed />
 
-      <CheckoutMain lng={lng} handleSaveCustomEvent={handleSaveCustomEvent} />
+      <WithdrawalMain lng={lng} handleSaveCustomEvent={handleSaveCustomEvent} />
       <Footer />
       {/* <CaptureMarketingInfo /> */}
       <RedirectIfNotSignedIn />

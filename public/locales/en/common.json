@@ -195,5 +195,6 @@
     "transakExplainerHowItWorks.p1":"Our platfrom works based on crypto money transfers.",
     "transakExplainerHowItWorks.p2":"After payment, your money is converted into stable cryptocurrency, USDT",
     "transakExplainerHowItWorks.p3":"This cryptocurrency is then transferred across the border, and exchanged back into the currency of the recipient, and sent to your recipient",
-    "transakExplainerHowItWorks.p4":"It stays as cryptocurrency for only for a few minutes, hence your funds are safeguarded from volatility"
+    "transakExplainerHowItWorks.p4":"It stays as cryptocurrency for only for a few minutes, hence your funds are safeguarded from volatility",
+    "Confirm":"Confirm"
 }

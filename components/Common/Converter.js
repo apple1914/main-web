@@ -26,12 +26,7 @@ import { useSearchParams } from "next/navigation";
 const DEFAULT_WITHDRAWAL_CURRENCY = "PLN";
 const DEFAULT_DEPOSIT_CURRENCY = "USD";
 
-export default function Converter({
-  incrementLevel,
-  setFormData,
-  formData,
-  lng,
-}) {
+export default function Converter({ incrementLevel, setFormData, formData }) {
   const { t } = useTranslation("common");
   const [user, authInProgress] = useAuthStore((state) => [
     state.user,
@@ -198,48 +193,47 @@ export default function Converter({
         {"Minimum withdraw amount: "}
         {depositMinimumsMap[myDepositCurrency]}
       </div>
-      {formData?.flowType != "deposit" && (
-        <div className="mb-3 w-100 mx-auto">
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control"
-              data-bv-field="myWithdrawalAmount"
-              id="myWithdrawalAmount"
-              value={myWithdrawalAmount}
-              readOnly={true}
-              placeholder=""
-            />
 
-            <span className="input-group-text p-0 bg-white">
-              {!!myWithdrawalCurrency && (
-                <i
-                  className={`currency-flag currency-flag-${myWithdrawalCurrency.toLowerCase()} m-1 ms-3 border-0 rounded`}
-                ></i>
-              )}
-              <Form.Control
-                as={"select"}
-                id="myWithdrawalCurrency"
-                data-style="form-select bg-transparent"
-                data-container="body"
-                data-live-search="true"
-                className="selectpicker form-control bg-transparent  border-0 ps-1"
-                required={true}
-                value={myWithdrawalCurrency}
-                onChange={(e) => {
-                  handleChangeWithdrawCurrency(e.target.value);
-                }}
-              >
-                {myWithdrawalCurrencies.map((curr) => (
-                  <option key={curr} value={curr}>
-                    {curr}
-                  </option>
-                ))}
-              </Form.Control>
-            </span>
-          </div>
+      <div className="mb-3 w-100 mx-auto">
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control"
+            data-bv-field="myWithdrawalAmount"
+            id="myWithdrawalAmount"
+            value={myWithdrawalAmount}
+            readOnly={true}
+            placeholder=""
+          />
+
+          <span className="input-group-text p-0 bg-white">
+            {!!myWithdrawalCurrency && (
+              <i
+                className={`currency-flag currency-flag-${myWithdrawalCurrency.toLowerCase()} m-1 ms-3 border-0 rounded`}
+              ></i>
+            )}
+            <Form.Control
+              as={"select"}
+              id="myWithdrawalCurrency"
+              data-style="form-select bg-transparent"
+              data-container="body"
+              data-live-search="true"
+              className="selectpicker form-control bg-transparent  border-0 ps-1"
+              required={true}
+              value={myWithdrawalCurrency}
+              onChange={(e) => {
+                handleChangeWithdrawCurrency(e.target.value);
+              }}
+            >
+              {myWithdrawalCurrencies.map((curr) => (
+                <option key={curr} value={curr}>
+                  {curr}
+                </option>
+              ))}
+            </Form.Control>
+          </span>
         </div>
-      )}
+      </div>
 
       <div className="d-grid w-100 mx-auto">
         {incrementLevel ? (
