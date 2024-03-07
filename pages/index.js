@@ -1,74 +1,67 @@
-import React from 'react';
-import NavbarTwoFixed from '../components/_App/NavbarTwoFixed';
-import MainBanner from '../components/HomeTwo/MainBanner';
-import SideBenefitCards from '../components/HomeTwo/SideBenefitCards';
-import AboutUs from '../components/HomeTwo/AboutUs';
-import HowItWorks from '../components/HomeTwo/HowItWorks';
+import React from "react";
+import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
+import MainBanner from "../components/HomeTwo/MainBanner";
+import SideBenefitCards from "../components/HomeTwo/SideBenefitCards";
+import AboutUs from "../components/HomeTwo/AboutUs";
+import HowItWorks from "../components/HomeTwo/HowItWorks";
 
-import Services from '../components/HomeTwo/Services';
-import OffersArea from '../components/Common/OffersArea';
-import WhyChooseUs from '../components/HomeTwo/WhyChooseUs';
-import TeamSlider from '../components/Common/TeamSlider';
-import FunFactsStyleTwo from '../components/Common/FunFactsStyleTwo';
-import TestimonialStyleTwo from '../components/Common/TestimonialStyleTwo';
-import ContactWithUs from '../components/HomeTwo/ContactWithUs';
-import Footer from '../components/_App/Footer';
-import CaptureMarketingInfo from '../components/Common/CaptureMarketingInfo';
+import Services from "../components/HomeTwo/Services";
+import OffersArea from "../components/Common/OffersArea";
+import WhyChooseUs from "../components/HomeTwo/WhyChooseUs";
+import TeamSlider from "../components/Common/TeamSlider";
+import FunFactsStyleTwo from "../components/Common/FunFactsStyleTwo";
+import TestimonialStyleTwo from "../components/Common/TestimonialStyleTwo";
+import ContactWithUs from "../components/HomeTwo/ContactWithUs";
+import Footer from "../components/_App/Footer";
+import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo";
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Index = () => {
-    return (
-        <>  
-            <NavbarTwoFixed />
+  return (
+    <>
+      <NavbarTwoFixed />
 
-            <MainBanner />
+      <MainBanner />
 
-            <Services />
+      {/* <Services /> */}
 
-            <WhyChooseUs />
+      <WhyChooseUs />
 
-            <SideBenefitCards />
+      <SideBenefitCards />
 
-            {/* <AboutUs /> */}
+      {/* <AboutUs /> */}
 
-            
+      <div className="pb-100">
+        <OffersArea />
+      </div>
 
-            <div className="pb-100">
-                <OffersArea />
-            </div>
+      {/* <TeamSlider /> */}
 
-            
+      <FunFactsStyleTwo />
 
-            {/* <TeamSlider /> */}
+      {/* <TestimonialStyleTwo /> */}
 
-            <FunFactsStyleTwo />
-
-            {/* <TestimonialStyleTwo /> */}
-
-            {/* <div className="pb-100">
+      {/* <div className="pb-100">
                 <ContactWithUs />
             </div> */}
 
-            
-            <Footer />
-            <CaptureMarketingInfo/>
-        </>
-    )
-}
+      <Footer />
+      <CaptureMarketingInfo />
+    </>
+  );
+};
 
 export default Index;
 
-
-
 export async function getStaticProps(context) {
-    // extract the locale identifier from the URL
-    const { locale } = context
-  
-    return {
-      props: {
-        // pass the translation props to the page component
-        ...(await serverSideTranslations(locale)),
-      },
-    }
-  }
+  // extract the locale identifier from the URL
+  const { locale } = context;
+
+  return {
+    props: {
+      // pass the translation props to the page component
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+}
