@@ -16,10 +16,10 @@ export default function DepositInitAddBalance({ formData }) {
         fiatCurrency: "USD",
       };
       createDeposit(depositPayload).then((depositInfo) => {
+        console.log("depositInfo", depositInfo);
         //it should be okay to resuse same create`deposit endpoint since this time withdrawal object is null => no withdrawal is generated
         const { onrampPayload } = depositInfo;
         //transakSettings = onrampPayload FYI
-        setLoading(false);
         router.push({ pathname: "/payment", query: onrampPayload });
       });
     }

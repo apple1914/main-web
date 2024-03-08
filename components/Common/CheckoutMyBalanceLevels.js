@@ -16,7 +16,6 @@ const CheckoutMyBalanceLevels = ({
   setFormData,
   level,
   incrementLevel,
-  balance,
 }) => {
   const { t } = useTranslation("common");
 
@@ -46,7 +45,6 @@ const CheckoutMyBalanceLevels = ({
           setFormData={setFormData}
           incrementLevel={incrementLevel}
           level={level}
-          balance={balance}
         />
       </>
     );
@@ -83,10 +81,9 @@ const AddMyBalanceLevels = ({
 
 const WithdrawMyBalanceLevels = ({
   formData,
-  handleSetFormData,
+  setFormData,
   level,
   incrementLevel,
-  balance,
 }) => {
   switch (level) {
     case 0:
@@ -95,7 +92,6 @@ const WithdrawMyBalanceLevels = ({
           formData={formData}
           setFormData={setFormData}
           incrementLevel={incrementLevel}
-          balance={balance}
         />
       );
     case 1:

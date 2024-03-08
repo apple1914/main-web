@@ -201,5 +201,6 @@
     "viewMyBalance.addButton":"Add to deposit",
     "viewMyBalance.withdrawButton":"Withdraw from deposit",
     "checkoutMyBalance.addTitle":"Add money to deposit",
-    "checkoutMyBalance.wdrwTitle":"Withdraw money from deposit"
+    "checkoutMyBalance.wdrwTitle":"Withdraw money from deposit",
+    "Your balance":"Your balance"
 }

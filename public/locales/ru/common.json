@@ -204,5 +204,6 @@
     "viewMyBalance.addButton":"Добавить на депозит",
     "viewMyBalance.withdrawButton":"Вывести с депозита",
     "checkoutMyBalance.addTitle":"Добавить деньги на депозит",
-    "checkoutMyBalance.wdrwTitle":"Вывести деньги с депозита"
+    "checkoutMyBalance.wdrwTitle":"Вывести деньги с депозита",
+    "Your balance":"Ваш баланс"
 }
