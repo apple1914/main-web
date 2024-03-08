@@ -14,7 +14,6 @@ const CheckoutMyBalanceMain = ({ flowType }) => {
     withdrawalAddressId: "",
   });
   const handleSetFormData = (newPayload) => {
-    alert("TRR" + JSON.stringify(newPayload));
     setFormData(newPayload);
   };
 
@@ -26,30 +25,22 @@ const CheckoutMyBalanceMain = ({ flowType }) => {
     const newLevel = level + 1;
     setLevel(newLevel);
   }
-  useEffect(() => {
-    alert("formDat changed!:" + JSON.stringify(formData));
-  }, [formData.amount]);
 
   useEffect(() => {
     getBalance().then((bal) => {
       setBalance(bal);
     });
   }, []);
-  // const refreshBalance = () => {
-  //   getBalance().then((bal) => {
-  //     setBalance(bal);
-  //   });
-  // };
+
   return (
     <div id="content" className="py-4 bg-white">
       <div className="container pt-5">
-        <div className="mx-auto text-center pt-5">{t("checkoutMain.h1")}</div>
         <div className="row pt-5">
           <div className="col-md-9 col-lg-7 col-xl-6 mx-auto">
             <CheckoutMyBalanceLevels
               flowType={flowType}
               formData={formData}
-              handleSetFormData={handleSetFormData}
+              setFormData={setFormData}
               level={level}
               incrementLevel={incrementLevel}
               balance={balance}

@@ -293,7 +293,7 @@ export default function Converter({ incrementLevel, setFormData, formData }) {
                   aria-hidden="true"
                 />
               ) : (
-                <p>{t("Deposit")}</p>
+                <p>{t("myDeposit.button")}</p>
               )}
             </Link>
           </>

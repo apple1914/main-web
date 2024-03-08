@@ -6,24 +6,27 @@ import Link from "next/link";
 import useAuthStore from "../../signInLogic/auth";
 const ViewMyBalance = () => {
   const { t } = useTranslation("common"); //usage - just use t("adfdsf") and it will work!
+  const user = useAuthStore((state) => state.user);
 
   const getBalance = useAuthStore((state) => state.getBalance);
 
   const [balance, setBalance] = useState(0.0);
 
   useEffect(() => {
-    getBalance().then((bal) => {
-      alert(bal);
-      setBalance(bal);
-    });
-  }, []);
+    if (user) {
+      getBalance().then((bal) => {
+        setBalance(bal);
+      });
+    }
+  }, [user]);
+  const handleChange = (val) => {
+    console.log(val);
+  };
 
   return (
     <div id="content" className="py-4 bg-white">
       <div className="container pt-5">
-        <div className="mx-auto text-center pt-5">
-          {"Current Available Balance"}
-        </div>
+        <div className="mx-auto text-center pt-5">{t("mybalance.title")}</div>
         <div className="row pt-5 w-50 mx-auto">
           <div className="col-md-9 col-lg-7 col-xl-6 mx-auto">
             <div className="mb-3 w-100 mx-auto">
@@ -34,7 +37,9 @@ const ViewMyBalance = () => {
                   data-bv-field="amount"
                   value={balance}
                   onChange={(e) => {
-                    console.log(e.target.value);
+                    e.preventDefault();
+                    handleChange(e.target.value);
+                    // console.log(e.target.value);
                   }}
                 />
                 <span className="input-group-text p-2 bg-white">
@@ -51,7 +56,7 @@ const ViewMyBalance = () => {
                 }}
                 className={`btn btn-primary text-white`}
               >
-                <p>{t("Add")}</p>
+                <p>{t("viewMyBalance.addButton")}</p>
               </Link>
               <Link
                 href={{
@@ -59,7 +64,7 @@ const ViewMyBalance = () => {
                 }}
                 className={`btn btn-outline-primary text-primary mt-3`}
               >
-                <p>{t("Withdraw")}</p>
+                <p>{t("viewMyBalance.withdrawButton")}</p>
               </Link>
             </div>
           </div>

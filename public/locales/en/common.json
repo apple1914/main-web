@@ -124,7 +124,7 @@
     "You will see the exact fee you're being charged & there are no extra fees hidden into the exchange rate":"You will see the exact fee you're being charged & there are no extra fees hidden into the exchange rate",
     "Standard fee is just 4% after your first transfer":"Standard fee is just 4% after your first transfer",
     "Withdrawal":"Withdrawal",
-    "Deposit":"Deposit",
+    "myDeposit.button":"My deposit",
     "Withdrawal Destination":"Withdrawal Destination",
     "Amount":"Amount",
     "Balance":"Balance",
@@ -196,5 +196,10 @@
     "transakExplainerHowItWorks.p2":"After payment, your money is converted into stable cryptocurrency, USDT",
     "transakExplainerHowItWorks.p3":"This cryptocurrency is then transferred across the border, and exchanged back into the currency of the recipient, and sent to your recipient",
     "transakExplainerHowItWorks.p4":"It stays as cryptocurrency for only for a few minutes, hence your funds are safeguarded from volatility",
-    "Confirm":"Confirm"
+    "Confirm":"Confirm",
+    "mybalance.title":"Available balance",
+    "viewMyBalance.addButton":"Add to deposit",
+    "viewMyBalance.withdrawButton":"Withdraw from deposit",
+    "checkoutMyBalance.addTitle":"Add money to deposit",
+    "checkoutMyBalance.wdrwTitle":"Withdraw money from deposit"
 }
