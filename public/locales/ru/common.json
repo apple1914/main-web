@@ -139,6 +139,8 @@
     "pickWithdrawalDestination.h1":"Пожалуйста выберите карту, на которую вы хотите вывести деньги",
     "status.success":"Операция успешно выполнена. Пожалуйста ожидайте получение средств.",
     "status.failure":"Оплата не прошла. Пожалуйста попытайтесь еще раз. ",
+    "processWithdrawalStatusComponent.success":"Операция успешно выполнена. Пожалуйста ожидайте получение средств.",
+    "processWithdrawalStatusComponent.failure":"Ошибка с выводом средств. Ваш баланс не затронут. Пожалуйста напишите в службу поддержки",
     "User":"Учетная запись",
     "Sign Up":"Зарегистрироваться",
     "Already have an account?":"Уже есть аккаунт?",
@@ -205,5 +207,7 @@
     "viewMyBalance.withdrawButton":"Вывести с депозита",
     "checkoutMyBalance.addTitle":"Добавить деньги на депозит",
     "checkoutMyBalance.wdrwTitle":"Вывести деньги с депозита",
-    "Your balance":"Ваш баланс"
+    "confirmWithdrawal.title":"Пожалуйста проверьте достоверность информации",
+    "Your balance":"Ваш баланс",
+    "confirmWithdrawal.to":"куда"
 }

@@ -100,7 +100,7 @@ const WithdrawMyBalanceLevels = ({
           <PickWithdrawalDestination
             incrementLevel={incrementLevel}
             formData={formData}
-            handleSetFormData={handleSetFormData}
+            setFormData={setFormData}
           />
         </>
       );

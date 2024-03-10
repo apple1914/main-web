@@ -133,6 +133,8 @@
     "pickWithdrawalDestination.h1":"Bank card info for where you want to receive this withdrawal",
     "status.success":"Payment Success! Your money will be delivered soon",
     "status.failure":"Failed",
+    "processWithdrawalStatusComponent.success":"Success! Your money will be delivered soon",
+    "processWithdrawalStatusComponent.failure":"Error has occured while processing your withdrawal. Your funds have not been affected. Please contact customer support",
     "User":"User",
     "Sign Up":"Sign Up",
     "Recover Password":"Recover Password",
@@ -202,5 +204,7 @@
     "viewMyBalance.withdrawButton":"Withdraw from deposit",
     "checkoutMyBalance.addTitle":"Add money to deposit",
     "checkoutMyBalance.wdrwTitle":"Withdraw money from deposit",
-    "Your balance":"Your balance"
+    "confirmWithdrawal.title":"Please confirm the data for withdrawal below",
+    "Your balance":"Your balance",
+    "confirmWithdrawal.to":"to"
 }

@@ -13,9 +13,6 @@ const CheckoutMyBalanceMain = ({ flowType }) => {
     amount: 0.0,
     withdrawalAddressId: "",
   });
-  const handleSetFormData = (newPayload) => {
-    setFormData(newPayload);
-  };
 
   const [level, setLevel] = useState(0);
 

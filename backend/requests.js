@@ -322,3 +322,13 @@ export const mxpIdentifyUser = async ({ username, userProps }) => {
 
 // createWithdrawal,
 //   lookupWithdrawalAddressById
+
+export const lookupWithdrawalAddressById = async ({ withdrawalAddressId }) => {
+  const answer = await axios
+    .get(
+      `/api/lookupwithdrawaladdressbyid?withdrawalAddressId=${withdrawalAddressId}`
+    )
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+  return answer;
+};
