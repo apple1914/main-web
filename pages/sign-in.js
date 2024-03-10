@@ -4,9 +4,9 @@ import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
 import PageBanner from "../components/Common/PageBanner";
 import Footer from "../components/_App/Footer";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/router"; //should be next/router for pages dir
+import { useSearchParams } from "next/navigation";
 
-// import { useRouter, useSearchParams } from "next/router"; //should be next/router for pages dir
 import useAuthStore from "../signInLogic/auth";
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";

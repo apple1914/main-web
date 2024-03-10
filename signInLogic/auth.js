@@ -1,17 +1,17 @@
 // import {saveUserInfo} from "../backend/requests"
-import {saveUserInfo} from "../lib/users"
+import { saveUserInfo } from "../lib/users";
 import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
   signOut,
-  GoogleAuthProvider,signInWithPopup
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { toast } from "react-hot-toast";
 import { create } from "zustand";
-import {auth} from "../lib/firebase/firebase"
-
-
+import { auth } from "../lib/firebase/firebase";
+import { getBalance } from "../lib/balances";
 
 const useAuthStore = create((set) => ({
   user: null,
@@ -19,9 +19,9 @@ const useAuthStore = create((set) => ({
   authSignIn: async (email, password) => {
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
-      const username = res.user.uid
+      const username = res.user.uid;
       toast.success("Success");
-      return {success:true,username}
+      return { success: true, username };
     } catch (err) {
       if (err.message === "Firebase: Error (auth/user-not-found).") {
         toast.error("User not found");
@@ -30,7 +30,7 @@ const useAuthStore = create((set) => ({
       } else {
         toast.error("Something went wrong, please try again later");
       }
-      return {success:false,err};
+      return { success: false, err };
     }
   },
   authSignOut: async () => {
@@ -50,11 +50,11 @@ const useAuthStore = create((set) => ({
         }
       });
       const res = await createUserWithEmailAndPassword(auth, email, password);
-      const username = res.user.uid
-      saveUserInfo({username,contactInfo:{email},miscInfo})
+      const username = res.user.uid;
+      saveUserInfo({ username, contactInfo: { email }, miscInfo });
 
       toast.success("Вы успешно зарегистрировались!");
-      return {success:true,username}
+      return { success: true, username };
     } catch (err) {
       console.log(err);
       if (err.message === "Firebase: Error (auth/email-already-in-use).") {
@@ -64,24 +64,23 @@ const useAuthStore = create((set) => ({
       } else {
         toast.error("Something went wrong, please try again later");
       }
-      return {success:false,err};
+      return { success: false, err };
     }
   },
   authSignInWithGmail: async (miscInfo) => {
     try {
       const res = await signInWithPopup(auth, new GoogleAuthProvider());
-      const username = res.user.uid
-      const email = res.user.email
+      const username = res.user.uid;
+      const email = res.user.email;
       Object.keys(miscInfo).forEach((key) => {
         if (!miscInfo[key] || miscInfo[key] === "") {
           delete miscInfo[key];
         }
       });
-      saveUserInfo({username,contactInfo:{email},miscInfo})
-      
+      saveUserInfo({ username, contactInfo: { email }, miscInfo });
 
       toast.success("Успешный вход!");
-      return {success:true,username}
+      return { success: true, username };
     } catch (err) {
       console.log(err);
       if (err.message === "Firebase: Error (auth/email-already-in-use).") {
@@ -91,7 +90,20 @@ const useAuthStore = create((set) => ({
       } else {
         toast.error("Something went wrong, please try again later");
       }
-      return  {success:false,err};
+      return { success: false, err };
+    }
+  },
+  getBalance: async () => {
+    try {
+      if (auth.currentUser === null) {
+        return null;
+      }
+      const username = auth.currentUser.uid;
+      const value = await getBalance({ username });
+      return value;
+    } catch (err) {
+      console.log(err);
+      return null;
     }
   },
 }));

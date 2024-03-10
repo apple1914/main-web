@@ -130,7 +130,7 @@
     "You will see the exact fee you're being charged & there are no extra fees hidden into the exchange rate":"Всегда покажазывем настоящую комиссию и не имеем никаких скрытых платежей в кусре обмена",
     "Standard fee is just 4% after your first transfer":"Наша комиссия - 4% на все переводы после первого",
     "Withdrawal":"Вывод на карту",
-    "Deposit":"Пополнить баланс",
+    "myDeposit.button":"Мой депозит",
     "Withdrawal Destination":"Данные карты для получения",
     "Amount":"Сумма",
     "Balance":"Баланс",
@@ -139,6 +139,8 @@
     "pickWithdrawalDestination.h1":"Пожалуйста выберите карту, на которую вы хотите вывести деньги",
     "status.success":"Операция успешно выполнена. Пожалуйста ожидайте получение средств.",
     "status.failure":"Оплата не прошла. Пожалуйста попытайтесь еще раз. ",
+    "processWithdrawalStatusComponent.success":"Операция успешно выполнена. Пожалуйста ожидайте получение средств.",
+    "processWithdrawalStatusComponent.failure":"Ошибка с выводом средств. Ваш баланс не затронут. Пожалуйста напишите в службу поддержки",
     "User":"Учетная запись",
     "Sign Up":"Зарегистрироваться",
     "Already have an account?":"Уже есть аккаунт?",
@@ -198,5 +200,14 @@
     "transakExplainerHowItWorks.p1":"Наша платформа использует криптовалюту для международных переводов",
     "transakExplainerHowItWorks.p2":"После оплаты, ваши деньги конвертиртируются в криптовалюту, USDT. криптовалиютой остайются не долго, поэтому защищены от волатильности",
     "transakExplainerHowItWorks.p3":"Затем, средства отправляются через границу, ковертируюися в местную валюту получателя, и отправлятся на банковскую карту получателя",
-    "transakExplainerHowItWorks.p4":"Обшее время получения средств после вашей оплаты: 15-30 минут"
+    "transakExplainerHowItWorks.p4":"Обшее время получения средств после вашей оплаты: 15-30 минут",
+    "Confirm":"Подтвердить",
+    "mybalance.title":"Доступный баланс",
+    "viewMyBalance.addButton":"Добавить на депозит",
+    "viewMyBalance.withdrawButton":"Вывести с депозита",
+    "checkoutMyBalance.addTitle":"Добавить деньги на депозит",
+    "checkoutMyBalance.wdrwTitle":"Вывести деньги с депозита",
+    "confirmWithdrawal.title":"Пожалуйста проверьте достоверность информации",
+    "Your balance":"Ваш баланс",
+    "confirmWithdrawal.to":"куда"
 }

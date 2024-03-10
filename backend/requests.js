@@ -145,34 +145,17 @@ export const createDeposit = async ({
   }
 };
 
-export const createWithdrawal = async ({
-  cryptoAmount,
-  useFullAmount,
-  blockchain,
-  withdrawalAddressId,
-}) => {
+export const createWithdrawal = async ({ usdtAmount, withdrawalAddressId }) => {
   try {
     const user = auth.currentUser;
-    const token = user && (await user.getIdToken());
 
-    const payloadHeader = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
     const payloadBody = {
-      cryptoAmount,
-      useFullAmount,
-      blockchain,
+      username: user.uid,
+      usdtAmount,
       withdrawalAddressId,
     };
-    const res = await axios.post(
-      `${THIS_BACKEND_URL}/withdrawals`,
-      payloadBody,
-      payloadHeader
-    );
-    return res.data;
+    const res = await axios.post(`/api/createwithdrawal`, payloadBody);
+    return res.data; //data should be {success:true or false}
   } catch (e) {
     console.log(e);
   }
@@ -335,4 +318,17 @@ export const mxpIdentifyUser = async ({ username, userProps }) => {
     .catch((err) => {
       console.log(err.response.data);
     });
+};
+
+// createWithdrawal,
+//   lookupWithdrawalAddressById
+
+export const lookupWithdrawalAddressById = async ({ withdrawalAddressId }) => {
+  const answer = await axios
+    .get(
+      `/api/lookupwithdrawaladdressbyid?withdrawalAddressId=${withdrawalAddressId}`
+    )
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+  return answer;
 };

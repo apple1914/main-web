@@ -2,25 +2,20 @@
 
 import React from "react";
 import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
-import PaymentStatusComponent from "../components/Common/PaymentStatusComponent";
-import { useRouter } from "next/navigation";
+import ProcessWithdrawalStatusComponent from "../components/Common/ProcessWithdrawalStatusComponent";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Footer from "../components/_App/Footer";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations"; //
-
-const Success = () => {
-  const router = useRouter();
-
+const Failure = () => {
   return (
     <>
       <NavbarTwoFixed />
-      <PaymentStatusComponent isSuccess={true} />
-
+      <ProcessWithdrawalStatusComponent isSuccess={false} />
       <Footer />
     </>
   );
 };
 
-export default Success;
+export default Failure;
 
 export async function getStaticProps(context) {
   // extract the locale identifier from the URL
