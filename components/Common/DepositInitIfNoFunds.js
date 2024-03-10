@@ -35,9 +35,12 @@ export default function DepositInitIfNoFunds({ formData }) {
         },
       };
       createDeposit(depositPayload).then((depositInfo) => {
-        const { onrampPayload } = depositInfo;
+        const { onrampPayload, onrampName } = depositInfo;
         //transakSettings = onrampPayload FYI
-        router.push({ pathname: "/payment", query: onrampPayload });
+        router.push({
+          pathname: "/payment/" + onrampName,
+          query: onrampPayload,
+        });
       });
     }
   };
