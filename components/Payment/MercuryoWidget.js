@@ -52,18 +52,7 @@ export default function Mercuryo() {
         merchantTransactionId: `${depositId}-${getRandomEnding(9)}`,
       };
 
-      const staticMercuryoSettings = {
-        fixFiatCurrency: true,
-        fixFiatAmount: true,
-        fixAmount: true,
-        fixCurrency: true,
-        host: document.getElementById("mercuryo-widget"),
-        onStatusChange: (data) => onMercuryoStatusChange(data),
-      };
-      setMercuryoSettings({
-        ...dynamicMercuryoSettings,
-        ...staticMercuryoSettings,
-      });
+      setMercuryoSettings(dynamicMercuryoSettings);
 
       setLoading(false);
     }
@@ -78,7 +67,19 @@ export default function Mercuryo() {
         src="https://widget.mercuryo.io/embed.2.0.js"
         onLoad={() => {
           try {
-            window.mercuryoWidget.run(mercuryoSettings);
+            const staticMercuryoSettings = {
+              fixFiatCurrency: true,
+              fixFiatAmount: true,
+              fixAmount: true,
+              fixCurrency: true,
+              host: document.getElementById("mercuryo-widget"),
+              onStatusChange: (data) => onMercuryoStatusChange(data),
+            };
+            const fullMercuryoSettings = {
+              ...mercuryoSettings,
+              ...staticMercuryoSettings,
+            };
+            window.mercuryoWidget.run(fullMercuryoSettings);
           } catch (e) {
             console.log(e);
           }
