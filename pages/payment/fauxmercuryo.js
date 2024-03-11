@@ -2,14 +2,14 @@
 
 import React from "react";
 import NavbarTwoFixed from "../../components/_App/NavbarTwoFixed";
-import MercuryoWidget from "../../components/Payment/MercuryoWidget";
+import FauxMercuryoWidget from "../../components/Payment/FauxMercuryo";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Payment = () => {
   return (
     <>
       <NavbarTwoFixed />
-      <MercuryoWidget />
+      <FauxMercuryoWidget />
     </>
   );
 };
