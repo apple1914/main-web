@@ -75,7 +75,7 @@ export default function Mercuryo() {
         src={
           isProd === true
             ? "https://widget.mercuryo.io/embed.2.0.js"
-            : "https://sandbox-widget.mrcr.io/embded.2.0.js"
+            : "https://sandbox-widget.mrcr.io/embed.2.0.js"
         }
         onLoad={() => {
           try {
