@@ -64,7 +64,7 @@ export default function Mercuryo() {
     <>
       <Script
         strategy="lazyOnload"
-        src="https://widget.mercuryo.io/embed.2.0.js"
+        src="https://sandbox-widget.mrcr.io/embded.2.0.js" //https://widget.mercuryo.io/embed.2.0.js
         onLoad={() => {
           try {
             const staticMercuryoSettings = {
