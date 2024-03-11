@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 export default function Mercuryo() {
   const [loading, setLoading] = useState(true);
   const [mercuryoSettings, setMercuryoSettings] = useState({});
+  const [isProd, setIsProd] = useState(true);
   const searchParams = useSearchParams();
 
   function getRandomEnding(max) {
@@ -50,9 +51,16 @@ export default function Mercuryo() {
         signedAddress: searchParams.get("signedAddress"),
         widgetId: searchParams.get("widgetId"),
         merchantTransactionId: `${depositId}-${getRandomEnding(9)}`,
+        mercuryoScriptSrc: searchParams.get("mercuryoScriptSrc"),
       };
 
       setMercuryoSettings(dynamicMercuryoSettings);
+      if (
+        searchParams.get("isProd") === "false" ||
+        searchParams.get("isProd") === false
+      ) {
+        setIsProd(false);
+      }
 
       setLoading(false);
     }
@@ -64,7 +72,11 @@ export default function Mercuryo() {
     <>
       <Script
         strategy="lazyOnload"
-        src="https://sandbox-widget.mrcr.io/embded.2.0.js" //https://widget.mercuryo.io/embed.2.0.js
+        src={
+          isProd === true
+            ? "https://widget.mercuryo.io/embed.2.0.js"
+            : "https://sandbox-widget.mrcr.io/embded.2.0.js"
+        }
         onLoad={() => {
           try {
             const staticMercuryoSettings = {
