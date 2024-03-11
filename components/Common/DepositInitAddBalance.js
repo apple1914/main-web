@@ -18,9 +18,12 @@ export default function DepositInitAddBalance({ formData }) {
       createDeposit(depositPayload).then((depositInfo) => {
         console.log("depositInfo", depositInfo);
         //it should be okay to resuse same create`deposit endpoint since this time withdrawal object is null => no withdrawal is generated
-        const { onrampPayload } = depositInfo;
+        const { onrampPayload, onrampName } = depositInfo;
         //transakSettings = onrampPayload FYI
-        router.push({ pathname: "/payment", query: onrampPayload });
+        router.push({
+          pathname: "/payment/" + onrampName,
+          query: onrampPayload,
+        });
       });
     }
   };
