@@ -51,7 +51,6 @@ export default function Mercuryo() {
         signedAddress: searchParams.get("signedAddress"),
         widgetId: searchParams.get("widgetId"),
         merchantTransactionId: `${depositId}-${getRandomEnding(9)}`,
-        mercuryoScriptSrc: searchParams.get("mercuryoScriptSrc"),
       };
 
       setMercuryoSettings(dynamicMercuryoSettings);
