@@ -17,7 +17,7 @@ export default function Converter({ incrementLevel, setFormData, formData }) {
 
   const handleSubmit = () => {
     if (addAmount < depositMinimumsMap["USD"]) {
-      toast.error("Minimum for deposit is $10");
+      toast.error("Minimum for deposit is €25");
       setAddAmount(0.0);
       return;
     }

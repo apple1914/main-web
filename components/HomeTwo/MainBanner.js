@@ -4,7 +4,7 @@ import Converter from "../Converters/Converter";
 import { useTranslation } from "next-i18next";
 import ReactStars from "react-stars";
 
-const MainBanner = () => {
+const MainBanner = ({ depositPrices, withdrawValues }) => {
   const { t } = useTranslation("common");
   return (
     <>
@@ -56,7 +56,10 @@ const MainBanner = () => {
             <div className="col-lg-6 pr-0">
               <div className="d-flex justify-content-center">
                 <div className="bg-white rounded shadow-md py-5 px-4 px-sm-5 col-11 col-sm-8">
-                  <Converter />
+                  <Converter
+                    depositPrices={depositPrices}
+                    withdrawValues={withdrawValues}
+                  />
                 </div>
               </div>
             </div>

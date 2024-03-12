@@ -16,13 +16,21 @@ import Footer from "../components/_App/Footer";
 import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import {
+  getDepositCurrenciesAndRates,
+  getWithdrawCurrenciesAndRates,
+} from "../lib/currencies";
 
-const Index = () => {
+const Index = (props) => {
+  const { depositPrices, withdrawValues, lng } = props;
   return (
     <>
       <NavbarTwoFixed />
 
-      <MainBanner />
+      <MainBanner
+        depositPrices={depositPrices}
+        withdrawValues={withdrawValues}
+      />
 
       {/* <Services /> */}
 
@@ -57,11 +65,16 @@ export default Index;
 export async function getStaticProps(context) {
   // extract the locale identifier from the URL
   const { locale } = context;
+  const depositPrices = await getDepositCurrenciesAndRates();
+  const withdrawValues = await getWithdrawCurrenciesAndRates();
 
   return {
     props: {
       // pass the translation props to the page component
       ...(await serverSideTranslations(locale)),
+      depositPrices: depositPrices,
+      withdrawValues: withdrawValues,
+      lng: locale,
     },
   };
 }

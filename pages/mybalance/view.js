@@ -1,7 +1,6 @@
 import NavbarTwoFixed from "../../components/_App/NavbarTwoFixed";
 import Footer from "../../components/_App/Footer";
 import RedirectIfNotSignedIn from "../../components/Common/RedirectIfNotSignedIn";
-import SimpleUsdtAmount from "../../components/Common/SimpleUsdtAmount";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ViewMyBalance from "../../components/Common/ViewMyBalance";
 
