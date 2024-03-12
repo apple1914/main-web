@@ -1,6 +1,6 @@
 import React from "react";
 
-import Converter from "./Converter";
+import Converter from "../Converters/Converter";
 import PickWithdrawalDestination from "./PickWithdrawalDestination";
 import DepositInitIfNoFunds from "./DepositInitIfNoFunds";
 // const IS_PAUSED = true;
