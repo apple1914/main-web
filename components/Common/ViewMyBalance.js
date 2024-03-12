@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
-import SimpleUsdtAmount from "./SimpleUsdtAmount";
 import Link from "next/link";
 import useAuthStore from "../../signInLogic/auth";
 const ViewMyBalance = () => {

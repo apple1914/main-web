@@ -12,6 +12,8 @@ const WithdrawalLevels = ({
   level,
   incrementLevel,
   lng,
+  depositPrices,
+  withdrawValues,
 }) => {
   switch (level) {
     case 0:
@@ -22,6 +24,8 @@ const WithdrawalLevels = ({
             formData={formData}
             setFormData={setFormData}
             lng={lng}
+            depositPrices={depositPrices}
+            withdrawValues={withdrawValues}
           />
         </div>
       );

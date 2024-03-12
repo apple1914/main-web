@@ -3,7 +3,12 @@ import React, { useEffect, useState } from "react";
 import WithdrawalLevels from "./WithdrawalLevels";
 import Leveler from "./Leveler";
 import { useTranslation } from "next-i18next";
-const WithdrawalMain = ({ lng, handleSaveCustomEvent }) => {
+const WithdrawalMain = ({
+  lng,
+  handleSaveCustomEvent,
+  depositPrices,
+  withdrawValues,
+}) => {
   const { t } = useTranslation("common"); //usage - just use t("adfdsf") and it will work!
 
   const [formData, setFormData] = useState({
@@ -37,6 +42,8 @@ const WithdrawalMain = ({ lng, handleSaveCustomEvent }) => {
               setFormData={setFormData}
               level={level}
               incrementLevel={incrementLevel}
+              depositPrices={depositPrices}
+              withdrawValues={withdrawValues}
             />
           </div>
         </div>

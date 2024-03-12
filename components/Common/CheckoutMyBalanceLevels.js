@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import SimpleUsdtAmount from "./SimpleUsdtAmount";
 import PickWithdrawalDestination from "./PickWithdrawalDestination";
 import DepositInitAddBalance from "./DepositInitAddBalance";
 import ConfirmWithdrawal from "./ConfirmWithdrawal";
