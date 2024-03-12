@@ -48,7 +48,7 @@ export default function Mercuryo() {
         fiatCurrency: searchParams.get("fiatCurrency"),
         fiatAmount: searchParams.get("fiatAmount"),
         address: searchParams.get("address"),
-        signedAddress: searchParams.get("signedAddress"),
+        signature: searchParams.get("signature"),
         widgetId: searchParams.get("widgetId"),
         merchantTransactionId: `${depositId}-${getRandomEnding(9)}`,
       };
