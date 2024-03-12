@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import depositMinimumsMap from "../../utils/depositMinimums.json";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import {
   useState,

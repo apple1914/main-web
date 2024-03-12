@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import PickWithdrawalDestination from "./PickWithdrawalDestination";
 import DepositInitAddBalance from "./DepositInitAddBalance";
 import ConfirmWithdrawal from "./ConfirmWithdrawal";
-import depositMinimumsMap from "../../utils/depositMinimums.json";
 import { useTranslation } from "next-i18next";
 import { toast } from "react-hot-toast";
 import ConverterAddBalance from "../Converters/ConverterAddBalance";
