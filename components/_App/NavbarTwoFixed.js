@@ -1,278 +1,212 @@
-import React from 'react';
-import Link from 'next/link';
-import SignOutButton from "../Common/SignOutButton"
+// import React from 'react';
+import Link from "next/link";
+import SignOutButton from "../Common/SignOutButton";
 // import TopHeader from './TopHeader';
-import { useTranslation } from 'next-i18next'
-import { useRouter } from 'next/router';
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 const NavbarTwoFixed = () => {
-    const {t} = useTranslation("common")
+  const { t } = useTranslation("common");
 
-    const [menu, setMenu] = React.useState(true)
-    const [sidebarModal, setSidebar] = React.useState(false)
-    const toggleSidebarModal = () => {
-        setSidebar(!sidebarModal)
-    }
-   
-    const toggleNavbar = () => {
-        setMenu(!menu)
-    }
-    const router = useRouter()
+  //   const [menu, setMenu] = React.useState(true);
+  const menu = true;
 
-    const switchLngClick= (locale) => {
-        const path = router.asPath;
- 
-        return router.push(path, path, { locale });
-    }
+  const toggleNavbar = () => {
+    console.log("toggle");
+  };
+  const router = useRouter();
 
-    React.useEffect(() => {
-        let elementId = document.getElementById("navbar");
-        elementId.classList.add("is-sticky");
-    })
- 
-    const classOne = menu ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
-    const classTwo = menu ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
+  const switchLngClick = (locale) => {
+    const path = router.asPath;
 
-    return (
-        <>
-            <header className="header-area fixed-top mb-5">
-                {/* TopHeader */}
-                {/* <TopHeader /> */}
-                
-                <div id="navbar" className="navbar-area nav-style-two">
-                    <div className="main-nav">
-                        <nav className="navbar navbar-expand-lg navbar-light">
-                            <div className="container">
-                                <Link href="/" onClick={toggleNavbar} className="navbar-brand">
-                                <img src="/images/santepay-logo-white.png" alt="logo" height={100} width={100}/>
-                                </Link>
+    return router.push(path, path, { locale });
+  };
 
-                                <button 
-                                    onClick={toggleNavbar} 
-                                    className={classTwo}
-                                    type="button" 
-                                    data-toggle="collapse" 
-                                    data-target="#navbarSupportedContent" 
-                                    aria-controls="navbarSupportedContent" 
-                                    aria-expanded="false" 
-                                    aria-label="Toggle navigation"
-                                >
-                                    <span className="icon-bar top-bar"></span>
-                                    <span className="icon-bar middle-bar"></span>
-                                    <span className="icon-bar bottom-bar"></span>
-                                </button>
+  //   React.useEffect(() => {
+  //     let elementId = document.getElementById("navbar");
+  //     elementId.classList.add("is-sticky");
+  //   });
 
-                                <div className={classOne} id="navbarSupportedContent">
-                                    <ul className="navbar-nav m-auto">
-                                        {/* <LngSwitcher /> */}
-                                        
+  const classOne = menu
+    ? "collapse navbar-collapse"
+    : "collapse navbar-collapse show";
+  const classTwo = menu
+    ? "navbar-toggler navbar-toggler-right collapsed"
+    : "navbar-toggler navbar-toggler-right";
 
-                                        <li className="nav-item">
-                                            <Link onClick={toggleNavbar} className="nav-link" href="/about" activeClassName="active">
-                                            {t("About us")}
-                                            </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link onClick={toggleNavbar} className="nav-link" href="/how-it-works" activeClassName="active">
-                                            {t("HowItWorks")}
-                                            </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link onClick={toggleNavbar} className="nav-link" href="/pricing" activeClassName="active">
-                                            {t("Pricing")}
-                                            </Link>
-                                        </li>
+  return (
+    <>
+      <header className="header-area fixed-top mb-5">
+        {/* TopHeader */}
+        {/* <TopHeader /> */}
 
-                                        <li className="nav-item">
-                                                    <Link onClick={toggleNavbar} className="nav-link" href="#">
-                                                            {t("Switch language")} <i className='bx bx-chevron-down'></i>
-                                                    </Link>
+        <div id="navbar" className="navbar-area nav-style-two is-sticky">
+          <div className="main-nav">
+            <nav className="navbar navbar-expand-lg navbar-light">
+              <div className="container">
+                <Link href="/" onClick={toggleNavbar} className="navbar-brand">
+                  <img
+                    src="/images/santepay-logo-white.png"
+                    alt="logo"
+                    height={100}
+                    width={100}
+                  />
+                </Link>
 
-                                                    <ul className="dropdown-menu">
-                                                      
+                <button
+                  onClick={toggleNavbar}
+                  className={classTwo}
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span className="icon-bar top-bar"></span>
+                  <span className="icon-bar middle-bar"></span>
+                  <span className="icon-bar bottom-bar"></span>
+                </button>
 
-                                                        <li className="nav-item">
-                                                        <button className="bg-transparent text-white" onClick={(e)=> {
-                                                                e.preventDefault() 
-                                                                switchLngClick("en")
-                                                                }}> 
-                                                                English
-                                                                </button>
-                                                        </li>
+                <div className={classOne} id="navbarSupportedContent">
+                  <ul className="navbar-nav m-auto">
+                    {/* <LngSwitcher /> */}
 
-                                                        <li className="nav-item">
-                                                            <button className="bg-transparent text-white"  onClick={(e)=> {
-                                                                e.preventDefault() 
-                                                                switchLngClick("ru")
-                                                                }}> 
-                                                                Русский
-                                                                </button>
-                                                        </li> 
-                                                    </ul>
-                                                </li>
+                    <li className="nav-item">
+                      <Link
+                        onClick={toggleNavbar}
+                        className="nav-link"
+                        href="/about"
+                        activeClassName="active"
+                      >
+                        {t("About us")}
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link
+                        onClick={toggleNavbar}
+                        className="nav-link"
+                        href="/how-it-works"
+                        activeClassName="active"
+                      >
+                        {t("HowItWorks")}
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link
+                        onClick={toggleNavbar}
+                        className="nav-link"
+                        href="/pricing"
+                        activeClassName="active"
+                      >
+                        {t("Pricing")}
+                      </Link>
+                    </li>
 
-                                        <li className="nav-item">
-                                                    <Link onClick={toggleNavbar} className="nav-link" href="#">
-                                                            {t("User")} <i className='bx bx-chevron-down'></i>
-                                                    </Link>
+                    <li className="nav-item">
+                      <Link
+                        onClick={toggleNavbar}
+                        className="nav-link"
+                        href="#"
+                      >
+                        {t("Switch language")}{" "}
+                        <i className="bx bx-chevron-down"></i>
+                      </Link>
 
-                                                    <ul className="dropdown-menu">
-                                                        <li className="nav-item">
-                                                            <Link onClick={toggleNavbar} className="nav-link" href="/sign-up" activeClassName="active">
-                                                                {t("Sign Up")}
-                                                            </Link>
-                                                        </li> 
+                      <ul className="dropdown-menu">
+                        <li className="nav-item">
+                          <button
+                            className="bg-transparent text-white"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              switchLngClick("en");
+                            }}
+                          >
+                            English
+                          </button>
+                        </li>
 
-                                                        <li className="nav-item">
-                                                            <Link onClick={toggleNavbar} className="nav-link" href="/sign-in" activeClassName="active">
-                                                                {t("Sign In")}
-                                                            </Link>
-                                                        </li> 
+                        <li className="nav-item">
+                          <button
+                            className="bg-transparent text-white"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              switchLngClick("ru");
+                            }}
+                          >
+                            Русский
+                          </button>
+                        </li>
+                      </ul>
+                    </li>
 
-                                                        <li className="nav-item">
-                                                            <Link onClick={toggleNavbar} className="nav-link" href="/recover-password" activeClassName="active">
-                                                                {t("Recover Password")}
-                                                            </Link>
-                                                        </li>
-                                                        <li className="nav-item">
-                                                                <SignOutButton/>
-                                        
-                                                        </li>
-                                                    </ul>
-                                                </li>
+                    <li className="nav-item">
+                      <Link
+                        onClick={toggleNavbar}
+                        className="nav-link"
+                        href="#"
+                      >
+                        {t("User")} <i className="bx bx-chevron-down"></i>
+                      </Link>
 
-                                        
+                      <ul className="dropdown-menu">
+                        <li className="nav-item">
+                          <Link
+                            onClick={toggleNavbar}
+                            className="nav-link"
+                            href="/sign-up"
+                            activeClassName="active"
+                          >
+                            {t("Sign Up")}
+                          </Link>
+                        </li>
 
-                                        
-                                        
+                        <li className="nav-item">
+                          <Link
+                            onClick={toggleNavbar}
+                            className="nav-link"
+                            href="/sign-in"
+                            activeClassName="active"
+                          >
+                            {t("Sign In")}
+                          </Link>
+                        </li>
 
+                        <li className="nav-item">
+                          <Link
+                            onClick={toggleNavbar}
+                            className="nav-link"
+                            href="/recover-password"
+                            activeClassName="active"
+                          >
+                            {t("Recover Password")}
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <SignOutButton />
+                        </li>
+                      </ul>
+                    </li>
 
-                                        <li className="nav-item">
-                                            <Link onClick={toggleNavbar} className="nav-link" href="/contact" activeClassName="active">
-                                            {t("Customer support")}
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                              
-                            </div>
-                        </nav>
-                    </div>
+                    <li className="nav-item">
+                      <Link
+                        onClick={toggleNavbar}
+                        className="nav-link"
+                        href="/contact"
+                        activeClassName="active"
+                      >
+                        {t("Customer support")}
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
-            </header>
-
-            
-        
-            {/* Sidebar Modal */}
-            <div className={`sidebar-modal ${sidebarModal ? 'active' : null}`}>  
-                <div className="modal">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h2 className="modal-title">
-                                    <Link href="/">
-                                    <img src="/images/logo2.png" alt="Logo" />
-                                    </Link>
-                                </h2>
-
-                                <button type="button" className="close" onClick={e => {e.preventDefault(); toggleSidebarModal()}}>
-                                    <span aria-hidden="true">
-                                        <i className="bx bx-x"></i>
-                                    </span>
-                                </button>
-                            </div>
-
-                            <div className="modal-body">
-                                <div className="sidebar-modal-widget">
-                                    <h3 className="title">About Us</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, asperiores doloribus eum laboriosam praesentium delectus unde magni aut perspiciatis cumque deserunt dolore voluptate, autem pariatur.</p>
-                                </div>
-
-                                <div className="sidebar-modal-widget">
-                                    <h3 className="title">Additional Links</h3>
-
-                                    <ul>
-                                        <li>
-                                            <Link href="/sign-up">
-                                                Sign Up
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/log-in">
-                                                Log In
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/faq">
-                                                FAQ
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div className="sidebar-modal-widget">
-                                    <h3 className="title">Contact Info</h3>
-
-                                    <ul className="contact-info">
-                                        <li>
-                                            <i className="bx bx-location-plus"></i>
-                                            Address
-                                            <span>123, Western Road, Melbourne Australia</span>
-                                        </li>
-                                        <li>
-                                            <i className="bx bx-envelope"></i>
-                                            Email
-                                            <a href="mailto:hello@flexa.com">hello@flexa.com</a>
-                                        </li>
-                                        <li>
-                                            <i className="bx bxs-phone-call"></i>
-                                            Phone
-                                            <a href="tel:+822456974">+822456974</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                
-                                <div className="sidebar-modal-widget">
-                                    <h3 className="title">Connect With Us</h3>
-
-                                    <ul className="social-list">
-                                        <li>
-                                            <a href="https://www.twitter.com/" target="_blank">
-                                                <i className='bx bxl-twitter'></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.facebook.com/" target="_blank">
-                                                <i className='bx bxl-facebook'></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.instagram.com/" target="_blank">
-                                                <i className='bx bxl-instagram'></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.linkedin.com/" target="_blank">
-                                                <i className='bx bxl-linkedin'></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.youtube.com/" target="_blank">
-                                                <i className='bx bxl-youtube'></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
-    );
-}
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+    </>
+  );
+};
 
 export default NavbarTwoFixed;
-
-
