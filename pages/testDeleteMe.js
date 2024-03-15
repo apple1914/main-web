@@ -1,23 +1,25 @@
 // import Stepper from "@/components/Stepper";
-import WithdrawalMain from "../components/Common/WithdrawalMain";
+// import WithdrawalMain from "../components/Common/WithdrawalMain";
 
 import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
 import Footer from "../components/_App/Footer";
-import RedirectIfNotSignedIn from "../components/Common/RedirectIfNotSignedIn";
-import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo";
+// import RedirectIfNotSignedIn from "../components/Common/RedirectIfNotSignedIn";
+// import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
-import useAuthStore from "../signInLogic/auth";
-import { saveCustomEvent } from "../lib/userEvents";
-import {
-  getDepositCurrenciesAndRates,
-  getWithdrawCurrenciesAndRates,
-} from "../lib/currencies";
-import { auth } from "../lib/firebase/firebase";
-import { getWithdrawals } from "../lib/withdrawals";
-import { fetchWithdrawalAddresses } from "../lib/withdrawalAddress";
+// import { useTranslation } from "next-i18next";
+// import useAuthStore from "../signInLogic/auth";
+// import { saveCustomEvent } from "../lib/userEvents";
+// import {
+//   getDepositCurrenciesAndRates,
+//   getWithdrawCurrenciesAndRates,
+// } from "../lib/currencies";
+// import { auth } from "../lib/firebase/firebase";
+
+// import { getWithdrawals } from "../lib/withdrawals";
+// import { fetchWithdrawalAddresses } from "../lib/withdrawalAddress";
+
 // import { firebaseAdmin } from "../lib/firebase/firebaseAdmin";
-import nookies from "nookies";
+// import nookies from "nookies";
 
 function TestDeleteMe(props) {
   //@ts-ignore
@@ -28,7 +30,7 @@ function TestDeleteMe(props) {
     withdrawals,
     withdrawalAddresses,
   } = props;
-  const user = useAuthStore((state) => state.user);
+  // const user = useAuthStore((state) => state.user);
 
   return (
     <>
