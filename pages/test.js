@@ -1,9 +1,7 @@
-import React from "react";
-import NavbarTwo from "../components/_App/NavbarTwo";
+// import React from "react";
 
-import Footer from "../components/_App/Footer";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import BillingInfo from "../components/Common/BillingInfo";
+// import BillingInfo from "../components/Common/BillingInfo";
 
 const Test = () => {
   return (
