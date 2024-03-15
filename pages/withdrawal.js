@@ -50,7 +50,7 @@ function Withdrawal(props) {
       />
       <Footer />
       {/* <CaptureMarketingInfo /> */}
-      <RedirectIfNotSignedIn />
+      {/* <RedirectIfNotSignedIn /> */}
     </>
   );
 }
@@ -71,13 +71,25 @@ export async function getServerSideProps(context) {
   let withdrawalAddresses = [];
   const cookies = nookies.get(context);
   if (!!cookies.userToken || cookies.userToken !== "") {
+    console.log("hitting here 1");
+
     const userToken = await firebaseAdmin
       .auth()
       .verifyIdToken(cookies.userToken);
+    console.log("hitting here 2");
+
     const { uid, email } = userToken; //
     const username = uid;
     withdrawals = await getWithdrawals({ username });
     withdrawalAddresses = await fetchWithdrawalAddresses({ username });
+  } else {
+    console.log("hitting here 3");
+    return {
+      redirect: {
+        destination: "/sign-in",
+        permanent: false,
+      },
+    };
   }
 
   return {
