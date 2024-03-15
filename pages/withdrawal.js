@@ -67,20 +67,19 @@ export async function getServerSideProps(context) {
   //   state.getWithdrawals,
   //   state.fetchWithdrawalAddresses,
   // ]);
+  let withdrawals = [];
+  let withdrawalAddresses = [];
   const cookies = nookies.get(context);
-  if (!cookies.userToken || cookies.userToken == "") {
-    return {
-      redirect: {
-        destination: "/sign-in",
-        permanent: false,
-      },
-    };
+  if (!!cookies.userToken || cookies.userToken !== "") {
+    const userToken = await firebaseAdmin
+      .auth()
+      .verifyIdToken(cookies.userToken);
+    const { uid, email } = userToken; //
+    const username = uid;
+    withdrawals = await getWithdrawals({ username });
+    withdrawalAddresses = await fetchWithdrawalAddresses({ username });
   }
-  const userToken = await firebaseAdmin.auth().verifyIdToken(cookies.userToken);
-  const { uid, email } = userToken; //
-  const username = uid;
-  const withdrawals = await getWithdrawals({ username });
-  const withdrawalAddresses = await fetchWithdrawalAddresses({ username });
+
   return {
     props: {
       // pass the translation props to the page component
