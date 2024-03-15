@@ -2,7 +2,7 @@
 // import WithdrawalMain from "../components/Common/WithdrawalMain";
 
 import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
-// import Footer from "../components/_App/Footer";
+import Footer from "../components/_App/Footer";
 // import RedirectIfNotSignedIn from "../components/Common/RedirectIfNotSignedIn";
 // import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -36,7 +36,7 @@ function TestDeleteMe(props) {
     <>
       <NavbarTwoFixed />
       <div> sas</div>
-      {/* <Footer /> */}
+      <Footer />
       {/* <CaptureMarketingInfo /> */}
       {/* <RedirectIfNotSignedIn /> */}
     </>
