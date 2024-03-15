@@ -6,14 +6,12 @@ import Footer from "../components/_App/Footer";
 import Link from "next/link";
 import { useRouter } from "next/router"; //should be next/router for pages dir
 import { useSearchParams } from "next/navigation";
-import SocialSignIn from "../components/Common/SocialSignIn";
 
 import useAuthStore from "../signInLogic/auth";
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { H } from "@highlight-run/next/client";
-import nookies from "nookies";
 const SignIn = () => {
   const [user, authInProgress] = useAuthStore((state) => [
     state.user,
@@ -30,14 +28,9 @@ const SignIn = () => {
   const submitSignInForm = async (e) => {
     e.preventDefault();
 
-    const result = await authSignIn(email, pwd);
-    const { success, err, username } = result;
-    const newUser = result.user;
+    const { success, err, username } = await authSignIn(email, pwd);
 
     if (success === true) {
-      newUser.getIdToken().then((userToken) => {
-        nookies.set(undefined, "userToken", userToken, { path: "/" });
-      });
       goToNext({ username });
       return;
     }
@@ -109,9 +102,6 @@ const SignIn = () => {
                       <button className="default-btn btn-two" type="submit">
                         Log In Now
                       </button>
-                    </div>
-                    <div className="col-12">
-                      <SocialSignIn />
                     </div>
 
                     <div className="col-12">

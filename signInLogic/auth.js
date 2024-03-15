@@ -12,8 +12,6 @@ import { toast } from "react-hot-toast";
 import { create } from "zustand";
 import { auth } from "../lib/firebase/firebase";
 import { getBalance } from "../lib/balances";
-import { fetchWithdrawalAddresses } from "../lib/withdrawalAddress";
-import { getWithdrawals } from "../lib/withdrawals";
 
 const useAuthStore = create((set) => ({
   user: null,
@@ -23,7 +21,7 @@ const useAuthStore = create((set) => ({
       const res = await signInWithEmailAndPassword(auth, email, password);
       const username = res.user.uid;
       toast.success("Success");
-      return { success: true, username, user: res.uid };
+      return { success: true, username };
     } catch (err) {
       if (err.message === "Firebase: Error (auth/user-not-found).") {
         toast.error("User not found");
@@ -56,7 +54,7 @@ const useAuthStore = create((set) => ({
       saveUserInfo({ username, contactInfo: { email }, miscInfo });
 
       toast.success("Вы успешно зарегистрировались!");
-      return { success: true, username, user: res.user };
+      return { success: true, username };
     } catch (err) {
       console.log(err);
       if (err.message === "Firebase: Error (auth/email-already-in-use).") {
@@ -82,7 +80,7 @@ const useAuthStore = create((set) => ({
       saveUserInfo({ username, contactInfo: { email }, miscInfo });
 
       toast.success("Успешный вход!");
-      return { success: true, username, user: res.user };
+      return { success: true, username };
     } catch (err) {
       console.log(err);
       if (err.message === "Firebase: Error (auth/email-already-in-use).") {
@@ -103,32 +101,6 @@ const useAuthStore = create((set) => ({
       const username = auth.currentUser.uid;
       const value = await getBalance({ username });
       return value;
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
-  },
-  getWithdrawals: async () => {
-    try {
-      if (auth.currentUser === null) {
-        return null;
-      }
-      const username = auth.currentUser.uid;
-      const results = await getWithdrawals({ username });
-      return results;
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
-  },
-  fetchWithdrawalAddresses: async () => {
-    try {
-      if (auth.currentUser === null) {
-        return null;
-      }
-      const username = auth.currentUser.uid;
-      const results = await fetchWithdrawalAddresses({ username });
-      return results;
     } catch (err) {
       console.log(err);
       return null;

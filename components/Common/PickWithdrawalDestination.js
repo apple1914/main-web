@@ -20,23 +20,23 @@ export default function PickWithdrawalDestination({
   formData,
   setFormData,
   lng,
-  withdrawalAddresses,
 }) {
   const { t } = useTranslation("common");
   const user = useAuthStore((state) => state.user);
-  // const [withdrawalAddresses, setQWithdrawalDestinations] = useState([]);
+  const [withdrawalAddresses, setQWithdrawalDestinations] = useState([]);
   const [withdrawalAddressId, setWithdrawalAddressId] = useState();
-  const loading = false;
-  const hasNoAvailableDestinations = withdrawalAddresses.length < 1;
+  const [loading, setLoading] = useState(true);
+  const [hasNoAvailableDestinations, setHasNoAvailableDestinations] =
+    useState(true);
 
   const handleSelectRecipient = async (pickedWithdrawalAddressId) => {
     setWithdrawalAddressId(pickedWithdrawalAddressId);
   };
 
-  // function updateWithdrawalAddresses(myNewDestinations) {
-  //   // recipientsRef.current = newRecipients;
-  //   setQWithdrawalDestinations(myNewDestinations);
-  // }
+  function updateWithdrawalAddresses(myNewDestinations) {
+    // recipientsRef.current = newRecipients;
+    setQWithdrawalDestinations(myNewDestinations);
+  }
 
   const handleSubmitSelectedAddress = () => {
     formData.withdrawalAddressId = withdrawalAddressId;
@@ -45,17 +45,19 @@ export default function PickWithdrawalDestination({
     incrementLevel();
   };
 
-  // useEffect(() => {
-  //   if (!!withdrawalAddresses) {
-  //     if (!!withdrawalAddresses && withdrawalAddresses.length > 0) {
-  //       updateWithdrawalAddresses(withdrawalAddresses);
-  //       setHasNoAvailableDestinations(false);
-  //     } else {
-  //       setHasNoAvailableDestinations(true);
-  //     }
-  //     setLoading(false);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!!user) {
+      fetchWithdrawalAddressesV2().then((data) => {
+        if (!!data && data.length > 0) {
+          updateWithdrawalAddresses(data);
+          setHasNoAvailableDestinations(false);
+        } else {
+          setHasNoAvailableDestinations(true);
+        }
+        setLoading(false);
+      });
+    }
+  }, []);
 
   return (
     <div className="bg-white shadow rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-10">
