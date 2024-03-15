@@ -12,6 +12,8 @@ import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { H } from "@highlight-run/next/client";
+import SocialSignIn from "../components/Common/SocialSignIn";
+
 const SignIn = () => {
   const [user, authInProgress] = useAuthStore((state) => [
     state.user,
@@ -102,6 +104,9 @@ const SignIn = () => {
                       <button className="default-btn btn-two" type="submit">
                         Log In Now
                       </button>
+                    </div>
+                    <div className="col-12">
+                      <SocialSignIn />
                     </div>
 
                     <div className="col-12">
