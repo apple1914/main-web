@@ -13,20 +13,10 @@ import {
   getDepositCurrenciesAndRates,
   getWithdrawCurrenciesAndRates,
 } from "../lib/currencies";
-import { auth } from "../lib/firebase/firebase";
-import { getWithdrawals } from "../lib/withdrawals";
-import { fetchWithdrawalAddresses } from "../lib/withdrawalAddress";
-import { firebaseAdmin } from "../lib/firebase/firebaseAdmin";
-import nookies from "nookies";
+
 function Withdrawal(props) {
   //@ts-ignore
-  const {
-    lng,
-    withdrawValues,
-    depositPrices,
-    withdrawals,
-    withdrawalAddresses,
-  } = props;
+  const { lng, withdrawValues, depositPrices } = props;
   const user = useAuthStore((state) => state.user);
 
   const handleSaveCustomEvent = (eventName) => {
@@ -45,8 +35,6 @@ function Withdrawal(props) {
         handleSaveCustomEvent={handleSaveCustomEvent}
         depositPrices={depositPrices}
         withdrawValues={withdrawValues}
-        withdrawals={withdrawals}
-        withdrawalAddresses={withdrawalAddresses}
       />
       <Footer />
       {/* <CaptureMarketingInfo /> */}
@@ -57,30 +45,12 @@ function Withdrawal(props) {
 
 export default Withdrawal;
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
+  // extract the locale identifier from the URL
   const { locale } = context;
   const depositPrices = await getDepositCurrenciesAndRates();
   const withdrawValues = await getWithdrawCurrenciesAndRates();
-  // const user = auth.currentUser;
-  // const username = user.uid;
-  // const [getWithdrawals, fetchWithdrawalAddresses] = useAuthStore((state) => [
-  //   state.getWithdrawals,
-  //   state.fetchWithdrawalAddresses,
-  // ]);
-  const cookies = nookies.get(context);
-  if (!cookies.userToken || cookies.userToken == "") {
-    return {
-      redirect: {
-        destination: "/sign-in",
-        permanent: false,
-      },
-    };
-  }
-  const userToken = await firebaseAdmin.auth().verifyIdToken(cookies.userToken);
-  const { uid, email } = userToken; //
-  const username = uid;
-  const withdrawals = await getWithdrawals({ username });
-  const withdrawalAddresses = await fetchWithdrawalAddresses({ username });
+
   return {
     props: {
       // pass the translation props to the page component
@@ -88,8 +58,6 @@ export async function getServerSideProps(context) {
       depositPrices: depositPrices,
       withdrawValues: withdrawValues,
       lng: locale,
-      withdrawals,
-      withdrawalAddresses,
     },
   };
 }

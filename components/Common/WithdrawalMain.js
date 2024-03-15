@@ -8,8 +8,6 @@ const WithdrawalMain = ({
   handleSaveCustomEvent,
   depositPrices,
   withdrawValues,
-  withdrawals,
-  withdrawalAddresses,
 }) => {
   const { t } = useTranslation("common"); //usage - just use t("adfdsf") and it will work!
 
@@ -46,8 +44,6 @@ const WithdrawalMain = ({
               incrementLevel={incrementLevel}
               depositPrices={depositPrices}
               withdrawValues={withdrawValues}
-              withdrawals={withdrawals}
-              withdrawalAddresses={withdrawalAddresses}
             />
           </div>
         </div>

@@ -1,8 +1,8 @@
 import useAuthStore from "../../signInLogic/auth";
 import { getCookie } from "cookies-next";
 import Image from "next/image";
-import { analyticsSourceContext } from "../../utils/miscConstants";
-import nookies from "nookies";
+import { analyticsSourceContext } from '../../utils/miscConstants';
+
 export default function SocialSignIn() {
   const [authSignInWithGmail] = useAuthStore((state) => [
     state.authSignInWithGmail,
@@ -12,29 +12,21 @@ export default function SocialSignIn() {
     const miscData = {};
 
     for (const key of analyticsSourceContext) {
-      const cookieName = key;
+      const cookieName =
+      key
       const data = getCookie(cookieName);
       miscData[cookieName] = data;
     }
-    return miscData;
+    return miscData
   };
-  const handleClickSocial = () => {
-    authSignInWithGmail(getAnalyticsData()).then((result) => {
-      const { success } = result;
-      if (success !== true) return;
-      const newUser = result.user;
-      newUser.getIdToken().then((userToken) => {
-        nookies.set(undefined, "userToken", userToken, { path: "/" });
-      });
-    });
-  };
+
 
   return (
     <>
       <div className="d-flex justify-content-evenly">
         <button
           onClick={() => {
-            handleClickSocial();
+            authSignInWithGmail(getAnalyticsData());
           }}
           className="btn bg-muted btn-flat d-flex align-items-center"
         >
@@ -47,6 +39,7 @@ export default function SocialSignIn() {
           />
           Google
         </button>
+       
       </div>
     </>
   );
