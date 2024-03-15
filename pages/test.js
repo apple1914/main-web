@@ -10,7 +10,8 @@ const Test = () => {
     <>
       {/* <NavbarTwo /> */}
 
-      <BillingInfo />
+      {/* <BillingInfo /> */}
+      <p>hui</p>
 
       {/* <Footer /> */}
     </>
