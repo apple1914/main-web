@@ -1,7 +1,7 @@
 // import Stepper from "@/components/Stepper";
 // import WithdrawalMain from "../components/Common/WithdrawalMain";
 
-import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
+// import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
 import Footer from "../components/_App/Footer";
 // import RedirectIfNotSignedIn from "../components/Common/RedirectIfNotSignedIn";
 // import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo";
@@ -34,9 +34,9 @@ function TestDeleteMe(props) {
 
   return (
     <>
-      <NavbarTwoFixed />
+      {/* <NavbarTwoFixed /> */}
       <div> sas</div>
-      <Footer />
+      {/* <Footer /> */}
       {/* <CaptureMarketingInfo /> */}
       {/* <RedirectIfNotSignedIn /> */}
     </>

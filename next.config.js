@@ -1,8 +1,12 @@
 const path = require("path");
 const { i18n } = require("./next-i18next.config");
-const { withHighlightConfig } = require("@highlight-run/next/config");
+// const { withHighlightConfig } = require("@highlight-run/next/config");
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
 
-module.exports = withHighlightConfig({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   // distDir: 'build',
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
@@ -20,4 +24,8 @@ module.exports = withHighlightConfig({
     TRANSAK_API_KEY_PROD: process.env.TRANSAK_API_KEY_TEST_LEVII,
   },
   i18n,
-});
+};
+
+module.exports = withBundleAnalyzer(nextConfig);
+
+// module.exports = withHighlightConfig();

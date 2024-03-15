@@ -1,7 +1,7 @@
 // import Stepper from "@/components/Stepper";
 import WithdrawalMain from "../components/Common/WithdrawalMain";
 
-import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
+// import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
 import Footer from "../components/_App/Footer";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -38,7 +38,7 @@ function Withdrawal(props) {
 
   return (
     <>
-      <NavbarTwoFixed />
+      {/* <NavbarTwoFixed /> */}
 
       <WithdrawalMain
         lng={lng}

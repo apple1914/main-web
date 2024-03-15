@@ -1,6 +1,6 @@
 // import React from 'react';
 import Link from "next/link";
-import { Toaster } from "react-hot-toast";
+// import { Toaster } from "react-hot-toast";
 import { useTranslation } from "next-i18next";
 
 const Footer = () => {
@@ -144,7 +144,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <Toaster />
+      {/* <Toaster /> */}
     </>
   );
 };
