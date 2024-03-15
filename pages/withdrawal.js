@@ -61,29 +61,18 @@ export async function getServerSideProps(context) {
   const { locale } = context;
   const depositPrices = await getDepositCurrenciesAndRates();
   const withdrawValues = await getWithdrawCurrenciesAndRates();
+  console.log("getServerSideProps here 0 start after fetching currs");
   // const user = auth.currentUser;
   // const username = user.uid;
   // const [getWithdrawals, fetchWithdrawalAddresses] = useAuthStore((state) => [
   //   state.getWithdrawals,
   //   state.fetchWithdrawalAddresses,
   // ]);
-  let withdrawals = [];
-  let withdrawalAddresses = [];
+
   const cookies = nookies.get(context);
-  if (!!cookies.userToken || cookies.userToken !== "") {
-    console.log("hitting here 1");
-
-    const userToken = await firebaseAdmin
-      .auth()
-      .verifyIdToken(cookies.userToken);
-    console.log("hitting here 2");
-
-    const { uid, email } = userToken; //
-    const username = uid;
-    withdrawals = await getWithdrawals({ username });
-    withdrawalAddresses = await fetchWithdrawalAddresses({ username });
-  } else {
-    console.log("hitting here 3");
+  console.log("getServerSideProps here cookies", cookies, cookies.userToken);
+  if (!cookies.userToken || cookies.userToken == "") {
+    console.log("redirecting you to sign in, buddy");
     return {
       redirect: {
         destination: "/sign-in",
@@ -91,6 +80,15 @@ export async function getServerSideProps(context) {
       },
     };
   }
+  console.log("hitting here 1");
+
+  const userToken = await firebaseAdmin.auth().verifyIdToken(cookies.userToken);
+  console.log("hitting here 2");
+
+  const { uid, email } = userToken; //
+  const username = uid;
+  const withdrawals = await getWithdrawals({ username });
+  const withdrawalAddresses = await fetchWithdrawalAddresses({ username });
 
   return {
     props: {
