@@ -16,8 +16,9 @@ import {
 import { auth } from "../lib/firebase/firebase";
 import { getWithdrawals } from "../lib/withdrawals";
 import { fetchWithdrawalAddresses } from "../lib/withdrawalAddress";
-import { firebaseAdmin } from "../lib/firebase/firebaseAdmin";
+// import { firebaseAdmin } from "../lib/firebase/firebaseAdmin";
 import nookies from "nookies";
+
 function TestDeleteMe(props) {
   //@ts-ignore
   const {
