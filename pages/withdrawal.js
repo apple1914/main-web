@@ -3,21 +3,20 @@ import WithdrawalMain from "../components/Common/WithdrawalMain";
 
 import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
 import Footer from "../components/_App/Footer";
-import RedirectIfNotSignedIn from "../components/Common/RedirectIfNotSignedIn";
-import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo";
+
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
-import useAuthStore from "../signInLogic/auth";
+// import useAuthStore from "../signInLogic/auth";
 import { saveCustomEvent } from "../lib/userEvents";
 import {
   getDepositCurrenciesAndRates,
   getWithdrawCurrenciesAndRates,
 } from "../lib/currencies";
-import { auth } from "../lib/firebase/firebase";
+
 import { getWithdrawals } from "../lib/withdrawals";
 import { fetchWithdrawalAddresses } from "../lib/withdrawalAddress";
 import { firebaseAdmin } from "../lib/firebase/firebaseAdmin";
 import nookies from "nookies";
+
 function Withdrawal(props) {
   //@ts-ignore
   const {
@@ -26,13 +25,14 @@ function Withdrawal(props) {
     depositPrices,
     withdrawals,
     withdrawalAddresses,
+    username,
   } = props;
-  const user = useAuthStore((state) => state.user);
+  // const user = useAuthStore((state) => state.user);
 
   const handleSaveCustomEvent = (eventName) => {
     if (!eventName) return;
     if (!!user) {
-      saveCustomEvent({ eventName, username: user.uid });
+      saveCustomEvent({ eventName, username: username });
     }
   };
 
@@ -99,6 +99,7 @@ export async function getServerSideProps(context) {
       lng: locale,
       withdrawals,
       withdrawalAddresses,
+      username,
     },
   };
 }
