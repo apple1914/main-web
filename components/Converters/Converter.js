@@ -11,7 +11,7 @@ import {
 import { Form } from "react-bootstrap";
 import React from "react";
 import { getCookie } from "cookies-next";
-import { getWithdrawals } from "../../backend/requests";
+// import { getWithdrawals } from "../../backend/requests";
 import useAuthStore from "../../signInLogic/auth";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
@@ -28,6 +28,7 @@ export default function Converter({
   formData,
   depositPrices,
   withdrawValues,
+  withdrawals,
 }) {
   const { t } = useTranslation("common");
   const [user, authInProgress] = useAuthStore((state) => [
@@ -103,15 +104,11 @@ export default function Converter({
     return () => clearTimeout(timeout);
   }, [myDepositCurrency, myWithdrawalCurrency, myDepositAmount, discount]);
 
-  useEffect(() => {
-    if (!!user & !authInProgress) {
-      getWithdrawals().then((withdrawals) => {
-        if (!!withdrawals && withdrawals.length > 0) {
-          setDiscount(0);
-        }
-      });
-    }
-  }, [user, authInProgress]);
+  // useEffect(() => {
+  //   if (!!withdrawals & withdrawals.length > 0) {
+  //     setDiscount(0);
+  //   }
+  // }, []);
 
   const updateConversionRate = () => {
     if (!myDepositCurrency || !myWithdrawalCurrency) return;

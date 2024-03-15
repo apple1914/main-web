@@ -14,6 +14,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import SocialSignIn from "../components/Common/SocialSignIn";
 import { H } from "@highlight-run/next/client";
+import nookies from "nookies";
 
 const SignUp = () => {
   const [user, authInProgress] = useAuthStore((state) => [
@@ -51,7 +52,9 @@ const SignUp = () => {
       miscData[cookieName] = data;
     }
 
-    const { success, error, username } = await authSignUp(email, pwd, miscData);
+    const result = await authSignUp(email, pwd, miscData);
+    const { success, error, username } = result;
+    const myNewUser = result.user;
     // alert(JSON.stringify(error))
     console.log("riz here is :", { success, username });
 
@@ -61,6 +64,8 @@ const SignUp = () => {
         router.query,
         router.isReady
       );
+      const userToken = await myNewUser.getIdToken();
+      nookies.set(undefined, "userToken", userToken, { path: "/" });
       try {
         H.identify(username);
       } catch (err) {
