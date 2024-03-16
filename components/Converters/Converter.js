@@ -138,8 +138,9 @@ export default function Converter({
     const levels = Object.keys(parsedPrices).map((priceLvlKey) =>
       parseFloat(priceLvlKey)
     );
-    const closestLevel = levels[binaryClosestIdx(levels, multiplier)];
-    const priceKey = closestLevel.toFixed(0).toString();
+    const closestLevel =
+      Object.keys(parsedPrices)[binaryClosestIdx(levels, multiplier)];
+    const priceKey = closestLevel;
     const price = parsedPrices[priceKey];
 
     const { value } = withdrawValues.find(
