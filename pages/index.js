@@ -32,7 +32,7 @@ const Index = (props) => {
         withdrawValues={withdrawValues}
       />
 
-      {/* <Services /> */}
+      <Services />
 
       <WhyChooseUs />
 
