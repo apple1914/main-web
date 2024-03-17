@@ -1,9 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import DepositLevels from "./DepositLevels";
+import WithdrawalLevels from "./WithdrawalLevels";
 import Leveler from "./Leveler";
 import { useTranslation } from "next-i18next";
-const CheckoutDeposit = ({ lng, handleSaveCustomEvent }) => {
+const WithdrawalMain = ({
+  lng,
+  handleSaveCustomEvent,
+  depositPrices,
+  withdrawValues,
+}) => {
   const { t } = useTranslation("common"); //usage - just use t("adfdsf") and it will work!
 
   const [formData, setFormData] = useState({
@@ -11,7 +16,7 @@ const CheckoutDeposit = ({ lng, handleSaveCustomEvent }) => {
     fiatCurrency: "",
     withdrawalAddressId: "",
     convertedFiatCurrency: "",
-    flowType: "deposit",
+    flowType: "withdrawal",
   });
 
   const [level, setLevel] = useState(0);
@@ -28,17 +33,17 @@ const CheckoutDeposit = ({ lng, handleSaveCustomEvent }) => {
   return (
     <div id="content" className="py-4 bg-white">
       <div className="container pt-5">
-        <div className="mx-auto text-center pt-5">
-          {t("checkoutDeposit.h1")}
-        </div>
+        <div className="mx-auto text-center pt-5">{t("checkoutMain.h1")}</div>
         <div className="row pt-5">
           <div className="col-md-9 col-lg-7 col-xl-6 mx-auto">
-            <DepositLevels
+            <WithdrawalLevels
               lng={lng}
               formData={formData}
               setFormData={setFormData}
               level={level}
               incrementLevel={incrementLevel}
+              depositPrices={depositPrices}
+              withdrawValues={withdrawValues}
             />
           </div>
         </div>
@@ -52,4 +57,4 @@ const CheckoutDeposit = ({ lng, handleSaveCustomEvent }) => {
   );
 };
 
-export default CheckoutDeposit;
+export default WithdrawalMain;

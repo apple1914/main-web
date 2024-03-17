@@ -1,21 +1,20 @@
 //import { Transak, TransakConfig } from "@transak/transak-sdk";
 
 import React from "react";
-import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
-import PaymentStatusComponent from "../components/Common/PaymentStatusComponent";
+import NavbarTwoFixed from "../../components/_App/NavbarTwoFixed";
+import MercuryoWidget from "../../components/Payment/MercuryoWidget";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Footer from "../components/_App/Footer";
-const Failure = () => {
+
+const Payment = () => {
   return (
     <>
       <NavbarTwoFixed />
-      <PaymentStatusComponent isSuccess={false} />
-      <Footer />
+      <MercuryoWidget />
     </>
   );
 };
 
-export default Failure;
+export default Payment;
 
 export async function getStaticProps(context) {
   // extract the locale identifier from the URL

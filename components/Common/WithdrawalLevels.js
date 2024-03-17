@@ -1,6 +1,6 @@
 import React from "react";
 
-import Converter from "./Converter";
+import Converter from "../Converters/Converter";
 import PickWithdrawalDestination from "./PickWithdrawalDestination";
 import DepositInitIfNoFunds from "./DepositInitIfNoFunds";
 // const IS_PAUSED = true;
@@ -12,6 +12,8 @@ const WithdrawalLevels = ({
   level,
   incrementLevel,
   lng,
+  depositPrices,
+  withdrawValues,
 }) => {
   switch (level) {
     case 0:
@@ -22,19 +24,20 @@ const WithdrawalLevels = ({
             formData={formData}
             setFormData={setFormData}
             lng={lng}
+            depositPrices={depositPrices}
+            withdrawValues={withdrawValues}
           />
         </div>
       );
     case 1:
       return (
         <>
-          <IndefiniteMaintenance />
-          {/* <PickWithdrawalDestination
+          <PickWithdrawalDestination
             incrementLevel={incrementLevel}
             formData={formData}
             setFormData={setFormData}
             lng={lng}
-          /> */}
+          />
         </>
       );
     case 2:
@@ -44,11 +47,11 @@ const WithdrawalLevels = ({
         </>
       );
 
-    default:
+    default: //should jsut be the withdrwal level 0 basically
       return (
         <>
           <div className="bg-white shadow-lg rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4">
-            <Calculator
+            <Converter
               incrementLevel={incrementLevel}
               formData={formData}
               setFormData={setFormData}

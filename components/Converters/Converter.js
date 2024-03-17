@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import depositMinimumsMap from "../../utils/depositMinimums.json";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import {
   useState,
@@ -12,17 +11,14 @@ import {
 import { Form } from "react-bootstrap";
 import React from "react";
 import { getCookie } from "cookies-next";
-import {
-  convert,
-  fetchWithdrawalCurrencies,
-  fetchDepositFiatCurrencies,
-  getWithdrawals,
-} from "../../backend/requests";
+import { getWithdrawals } from "../../backend/requests";
 import useAuthStore from "../../signInLogic/auth";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { setCookie } from "cookies-next";
 import { useSearchParams } from "next/navigation";
+import { binaryClosestIdx } from "../../utils/algos";
+
 const DEFAULT_WITHDRAWAL_CURRENCY = "PLN";
 const DEFAULT_DEPOSIT_CURRENCY = "USD";
 
@@ -30,7 +26,8 @@ export default function Converter({
   incrementLevel,
   setFormData,
   formData,
-  lng,
+  depositPrices,
+  withdrawValues,
 }) {
   const { t } = useTranslation("common");
   const [user, authInProgress] = useAuthStore((state) => [
@@ -39,17 +36,17 @@ export default function Converter({
   ]);
 
   const [myDepositAmount, setMyDepositAmount] = useState(1000);
-  const [myDepositCurrency, setMyDepositCurrency] = useState("");
+  const [myDepositCurrency, setMyDepositCurrency] = useState("USD");
   const [myWithdrawalAmount, setMyWithdrawalAmount] = useState("0");
-  const [myWithdrawalCurrency, setMyWithdrawalCurrency] = useState("");
-  const [myDepositCurrencies, setMyDepositCurrencies] = useState([""]);
-  const [myWithdrawalCurrencies, setMyWithdrawalCurrencies] = useState([""]);
+  const myDepositCurrencies = depositPrices.map((el) => el.currency);
+  const [myWithdrawalCurrency, setMyWithdrawalCurrency] = useState("PLN");
+  const myWithdrawalCurrencies = withdrawValues.map((el) => el.currency);
   const [exchangeRate, setExchangeRate] = useState("1");
   const [invalid, setInvalid] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
   const [discount, setDiscount] = useState(0.04);
-  const [conversionRateLoader, setConversionRateLoader] = useState(true);
+  const [conversionRateLoader, setConversionRateLoader] = useState(false);
 
   const submit = (e) => {
     e.preventDefault();
@@ -91,20 +88,12 @@ export default function Converter({
     const amount = searchParams.get("amount");
     if (
       amount != null &&
-      depositMinimumsMap[myDepositCurrency] <= Number(amount)
+      depositPrices.find((el) => el.currency === myDepositCurrency)[
+        "fiatAmountMinimum"
+      ] <= Number(amount)
     ) {
       setMyDepositAmount(Number(amount));
     }
-  }, []);
-
-  useEffect(() => {
-    Promise.all([
-      fetchDepositFiatCurrencies(),
-      fetchWithdrawalCurrencies(),
-    ]).then(([depositCurrencies, withdrawalCurrencies]) => {
-      setMyDepositCurrencies(depositCurrencies.sort());
-      setMyWithdrawalCurrencies(withdrawalCurrencies.sort());
-    });
   }, []);
 
   useEffect(() => {
@@ -126,18 +115,42 @@ export default function Converter({
 
   const updateConversionRate = () => {
     if (!myDepositCurrency || !myWithdrawalCurrency) return;
-    setConversionRateLoader(true);
-    convert(
+    const answer = convert(
       myDepositAmount,
       myWithdrawalCurrency,
       myDepositCurrency,
       discount
-    ).then((answer) => {
-      setMyWithdrawalAmount(answer.toFixed(2));
-      setExchangeRate((answer / myDepositAmount).toFixed(2));
-      setConversionRateLoader(false);
-    });
+    );
+    setMyWithdrawalAmount(answer.toFixed(2));
+    setExchangeRate((answer / myDepositAmount).toFixed(2));
   };
+  const convert = (
+    myDepositAmount,
+    myWithdrawalCurrency,
+    myDepositCurrency,
+    discount
+  ) => {
+    const { prices, fiatAmountMinimum } = depositPrices.find(
+      (el) => el.currency === myDepositCurrency
+    );
+    const multiplier = myDepositAmount / fiatAmountMinimum;
+    const parsedPrices = JSON.parse(JSON.stringify(prices));
+    const levels = Object.keys(parsedPrices).map((priceLvlKey) =>
+      parseFloat(priceLvlKey)
+    );
+    const closestLevel =
+      Object.keys(parsedPrices)[binaryClosestIdx(levels, multiplier)];
+    const priceKey = closestLevel;
+    const price = parsedPrices[priceKey];
+
+    const { value } = withdrawValues.find(
+      (el) => el.currency === myWithdrawalCurrency
+    );
+    const TOTAL_FEE = 0.06 - Number(discount);
+    const answer = (Number(myDepositAmount) * (1 - TOTAL_FEE) * value) / price;
+    return answer;
+  };
+
   return (
     <form id="form-send-money" onSubmit={submit}>
       <div className="mb-3 w-100 mx-auto">
@@ -151,13 +164,18 @@ export default function Converter({
             onChange={(e) => {
               if (Number(e.target.value) >= 0) {
                 if (
-                  Number(e.target.value) < depositMinimumsMap[myDepositCurrency]
+                  Number(e.target.value) <
+                  depositPrices.find((el) => el.currency === myDepositCurrency)[
+                    "fiatAmountMinimum"
+                  ]
                 ) {
                   setInvalid(true);
                 }
                 if (
                   Number(e.target.value) >=
-                  depositMinimumsMap[myDepositCurrency]
+                  depositPrices.find((el) => el.currency === myDepositCurrency)[
+                    "fiatAmountMinimum"
+                  ]
                 ) {
                   setInvalid(false);
                 }
@@ -196,50 +214,53 @@ export default function Converter({
       </div>
       <div className={`invalid-feedback ${invalid ? "d-block" : ""}`}>
         {"Minimum withdraw amount: "}
-        {depositMinimumsMap[myDepositCurrency]}
+        {
+          depositPrices.find((el) => el.currency === myDepositCurrency)[
+            "fiatAmountMinimum"
+          ]
+        }
       </div>
-      {formData?.flowType != "deposit" && (
-        <div className="mb-3 w-100 mx-auto">
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control"
-              data-bv-field="myWithdrawalAmount"
-              id="myWithdrawalAmount"
-              value={myWithdrawalAmount}
-              readOnly={true}
-              placeholder=""
-            />
 
-            <span className="input-group-text p-0 bg-white">
-              {!!myWithdrawalCurrency && (
-                <i
-                  className={`currency-flag currency-flag-${myWithdrawalCurrency.toLowerCase()} m-1 ms-3 border-0 rounded`}
-                ></i>
-              )}
-              <Form.Control
-                as={"select"}
-                id="myWithdrawalCurrency"
-                data-style="form-select bg-transparent"
-                data-container="body"
-                data-live-search="true"
-                className="selectpicker form-control bg-transparent  border-0 ps-1"
-                required={true}
-                value={myWithdrawalCurrency}
-                onChange={(e) => {
-                  handleChangeWithdrawCurrency(e.target.value);
-                }}
-              >
-                {myWithdrawalCurrencies.map((curr) => (
-                  <option key={curr} value={curr}>
-                    {curr}
-                  </option>
-                ))}
-              </Form.Control>
-            </span>
-          </div>
+      <div className="mb-3 w-100 mx-auto">
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control"
+            data-bv-field="myWithdrawalAmount"
+            id="myWithdrawalAmount"
+            value={myWithdrawalAmount}
+            readOnly={true}
+            placeholder=""
+          />
+
+          <span className="input-group-text p-0 bg-white">
+            {!!myWithdrawalCurrency && (
+              <i
+                className={`currency-flag currency-flag-${myWithdrawalCurrency.toLowerCase()} m-1 ms-3 border-0 rounded`}
+              ></i>
+            )}
+            <Form.Control
+              as={"select"}
+              id="myWithdrawalCurrency"
+              data-style="form-select bg-transparent"
+              data-container="body"
+              data-live-search="true"
+              className="selectpicker form-control bg-transparent  border-0 ps-1"
+              required={true}
+              value={myWithdrawalCurrency}
+              onChange={(e) => {
+                handleChangeWithdrawCurrency(e.target.value);
+              }}
+            >
+              {myWithdrawalCurrencies.map((curr) => (
+                <option key={curr} value={curr}>
+                  {curr}
+                </option>
+              ))}
+            </Form.Control>
+          </span>
         </div>
-      )}
+      </div>
 
       <div className="d-grid w-100 mx-auto">
         {incrementLevel ? (
@@ -268,7 +289,6 @@ export default function Converter({
                   fiatCurrency: myDepositCurrency,
                   withdrawalCurrency: myWithdrawalCurrency,
                   amount: myDepositAmount,
-                  flowType: "withdrawal",
                 },
               }}
               className={`btn btn-primary text-white ${
@@ -287,12 +307,7 @@ export default function Converter({
             </Link>
             <Link
               href={{
-                pathname: "/deposit",
-                query: {
-                  fiatCurrency: myDepositCurrency,
-                  amount: myDepositAmount,
-                  flowType: "deposit",
-                },
+                pathname: "/mybalance/view",
               }}
               className={`btn btn-outline-primary text-primary ${
                 invalid || conversionRateLoader ? "disabled" : ""
@@ -305,7 +320,7 @@ export default function Converter({
                   aria-hidden="true"
                 />
               ) : (
-                <p>{t("Deposit")}</p>
+                <p>{t("myDeposit.button")}</p>
               )}
             </Link>
           </>
