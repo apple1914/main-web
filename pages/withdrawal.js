@@ -6,7 +6,6 @@ import Footer from "../components/_App/Footer";
 import RedirectIfNotSignedIn from "../components/Common/RedirectIfNotSignedIn";
 import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
 import useAuthStore from "../signInLogic/auth";
 import { saveCustomEvent } from "../lib/userEvents";
 import {
