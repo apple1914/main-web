@@ -1,10 +1,10 @@
-export const analyticsSourceContext = ['utm_campaign']
+export const analyticsSourceContext = ["utm_campaign", "group"];
 
 export const cookieMappingContext = {
-  "fromCurrency":"fiatCurrency",
-  "toCurrency":"withdrawalCurrency",
-  "utm_campaign":"utm_campaign"
-}
+  fromCurrency: "fiatCurrency",
+  toCurrency: "withdrawalCurrency",
+  utm_campaign: "utm_campaign",
+};
 
-
-export const isWithdrawalsStopped = process.env.IS_WITHDRAWALS_PAUSED === 'true'
+export const isWithdrawalsStopped =
+  process.env.IS_WITHDRAWALS_PAUSED === "false";
