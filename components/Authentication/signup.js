@@ -9,7 +9,7 @@ import { useTranslation } from "next-i18next";
 import SocialSignIn from "./SocialSignIn";
 import { H } from "@highlight-run/next/client";
 
-const SignUp = ({ personalizationData, marketingDagta }) => {
+const SignUp = ({ personalizationData, marketingData }) => {
   const [user, authInProgress] = useAuthStore((state) => [
     state.user,
     state.authInProgress,
@@ -37,13 +37,13 @@ const SignUp = ({ personalizationData, marketingDagta }) => {
   const submitSignUpForm = async (e) => {
     e.preventDefault();
 
-    const miscData = marketingDagta;
+    const miscData = {};
 
-    // for (const key of analyticsSourceContext) {
-    //   const cookieName = key;
-    //   const data = getCookie(cookieName);
-    //   miscData[cookieName] = data;
-    // }
+    for (const key of analyticsSourceContext) {
+      const cookieName = key;
+      const data = getCookie(cookieName);
+      miscData[cookieName] = data;
+    }
 
     const { success, error, username } = await authSignUp(email, pwd, miscData);
     // alert(JSON.stringify(error))
@@ -118,7 +118,7 @@ const SignUp = ({ personalizationData, marketingDagta }) => {
                   <div className="col-12">
                     <SocialSignIn
                       personalizationData={personalizationData}
-                      marketingDagta={marketingDagta}
+                      marketingData={marketingData}
                     />
                   </div>
 

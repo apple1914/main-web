@@ -17,10 +17,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { setCookie } from "cookies-next";
 import { useSearchParams } from "next/navigation";
-import { binaryClosestIdx } from "../../utils/algos";
-
-const DEFAULT_WITHDRAWAL_CURRENCY = "PLN";
-const DEFAULT_DEPOSIT_CURRENCY = "USD";
+import { convert } from "../../utils/algos";
 
 export default function Converter({
   incrementLevel,
@@ -28,23 +25,31 @@ export default function Converter({
   formData,
   depositPrices,
   withdrawValues,
+  personalizationData,
 }) {
   const { t } = useTranslation("common");
   const [user, authInProgress] = useAuthStore((state) => [
     state.user,
     state.authInProgress,
   ]);
+  // console.log("HERE INSIDE CONVERTER!!!", depositPrices, withdrawValues);
 
   const [myDepositAmount, setMyDepositAmount] = useState(1000);
   const [myDepositCurrency, setMyDepositCurrency] = useState("USD");
   const [myWithdrawalAmount, setMyWithdrawalAmount] = useState("0");
-  const myDepositCurrencies = depositPrices.map((el) => el.currency);
-  const [myWithdrawalCurrency, setMyWithdrawalCurrency] = useState("PLN");
-  const myWithdrawalCurrencies = withdrawValues.map((el) => el.currency);
+
+  const INIT_WDRW_KAIDA = personalizationData?.kaida || "RONLPDE";
+  const [myWithdrawalCurrency, setMyWithdrawalCurrency] = useState(
+    INIT_WDRW_KAIDA.substring(2, INIT_WDRW_KAIDA.length - 2)
+      .split("")
+      .reverse()
+      .join("")
+  );
+  const myDepositCurrencies = ["USD"]; //depositPrices?.map((el) => el.currency);
+  const myWithdrawalCurrencies = ["RUB"]; //withdrawValues?.map((el) => el.currency);
   const [exchangeRate, setExchangeRate] = useState("1");
   const [invalid, setInvalid] = useState(false);
-  const router = useRouter();
-  const searchParams = useSearchParams();
+
   const [discount, setDiscount] = useState(0.04);
   const [conversionRateLoader, setConversionRateLoader] = useState(false);
 
@@ -69,34 +74,6 @@ export default function Converter({
   };
 
   useEffect(() => {
-    const withdrawalCurrency =
-      searchParams.get("withdrawalCurrency") ||
-      searchParams.get("toCurrency") ||
-      getCookie("withdrawalCurrency") ||
-      DEFAULT_WITHDRAWAL_CURRENCY;
-
-    setMyWithdrawalCurrency(withdrawalCurrency);
-
-    const depositCurrency =
-      searchParams.get("fiatCurrency") ||
-      searchParams.get("fromCurrency") ||
-      getCookie("fiatCurrency") ||
-      DEFAULT_DEPOSIT_CURRENCY;
-
-    setMyDepositCurrency(depositCurrency);
-
-    const amount = searchParams.get("amount");
-    if (
-      amount != null &&
-      depositPrices.find((el) => el.currency === myDepositCurrency)[
-        "fiatAmountMinimum"
-      ] <= Number(amount)
-    ) {
-      setMyDepositAmount(Number(amount));
-    }
-  }, []);
-
-  useEffect(() => {
     const timeout = setTimeout(() => {
       updateConversionRate();
     }, 500);
@@ -119,36 +96,12 @@ export default function Converter({
       myDepositAmount,
       myWithdrawalCurrency,
       myDepositCurrency,
-      discount
+      discount,
+      depositPrices,
+      withdrawValues
     );
     setMyWithdrawalAmount(answer.toFixed(2));
     setExchangeRate((answer / myDepositAmount).toFixed(2));
-  };
-  const convert = (
-    myDepositAmount,
-    myWithdrawalCurrency,
-    myDepositCurrency,
-    discount
-  ) => {
-    const { prices, fiatAmountMinimum } = depositPrices.find(
-      (el) => el.currency === myDepositCurrency
-    );
-    const multiplier = myDepositAmount / fiatAmountMinimum;
-    const parsedPrices = JSON.parse(JSON.stringify(prices));
-    const levels = Object.keys(parsedPrices).map((priceLvlKey) =>
-      parseFloat(priceLvlKey)
-    );
-    const closestLevel =
-      Object.keys(parsedPrices)[binaryClosestIdx(levels, multiplier)];
-    const priceKey = closestLevel;
-    const price = parsedPrices[priceKey];
-
-    const { value } = withdrawValues.find(
-      (el) => el.currency === myWithdrawalCurrency
-    );
-    const TOTAL_FEE = 0.06 - Number(discount);
-    const answer = (Number(myDepositAmount) * (1 - TOTAL_FEE) * value) / price;
-    return answer;
   };
 
   return (

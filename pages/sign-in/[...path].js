@@ -1,36 +1,33 @@
 import NavbarTwoFixed from "../../components/_App/NavbarTwoFixed";
 import Footer from "../../components/_App/Footer";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { decodeOptions } from "../../utils/pathShenanigans";
-import SignUpComponent from "../../components/Authentication/SignUp";
 
-const SignUp = (props) => {
-  const { personalizationData } = props;
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import SignInComponent from "../../components/Authentication/SignIn";
+
+const SignIn = ({ personalizationData }) => {
   return (
     <>
       <NavbarTwoFixed />
-
-      <SignUpComponent personalizationData={personalizationData} />
+      <SignInComponent personalizationData={personalizationData} />
 
       <Footer />
     </>
   );
 };
 
-export default SignUp;
+export default SignIn;
 
 export async function getStaticProps(context) {
   // extract the locale identifier from the URL
   const { locale } = context;
   const [kaida, from, amount] = context.params.path;
   const personalizationData = { kaida, from, amount };
-  // const options = decodeOptions(context.params.path);
 
   return {
     props: {
       // pass the translation props to the page component
       ...(await serverSideTranslations(locale)),
-      personalizationData: personalizationData,
+      personalizationData,
     },
   };
 }
