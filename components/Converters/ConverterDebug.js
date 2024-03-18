@@ -13,11 +13,11 @@ import React from "react";
 import { getCookie } from "cookies-next";
 import { getWithdrawals } from "../../backend/requests";
 import useAuthStore from "../../signInLogic/auth";
+import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { setCookie } from "cookies-next";
 import { useSearchParams } from "next/navigation";
 import { binaryClosestIdx } from "../../utils/algos";
-import { useRouter } from "next/router";
 
 const DEFAULT_WITHDRAWAL_CURRENCY = "PLN";
 const DEFAULT_DEPOSIT_CURRENCY = "USD";
@@ -30,7 +30,6 @@ export default function Converter({
   withdrawValues,
 }) {
   const { t } = useTranslation("common");
-  const router = useRouter();
   const [user, authInProgress] = useAuthStore((state) => [
     state.user,
     state.authInProgress,
@@ -44,6 +43,7 @@ export default function Converter({
   const myWithdrawalCurrencies = withdrawValues.map((el) => el.currency);
   const [exchangeRate, setExchangeRate] = useState("1");
   const [invalid, setInvalid] = useState(false);
+  const router = useRouter();
   const searchParams = useSearchParams();
   const [discount, setDiscount] = useState(0.04);
   const [conversionRateLoader, setConversionRateLoader] = useState(false);
@@ -69,34 +69,32 @@ export default function Converter({
   };
 
   useEffect(() => {
-    if (router.isReady) {
-      const withdrawalCurrency =
-        searchParams.get("withdrawalCurrency") ||
-        searchParams.get("toCurrency") ||
-        getCookie("withdrawalCurrency") ||
-        DEFAULT_WITHDRAWAL_CURRENCY;
+    const withdrawalCurrency =
+      searchParams.get("withdrawalCurrency") ||
+      searchParams.get("toCurrency") ||
+      getCookie("withdrawalCurrency") ||
+      DEFAULT_WITHDRAWAL_CURRENCY;
 
-      setMyWithdrawalCurrency(withdrawalCurrency);
+    setMyWithdrawalCurrency(withdrawalCurrency);
 
-      const depositCurrency =
-        searchParams.get("fiatCurrency") ||
-        searchParams.get("fromCurrency") ||
-        getCookie("fiatCurrency") ||
-        DEFAULT_DEPOSIT_CURRENCY;
+    const depositCurrency =
+      searchParams.get("fiatCurrency") ||
+      searchParams.get("fromCurrency") ||
+      getCookie("fiatCurrency") ||
+      DEFAULT_DEPOSIT_CURRENCY;
 
-      setMyDepositCurrency(depositCurrency);
+    setMyDepositCurrency(depositCurrency);
 
-      const amount = searchParams.get("amount");
-      if (
-        amount != null &&
-        depositPrices.find((el) => el.currency === myDepositCurrency)[
-          "fiatAmountMinimum"
-        ] <= Number(amount)
-      ) {
-        setMyDepositAmount(Number(amount));
-      }
+    const amount = searchParams.get("amount");
+    if (
+      amount != null &&
+      depositPrices.find((el) => el.currency === myDepositCurrency)[
+        "fiatAmountMinimum"
+      ] <= Number(amount)
+    ) {
+      setMyDepositAmount(Number(amount));
     }
-  }, [router.isReady]);
+  }, []);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
