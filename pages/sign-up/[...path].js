@@ -1,7 +1,7 @@
 import NavbarTwoFixed from "../../components/_App/NavbarTwoFixed";
 import Footer from "../../components/_App/Footer";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import SignUpComponent from "components/Authentication/SignUp";
+// import SignUpComponent from "components/Authentication/SignUp";
 
 const SignUp = (props) => {
   const { personalizationData } = props;
@@ -9,7 +9,7 @@ const SignUp = (props) => {
     <>
       <NavbarTwoFixed />
 
-      <SignUpComponent personalizationData={personalizationData} />
+      {/* <SignUpComponent personalizationData={personalizationData} /> */}
 
       <Footer />
     </>
