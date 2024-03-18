@@ -16,7 +16,7 @@ import {
 } from "../lib/currencies";
 
 const Index = (props) => {
-  const { depositPrices, withdrawValues, lng } = props;
+  const { depositPrices, withdrawValues } = props;
   return (
     <>
       <NavbarTwoFixed />
@@ -68,7 +68,6 @@ export async function getStaticProps(context) {
       ...(await serverSideTranslations(locale)),
       depositPrices: depositPrices,
       withdrawValues: withdrawValues,
-      lng: locale,
     },
   };
 }

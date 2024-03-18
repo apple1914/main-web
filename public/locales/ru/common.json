@@ -209,5 +209,6 @@
     "checkoutMyBalance.wdrwTitle":"Вывести деньги с депозита",
     "confirmWithdrawal.title":"Пожалуйста проверьте достоверность информации",
     "Your balance":"Ваш баланс",
-    "confirmWithdrawal.to":"куда"
+    "confirmWithdrawal.to":"куда",
+    "googleauth.cta":"Зайти через Google Аккаунт"
 }

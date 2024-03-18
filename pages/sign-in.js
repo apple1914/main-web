@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { H } from "@highlight-run/next/client";
-import SocialSignIn from "../components/Common/SocialSignIn";
+import SocialSignIn from "../components/Authentication/SocialSignIn";
 import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo";
 
 const SignIn = () => {
@@ -52,7 +52,7 @@ const SignIn = () => {
     } catch (e) {
       console.log(e);
     }
-    const flowType = searchParams.get("flowType") || "withdrawal";
+    const flowType = "withdrawal";
     router.push({ pathname: "/" + flowType, query: router.query });
   };
 
