@@ -21,7 +21,7 @@ import { useRouter } from "next/router";
 
 const DEFAULT_WITHDRAWAL_CURRENCY = "PLN";
 const DEFAULT_DEPOSIT_CURRENCY = "USD";
-
+const DEFAULT_DEPOSIT_AMOUNT = "100";
 export default function Converter({
   incrementLevel,
   setFormData,
@@ -36,7 +36,9 @@ export default function Converter({
     state.authInProgress,
   ]);
 
-  const [myDepositAmount, setMyDepositAmount] = useState(1000);
+  const [myDepositAmount, setMyDepositAmount] = useState(
+    Number(DEFAULT_DEPOSIT_AMOUNT)
+  );
   const [myDepositCurrency, setMyDepositCurrency] = useState("USD");
   const [myWithdrawalAmount, setMyWithdrawalAmount] = useState("0");
   const myDepositCurrencies = depositPrices.map((el) => el.currency);
@@ -61,7 +63,7 @@ export default function Converter({
 
   const handleChangeDepositCurrency = (value) => {
     setMyDepositCurrency(value);
-    setCookie("fiatCurrency", value);
+    setCookie("depositCurrency", value);
   };
   const handleChangeWithdrawCurrency = (value) => {
     setMyWithdrawalCurrency(value);
@@ -69,6 +71,7 @@ export default function Converter({
   };
 
   useEffect(() => {
+    //logically, it's never the case that you go to /withdrawal with converter query params which are useful, so only save cookie if changed by user
     if (router.isReady) {
       const withdrawalCurrency =
         searchParams.get("withdrawalCurrency") ||
@@ -79,14 +82,17 @@ export default function Converter({
       setMyWithdrawalCurrency(withdrawalCurrency);
 
       const depositCurrency =
-        searchParams.get("fiatCurrency") ||
+        searchParams.get("depositCurrency") ||
         searchParams.get("fromCurrency") ||
-        getCookie("fiatCurrency") ||
+        getCookie("depositCurrency") ||
         DEFAULT_DEPOSIT_CURRENCY;
 
       setMyDepositCurrency(depositCurrency);
 
-      const amount = searchParams.get("amount");
+      const amount =
+        searchParams.get("amount") ||
+        getCookie("amount") ||
+        DEFAULT_DEPOSIT_AMOUNT;
       if (
         amount != null &&
         depositPrices.find((el) => el.currency === myDepositCurrency)[

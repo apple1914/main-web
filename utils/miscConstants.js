@@ -1,9 +1,9 @@
-export const analyticsSourceContext = ["utm_campaign", "group"];
+export const usefulMarketingQueryParams = ["utm_campaign", "group"];
 
-export const cookieMappingContext = {
-  fromCurrency: "fiatCurrency",
+export const converterPresetsQueryToCookieMap = {
+  amount: "amount",
+  fromCurrency: "depositCurrency",
   toCurrency: "withdrawalCurrency",
-  utm_campaign: "utm_campaign",
 };
 
 export const isWithdrawalsStopped =

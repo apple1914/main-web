@@ -6,10 +6,11 @@ import Footer from "../components/_App/Footer";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import useAuthStore from "../signInLogic/auth";
-import { analyticsSourceContext } from "../utils/miscConstants";
+import { usefulMarketingQueryParams } from "../utils/miscConstants";
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo";
+import StoreConverterPresetsFromQuery from "../components/Common/StoreConverterPresetsFromQuery";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import SocialSignIn from "../components/Common/SocialSignIn";
@@ -45,7 +46,7 @@ const SignUp = () => {
 
     const miscData = {};
 
-    for (const key of analyticsSourceContext) {
+    for (const key of usefulMarketingQueryParams) {
       const cookieName = key;
       const data = getCookie(cookieName);
       miscData[cookieName] = data;
@@ -149,9 +150,9 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-
-      <Footer />
       <CaptureMarketingInfo />
+      <StoreConverterPresetsFromQuery />
+      <Footer />
     </>
   );
 };
