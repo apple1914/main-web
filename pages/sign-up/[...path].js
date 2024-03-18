@@ -9,7 +9,7 @@ const SignUp = (props) => {
     <>
       <NavbarTwoFixed />
 
-      {/* <SignUpComponent personalizationData={personalizationData} /> */}
+      <SignUpComponentV2 personalizationData={personalizationData} />
 
       <Footer />
     </>
