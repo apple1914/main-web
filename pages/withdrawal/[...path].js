@@ -30,9 +30,7 @@ function Withdrawal(props) {
     <>
       <NavbarTwoFixed />
       {router.isFallback ? (
-        <div className="d-flex justify-content-center">
-          <div className="spinner-border" role="status"></div>
-        </div>
+        <div>Loading...</div>
       ) : (
         <WithdrawalMain
           lng={lng}
@@ -45,7 +43,7 @@ function Withdrawal(props) {
 
       <Footer />
       {/* <CaptureMarketingInfo /> */}
-      <RedirectIfNotSignedIn />
+      {/* <RedirectIfNotSignedIn /> */}
     </>
   );
 }

@@ -12,7 +12,7 @@ export default function middleware(request) {
   const oldPath = request.nextUrl.pathname;
   const newPath = oldPath + `${kaida}/${fromCurrency}/${amount}`;
   console.log("old path!:", oldPath);
-  console.log("MIIIDDDLEEEEWARE TRIIIIG", searchParams, newPath);
+  console.log("MIIIDDDLEEEEWARE TRIIIIG", newPath);
 
   return NextResponse.rewrite(new URL(newPath, request.nextUrl));
   // // }
