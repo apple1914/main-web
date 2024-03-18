@@ -4,11 +4,14 @@ import { NextResponse } from "next/server";
 // This function can be marked `async` if using `await` inside
 export default function middleware(request) {
   // if (request.nextUrl.pathname.includes("/sign-up") === "/sign-up") {
+
   const searchParams = request.nextUrl.searchParams;
   const kaida = searchParams.get("kaida") || "BANLPOR";
-  const from = searchParams.get("from") || "USD";
+  const fromCurrency = searchParams.get("fromCurrency") || "USD";
   const amount = searchParams.get("amount") || "100";
-  const newPath = `/sign-up/${kaida}/${utm_campaign}/${group}/${from}/${amount}`;
+  const oldPath = request.nextUrl.pathname;
+  const newPath = oldPath + `${kaida}/${fromCurrency}/${amount}`;
+  console.log("old path!:", oldPath);
   console.log("MIIIDDDLEEEEWARE TRIIIIG", searchParams, newPath);
 
   return NextResponse.rewrite(new URL(newPath, request.nextUrl));

@@ -1,7 +1,6 @@
 import NavbarTwoFixed from "../../components/_App/NavbarTwoFixed";
 import Footer from "../../components/_App/Footer";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { decodeOptions } from "../../utils/pathShenanigans";
 import SignUpComponent from "../../components/Authentication/SignUp";
 
 const SignUp = (props) => {
@@ -22,8 +21,8 @@ export default SignUp;
 export async function getStaticProps(context) {
   // extract the locale identifier from the URL
   const { locale } = context;
-  const [kaida, from, amount] = context.params.path;
-  const personalizationData = { kaida, from, amount };
+  const [kaida, fromCurrency, amount] = context.params.path;
+  const personalizationData = { kaida, fromCurrency, amount };
   // const options = decodeOptions(context.params.path);
 
   return {

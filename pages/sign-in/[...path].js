@@ -20,8 +20,8 @@ export default SignIn;
 export async function getStaticProps(context) {
   // extract the locale identifier from the URL
   const { locale } = context;
-  const [kaida, from, amount] = context.params.path;
-  const personalizationData = { kaida, from, amount };
+  const [kaida, fromCurrency, amount] = context.params.path;
+  const personalizationData = { kaida, fromCurrency, amount };
 
   return {
     props: {

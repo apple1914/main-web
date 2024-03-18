@@ -58,8 +58,8 @@ export async function getStaticProps(context) {
   const depositPrices = await getDepositCurrenciesAndRates();
   const withdrawValues = await getWithdrawCurrenciesAndRates();
 
-  const [kaida, from, amount] = context.params.path;
-  const personalizationData = { kaida, from, amount };
+  const [kaida, fromCurrency, amount] = context.params.path;
+  const personalizationData = { kaida, fromCurrency, amount };
 
   return {
     props: {
