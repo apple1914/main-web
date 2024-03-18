@@ -7,4 +7,4 @@ export const converterPresetsQueryToCookieMap = {
 };
 
 export const isWithdrawalsStopped =
-  process.env.IS_WITHDRAWALS_PAUSED === "false";
+  process.env.IS_WITHDRAWALS_PAUSED === "true";
