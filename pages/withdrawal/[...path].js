@@ -25,21 +25,21 @@ function Withdrawal(props) {
       saveCustomEvent({ eventName, username: user.uid });
     }
   };
+  if (router.isFallback) {
+    return <></>;
+  }
 
   return (
     <>
       <NavbarTwoFixed />
-      {router.isFallback ? (
-        <div>Loading...</div>
-      ) : (
-        <WithdrawalMain
-          lng={lng}
-          handleSaveCustomEvent={handleSaveCustomEvent}
-          depositPrices={depositPrices}
-          withdrawValues={withdrawValues}
-          personalizationData={personalizationData}
-        />
-      )}
+
+      <WithdrawalMain
+        lng={lng}
+        handleSaveCustomEvent={handleSaveCustomEvent}
+        depositPrices={depositPrices}
+        withdrawValues={withdrawValues}
+        personalizationData={personalizationData}
+      />
 
       <Footer />
       {/* <CaptureMarketingInfo /> */}
