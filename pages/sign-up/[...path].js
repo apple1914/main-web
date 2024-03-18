@@ -37,6 +37,7 @@ export async function getStaticProps(context) {
 export function getStaticPaths() {
   return {
     paths: [],
-    fallback: "blocking",
+    fallback: true,
   };
 } //this fallback=true is very important. for our use case, it effectively turns this into SSR. but make sure to first prerender some skeleton
+//don't use falback: 'blocking' that effectively turns this into SSR, which is too slow to compile so it will always time out
