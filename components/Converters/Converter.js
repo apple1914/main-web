@@ -294,7 +294,7 @@ export default function Converter({
               href={{
                 pathname: "/withdrawal",
                 query: {
-                  fiatCurrency: myDepositCurrency,
+                  depositCurrency: myDepositCurrency,
                   withdrawalCurrency: myWithdrawalCurrency,
                   amount: myDepositAmount,
                 },
