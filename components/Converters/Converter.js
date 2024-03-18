@@ -13,15 +13,15 @@ import React from "react";
 import { getCookie } from "cookies-next";
 import { getWithdrawals } from "../../backend/requests";
 import useAuthStore from "../../signInLogic/auth";
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { setCookie } from "cookies-next";
 import { useSearchParams } from "next/navigation";
 import { binaryClosestIdx } from "../../utils/algos";
+import { useRouter } from "next/router";
 
 const DEFAULT_WITHDRAWAL_CURRENCY = "PLN";
 const DEFAULT_DEPOSIT_CURRENCY = "USD";
-
+const DEFAULT_DEPOSIT_AMOUNT = "100";
 export default function Converter({
   incrementLevel,
   setFormData,
@@ -30,12 +30,15 @@ export default function Converter({
   withdrawValues,
 }) {
   const { t } = useTranslation("common");
+  const router = useRouter();
   const [user, authInProgress] = useAuthStore((state) => [
     state.user,
     state.authInProgress,
   ]);
 
-  const [myDepositAmount, setMyDepositAmount] = useState(1000);
+  const [myDepositAmount, setMyDepositAmount] = useState(
+    Number(DEFAULT_DEPOSIT_AMOUNT)
+  );
   const [myDepositCurrency, setMyDepositCurrency] = useState("USD");
   const [myWithdrawalAmount, setMyWithdrawalAmount] = useState("0");
   const myDepositCurrencies = depositPrices.map((el) => el.currency);
@@ -43,7 +46,6 @@ export default function Converter({
   const myWithdrawalCurrencies = withdrawValues.map((el) => el.currency);
   const [exchangeRate, setExchangeRate] = useState("1");
   const [invalid, setInvalid] = useState(false);
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [discount, setDiscount] = useState(0.04);
   const [conversionRateLoader, setConversionRateLoader] = useState(false);
@@ -61,7 +63,7 @@ export default function Converter({
 
   const handleChangeDepositCurrency = (value) => {
     setMyDepositCurrency(value);
-    setCookie("fiatCurrency", value);
+    setCookie("depositCurrency", value);
   };
   const handleChangeWithdrawCurrency = (value) => {
     setMyWithdrawalCurrency(value);
@@ -69,32 +71,38 @@ export default function Converter({
   };
 
   useEffect(() => {
-    const withdrawalCurrency =
-      searchParams.get("withdrawalCurrency") ||
-      searchParams.get("toCurrency") ||
-      getCookie("withdrawalCurrency") ||
-      DEFAULT_WITHDRAWAL_CURRENCY;
+    //logically, it's never the case that you go to /withdrawal with converter query params which are useful, so only save cookie if changed by user
+    if (router.isReady) {
+      const withdrawalCurrency =
+        searchParams.get("withdrawalCurrency") ||
+        searchParams.get("toCurrency") ||
+        getCookie("withdrawalCurrency") ||
+        DEFAULT_WITHDRAWAL_CURRENCY;
 
-    setMyWithdrawalCurrency(withdrawalCurrency);
+      setMyWithdrawalCurrency(withdrawalCurrency);
 
-    const depositCurrency =
-      searchParams.get("fiatCurrency") ||
-      searchParams.get("fromCurrency") ||
-      getCookie("fiatCurrency") ||
-      DEFAULT_DEPOSIT_CURRENCY;
+      const depositCurrency =
+        searchParams.get("depositCurrency") ||
+        searchParams.get("fromCurrency") ||
+        getCookie("depositCurrency") ||
+        DEFAULT_DEPOSIT_CURRENCY;
 
-    setMyDepositCurrency(depositCurrency);
+      setMyDepositCurrency(depositCurrency);
 
-    const amount = searchParams.get("amount");
-    if (
-      amount != null &&
-      depositPrices.find((el) => el.currency === myDepositCurrency)[
-        "fiatAmountMinimum"
-      ] <= Number(amount)
-    ) {
-      setMyDepositAmount(Number(amount));
+      const amount =
+        searchParams.get("amount") ||
+        getCookie("amount") ||
+        DEFAULT_DEPOSIT_AMOUNT;
+      if (
+        amount != null &&
+        depositPrices.find((el) => el.currency === myDepositCurrency)[
+          "fiatAmountMinimum"
+        ] <= Number(amount)
+      ) {
+        setMyDepositAmount(Number(amount));
+      }
     }
-  }, []);
+  }, [router.isReady]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -286,7 +294,7 @@ export default function Converter({
               href={{
                 pathname: "/withdrawal",
                 query: {
-                  fiatCurrency: myDepositCurrency,
+                  depositCurrency: myDepositCurrency,
                   withdrawalCurrency: myWithdrawalCurrency,
                   amount: myDepositAmount,
                 },

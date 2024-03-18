@@ -1,7 +1,7 @@
 import useAuthStore from "../../signInLogic/auth";
 import { getCookie } from "cookies-next";
 import Image from "next/image";
-import { analyticsSourceContext } from '../../utils/miscConstants';
+import { usefulMarketingQueryParams } from "../../utils/miscConstants";
 
 export default function SocialSignIn() {
   const [authSignInWithGmail] = useAuthStore((state) => [
@@ -11,15 +11,13 @@ export default function SocialSignIn() {
   const getAnalyticsData = async () => {
     const miscData = {};
 
-    for (const key of analyticsSourceContext) {
-      const cookieName =
-      key
+    for (const key of usefulMarketingQueryParams) {
+      const cookieName = key;
       const data = getCookie(cookieName);
       miscData[cookieName] = data;
     }
-    return miscData
+    return miscData;
   };
-
 
   return (
     <>
@@ -39,7 +37,6 @@ export default function SocialSignIn() {
           />
           Google
         </button>
-       
       </div>
     </>
   );

@@ -14,6 +14,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { H } from "@highlight-run/next/client";
 import SocialSignIn from "../components/Common/SocialSignIn";
 import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo";
+import StoreConverterPresetsFromQuery from "../components/Common/StoreConverterPresetsFromQuery";
 
 const SignIn = () => {
   const [user, authInProgress] = useAuthStore((state) => [
@@ -131,7 +132,7 @@ const SignIn = () => {
         </div>
       </div>
       <CaptureMarketingInfo />
-
+      <StoreConverterPresetsFromQuery />
       <Footer />
     </>
   );
