@@ -1,7 +1,7 @@
 import NavbarTwoFixed from "../../components/_App/NavbarTwoFixed";
 import Footer from "../../components/_App/Footer";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import SignInComponent from "../../components/Authentication/SignIn";
+import SignUpComponentV2 from "../../components/Authentication/SignUpV2";
 
 const SignUp = (props) => {
   const { personalizationData } = props;
