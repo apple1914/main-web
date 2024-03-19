@@ -47,7 +47,7 @@ export default function Converter({
   const [exchangeRate, setExchangeRate] = useState("1");
   const [invalid, setInvalid] = useState(false);
   const searchParams = useSearchParams();
-  const [discount, setDiscount] = useState(0.04);
+  const [discount, setDiscount] = useState(0.0);
   const [conversionRateLoader, setConversionRateLoader] = useState(false);
 
   const submit = (e) => {
@@ -115,7 +115,7 @@ export default function Converter({
     if (!!user & !authInProgress) {
       getWithdrawals().then((withdrawals) => {
         if (!!withdrawals && withdrawals.length > 0) {
-          setDiscount(0);
+          setDiscount(0.0);
         }
       });
     }
