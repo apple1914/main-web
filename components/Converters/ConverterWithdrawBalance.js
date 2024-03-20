@@ -1,5 +1,4 @@
 "use client";
-import depositMinimumsMap from "../../utils/depositMinimums.json";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 
@@ -31,10 +30,8 @@ export default function Converter({ incrementLevel, setFormData, formData }) {
       setWdrwAmount(0.0);
       return;
     }
-    if (wdrwAmount < depositMinimumsMap["USD"]) {
-      toast.error(
-        "Minimum for withdrawal: " + depositMinimumsMap["USD"].toFixed(2)
-      );
+    if (wdrwAmount < 4.9) {
+      toast.error("Minimum for withdrawal: $5.0");
       setWdrwAmount(0.0);
       return;
     }
