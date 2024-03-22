@@ -156,6 +156,18 @@ export default function Converter({
     );
     const TOTAL_FEE = 0.06 - Number(discount);
     const answer = (Number(myDepositAmount) * (1 - TOTAL_FEE) * value) / price;
+    console.log("here at calibrating the calculator", {
+      myDepositAmount,
+      fiatAmountMinimum,
+      multiplier,
+      parsedPrices,
+      priceKey,
+      price,
+      value,
+      discount,
+      TOTAL_FEE,
+      answer,
+    });
     return answer;
   };
 
