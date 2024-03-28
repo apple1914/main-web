@@ -314,7 +314,7 @@ export default function Converter({
                 <p>{t("Withdrawal")}</p>
               )}
             </Link>
-            <Link
+            {/* <Link
               href={{
                 pathname: "/mybalance/view",
               }}
@@ -331,7 +331,7 @@ export default function Converter({
               ) : (
                 <p>{t("myDeposit.button")}</p>
               )}
-            </Link>
+            </Link> */}
           </>
         )}
       </div>
