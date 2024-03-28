@@ -156,6 +156,7 @@ export default function Converter({
     );
     const TOTAL_FEE = 0.06 - Number(discount);
     const answer = (Number(myDepositAmount) * (1 - TOTAL_FEE) * value) / price;
+
     return answer;
   };
 
