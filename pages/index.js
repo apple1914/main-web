@@ -6,7 +6,7 @@ import Services from "../components/HomeTwo/Services";
 import OffersArea from "../components/Common/OffersArea";
 import WhyChooseUs from "../components/HomeTwo/WhyChooseUs";
 import FunFactsStyleTwo from "../components/Common/FunFactsStyleTwo";
-
+import { getOnDutyCustomerSupportNumber } from "../lib/customerSupport";
 import Footer from "../components/_App/Footer";
 import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -16,7 +16,8 @@ import {
 } from "../lib/currencies";
 
 const Index = (props) => {
-  const { depositPrices, withdrawValues, lng } = props;
+  const { depositPrices, withdrawValues, lng, customerSupportPhoneNumber } =
+    props;
   return (
     <>
       <NavbarTwoFixed />
@@ -48,7 +49,7 @@ const Index = (props) => {
                 <ContactWithUs />
             </div> */}
 
-      <Footer />
+      <Footer customerSupportPhoneNumber={customerSupportPhoneNumber} />
       <CaptureMarketingInfo />
     </>
   );
@@ -61,6 +62,7 @@ export async function getStaticProps(context) {
   const { locale } = context;
   const depositPrices = await getDepositCurrenciesAndRates();
   const withdrawValues = await getWithdrawCurrenciesAndRates();
+  const customerSupportPhoneNumber = await getOnDutyCustomerSupportNumber();
 
   return {
     props: {
@@ -69,6 +71,8 @@ export async function getStaticProps(context) {
       depositPrices: depositPrices,
       withdrawValues: withdrawValues,
       lng: locale,
+      customerSupportPhoneNumber: customerSupportPhoneNumber,
     },
+    revalidate: 60,
   };
 }
