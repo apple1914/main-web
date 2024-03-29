@@ -8,7 +8,7 @@ import Footer from "../components/_App/Footer";
 import WhatsappButton from "../components/Common/WhatsappButton";
 import { getOnDutyCustomerSupportNumber } from "../lib/customerSupport";
 const Failure = (props) => {
-  const { customerSupportPhoneNumber } = customerSupportPhoneNumber;
+  const { customerSupportPhoneNumber } = props;
   return (
     <>
       <NavbarTwoFixed />
