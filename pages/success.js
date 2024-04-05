@@ -2,7 +2,7 @@
 
 import React from "react";
 import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
-import PaymentStatusComponent from "../components/Common/PaymentStatusComponent";
+import SuccessScreenMain from "../components/Status/SuccessScreenMain";
 import Footer from "../components/_App/Footer";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"; //
 import WhatsappButton from "../components/Common/WhatsappButton";
@@ -14,7 +14,7 @@ const Success = (props) => {
   return (
     <>
       <NavbarTwoFixed />
-      <PaymentStatusComponent isSuccess={true} />
+      <SuccessScreenMain />
       <WhatsappButton
         isMinifiedIcon={true}
         phoneNumber={customerSupportPhoneNumber}
