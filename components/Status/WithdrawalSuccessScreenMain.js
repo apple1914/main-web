@@ -28,7 +28,7 @@ export default function WithdrawalSuccessScreenMain() {
       <Row>
         <Col xs={3} md={4}></Col>
         <Col xs={6} md={4}>
-          <div className="container mt-5 border border-primary rounded pb-5">
+          <div className="container mt-5 shadow rounded pb-5">
             <div className="d-flex justify-content-center">
               <div>
                 <Image
