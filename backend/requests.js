@@ -332,3 +332,19 @@ export const lookupWithdrawalAddressById = async ({ withdrawalAddressId }) => {
     .catch((err) => console.log(err));
   return answer;
 };
+
+export const fetchWithdrawalTrackingInfo = async ({ withdrawalId }) => {
+  return axios
+    .get(`/api/fetchwithdrawaltrackinginfo?withdrawalId=${withdrawalId}`)
+    .then((res) => {
+      return res.data;
+    });
+};
+
+export const getOnDutyCustomerSupportNumber = async () => {
+  const answer = await axios
+    .get(`/api/getondutycustomersupportnumber`)
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+  return answer.toString();
+};

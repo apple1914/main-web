@@ -18,6 +18,9 @@ const WhatsappButton = ({ isMinifiedIcon, phoneNumber }) => {
     const waUrl = `${baseUrl}/${phoneNumber}`;
     window.open(waUrl);
   };
+  if (!phoneNumber) {
+    return <></>;
+  }
   if (isMinifiedIcon === false) {
     return (
       <button
@@ -39,7 +42,7 @@ const WhatsappButton = ({ isMinifiedIcon, phoneNumber }) => {
     <div className="fixed-bottom pb-5">
       <button
         onClick={() => handleClickChat()}
-        className="bg-white rounded my-3 mx-3 justify-content-end"
+        className="bg-white rounded shadow my-3 mx-3 justify-content-end"
       >
         <FontAwesomeIcon
           icon={faWhatsapp}
