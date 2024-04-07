@@ -10,19 +10,21 @@ export default function SuccessInitializingWithdraw({
   const { t } = useTranslation("common");
   return (
     <div className="mx-auto px-2">
-      <div className="text-muted text-decoration-underline">Summary</div>
+      <div className="text-muted border-bottom">Summary</div>
 
       <Row>
         <Col className="text-start">Вывод на:</Col>
         <Col className="text-end">{nickname}</Col>
       </Row>
       <Row>
-        <Col className="text-start">Сумма ($):</Col>
+        <Col className="text-start">Сумма:</Col>
         <Col className="text-end">${usdtAmount}</Col>
       </Row>
       <Row>
-        <Col className="text-start">Статус:</Col>
-        <Col className="text-end">
+        <Col md={6} xs={4} className="text-start">
+          Статус:
+        </Col>
+        <Col md={6} xs={8} className="text-end text-decoration-underline">
           {tusti === true ? "Доставленно" : "Обрабатывается"}
         </Col>
       </Row>

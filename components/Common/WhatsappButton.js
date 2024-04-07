@@ -34,7 +34,6 @@ const WhatsappButton = ({ isMinifiedIcon, phoneNumber }) => {
   //FUTURE IMPROVEMENT FOR DESKTOP:
   //if on desktop, open a modal, with messsage saying to contact our customer support via whatsapp:
   //scan this QR code from your phone
-  console.log("tttpe", typeof phoneNumber);
   if (phoneNumber.includes("0364")) {
     return <></>;
   }
@@ -43,7 +42,7 @@ const WhatsappButton = ({ isMinifiedIcon, phoneNumber }) => {
     <div className="fixed-bottom pb-5">
       <button
         onClick={() => handleClickChat()}
-        className="bg-white rounded my-3 mx-3 justify-content-end"
+        className="bg-white rounded shadow my-3 mx-3 justify-content-end"
       >
         <FontAwesomeIcon
           icon={faWhatsapp}

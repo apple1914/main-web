@@ -337,7 +337,6 @@ export const fetchWithdrawalTrackingInfo = async ({ withdrawalId }) => {
   return axios
     .get(`/api/fetchwithdrawaltrackinginfo?withdrawalId=${withdrawalId}`)
     .then((res) => {
-      console.log("GOT RES AXIOS " + JSON.stringify(res.data));
       return res.data;
     });
 };

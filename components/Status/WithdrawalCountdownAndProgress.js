@@ -69,9 +69,11 @@ export default function WithdrawalCountdownAndProgress() {
   }, [loading, deadline]);
 
   useEffect(() => {
-    if (timeLeft <= 0 && tusti === false) {
-      setIsDeleayed(true);
-    }
+    if (!timeLeft) return;
+    if (timeLeft > 0) return;
+    if (tusti === true) return;
+    console.log("WOAH WOAH WOAH");
+    setIsDeleayed(true);
   }, [timeLeft]);
   //time = deadline - date.now()
   const handleSetTimeLeft = () => {
@@ -80,6 +82,10 @@ export default function WithdrawalCountdownAndProgress() {
     }
     const tsNow = Date.now();
     const newTimeLeft = deadline - tsNow;
+    // console.log(
+    //   "here the math is ",
+    //   JSON.stringify({ newTimeLeft, deadline, tsNow })
+    // );
     setTimeLeft(newTimeLeft);
     const newMinutesLeft = Math.floor((Math.max(newTimeLeft, 0) / MINUTE) % 60);
     const newSecondsLeft = Math.floor((Math.max(newTimeLeft, 0) / SECOND) % 60);
@@ -90,7 +96,9 @@ export default function WithdrawalCountdownAndProgress() {
   return (
     <>
       <div>
-        <div className="row border-top" role="timer">
+        <Summary nickname={nickname} tusti={tusti} usdtAmount={usdtAmount} />
+        <div className="text-start px-2 pt-3">Время ожидания:</div>
+        <div className="row border-top border-bottom" role="timer">
           <div className="col-6 ">
             <div className="box text-center py-3">
               <p id="minute">
@@ -109,7 +117,7 @@ export default function WithdrawalCountdownAndProgress() {
           </div>
         </div>
       </div>
-      <Summary nickname={nickname} tusti={tusti} usdtAmount={usdtAmount} />
+
       {isDelayed && <Apology />}
     </>
   );

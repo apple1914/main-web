@@ -26,8 +26,8 @@ export default function WithdrawalSuccessScreenMain() {
   return (
     <div className="content py-4 mt-5">
       <Row>
-        <Col xs={3} md={4}></Col>
-        <Col xs={6} md={4}>
+        <Col xs={1} md={4}></Col>
+        <Col xs={10} md={4}>
           <div className="container mt-5 shadow rounded pb-5">
             <div className="d-flex justify-content-center">
               <div>
@@ -46,7 +46,7 @@ export default function WithdrawalSuccessScreenMain() {
             <WithdrawalCountdownAndProgress />
           </div>
         </Col>
-        <Col xs={3} md={4}></Col>
+        <Col xs={1} md={4}></Col>
       </Row>
       <div className="pt-5 mb-5">
         <Leveler level={3} />
