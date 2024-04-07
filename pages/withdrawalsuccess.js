@@ -21,15 +21,15 @@ function WithdrawalSuccess({ customerSupportPhoneNumber }) {
 
   return (
     <>
-      {/* <NavbarTwoFixed /> */}
+      <NavbarTwoFixed />
       <WithdrawalSuccessScreenMain />
-      {/* {!!customerSupportPhoneNumber && (
+      {!!customerSupportPhoneNumber && (
         <WhatsappButton
           isMinifiedIcon={true}
           phoneNumber={customerSupportPhoneNumber}
         />
-      )} */}
-      {/* <Footer /> */}
+      )}
+      <Footer />
     </>
   );
 }

@@ -2,7 +2,8 @@ import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import { fetchWithdrawalTrackingInfo } from "../../backend/requests";
 import { useSearchParams } from "next/navigation";
-
+import Summary from "./Summary";
+import Apology from "./Apology";
 const SECOND = 1000;
 const MINUTE = SECOND * 60;
 
@@ -25,7 +26,9 @@ export default function WithdrawalCountdownAndProgress() {
   const [timeLeft, setTimeLeft] = useState(null);
   const [minutesLeft, setMinutesLeft] = useState(null);
   const [secondsLeft, setSecondsLeft] = useState(null);
-
+  const [nickname, setNickname] = useState("");
+  const [usdtAmount, setUsdtAmount] = useState(null);
+  const [isDelayed, setIsDeleayed] = useState(false);
   const refreshWithdrawalInfo = () => {
     const withdrawalId = searchParams.get("withdrawalId");
     if (!withdrawalId) return;
@@ -42,6 +45,8 @@ export default function WithdrawalCountdownAndProgress() {
         const { createdAt } = data;
         const newDeadline = 1000 * (createdAt.seconds + 15 * 60);
         setDeadline(newDeadline);
+        setNickname(data.withdrawalAddress.nickname);
+        setUsdtAmount(data.usdtAmount);
         setLoading(false);
       })
       .catch((err) => {
@@ -62,6 +67,12 @@ export default function WithdrawalCountdownAndProgress() {
     const interval = setInterval(() => handleSetTimeLeft(), 1000);
     return () => clearInterval(interval);
   }, [loading, deadline]);
+
+  useEffect(() => {
+    if (timeLeft <= 0 && tusti === false) {
+      setIsDeleayed(true);
+    }
+  }, [timeLeft]);
   //time = deadline - date.now()
   const handleSetTimeLeft = () => {
     if (loading) {
@@ -77,38 +88,30 @@ export default function WithdrawalCountdownAndProgress() {
   };
 
   return (
-    <div>
-      {/* <div className="progress">
-        <div
-          className="progress-bar progress-bar-striped progress-bar-animated"
-          role="progressbar"
-          aria-valuenow={100 - 100 * Math.max(timeLeft / (15 * 60 * 1000), 0)}
-          aria-valuemin="0"
-          aria-valuemax="100"
-        ></div>
-      </div> */}
-      <div
-        className="row w-25 mx-auto border rounded border-primary"
-        role="timer"
-      >
-        <div className="col-6 ">
-          <div className="box text-center py-3">
-            <p id="minute">
-              {minutesLeft} {"Minutes"}
-              {/* {timeLeft} {deadline} */}
-            </p>
+    <>
+      <div>
+        <div className="row border-top" role="timer">
+          <div className="col-6 ">
+            <div className="box text-center py-3">
+              <p id="minute">
+                {minutesLeft} {"Minutes"}
+                {/* {timeLeft} {deadline} */}
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="col-6 ">
-          <div className="box text-center py-3">
-            <p id="second">
-              {secondsLeft} {"Seconds"}
-              {/* {timeLeft} */}
-            </p>
+          <div className="col-6 ">
+            <div className="box text-center py-3">
+              <p id="second">
+                {secondsLeft} {"Seconds"}
+                {/* {timeLeft} */}
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Summary nickname={nickname} tusti={tusti} usdtAmount={usdtAmount} />
+      {isDelayed && <Apology />}
+    </>
   );
 }
 

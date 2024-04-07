@@ -2,8 +2,10 @@
 import Leveler from "../Common/Leveler";
 import { useTranslation } from "next-i18next";
 import WithdrawalCountdownAndProgress from "./WithdrawalCountdownAndProgress";
-import SuccessInitializingWithdraw from "./SuccessInitializingWithdraw";
-import SuccessFinishedWithdrawal from "./SuccessFinishedWithdrawal";
+
+import Image from "next/image";
+import { Col, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
 
 // NOTE! you DONT need the withdrawal/deposit schema changes in order to finish this!
 // for this tracker to be finished, all you need is just a standalone /withdrawal/:withdrawalId lookup object
@@ -23,16 +25,31 @@ export default function WithdrawalSuccessScreenMain() {
 
   return (
     <div className="content py-4 mt-5">
-      <div className="container mt-5">
-        <WithdrawalCountdownAndProgress />
-        {/* {tusti === false ? (
-          <SuccessInitializingWithdraw />
-        ) : (
-          <SuccessFinishedWithdrawal />
-        )} */}
-        <div className="pt-5 mb-5">
-          <Leveler level={3} />
-        </div>
+      <Row>
+        <Col xs={3} md={4}></Col>
+        <Col xs={6} md={4}>
+          <div className="container mt-5 border border-primary rounded pb-5">
+            <div className="d-flex justify-content-center">
+              <div>
+                <Image
+                  src="/images/success/airplane.jpg"
+                  alt="Image"
+                  width={300}
+                  height={100}
+                  // fill={true}
+                />
+                {/* <div className="about-img-2">
+              <img src="/images/about-img-2.jpg" alt="Image" />
+            </div> */}
+              </div>
+            </div>
+            <WithdrawalCountdownAndProgress />
+          </div>
+        </Col>
+        <Col xs={3} md={4}></Col>
+      </Row>
+      <div className="pt-5 mb-5">
+        <Leveler level={3} />
       </div>
     </div>
   );
