@@ -18,6 +18,9 @@ const WhatsappButton = ({ isMinifiedIcon, phoneNumber }) => {
     const waUrl = `${baseUrl}/${phoneNumber}`;
     window.open(waUrl);
   };
+  if (!phoneNumber) {
+    return <></>;
+  }
   if (isMinifiedIcon === false) {
     return (
       <button
@@ -31,6 +34,7 @@ const WhatsappButton = ({ isMinifiedIcon, phoneNumber }) => {
   //FUTURE IMPROVEMENT FOR DESKTOP:
   //if on desktop, open a modal, with messsage saying to contact our customer support via whatsapp:
   //scan this QR code from your phone
+  console.log("tttpe", typeof phoneNumber);
   if (phoneNumber.includes("0364")) {
     return <></>;
   }

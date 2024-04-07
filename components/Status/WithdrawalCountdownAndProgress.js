@@ -1,52 +1,109 @@
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
+import { fetchWithdrawalTrackingInfo } from "../../backend/requests";
+import { useSearchParams } from "next/navigation";
+
 const SECOND = 1000;
 const MINUTE = SECOND * 60;
 
 //status and timer / countdown are fully independent of each other
 
-export default function WithdrawalCountdownAndProgress({ deadline }) {
+export default function WithdrawalCountdownAndProgress() {
+  //ISSUE TO SOLVE!! this deadline gets updated once its fetch. but from some reason it's null on the first try,
+  //after that it stats as null for this oimcponent and this changes in the props is never passed down for this child
+  //
+  //
+  //
+  //
+  //
   //@ts-ignore
+  const searchParams = useSearchParams();
 
-  const [timeLeft, setTimeLeft] = useState(deadline - Date.now());
+  const [deadline, setDeadline] = useState(null);
+  const [tusti, setTusti] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [timeLeft, setTimeLeft] = useState(null);
+  const [minutesLeft, setMinutesLeft] = useState(null);
+  const [secondsLeft, setSecondsLeft] = useState(null);
 
-  //time = deadline - date.now()
+  const refreshWithdrawalInfo = () => {
+    const withdrawalId = searchParams.get("withdrawalId");
+    if (!withdrawalId) return;
+
+    fetchWithdrawalTrackingInfo({ withdrawalId })
+      .then((data) => {
+        if (data?.tusti === true) {
+          setTusti(true);
+        }
+        if (loading === false) {
+          return;
+        }
+
+        const { createdAt } = data;
+        const newDeadline = 1000 * (createdAt.seconds + 15 * 60);
+        setDeadline(newDeadline);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log("GOT ERR IN THIS API" + JSON.stringify(err.response));
+      });
+  };
+  useEffect(() => {
+    refreshWithdrawalInfo();
+  }, [searchParams]);
 
   useEffect(() => {
-    const interval = setInterval(
-      () => setTimeLeft(deadline - Date.now()),
-      1000
-    );
+    if (searchParams) {
+      const interval = setInterval(() => refreshWithdrawalInfo(), 5000);
+      return () => clearInterval(interval);
+    }
+  }, [searchParams]);
+  useEffect(() => {
+    const interval = setInterval(() => handleSetTimeLeft(), 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [loading, deadline]);
+  //time = deadline - date.now()
+  const handleSetTimeLeft = () => {
+    if (loading) {
+      return;
+    }
+    const tsNow = Date.now();
+    const newTimeLeft = deadline - tsNow;
+    setTimeLeft(newTimeLeft);
+    const newMinutesLeft = Math.floor((Math.max(newTimeLeft, 0) / MINUTE) % 60);
+    const newSecondsLeft = Math.floor((Math.max(newTimeLeft, 0) / SECOND) % 60);
+    setMinutesLeft(newMinutesLeft);
+    setSecondsLeft(newSecondsLeft);
+  };
 
   return (
     <div>
-      <div class="progress">
+      {/* <div className="progress">
         <div
-          class="progress-bar progress-bar-striped progress-bar-animated"
+          className="progress-bar progress-bar-striped progress-bar-animated"
           role="progressbar"
-          aria-valuenow={100 - Math.max(timeLeft, 0) / (15 * 60 * 1000)}
+          aria-valuenow={100 - 100 * Math.max(timeLeft / (15 * 60 * 1000), 0)}
           aria-valuemin="0"
           aria-valuemax="100"
-          style="width: 75%"
         ></div>
-      </div>
+      </div> */}
       <div
-        className="row w-75 mx-auto border rounded border-primary"
+        className="row w-25 mx-auto border rounded border-primary"
         role="timer"
       >
         <div className="col-6 ">
           <div className="box text-center py-3">
             <p id="minute">
-              {Math.floor((Math.max(timeLeft, 0) / MINUTE) % 60)} {"Minutes"}
+              {minutesLeft} {"Minutes"}
+              {/* {timeLeft} {deadline} */}
             </p>
           </div>
         </div>
         <div className="col-6 ">
           <div className="box text-center py-3">
             <p id="second">
-              {Math.floor((Math.max(timeLeft, 0) / SECOND) % 60)} {"Seconds"}
+              {secondsLeft} {"Seconds"}
+              {/* {timeLeft} */}
             </p>
           </div>
         </div>

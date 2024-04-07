@@ -2,7 +2,11 @@ import { fetchWithdrawalTrackingInfo } from "../../lib/withdrawals";
 
 const handler = async (req, res) => {
   try {
-    const result = await fetchWithdrawalTrackingInfo();
+    const { withdrawalId } = req.query;
+    if (!withdrawalId || withdrawalId == "null") {
+      return res.status(400).send();
+    }
+    const result = await fetchWithdrawalTrackingInfo({ withdrawalId });
     return res.status(200).send(result);
   } catch (e) {
     console.error(e);

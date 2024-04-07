@@ -334,17 +334,18 @@ export const lookupWithdrawalAddressById = async ({ withdrawalAddressId }) => {
 };
 
 export const fetchWithdrawalTrackingInfo = async ({ withdrawalId }) => {
-  const answer = await axios
+  return axios
     .get(`/api/fetchwithdrawaltrackinginfo?withdrawalId=${withdrawalId}`)
-    .then((res) => res.data)
-    .catch((err) => console.log(err));
-  return answer;
+    .then((res) => {
+      console.log("GOT RES AXIOS " + JSON.stringify(res.data));
+      return res.data;
+    });
 };
 
-export const fetchCustomerSupportNumber = async () => {
+export const getOnDutyCustomerSupportNumber = async () => {
   const answer = await axios
-    .get(`/api/fetchcustomersupportnumber`)
+    .get(`/api/getondutycustomersupportnumber`)
     .then((res) => res.data)
     .catch((err) => console.log(err));
-  return answer;
+  return answer.toString();
 };
