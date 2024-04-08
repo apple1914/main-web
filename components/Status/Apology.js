@@ -5,12 +5,9 @@ export default function Apology() {
   return (
     <div className="mx-auto px-2 pt-3">
       <div className="text-muted text-center text-decoration-underline">
-        Приносим извинения за задержку
+        {t("delayMessage.title")}
       </div>
-      <div className="text-muted text-center">
-        Не беспокойтесь, ваши средства в пути. Мы обработаем вашу транзакцию в
-        ближайшее время. Благодарим за понимание
-      </div>
+      <div className="text-muted text-center">{t("delayMessage.text")}</div>
     </div>
   );
 }
