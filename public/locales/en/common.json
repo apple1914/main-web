@@ -211,6 +211,14 @@
     "email":"Email",
     "Phone number":"Phone number",
     "Message":"Describe your question or issue...",
-    "Error, please write us on":"Error submitting your question - pelase send us a message on WhatsApp:"
-
+    "Error, please write us on":"Error submitting your question - pelase send us a message on WhatsApp:",
+    "Minutes":"Minutes",
+    "Seconds":"Seconds",
+    "deliveryTimer.title":"You will receive your funds in",
+    "Processing":"Processing",
+    "Delivered":"Delivered",
+    "Withdrawal to":"Withdrawal to",
+    "Summary":"Summary",
+    "delayMessage.title":"Sorry for the delay..",
+    "delatMessage.text":"We are experiencing delays due to a high volume of transactions at this moment. Rest assured, your funds are safe. We are working on your withdrawal and will finish it as soon as possible. We appreciate your patience"
 }

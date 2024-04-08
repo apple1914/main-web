@@ -18,6 +18,7 @@ export default function WithdrawalCountdownAndProgress() {
   //
   //
   //@ts-ignore
+  const { t } = useTranslation("common");
   const searchParams = useSearchParams();
 
   const [deadline, setDeadline] = useState(null);
@@ -37,6 +38,7 @@ export default function WithdrawalCountdownAndProgress() {
       .then((data) => {
         if (data?.tusti === true) {
           setTusti(true);
+          setIsDeleayed(false);
         }
         if (loading === false) {
           return;
@@ -97,28 +99,33 @@ export default function WithdrawalCountdownAndProgress() {
     <>
       <div>
         <Summary nickname={nickname} tusti={tusti} usdtAmount={usdtAmount} />
-        <div className="text-start px-2 pt-3">Время ожидания:</div>
-        <div className="row border-top border-bottom" role="timer">
-          <div className="col-6 ">
-            <div className="box text-center py-3">
-              <p id="minute">
-                {minutesLeft} {"Minutes"}
-                {/* {timeLeft} {deadline} */}
-              </p>
+
+        {tusti !== true && (
+          <div className="text-start px-2 pt-3">{t("deliveryTimer.title")}</div>
+        )}
+        {tusti !== true && (
+          <div className="row border-top border-bottom" role="timer">
+            <div className="col-6 ">
+              <div className="box text-center py-3">
+                <p id="minute">
+                  {minutesLeft} {t("Minutes")}
+                  {/* {timeLeft} {deadline} */}
+                </p>
+              </div>
+            </div>
+            <div className="col-6 ">
+              <div className="box text-center py-3">
+                <p id="second">
+                  {secondsLeft} {t("Seconds")}
+                  {/* {timeLeft} */}
+                </p>
+              </div>
             </div>
           </div>
-          <div className="col-6 ">
-            <div className="box text-center py-3">
-              <p id="second">
-                {secondsLeft} {"Seconds"}
-                {/* {timeLeft} */}
-              </p>
-            </div>
-          </div>
-        </div>
+        )}
       </div>
 
-      {isDelayed && <Apology />}
+      {tusti !== true && isDelayed && <Apology />}
     </>
   );
 }
