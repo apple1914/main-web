@@ -121,7 +121,26 @@ export const addWithdrawalAddress = async ({
 //       console.log(e);
 //     }
 // }
+export const createWithdrawalUnfunded = async ({
+  withdrawalAddressId,
+  fiatAmount,
+  fiatCurrency,
+}) => {
+  try {
+    const user = auth.currentUser;
 
+    const payloadBody = {
+      username: user.uid,
+      withdrawalAddressId,
+      fiatAmount,
+      fiatCurrency,
+    };
+    const res = await axios.post(`/api/createwithdrawalunfunded `, payloadBody);
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
 export const createDeposit = async ({
   fiatAmount,
   fiatCurrency,
