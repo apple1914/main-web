@@ -1,11 +1,14 @@
-import { createDeposit } from "../../backend/requests";
+import {
+  createDeposit,
+  createWithdrawalUnfunded,
+} from "../../backend/requests";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ScheduledMaintenanceTimer from "./ScheduledMaintenanceTimer";
 import IndefiniteMaintenance from "./IndefiniteMaintenance";
 import TransakExplainer from "./TransakExplainer";
 import { isWithdrawalsStopped } from "../../utils/miscConstants";
-const UTC_HOUR_MAINTENANCE_START = 20;
+const UTC_HOUR_MAINTENANCE_START = 21;
 const UTC_HOUR_MAINTENANCE_ENDS = 23;
 
 export default function DepositInitIfNoFunds({ formData }) {
@@ -24,22 +27,28 @@ export default function DepositInitIfNoFunds({ formData }) {
     }
   }, []);
 
-  const depositInit = () => {
+  const depositInit = async () => {
     if (formData) {
+      const withdrawalResult = await createWithdrawalUnfunded({
+        withdrawalAddressId: formData.withdrawalAddressId,
+        fiatAmount: formData.fiatAmount,
+        fiatCurrency: formData.fiatCurrency,
+      });
       const depositPayload = {
         fiatAmount: formData.fiatAmount,
         fiatCurrency: formData.fiatCurrency,
         withdrawal: {
           triggerWithdrawal: true,
-          withdrawalAddressId: formData.withdrawalAddressId,
+          withdrawalId: withdrawalResult.withdrawalId,
         },
       };
       createDeposit(depositPayload).then((depositInfo) => {
-        const { onrampPayload, onrampName } = depositInfo;
+        const { onrampPayload, onrampName, withdrawal } = depositInfo;
         //transakSettings = onrampPayload FYI
+        // alert(JSON.stringify(withdrawal));
         router.push({
           pathname: "/payment/" + onrampName,
-          query: onrampPayload,
+          query: { ...onrampPayload, withdrawalId: withdrawal.withdrawalId },
         });
       });
     }
