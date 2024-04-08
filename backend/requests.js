@@ -121,7 +121,26 @@ export const addWithdrawalAddress = async ({
 //       console.log(e);
 //     }
 // }
+export const createWithdrawalUnfunded = async ({
+  withdrawalAddressId,
+  fiatAmount,
+  fiatCurrency,
+}) => {
+  try {
+    const user = auth.currentUser;
 
+    const payloadBody = {
+      username: user.uid,
+      withdrawalAddressId,
+      fiatAmount,
+      fiatCurrency,
+    };
+    const res = await axios.post(`/api/createwithdrawalunfunded `, payloadBody);
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
 export const createDeposit = async ({
   fiatAmount,
   fiatCurrency,
@@ -331,4 +350,20 @@ export const lookupWithdrawalAddressById = async ({ withdrawalAddressId }) => {
     .then((res) => res.data)
     .catch((err) => console.log(err));
   return answer;
+};
+
+export const fetchWithdrawalTrackingInfo = async ({ withdrawalId }) => {
+  return axios
+    .get(`/api/fetchwithdrawaltrackinginfo?withdrawalId=${withdrawalId}`)
+    .then((res) => {
+      return res.data;
+    });
+};
+
+export const getOnDutyCustomerSupportNumber = async () => {
+  const answer = await axios
+    .get(`/api/getondutycustomersupportnumber`)
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+  return answer.toString();
 };

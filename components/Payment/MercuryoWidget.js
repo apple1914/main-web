@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 export default function Mercuryo() {
   const [loading, setLoading] = useState(true);
+  const [withdrawalId, setWithdrawalId] = useState();
   const [mercuryoSettings, setMercuryoSettings] = useState({});
   const [isProd, setIsProd] = useState(true);
   const searchParams = useSearchParams();
@@ -14,7 +15,11 @@ export default function Mercuryo() {
   }
   const sendToOutcome = ({ isSuccess }) => {
     if (isSuccess) {
-      router.push("/success");
+      if (!!withdrawalId) {
+        router.push("/withdrawalsuccess?withdrawalId=" + withdrawalId);
+      } else {
+        router.push("/success");
+      }
     } else {
       router.push("/failure");
     }
@@ -42,6 +47,8 @@ export default function Mercuryo() {
   useEffect(() => {
     if (searchParams && searchParams.get("widgetId")) {
       const depositId = searchParams.get("depositId");
+      const myWithdrawalId = searchParams.get("withdrawalId");
+      if (!!myWithdrawalId) setWithdrawalId(myWithdrawalId);
       const dynamicMercuryoSettings = {
         currency: searchParams.get("currency"),
         network: searchParams.get("network"),

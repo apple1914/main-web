@@ -16,7 +16,7 @@ import useAuthStore from "../../signInLogic/auth";
 import { useTranslation } from "next-i18next";
 import { setCookie } from "cookies-next";
 import { useSearchParams } from "next/navigation";
-import { binaryClosestIdx } from "../../utils/algos";
+import { convert } from "../../lib/clientServerUsable/convertWithoutDb";
 import { useRouter } from "next/router";
 
 const DEFAULT_WITHDRAWAL_CURRENCY = "PLN";
@@ -123,7 +123,7 @@ export default function Converter({
 
   const updateConversionRate = () => {
     if (!myDepositCurrency || !myWithdrawalCurrency) return;
-    const answer = convert(
+    const answer = handleConvert(
       myDepositAmount,
       myWithdrawalCurrency,
       myDepositCurrency,
@@ -132,31 +132,20 @@ export default function Converter({
     setMyWithdrawalAmount(answer.toFixed(2));
     setExchangeRate((answer / myDepositAmount).toFixed(2));
   };
-  const convert = (
+  const handleConvert = (
     myDepositAmount,
     myWithdrawalCurrency,
     myDepositCurrency,
     discount
   ) => {
-    const { prices, fiatAmountMinimum } = depositPrices.find(
-      (el) => el.currency === myDepositCurrency
-    );
-    const multiplier = myDepositAmount / fiatAmountMinimum;
-    const parsedPrices = JSON.parse(JSON.stringify(prices));
-    const levels = Object.keys(parsedPrices).map((priceLvlKey) =>
-      parseFloat(priceLvlKey)
-    );
-    const closestLevel =
-      Object.keys(parsedPrices)[binaryClosestIdx(levels, multiplier)];
-    const priceKey = closestLevel;
-    const price = parsedPrices[priceKey];
-
-    const { value } = withdrawValues.find(
-      (el) => el.currency === myWithdrawalCurrency
-    );
-    const TOTAL_FEE = 0.06 - Number(discount);
-    const answer = (Number(myDepositAmount) * (1 - TOTAL_FEE) * value) / price;
-
+    const answer = convert({
+      depositPrices,
+      withdrawValues,
+      myDepositAmount,
+      myWithdrawalCurrency,
+      myDepositCurrency,
+      discount,
+    });
     return answer;
   };
 

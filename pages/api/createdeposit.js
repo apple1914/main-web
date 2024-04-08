@@ -3,22 +3,17 @@ import { createDeposit } from "../../lib/deposits";
 const handler = async (req, res) => {
   // try {
   const { fiatAmount, fiatCurrency, username } = req.body;
-  const withdrawal = req.body?.withdrawal;
+  const withdrawal = req.body.withdrawal;
+
   // { triggerWithdrawal, withdrawalAddressId }
   const triggerWithdrawal = withdrawal?.triggerWithdrawal || false;
-  const withdrawalAddressId = withdrawal?.withdrawalAddressId || null;
-  console.log("here at createDeposit api", {
-    username,
-    fiatAmount,
-    fiatCurrency,
-    withdrawal: { triggerWithdrawal, withdrawalAddressId },
-  });
+  const withdrawalId = withdrawal?.withdrawalId || null;
 
   const result = await createDeposit({
     username,
     fiatAmount,
     fiatCurrency,
-    withdrawal: { triggerWithdrawal, withdrawalAddressId },
+    withdrawal: { triggerWithdrawal, withdrawalId },
   });
   console.log("result", result);
 
