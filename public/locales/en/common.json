@@ -207,5 +207,10 @@
     "confirmWithdrawal.title":"Please confirm the data for withdrawal below",
     "Your balance":"Your balance",
     "confirmWithdrawal.to":"to",
-    "Text us on":"Написать нам на"
+    "Text us on":"Text us on",
+    "email":"Email",
+    "Phone number":"Phone number",
+    "Message":"Describe your question or issue...",
+    "Error, please write us on":"Error submitting your question - pelase send us a message on WhatsApp:"
+
 }

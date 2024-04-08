@@ -538,7 +538,13 @@ const PrivacyPolicy = () => {
               contact us:
             </p>
             <ul>
-              <li>By email: hello@santepay.com</li>
+              <Link
+                className="nav-link"
+                href="/contact"
+                activeClassName="active"
+              >
+                {t("Contact us")}
+              </Link>
             </ul>
           </div>
         </div>

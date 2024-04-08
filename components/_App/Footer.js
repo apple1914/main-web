@@ -2,11 +2,10 @@ import React from "react";
 import Link from "next/link";
 import { Toaster } from "react-hot-toast";
 import { useTranslation } from "next-i18next";
-import WhatsappButton from "../Common/WhatsappButton";
-const Footer = (props) => {
+
+const Footer = () => {
   const { t } = useTranslation("common");
   const currentYear = new Date().getFullYear();
-  const customerSupportPhoneNumber = props?.customerSupportPhoneNumber;
 
   return (
     <>
@@ -72,22 +71,13 @@ const Footer = (props) => {
               <div className="single-widget contact">
                 <h3>{t("Contact us")}</h3>
 
-                <ul>
-                  <li>
-                    <i className="flaticon-email"></i>
-                    <span>Email:</span>
-                    <a href="mailto:hello@flexa.com">hello@santepay.com</a>
-                  </li>
-
-                  {!!customerSupportPhoneNumber && (
-                    <li>
-                      <WhatsappButton
-                        isMinifiedIcon={false}
-                        phoneNumber={customerSupportPhoneNumber}
-                      />
-                    </li>
-                  )}
-                </ul>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link"
+                    href="/contact"
+                    activeClassName="active"
+                  ></Link>
+                </li>
               </div>
             </div>
 

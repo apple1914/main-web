@@ -1,164 +1,140 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-
-import baseUrl from '../../utils/baseUrl'
-
-const alertContent = () => {
-    alert("success")
-}
-
+import React, { useState } from "react";
+import { submitCustomerSupportTicket } from "../../backend/requests";
+import WhatsappButton from "../Common/WhatsappButton";
+import baseUrl from "../../utils/baseUrl";
+import { useTranslation } from "next-i18next";
+import { toast } from "react-hot-toast";
+const alertContent = ({ success }) => {
+  if (success) {
+    toast("success");
+    return;
+  } else {
+    toast("error - please try again");
+    return;
+  }
+};
+const FALLBACK_NUMBER = "+7 (705) 743-04-11";
 // Form initial state
 const INITIAL_STATE = {
-    name: "",
-    email: "",
-    number: "",
-    subject: "",
-    text: ""
+  email: "",
+  number: "",
+  text: "",
 };
 
-const ContactForm = () => {
+const ContactForm = ({ phoneNumber }) => {
+  const { t } = useTranslation("common");
+  const [contact, setContact] = useState(INITIAL_STATE);
+  const [errorOccured, setErrorOccured] = useState(false);
 
-    const [contact, setContact] = useState(INITIAL_STATE);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setContact((prevState) => ({ ...prevState, [name]: value }));
+    // console.log(contact)
+  };
 
-    const handleChange = e => {
-        const { name, value } = e.target;
-        setContact(prevState => ({ ...prevState, [name]: value }));
-        // console.log(contact)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { email, number, text } = contact;
+      const payload = { email, number, text };
+      submitCustomerSupportTicket(payload)
+        .then((res) => {
+          alertContent({ success: true });
+        })
+        .catch((err) => {
+          alertContent({ success: false });
+          setErrorOccured(true);
+        });
+
+      setContact(INITIAL_STATE);
+    } catch (error) {
+      console.log(error);
+      alertContent({ success: false });
+      setErrorOccured(true);
     }
+  };
 
-    const handleSubmit = async e => {
-        e.preventDefault();
-        try {
-            const url = `${baseUrl}/api/contact`;
-            const { name, email, number, subject, text } = contact;
-            const payload = { name, email, number, subject, text };
-            const response = await axios.post(url, payload);
-            console.log(response);
-            setContact(INITIAL_STATE);
-            alertContent();
-        } catch (error) {
-            console.log(error)
-        }
-    };
-
-    return (
-        <div className="contact-area ptb-100">
-            <div className="container">
-                <div className="row align-items-center">
-					<div className="col-lg-8">
-						<div className="contact-wrap">
-							<div className="contact-form">
-								<div className="section-title">
-									<h2>Drop Us A Message For Any Query</h2>
-								</div>
-								<form onSubmit={handleSubmit}>
-									<div className="row">
-										<div className="col-lg-6 col-sm-6">
-											<div className="form-group">
-												<input 
-													type="text" 
-													name="name" 
-													placeholder="Name" 
-													className="form-control" 
-													value={contact.name}
-													onChange={handleChange} 
-													required 
-												/>
-											</div>
-										</div>
-										<div className="col-lg-6 col-sm-6">
-											<div className="form-group">
-												<input 
-													type="text" 
-													name="email" 
-													placeholder="Email" 
-													className="form-control" 
-													value={contact.email}
-													onChange={handleChange} 
-													required 
-												/>
-											</div>
-										</div>
-										<div className="col-lg-6 col-sm-6">
-											<div className="form-group">
-												<input 
-													type="text" 
-													name="number" 
-													placeholder="Phone number" 
-													className="form-control" 
-													value={contact.number}
-													onChange={handleChange} 
-													required 
-												/>
-											</div>
-										</div>
-										<div className="col-lg-6 col-sm-6">
-											<div className="form-group">
-												<input 
-													type="text" 
-													name="subject" 
-													placeholder="Subject" 
-													className="form-control" 
-													value={contact.subject}
-													onChange={handleChange} 
-													required 
-												/>
-											</div>
-										</div>
-										<div className="col-lg-12 col-md-12">
-											<div className="form-group">
-												<textarea 
-													name="text" 
-													cols="30" 
-													rows="6" 
-													placeholder="Write your message..." 
-													className="form-control" 
-													value={contact.text}
-													onChange={handleChange} 
-													required 
-												/>
-											</div>
-										</div>
-										<div className="col-lg-12 col-sm-12">
-											<button type="submit" className="default-btn page-btn">
-												Send Message
-											</button>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
+  return (
+    <div className="contact-area ptb-100">
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="col-lg-8">
+            <div className="contact-wrap">
+              <div className="contact-form">
+                <div className="section-title">
+                  <h2>{t("Contact us")}</h2>
+                </div>
+                <form onSubmit={handleSubmit}>
+                  <div className="row">
+                    <div className="col-lg-6 col-sm-6">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="email"
+                          placeholder={t("email")}
+                          className="form-control"
+                          value={contact.email}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-lg-6 col-sm-6">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="number"
+                          placeholder={t("Phone number")}
+                          className="form-control"
+                          value={contact.number}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
                     </div>
 
-					<div className="col-lg-4">
-						<div className="quick-contact">
-							<h3>Contact Info</h3>
-							<ul>
-								<li>
-									<i className="flaticon-maps-and-flags"></i>
-									Location:
-									<span>123, Western Road, Melbourne Australia</span>
-								</li>
-								<li>
-									<i className="flaticon-call"></i>
-									Call Us:
-									<a href="tel:+0(321)984754">+0 (321) 984 754 <br /> +987-9877-7865</a>
-								</li>
-								<li>
-									<i className="flaticon-email"></i>
-									Email Us:
-									<a href="mailto:hello@flexa.com">
-										hello@flexa.com <br />
-										info@flexa.com
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-                </div>
+                    <div className="col-lg-12 col-md-12">
+                      <div className="form-group">
+                        <textarea
+                          name="text"
+                          cols="30"
+                          rows="6"
+                          placeholder={t("Message")}
+                          className="form-control"
+                          value={contact.text}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-lg-12 col-sm-12">
+                      <button type="submit" className="default-btn page-btn">
+                        {t("Submit")}
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
+
+          <div className="col-lg-4">
+            <div className="quick-contact">
+              <WhatsappButton
+                isMinifiedIcon={false}
+                phoneNumber={phoneNumber}
+              />
+            </div>
+          </div>
         </div>
-    )
-}
+      </div>
+      {errorOccured === true && (
+        <h4 className="text-muted text-center bg-white shadow rounded">
+          {t("Error, please write us on")}: {FALLBACK_NUMBER}
+        </h4>
+      )}
+    </div>
+  );
+};
 
 export default ContactForm;
