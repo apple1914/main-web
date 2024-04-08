@@ -210,5 +210,9 @@
     "confirmWithdrawal.title":"Пожалуйста проверьте достоверность информации",
     "Your balance":"Ваш баланс",
     "confirmWithdrawal.to":"куда",
-    "Text us on":"Написать нам на"
+    "Text us on":"Написать нам на",
+    "email":"Email",
+    "Phone number":"Номер телефона",
+    "Message":"Опишите ваш вопрос или проблему...",
+    "Error, please write us on":"Возникла ошибка, пожалуйста напишите нам на WhatsApp:"
 }
