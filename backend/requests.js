@@ -367,3 +367,18 @@ export const getOnDutyCustomerSupportNumber = async () => {
     .catch((err) => console.log(err));
   return answer.toString();
 };
+
+export const submitCustomerSupportTicket = async ({ email, number, text }) => {
+  const url = "/api/submitcustomersupportticket";
+
+  const payload = { email, number, text };
+  try {
+    const user = auth?.currentUser;
+    const username = user?.uid;
+    payload["username"] = username;
+  } catch (err) {
+    console.log("puk");
+  }
+
+  return axios.post(url, payload);
+};

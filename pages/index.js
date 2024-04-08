@@ -16,8 +16,7 @@ import {
 } from "../lib/currencies";
 
 const Index = (props) => {
-  const { depositPrices, withdrawValues, lng, customerSupportPhoneNumber } =
-    props;
+  const { depositPrices, withdrawValues, lng } = props;
   return (
     <>
       <NavbarTwoFixed />
@@ -49,7 +48,7 @@ const Index = (props) => {
                 <ContactWithUs />
             </div> */}
 
-      <Footer customerSupportPhoneNumber={customerSupportPhoneNumber} />
+      <Footer />
       <CaptureMarketingInfo />
     </>
   );
@@ -71,7 +70,6 @@ export async function getStaticProps(context) {
       depositPrices: depositPrices,
       withdrawValues: withdrawValues,
       lng: locale,
-      customerSupportPhoneNumber: customerSupportPhoneNumber,
     },
     revalidate: 60,
   };

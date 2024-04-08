@@ -41,7 +41,7 @@ function Withdrawal(props) {
         isMinifiedIcon={true}
         phoneNumber={customerSupportPhoneNumber}
       />
-      <Footer customerSupportPhoneNumber={customerSupportPhoneNumber} />
+      <Footer />
       {/* <CaptureMarketingInfo /> */}
       <RedirectIfNotSignedIn />
     </>

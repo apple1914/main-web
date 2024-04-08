@@ -2,11 +2,10 @@ import React from "react";
 import Link from "next/link";
 import { Toaster } from "react-hot-toast";
 import { useTranslation } from "next-i18next";
-import WhatsappButton from "../Common/WhatsappButton";
-const Footer = (props) => {
+
+const Footer = () => {
   const { t } = useTranslation("common");
   const currentYear = new Date().getFullYear();
-  const customerSupportPhoneNumber = props?.customerSupportPhoneNumber;
 
   return (
     <>
@@ -70,31 +69,22 @@ const Footer = (props) => {
 
             <div className="col-lg-4 col-md-6">
               <div className="single-widget contact">
-                <h3>{t("Contact us")}</h3>
+                <h3>{t("Customer support")}</h3>
 
-                <ul>
-                  <li>
-                    <i className="flaticon-email"></i>
-                    <span>Email:</span>
-                    <a href="mailto:hello@flexa.com">hello@santepay.com</a>
-                  </li>
-
-                  {!!customerSupportPhoneNumber && (
-                    <li>
-                      <WhatsappButton
-                        isMinifiedIcon={false}
-                        phoneNumber={customerSupportPhoneNumber}
-                      />
-                    </li>
-                  )}
-                </ul>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link text-white"
+                    href="/contact"
+                    activeClassName="active"
+                  >
+                    {t("Contact us")}
+                  </Link>
+                </li>
               </div>
             </div>
 
             <div className="col-lg-4 col-md-6">
               <div className="single-widget">
-                {/* <h3>Service Links</h3> */}
-
                 <ul>
                   <li className="nav-item">
                     <Link
@@ -125,7 +115,7 @@ const Footer = (props) => {
                       {t("Privacy Policy")}
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <Link
                       className="nav-link"
                       href="/testimonials"
@@ -133,7 +123,7 @@ const Footer = (props) => {
                     >
                       {t("Testimonials")}
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>

@@ -7,7 +7,7 @@ import { Modal } from "react-bootstrap";
 
 // import ReactWhatsapp from "react-whatsapp";
 const baseUrl = "https://wa.me";
-const WhatsappButton = ({ isMinifiedIcon, phoneNumber }) => {
+const WhatsappButton = ({ phoneNumber }) => {
   const { t } = useTranslation("common"); //usage - just use t("adfdsf") and it will work!
 
   const handleClickChat = () => {
@@ -21,16 +21,7 @@ const WhatsappButton = ({ isMinifiedIcon, phoneNumber }) => {
   if (!phoneNumber) {
     return <></>;
   }
-  if (isMinifiedIcon === false) {
-    return (
-      <button
-        onClick={() => handleClickChat()}
-        className="bg-transparent text-white btn-outline-primary"
-      >
-        {t("Text us on")} WhatsApp
-      </button>
-    );
-  }
+
   //FUTURE IMPROVEMENT FOR DESKTOP:
   //if on desktop, open a modal, with messsage saying to contact our customer support via whatsapp:
   //scan this QR code from your phone
