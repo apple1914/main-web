@@ -6,21 +6,21 @@ import Footer from "../components/_App/Footer";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import WhatsappButton from "../components/Common/WhatsappButton";
 import { getOnDutyCustomerSupportNumber } from "../lib/customerSupport";
-
+import { useTranslation } from "next-i18next";
 const Contact = (props) => {
+  const { t } = useTranslation("common");
   const phoneNumber = props.phoneNumber;
   return (
     <>
       <NavbarTwo />
 
       <PageBanner
-        pageTitle="Contact"
+        pageTitle={t("Contact us")}
         homePageUrl="/"
         homePageText="Home"
-        activePageText="Contact"
       />
 
-      <ContactForm phoneNumber={phoneNumber} />
+      <ContactForm />
 
       <WhatsappButton isMinifiedIcon={true} phoneNumber={phoneNumber} />
       <Footer />

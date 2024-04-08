@@ -6,10 +6,10 @@ import { useTranslation } from "next-i18next";
 import { toast } from "react-hot-toast";
 const alertContent = ({ success }) => {
   if (success) {
-    toast("success");
+    toast.success("success");
     return;
   } else {
-    toast("error - please try again");
+    toast.error("error - please try again");
     return;
   }
 };
@@ -21,7 +21,7 @@ const INITIAL_STATE = {
   text: "",
 };
 
-const ContactForm = ({ phoneNumber }) => {
+const ContactForm = () => {
   const { t } = useTranslation("common");
   const [contact, setContact] = useState(INITIAL_STATE);
   const [errorOccured, setErrorOccured] = useState(false);
@@ -57,73 +57,62 @@ const ContactForm = ({ phoneNumber }) => {
   return (
     <div className="contact-area ptb-100">
       <div className="container">
-        <div className="row align-items-center">
-          <div className="col-lg-8">
-            <div className="contact-wrap">
-              <div className="contact-form">
-                <div className="section-title">
-                  <h2>{t("Contact us")}</h2>
-                </div>
-                <form onSubmit={handleSubmit}>
-                  <div className="row">
-                    <div className="col-lg-6 col-sm-6">
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="email"
-                          placeholder={t("email")}
-                          className="form-control"
-                          value={contact.email}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="col-lg-6 col-sm-6">
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="number"
-                          placeholder={t("Phone number")}
-                          className="form-control"
-                          value={contact.number}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="col-lg-12 col-md-12">
-                      <div className="form-group">
-                        <textarea
-                          name="text"
-                          cols="30"
-                          rows="6"
-                          placeholder={t("Message")}
-                          className="form-control"
-                          value={contact.text}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="col-lg-12 col-sm-12">
-                      <button type="submit" className="default-btn page-btn">
-                        {t("Submit")}
-                      </button>
+        <div className="w-50 mx-auto">
+          <div className="contact-wrap">
+            <div className="contact-form">
+              <div className="section-title">
+                <h2>{t("Contact us")}</h2>
+              </div>
+              <form onSubmit={handleSubmit}>
+                <div className="row">
+                  <div className="col-lg-6 col-sm-6">
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="email"
+                        placeholder={t("email")}
+                        className="form-control"
+                        value={contact.email}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
                   </div>
-                </form>
-              </div>
-            </div>
-          </div>
+                  <div className="col-lg-6 col-sm-6">
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="number"
+                        placeholder={t("Phone number")}
+                        className="form-control"
+                        value={contact.number}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
 
-          <div className="col-lg-4">
-            <div className="quick-contact">
-              <WhatsappButton
-                isMinifiedIcon={false}
-                phoneNumber={phoneNumber}
-              />
+                  <div className="col-lg-12 col-md-12">
+                    <div className="form-group">
+                      <textarea
+                        name="text"
+                        cols="30"
+                        rows="6"
+                        placeholder={t("Message")}
+                        className="form-control"
+                        value={contact.text}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-12 col-sm-12">
+                    <button type="submit" className="default-btn page-btn">
+                      {t("Continue")}
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>

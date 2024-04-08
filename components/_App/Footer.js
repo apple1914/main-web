@@ -69,22 +69,22 @@ const Footer = () => {
 
             <div className="col-lg-4 col-md-6">
               <div className="single-widget contact">
-                <h3>{t("Contact us")}</h3>
+                <h3>{t("Customer support")}</h3>
 
                 <li className="nav-item">
                   <Link
-                    className="nav-link"
+                    className="nav-link text-white"
                     href="/contact"
                     activeClassName="active"
-                  ></Link>
+                  >
+                    {t("Contact us")}
+                  </Link>
                 </li>
               </div>
             </div>
 
             <div className="col-lg-4 col-md-6">
               <div className="single-widget">
-                {/* <h3>Service Links</h3> */}
-
                 <ul>
                   <li className="nav-item">
                     <Link
@@ -115,7 +115,7 @@ const Footer = () => {
                       {t("Privacy Policy")}
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <Link
                       className="nav-link"
                       href="/testimonials"
@@ -123,7 +123,7 @@ const Footer = () => {
                     >
                       {t("Testimonials")}
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
