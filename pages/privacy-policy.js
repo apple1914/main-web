@@ -4,6 +4,7 @@ import PageBanner from "../components/Common/PageBanner";
 import Footer from "../components/_App/Footer";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Link from "next/link";
 
 const PrivacyPolicy = () => {
   const { t } = useTranslation("common");
