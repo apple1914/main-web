@@ -266,7 +266,6 @@ export const fetchOnrampSettings = async ({ depositId }) => {
         console.log("ERRRRRR with fetchOnrampSettings", err);
       });
 
-    console.log("Data here is", data);
     const withdrawalAddresses = data.map((withdawalAddress) => {
       const withdrawalAddressId = withdawalAddress.withdrawalAddressId;
       const nickname = withdawalAddress.nickname;

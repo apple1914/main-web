@@ -1,9 +1,10 @@
-import { getOnDutyCustomerSupportNumber } from "../../lib/customerSupport";
+import { fetchWithdrawalAddresses } from "../../lib/withdrawalAddress";
 
 const handler = async (req, res) => {
   try {
-    const phoneNumber = await getOnDutyCustomerSupportNumber();
-    return res.status(200).send(phoneNumber);
+    const username = req.query.username;
+    const results = await fetchWithdrawalAddresses({ username });
+    return res.status(200).send(results);
   } catch (e) {
     console.error(e);
     return res.status(500);
