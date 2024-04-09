@@ -1,4 +1,4 @@
-import { fetchWithdrawalAddresses } from "../../lib/customerSupport";
+import { fetchWithdrawalAddresses } from "../../lib/withdrawalAddress";
 
 const handler = async (req, res) => {
   try {
