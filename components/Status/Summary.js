@@ -18,7 +18,7 @@ export default function SuccessInitializingWithdraw({
       </Row>
       <Row>
         <Col className="text-start">{t("Сумма")}:</Col>
-        <Col className="text-end">${usdtAmount}</Col>
+        <Col className="text-end">${usdtAmount?.toFixed(2)}</Col>
       </Row>
       <Row>
         <Col md={6} xs={4} className="text-start">
