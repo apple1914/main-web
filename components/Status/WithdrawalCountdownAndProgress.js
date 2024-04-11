@@ -4,6 +4,7 @@ import { fetchWithdrawalTrackingInfo } from "../../backend/requests";
 import { useSearchParams } from "next/navigation";
 import Summary from "./Summary";
 import Apology from "./Apology";
+import SuccessDoYouHaveProblem from "./SuccessDoYouHaveProblem";
 const SECOND = 1000;
 const MINUTE = SECOND * 60;
 
@@ -124,7 +125,7 @@ export default function WithdrawalCountdownAndProgress() {
           </div>
         )}
       </div>
-
+      {tusti === true && <SuccessDoYouHaveProblem />}
       {tusti !== true && isDelayed && <Apology />}
     </>
   );
