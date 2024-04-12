@@ -28,7 +28,6 @@ export default function Mercuryo() {
     const { status } = data;
 
     if (status === "paid") {
-      formData.mercuryoSuccess = true;
       sendToOutcome({ isSuccess: true });
     }
     if (
