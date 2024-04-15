@@ -20,7 +20,7 @@ const Contact = (props) => {
         homePageText="Home"
       />
 
-      <ContactForm />
+      <ContactForm phoneNumber={phoneNumber} />
 
       <WhatsappButton isMinifiedIcon={true} phoneNumber={phoneNumber} />
       <Footer />

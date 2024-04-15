@@ -21,7 +21,7 @@ const INITIAL_STATE = {
   text: "",
 };
 
-const ContactForm = () => {
+const ContactForm = ({ phoneNumber }) => {
   const { t } = useTranslation("common");
   const [contact, setContact] = useState(INITIAL_STATE);
   const [errorOccured, setErrorOccured] = useState(false);
@@ -106,14 +106,15 @@ const ContactForm = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-12 col-sm-12">
-                    <button type="submit" className="default-btn page-btn">
-                      {t("Continue")}
-                    </button>
-                  </div>
                 </div>
+                <button type="submit" className="btn btn-primary page-btn w-50">
+                  {t("Continue")}
+                </button>
               </form>
             </div>
+            <div className="text-cetner">{t("or")}</div>
+
+            <WhatsappButton isFlatButton={true} phoneNumber={phoneNumber} />
           </div>
         </div>
       </div>
