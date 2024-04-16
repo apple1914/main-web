@@ -1,5 +1,5 @@
-const UTC_HOUR_STARTS = 14;
-const UTC_HOUR_ENDS = 22;
+const UTC_HOUR_STARTS = 13;
+const UTC_HOUR_ENDS = 21;
 export const amOrPmSchedNow = () => {
   const timeNow = new Date();
   const hoursNow = timeNow.getUTCHours();

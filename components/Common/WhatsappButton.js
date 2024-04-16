@@ -42,7 +42,7 @@ const WhatsappButton = ({ phoneNumber, isFlatButton }) => {
     <div className="fixed-bottom pb-5">
       <button
         onClick={() => handleClickChat()}
-        className="bg-white rounded shadow my-3 mx-3 justify-content-end"
+        className="bg-white rounded shadow my-2 mx-2 justify-content-end"
       >
         <FontAwesomeIcon
           icon={faWhatsapp}
