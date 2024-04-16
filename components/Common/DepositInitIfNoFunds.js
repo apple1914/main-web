@@ -8,8 +8,8 @@ import ScheduledMaintenanceTimer from "./ScheduledMaintenanceTimer";
 import IndefiniteMaintenance from "./IndefiniteMaintenance";
 import TransakExplainer from "./TransakExplainer";
 import { isWithdrawalsStopped } from "../../utils/miscConstants";
-const UTC_HOUR_MAINTENANCE_START = 21;
-const UTC_HOUR_MAINTENANCE_ENDS = 23;
+const UTC_HOUR_MAINTENANCE_STARTS = 21;
+const UTC_HOUR_MAINTENANCE_ENDS = 24;
 
 export default function DepositInitIfNoFunds({ formData }) {
   //@ts-ignore
@@ -75,7 +75,7 @@ const getOperationsStateNow = () => {
   const timeNow = new Date();
   const hoursNow = timeNow.getUTCHours();
   if (
-    hoursNow > UTC_HOUR_MAINTENANCE_START &&
+    hoursNow > UTC_HOUR_MAINTENANCE_STARTS &&
     hoursNow < UTC_HOUR_MAINTENANCE_ENDS
   ) {
     return "paused";

@@ -11,7 +11,7 @@ const Payment = (props) => {
   const { customerSupportPhoneNumber } = props;
   return (
     <>
-      <NavbarTwoFixed />
+      {/* <NavbarTwoFixed /> */}
       <MercuryoWidget />
       <WhatsappButton
         isMinifiedIcon={true}
