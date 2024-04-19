@@ -381,3 +381,16 @@ export const submitCustomerSupportTicket = async ({ email, number, text }) => {
 
   return axios.post(url, payload);
 };
+
+export const fetchMessages = async ({ roomId }) => {
+  const url = `/api/fetchmessages?roomId=${roomId}`;
+  return axios
+    .get(url)
+    .then((res) => {
+      const { data } = res;
+      return data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

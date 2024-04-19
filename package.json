@@ -39,6 +39,8 @@
         "react-stars": "^2.2.5",
         "react-whatsapp": "^0.3.0",
         "sass": "^1.44.0",
+        "socket.io": "^4.7.5",
+        "socket.io-client": "^4.7.5",
         "swiper": "^8.3.2",
         "zustand": "^4.5.0"
     }
