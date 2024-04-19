@@ -41,5 +41,6 @@ export async function getStaticProps(context) {
       ...(await serverSideTranslations(locale)),
       phoneNumber: phoneNumber,
     },
+    revalidate: 60,
   };
 }
