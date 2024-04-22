@@ -223,6 +223,6 @@
     "delatMessage.text":"We are experiencing delays due to a high volume of transactions at this moment. Rest assured, your funds are safe. We are working on your withdrawal and will finish it as soon as possible. We appreciate your patience",
     "successTustiSupport.title":"Delivered: your transaction has been completed",
     "successTustiSupport.text":"If you have encountered an issue, please contact support",
-    "or":"or"
-
+    "or":"or",
+    "click the blue icon in the bottom right corner to chat with us right now":"click the blue icon in the bottom right corner to chat with us right now"
 }

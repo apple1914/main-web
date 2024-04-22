@@ -3,12 +3,13 @@
 import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
 import WithdrawalSuccessScreenMain from "../components/Status/WithdrawalSuccessScreenMain";
 import Footer from "../components/_App/Footer";
-import WhatsappButton from "../components/Common/WhatsappButton";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import { getOnDutyCustomerSupportNumber } from "../lib/customerSupport";
+import ChatwootWidget from "../components/Contact/ChatwootWidget";
+
 // import { fetchWithdrawalTrackingInfo } from "../lib/withdrawals";
-function WithdrawalSuccess({ customerSupportPhoneNumber }) {
+function WithdrawalSuccess(props) {
+  const { lng } = props;
   // //@ts-ignore
   // const { t, ready, i18n } = useTranslation("common");
   // const [phoneNumber, setPhoneNumber] = useState("");
@@ -23,12 +24,7 @@ function WithdrawalSuccess({ customerSupportPhoneNumber }) {
     <>
       <NavbarTwoFixed />
       <WithdrawalSuccessScreenMain />
-      {!!customerSupportPhoneNumber && (
-        <WhatsappButton
-          isMinifiedIcon={true}
-          phoneNumber={customerSupportPhoneNumber}
-        />
-      )}
+      <ChatwootWidget lng={lng} />
       <Footer />
     </>
   );
@@ -40,13 +36,11 @@ export async function getStaticProps(context) {
   // extract the locale identifier from the URL
   const { locale } = context;
 
-  const customerSupportPhoneNumber = await getOnDutyCustomerSupportNumber();
-
   return {
     props: {
       // pass the translation props to the page component
       ...(await serverSideTranslations(locale)),
-      customerSupportPhoneNumber: customerSupportPhoneNumber,
+      lng: locale,
     },
     revalidate: 60,
   };
