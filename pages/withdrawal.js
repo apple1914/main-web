@@ -4,8 +4,6 @@ import WithdrawalMain from "../components/Common/WithdrawalMain";
 import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
 import Footer from "../components/_App/Footer";
 import RedirectIfNotSignedIn from "../components/Common/RedirectIfNotSignedIn";
-import WhatsappButton from "../components/Common/WhatsappButton";
-import { getOnDutyCustomerSupportNumber } from "../lib/customerSupport";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import useAuthStore from "../signInLogic/auth";
@@ -14,10 +12,10 @@ import {
   getDepositCurrenciesAndRates,
   getWithdrawCurrenciesAndRates,
 } from "../lib/currencies";
+import ChatwootWidget from "../components/Contact/ChatwootWidget";
 function Withdrawal(props) {
   //@ts-ignore
-  const { lng, withdrawValues, depositPrices, customerSupportPhoneNumber } =
-    props;
+  const { lng, withdrawValues, depositPrices } = props;
   const user = useAuthStore((state) => state.user);
 
   const handleSaveCustomEvent = (eventName) => {
@@ -37,10 +35,7 @@ function Withdrawal(props) {
         depositPrices={depositPrices}
         withdrawValues={withdrawValues}
       />
-      <WhatsappButton
-        isMinifiedIcon={true}
-        phoneNumber={customerSupportPhoneNumber}
-      />
+      <ChatwootWidget lng={lng} />
       <Footer />
       {/* <CaptureMarketingInfo /> */}
       <RedirectIfNotSignedIn />
@@ -55,7 +50,6 @@ export async function getStaticProps(context) {
   const { locale } = context;
   const depositPrices = await getDepositCurrenciesAndRates();
   const withdrawValues = await getWithdrawCurrenciesAndRates();
-  const customerSupportPhoneNumber = await getOnDutyCustomerSupportNumber();
 
   return {
     props: {
@@ -64,7 +58,6 @@ export async function getStaticProps(context) {
       depositPrices: depositPrices,
       withdrawValues: withdrawValues,
       lng: locale,
-      customerSupportPhoneNumber: customerSupportPhoneNumber,
     },
     revalidate: 60,
   };
