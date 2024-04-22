@@ -4,12 +4,13 @@ import PageBanner from "../components/Common/PageBanner";
 import ContactForm from "../components/Contact/ContactForm";
 import Footer from "../components/_App/Footer";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import WhatsappButton from "../components/Common/WhatsappButton";
-import { getOnDutyCustomerSupportNumber } from "../lib/customerSupport";
+
 import { useTranslation } from "next-i18next";
+import ChatwootWidget from "../components/Contact/ChatwootWidget";
+
 const Contact = (props) => {
   const { t } = useTranslation("common");
-  const phoneNumber = props.phoneNumber;
+  const { lng } = props;
   return (
     <>
       <NavbarTwo />
@@ -20,9 +21,8 @@ const Contact = (props) => {
         homePageText="Home"
       />
 
-      <ContactForm phoneNumber={phoneNumber} />
-
-      <WhatsappButton isMinifiedIcon={true} phoneNumber={phoneNumber} />
+      <ContactForm />
+      <ChatwootWidget lng={lng} />
       <Footer />
     </>
   );
@@ -33,13 +33,12 @@ export default Contact;
 export async function getStaticProps(context) {
   // extract the locale identifier from the URL
   const { locale } = context;
-  const phoneNumber = await getOnDutyCustomerSupportNumber();
 
   return {
     props: {
       // pass the translation props to the page component
       ...(await serverSideTranslations(locale)),
-      phoneNumber: phoneNumber,
+      lng: locale,
     },
     revalidate: 60,
   };

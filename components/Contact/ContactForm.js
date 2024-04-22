@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { submitCustomerSupportTicket } from "../../backend/requests";
-import WhatsappButton from "../Common/WhatsappButton";
 import baseUrl from "../../utils/baseUrl";
 import { useTranslation } from "next-i18next";
 import { toast } from "react-hot-toast";
@@ -21,7 +20,7 @@ const INITIAL_STATE = {
   text: "",
 };
 
-const ContactForm = ({ phoneNumber }) => {
+const ContactForm = () => {
   const { t } = useTranslation("common");
   const [contact, setContact] = useState(INITIAL_STATE);
   const [errorOccured, setErrorOccured] = useState(false);
@@ -112,9 +111,12 @@ const ContactForm = ({ phoneNumber }) => {
                 </button>
               </form>
             </div>
-            <div className="text-cetner">{t("or")}</div>
-
-            <WhatsappButton isFlatButton={true} phoneNumber={phoneNumber} />
+            <div className="text-center">{t("or")}</div>
+            <div className="text-center">
+              {t(
+                "click the blue icon in the bottom left corner to chat with us right now"
+              )}
+            </div>
           </div>
         </div>
       </div>
