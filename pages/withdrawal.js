@@ -14,6 +14,7 @@ import {
   getDepositCurrenciesAndRates,
   getWithdrawCurrenciesAndRates,
 } from "../lib/currencies";
+import ChatwootWidget from "../components/Contact/ChatwootWidget";
 function Withdrawal(props) {
   //@ts-ignore
   const { lng, withdrawValues, depositPrices, customerSupportPhoneNumber } =
@@ -37,10 +38,11 @@ function Withdrawal(props) {
         depositPrices={depositPrices}
         withdrawValues={withdrawValues}
       />
-      <WhatsappButton
+      {/* <WhatsappButton
         isMinifiedIcon={true}
         phoneNumber={customerSupportPhoneNumber}
-      />
+      /> */}
+      <ChatwootWidget />
       <Footer />
       {/* <CaptureMarketingInfo /> */}
       <RedirectIfNotSignedIn />
