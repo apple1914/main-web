@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useAuthStore from "../../signInLogic/auth";
+const ChatwootWidget = (props) => {
+  const { lng } = props;
+  const user = useAuthStore((state) => state.user);
 
-class ChatwootWidget extends React.Component {
-  componentDidMount() {
-    // Add Chatwoot Settings
+  useEffect(() => {
+    if (!user) {
+      return;
+    }
     window.chatwootSettings = {
       hideMessageBubble: false,
       position: "left", // This can be left or right
-      locale: this.props.lng || "en", // Language to be set
-      type: "standard", // [standard, expanded_bubble]
+      locale: lng || "en", // Language to be set
+      type: "expanded_bubble", // [standard, expanded_bubble]
     };
 
     // Paste the script from inbox settings except the <script> tag
@@ -27,11 +32,8 @@ class ChatwootWidget extends React.Component {
         });
       };
     })(document, "script");
-  }
+  }, [user]);
 
-  render() {
-    return null;
-  }
-}
-
+  return null;
+};
 export default ChatwootWidget;
