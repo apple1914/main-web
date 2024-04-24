@@ -359,14 +359,6 @@ export const fetchWithdrawalTrackingInfo = async ({ withdrawalId }) => {
     });
 };
 
-export const getOnDutyCustomerSupportNumber = async () => {
-  const answer = await axios
-    .get(`/api/getondutycustomersupportnumber`)
-    .then((res) => res.data)
-    .catch((err) => console.log(err));
-  return answer.toString();
-};
-
 export const submitCustomerSupportTicket = async ({ email, number, text }) => {
   const url = "/api/submitcustomersupportticket";
 

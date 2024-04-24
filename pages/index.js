@@ -6,7 +6,6 @@ import Services from "../components/HomeTwo/Services";
 import OffersArea from "../components/Common/OffersArea";
 import WhyChooseUs from "../components/HomeTwo/WhyChooseUs";
 import FunFactsStyleTwo from "../components/Common/FunFactsStyleTwo";
-import { getOnDutyCustomerSupportNumber } from "../lib/customerSupport";
 import Footer from "../components/_App/Footer";
 import CaptureMarketingInfo from "../components/Common/CaptureMarketingInfo";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -61,7 +60,6 @@ export async function getStaticProps(context) {
   const { locale } = context;
   const depositPrices = await getDepositCurrenciesAndRates();
   const withdrawValues = await getWithdrawCurrenciesAndRates();
-  const customerSupportPhoneNumber = await getOnDutyCustomerSupportNumber();
 
   return {
     props: {
