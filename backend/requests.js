@@ -125,6 +125,7 @@ export const createWithdrawalUnfunded = async ({
   withdrawalAddressId,
   fiatAmount,
   fiatCurrency,
+  isProd,
 }) => {
   try {
     const user = auth.currentUser;
@@ -134,6 +135,7 @@ export const createWithdrawalUnfunded = async ({
       withdrawalAddressId,
       fiatAmount,
       fiatCurrency,
+      isProd,
     };
     const res = await axios.post(`/api/createwithdrawalunfunded `, payloadBody);
     return res.data;
@@ -146,6 +148,7 @@ export const createDeposit = async ({
   fiatCurrency,
   blockchain,
   withdrawal,
+  isProd,
 }) => {
   try {
     const user = auth.currentUser;
@@ -156,6 +159,7 @@ export const createDeposit = async ({
       blockchain,
       withdrawal,
       username: user.uid,
+      isProd,
     };
     const res = await axios.post(`/api/createdeposit`, payloadBody);
     return res.data;
