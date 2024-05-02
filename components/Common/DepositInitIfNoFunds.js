@@ -8,10 +8,10 @@ import ScheduledMaintenanceTimer from "./ScheduledMaintenanceTimer";
 import IndefiniteMaintenance from "./IndefiniteMaintenance";
 import TransakExplainer from "./TransakExplainer";
 import { isWithdrawalsStopped } from "../../utils/miscConstants";
-const IS_SANTEPAY_TEST =
-  process.env.IS_SANTEPAY_TEST == true ||
-  process.env.IS_SANTEPAY_TEST == "test";
-const UTC_HOUR_MAINTENANCE_STARTS = 21;
+const IS_SANTEPAY_TEST = true;
+// process.env.IS_SANTEPAY_TEST == true ||
+// process.env.IS_SANTEPAY_TEST == "test";
+const UTC_HOUR_MAINTENANCE_STARTS = 22;
 const UTC_HOUR_MAINTENANCE_ENDS = 24;
 
 export default function DepositInitIfNoFunds({ formData }) {
