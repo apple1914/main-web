@@ -8,7 +8,10 @@ import ScheduledMaintenanceTimer from "./ScheduledMaintenanceTimer";
 import IndefiniteMaintenance from "./IndefiniteMaintenance";
 import TransakExplainer from "./TransakExplainer";
 import { isWithdrawalsStopped } from "../../utils/miscConstants";
-const UTC_HOUR_MAINTENANCE_STARTS = 21;
+const IS_SANTEPAY_TEST =
+  process.env.IS_SANTEPAY_TEST == true ||
+  process.env.IS_SANTEPAY_TEST == "test";
+const UTC_HOUR_MAINTENANCE_STARTS = 22;
 const UTC_HOUR_MAINTENANCE_ENDS = 24;
 
 export default function DepositInitIfNoFunds({ formData }) {
@@ -29,10 +32,13 @@ export default function DepositInitIfNoFunds({ formData }) {
 
   const depositInit = async () => {
     if (formData) {
+      const testInputTriggered = IS_SANTEPAY_TEST;
+      const isProd = !testInputTriggered;
       const withdrawalResult = await createWithdrawalUnfunded({
         withdrawalAddressId: formData.withdrawalAddressId,
         fiatAmount: formData.fiatAmount,
         fiatCurrency: formData.fiatCurrency,
+        isProd,
       });
       const depositPayload = {
         fiatAmount: formData.fiatAmount,
@@ -41,6 +47,7 @@ export default function DepositInitIfNoFunds({ formData }) {
           triggerWithdrawal: true,
           withdrawalId: withdrawalResult.withdrawalId,
         },
+        isProd,
       };
       createDeposit(depositPayload).then((depositInfo) => {
         const { onrampPayload, onrampName, withdrawal } = depositInfo;
