@@ -14,6 +14,7 @@ export default function DepositInitAddBalance({ formData }) {
       const depositPayload = {
         fiatAmount: formData.amount,
         fiatCurrency: "USD",
+        isProd: true,
       };
       createDeposit(depositPayload).then((depositInfo) => {
         console.log("depositInfo", depositInfo);
