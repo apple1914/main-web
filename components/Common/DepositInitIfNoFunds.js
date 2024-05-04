@@ -81,10 +81,13 @@ const getOperationsStateNow = () => {
   }
   const timeNow = new Date();
   const hoursNow = timeNow.getUTCHours();
-  if (
-    hoursNow > UTC_HOUR_MAINTENANCE_STARTS &&
-    hoursNow < UTC_HOUR_MAINTENANCE_ENDS
-  ) {
+  const dayOfWeekToday = timeNow.getDay();
+  const weekDays = [1, 2, 3, 4, 5];
+  const utcMaintenanceStarts = weekDays.includes(dayOfWeekToday)
+    ? UTC_HOUR_MAINTENANCE_STARTS
+    : UTC_HOUR_MAINTENANCE_STARTS - 1;
+  const utcMaintenanceEnds = UTC_HOUR_MAINTENANCE_ENDS;
+  if (hoursNow > utcMaintenanceStarts && hoursNow < utcMaintenanceEnds) {
     return "paused";
   }
   return "active";
