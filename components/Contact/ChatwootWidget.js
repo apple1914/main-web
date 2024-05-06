@@ -3,11 +3,29 @@ import useAuthStore from "../../signInLogic/auth";
 const ChatwootWidget = (props) => {
   const { lng } = props;
   const user = useAuthStore((state) => state.user);
+  useEffect(() => {
+    // Use setTimeout to update the message after 2000 milliseconds (2 seconds)
+    const timeoutId = setTimeout(() => {
+      const username = user.uid;
+      const email = user.email;
+      if (!!window.$chatwoot) {
+        window.$chatwoot.setUser(username, {
+          email: email,
+        });
+      }
+    }, 4000);
+
+    // Cleanup function to clear the timeout if the component unmounts
+    return () => clearTimeout(timeoutId);
+  }, [user]); // Empty dependency array ensures the effect runs only once
 
   useEffect(() => {
     if (!user) {
       return;
     }
+    const username = user.uid;
+    const email = user.email;
+
     window.chatwootSettings = {
       hideMessageBubble: false,
       position: "left", // This can be left or right
@@ -31,6 +49,11 @@ const ChatwootWidget = (props) => {
           baseUrl: BASE_URL,
         });
       };
+      // if (!!window.$chatwoot) {
+      //   window.$chatwoot.setUser(username, {
+      //     email: email,
+      //   });
+      // }
     })(document, "script");
   }, [user]);
 
