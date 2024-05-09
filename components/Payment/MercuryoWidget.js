@@ -1,13 +1,14 @@
 "use client";
 import Script from "next/script";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 export default function Mercuryo() {
   const [loading, setLoading] = useState(true);
   const [withdrawalId, setWithdrawalId] = useState();
   const [mercuryoSettings, setMercuryoSettings] = useState({});
   const [isProd, setIsProd] = useState(true);
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   function getRandomEnding(max) {
     const num = Math.floor(Math.random() * max);
