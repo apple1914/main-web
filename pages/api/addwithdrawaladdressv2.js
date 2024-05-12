@@ -11,19 +11,17 @@ const handler = async (req, res) => {
     username,
   });
 
-  let withdrawalAddressId;
-
-  try {
-    withdrawalAddressId = await addWithdrawalAddress({
-      address,
-      blockchain,
-      cryptocurrency,
-      nickname,
-      username,
-    });
-  } catch (err) {
-    throw new Error("error with addWithdrawalAddress", err);
+  if (!address) {
+    throw new Error("address must be defined");
   }
+
+  let withdrawalAddressId = await addWithdrawalAddress({
+    address,
+    blockchain,
+    cryptocurrency,
+    nickname,
+    username,
+  });
 
   return res.status(200).send({ withdrawalAddressId });
 };
