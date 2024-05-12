@@ -1,4 +1,5 @@
 import { fetchWithdrawalTrackingInfo } from "../../lib/withdrawals";
+import { saveError } from "../../lib/bugReporting";
 
 const handler = async (req, res) => {
   try {
@@ -8,9 +9,10 @@ const handler = async (req, res) => {
     }
     const result = await fetchWithdrawalTrackingInfo({ withdrawalId });
     return res.status(200).send(result);
-  } catch (e) {
-    console.error(e);
-    return res.status(500);
+  } catch (err) {
+    const errContext = req.query;
+    saveError({ err, errContext, requestUrl: req.url });
+    return res.status(500).send();
   }
 };
 

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 import Offramper from "./Offramper";
-
+import { toast } from "react-hot-toast";
 import { fetchWithdrawalAddressesV2 } from "../../backend/requests";
 // import { useTranslation } from "@/app/i18n/client";
 import { Form, Button } from "react-bootstrap";
@@ -38,7 +38,12 @@ export default function PickWithdrawalDestination({
     setQWithdrawalDestinations(myNewDestinations);
   }
 
-  const handleSubmitSelectedAddress = () => {
+  const handleSubmitSelectedAddress = (e) => {
+    e.preventDefault();
+    if (!withdrawalAddressId) {
+      toast.error(t("Please pick a card to withdraw to or add a new one"));
+      return;
+    }
     formData.withdrawalAddressId = withdrawalAddressId;
     setFormData(formData);
     // alert(withdrawalAddressId)
@@ -88,7 +93,7 @@ export default function PickWithdrawalDestination({
             <div className="spinner-border" role="status"></div>
           </div>
         ) : (
-          <form onSubmit={() => handleSubmitSelectedAddress()}>
+          <form onSubmit={(e) => handleSubmitSelectedAddress(e)}>
             <Form.Group controlId="formBasicCheckbox">
               {withdrawalAddresses.map((destination) => {
                 return (

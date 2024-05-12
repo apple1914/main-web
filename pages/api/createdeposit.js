@@ -1,4 +1,5 @@
 import { createDeposit } from "../../lib/deposits";
+import { saveError } from "../../lib/bugReporting";
 
 const handler = async (req, res) => {
   // try {
@@ -12,16 +13,22 @@ const handler = async (req, res) => {
   const testTriggered = req.body.isProd === false;
   const isProd = !testTriggered;
 
-  const result = await createDeposit({
-    username,
-    fiatAmount,
-    fiatCurrency,
-    withdrawal: { triggerWithdrawal, withdrawalId },
-    isProd,
-  });
-  console.log("result", result);
+  try {
+    const result = await createDeposit({
+      username,
+      fiatAmount,
+      fiatCurrency,
+      withdrawal: { triggerWithdrawal, withdrawalId },
+      isProd,
+    });
+    console.log("result", result);
 
-  return res.status(200).send(result);
+    return res.status(200).send(result);
+  } catch (err) {
+    const errContext = req.body;
+    saveError({ err, errContext, requestUrl: req.url });
+    return res.status(500).send();
+  }
 
   // return res.json(result)
 
