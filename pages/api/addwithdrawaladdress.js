@@ -1,6 +1,5 @@
 import { addWithdrawalAddress } from "../../lib/withdrawalAddress";
-import { withPageRouterHighlight } from "../../lib/highlight/highlightBackendConfig";
-import { H } from "@highlight-run/node";
+import { saveError } from "../../lib/bugReporting";
 
 const handler = async (req, res) => {
   const { address, blockchain, cryptocurrency, nickname, username } = req.body;
@@ -22,8 +21,8 @@ const handler = async (req, res) => {
     });
     return res.status(200).send({ withdrawalAddressId });
   } catch (err) {
-    H.consumeError(err, req.body);
+    saveError(err);
     return res.status(500).send();
   }
 };
-export default withPageRouterHighlight(handler);
+export default handler;
