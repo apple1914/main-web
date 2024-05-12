@@ -1,5 +1,6 @@
 import { submitCustomerSupportTicket } from "../../lib/customerSupport";
 import { withPageRouterHighlight } from "../../lib/highlight/highlightBackendConfig";
+import { H } from "@highlight-run/node";
 
 const handler = async (req, res) => {
   try {
@@ -7,7 +8,7 @@ const handler = async (req, res) => {
     await submitCustomerSupportTicket({ email, number, text, username });
     return res.status(200).send();
   } catch (e) {
-    console.error(e);
+    H.consumeError(e);
     return res.status(500);
   }
 };

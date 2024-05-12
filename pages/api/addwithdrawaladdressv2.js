@@ -1,5 +1,6 @@
 import { addWithdrawalAddress } from "../../lib/withdrawalAddress";
 import { withPageRouterHighlight } from "../../lib/highlight/highlightBackendConfig";
+import { H } from "@highlight-run/node";
 
 const handler = async (req, res) => {
   const { address, blockchain, cryptocurrency, nickname, username } = req.body;
@@ -13,6 +14,7 @@ const handler = async (req, res) => {
 
   if (!address) {
     // throw new Error("address must be defined");
+    H.consumeError(new Error("address is not defined"));
     return res.status(500).send("errrrrrr");
   }
 

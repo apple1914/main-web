@@ -1,5 +1,6 @@
 import { createDeposit } from "../../lib/deposits";
 import { withPageRouterHighlight } from "../../lib/highlight/highlightBackendConfig";
+import { H } from "@highlight-run/node";
 
 const handler = async (req, res) => {
   // try {
@@ -13,16 +14,21 @@ const handler = async (req, res) => {
   const testTriggered = req.body.isProd === false;
   const isProd = !testTriggered;
 
-  const result = await createDeposit({
-    username,
-    fiatAmount,
-    fiatCurrency,
-    withdrawal: { triggerWithdrawal, withdrawalId },
-    isProd,
-  });
-  console.log("result", result);
+  try {
+    const result = await createDeposit({
+      username,
+      fiatAmount,
+      fiatCurrency,
+      withdrawal: { triggerWithdrawal, withdrawalId },
+      isProd,
+    });
+    console.log("result", result);
 
-  return res.status(200).send(result);
+    return res.status(200).send(result);
+  } catch (err) {
+    H.consumeError(err, req.body);
+    return res.status(500).send();
+  }
 
   // return res.json(result)
 

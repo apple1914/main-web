@@ -1,5 +1,6 @@
 import { fetchWithdrawalTrackingInfo } from "../../lib/withdrawals";
 import { withPageRouterHighlight } from "../../lib/highlight/highlightBackendConfig";
+import { H } from "@highlight-run/node";
 
 const handler = async (req, res) => {
   try {
@@ -10,8 +11,8 @@ const handler = async (req, res) => {
     const result = await fetchWithdrawalTrackingInfo({ withdrawalId });
     return res.status(200).send(result);
   } catch (e) {
-    console.error(e);
-    return res.status(500);
+    H.consumeError(e, req.query);
+    return res.status(500).send();
   }
 };
 

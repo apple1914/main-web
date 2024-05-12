@@ -1,5 +1,6 @@
 import { addWithdrawalAddress } from "../../lib/withdrawalAddress";
 import { withPageRouterHighlight } from "../../lib/highlight/highlightBackendConfig";
+import { H } from "@highlight-run/node";
 
 const handler = async (req, res) => {
   const { address, blockchain, cryptocurrency, nickname, username } = req.body;
@@ -11,20 +12,18 @@ const handler = async (req, res) => {
     username,
   });
 
-  let withdrawalAddressId;
-
   try {
-    withdrawalAddressId = await addWithdrawalAddress({
+    const withdrawalAddressId = await addWithdrawalAddress({
       address,
       blockchain,
       cryptocurrency,
       nickname,
       username,
     });
+    return res.status(200).send({ withdrawalAddressId });
   } catch (err) {
-    throw new Error("error with addWithdrawalAddress", err);
+    H.consumeError(err, req.body);
+    return res.status(500).send();
   }
-
-  return res.status(200).send({ withdrawalAddressId });
 };
 export default withPageRouterHighlight(handler);
