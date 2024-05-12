@@ -1,6 +1,5 @@
 import { getWithdrawals } from "../../lib/withdrawals";
-import { withPageRouterHighlight } from "../../lib/highlight/highlightBackendConfig";
-import { H } from "@highlight-run/node";
+import { saveError } from "../../lib/bugReporting";
 
 const handler = async (req, res) => {
   try {
@@ -8,10 +7,11 @@ const handler = async (req, res) => {
     if (!username) return res.status(400).send();
     const results = await getWithdrawals({ username });
     return res.status(200).send(results);
-  } catch (e) {
-    H.consumeError(e, req.query);
+  } catch (err) {
+    const errContext = req.query;
+    saveError({ err, errContext, requestUrl: req.url });
     return res.status(500).send();
   }
 };
 
-export default withPageRouterHighlight(handler);
+export default handler;

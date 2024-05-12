@@ -1,16 +1,16 @@
 import { submitCustomerSupportTicket } from "../../lib/customerSupport";
-import { withPageRouterHighlight } from "../../lib/highlight/highlightBackendConfig";
-import { H } from "@highlight-run/node";
+import { saveError } from "../../lib/bugReporting";
 
 const handler = async (req, res) => {
   try {
     const { email, number, text, username } = req.body;
     await submitCustomerSupportTicket({ email, number, text, username });
     return res.status(200).send();
-  } catch (e) {
-    H.consumeError(e);
+  } catch (err) {
+    const errContext = req.body;
+    saveError({ err, errContext, requestUrl: req.url });
     return res.status(500);
   }
 };
 
-export default withPageRouterHighlight(handler);
+export default handler;

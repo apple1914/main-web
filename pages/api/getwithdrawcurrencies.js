@@ -1,15 +1,15 @@
 import { getWithdrawCurrencies } from "../../lib/currencies";
-import { withPageRouterHighlight } from "../../lib/highlight/highlightBackendConfig";
-import { H } from "@highlight-run/node";
+import { saveError } from "../../lib/bugReporting";
 
 const handler = async (req, res) => {
   try {
     const results = await getWithdrawCurrencies();
     return res.status(200).send(results);
-  } catch (e) {
-    H.consumeError(e);
+  } catch (err) {
+    const errContext = req.query;
+    saveError({ err, errContext, requestUrl: req.url });
     return res.status(500);
   }
 };
 
-export default withPageRouterHighlight(handler);
+export default handler;

@@ -21,7 +21,8 @@ const handler = async (req, res) => {
     });
     return res.status(200).send({ withdrawalAddressId });
   } catch (err) {
-    saveError(err);
+    const errContext = req.body;
+    saveError({ err, errContext, requestUrl: req.url });
     return res.status(500).send();
   }
 };

@@ -2,7 +2,7 @@ import {
   getDepositCurrenciesAndRates,
   getWithdrawCurrenciesAndRates,
 } from "../../lib/currencies";
-import { H } from "@highlight-run/node";
+import { saveError } from "../../lib/bugReporting";
 
 import { convert } from "../../lib/clientServerUsable/convertWithoutDb";
 const handler = async (req, res) => {
@@ -24,7 +24,6 @@ const handler = async (req, res) => {
     // await myNew.save()
     return res.status(200).send(result);
   } catch (e) {
-    H.consumeError(e, req.body);
     return res.status(500);
   }
 };

@@ -1,18 +1,16 @@
 import { fetchWithdrawalAddresses } from "../../lib/withdrawalAddress";
-import { withPageRouterHighlight } from "../../lib/highlight/highlightBackendConfig";
-import { H } from "@highlight-run/node";
+import { saveError } from "../../lib/bugReporting";
 
 const handler = async (req, res) => {
   try {
     const username = req.query.username;
     const results = await fetchWithdrawalAddresses({ username });
     return res.status(200).send(results);
-  } catch (e) {
-    const customPayload = { jackbird: "hatom" };
-    const customString = "jackadaka";
-    H.consumeError(e, customString, customPayload);
+  } catch (err) {
+    const errContext = req.query;
+    saveError({ err, errContext, requestUrl: req.url });
     return res.status(500).send();
   }
 };
 
-export default withPageRouterHighlight(handler);
+export default handler;

@@ -1,6 +1,5 @@
 import { createDeposit } from "../../lib/deposits";
-import { withPageRouterHighlight } from "../../lib/highlight/highlightBackendConfig";
-import { H } from "@highlight-run/node";
+import { saveError } from "../../lib/bugReporting";
 
 const handler = async (req, res) => {
   // try {
@@ -26,7 +25,8 @@ const handler = async (req, res) => {
 
     return res.status(200).send(result);
   } catch (err) {
-    H.consumeError(err, req.body);
+    const errContext = req.body;
+    saveError({ err, errContext, requestUrl: req.url });
     return res.status(500).send();
   }
 
@@ -38,4 +38,4 @@ const handler = async (req, res) => {
   // }
 };
 
-export default withPageRouterHighlight(handler);
+export default handler;
