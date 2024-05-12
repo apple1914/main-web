@@ -6,7 +6,7 @@ const handler = async (req, res) => {
   try {
     // Check if name, email or password is provided
     const { username, miscInfo, contactInfo } = req.body;
-    saveUserInfo({ username, miscInfo, contactInfo });
+    await saveUserInfo({ username, miscInfo, contactInfo });
 
     return res.status(200).send();
   } catch (e) {

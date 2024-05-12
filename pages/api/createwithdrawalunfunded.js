@@ -18,7 +18,7 @@ const handler = async (req, res) => {
     });
     return res.status(200).send(result);
   } catch (err) {
-    H.consumeError(err, req.body);
+    H.consumeError(err, "STRINGS!");
     return res.status(500).send();
   }
 };
