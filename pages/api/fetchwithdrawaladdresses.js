@@ -8,7 +8,9 @@ const handler = async (req, res) => {
     const results = await fetchWithdrawalAddresses({ username });
     return res.status(200).send(results);
   } catch (e) {
-    H.consumeError(e, req.query);
+    const customPayload = { jackbird: "hatom" };
+    const customString = "jackadaka";
+    H.consumeError(e, customString, customPayload);
     return res.status(500).send();
   }
 };
