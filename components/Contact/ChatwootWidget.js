@@ -6,6 +6,7 @@ const ChatwootWidget = (props) => {
   useEffect(() => {
     // Use setTimeout to update the message after 2000 milliseconds (2 seconds)
     const timeoutId = setTimeout(() => {
+      if (!user) return;
       const username = user.uid;
       const email = user.email;
       if (!!window.$chatwoot) {
