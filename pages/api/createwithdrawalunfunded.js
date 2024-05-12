@@ -1,4 +1,5 @@
 import { createWithdrawalUnfunded } from "../../lib/withdrawals";
+import { withPageRouterHighlight } from "../../lib/highlight/highlightBackendConfig";
 
 const handler = async (req, res) => {
   const { username, withdrawalAddressId, fiatAmount, fiatCurrency } = req.body;
@@ -16,4 +17,4 @@ const handler = async (req, res) => {
   return res.status(200).send(result);
 };
 
-export default handler;
+export default withPageRouterHighlight(handler);
