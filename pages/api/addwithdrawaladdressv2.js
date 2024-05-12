@@ -12,7 +12,8 @@ const handler = async (req, res) => {
   });
 
   if (!address) {
-    throw new Error("address must be defined");
+    // throw new Error("address must be defined");
+    return res.status(500).send("errrrrrr");
   }
 
   let withdrawalAddressId = await addWithdrawalAddress({
