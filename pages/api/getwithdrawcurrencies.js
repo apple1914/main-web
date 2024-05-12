@@ -1,4 +1,5 @@
 import { getWithdrawCurrencies } from "../../lib/currencies";
+import { withPageRouterHighlight } from "../../lib/highlight/highlightBackendConfig";
 
 const handler = async (req, res) => {
   try {
@@ -10,4 +11,4 @@ const handler = async (req, res) => {
   }
 };
 
-export default handler;
+export default withPageRouterHighlight(handler);

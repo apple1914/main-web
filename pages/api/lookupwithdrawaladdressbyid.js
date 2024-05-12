@@ -1,4 +1,5 @@
 import { lookupWithdrawalAddressById } from "../../lib/withdrawalAddress";
+import { withPageRouterHighlight } from "../../lib/highlight/highlightBackendConfig";
 
 const handler = async (req, res) => {
   try {
@@ -12,4 +13,4 @@ const handler = async (req, res) => {
   }
 };
 
-export default handler;
+export default withPageRouterHighlight(handler);
