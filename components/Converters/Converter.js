@@ -282,7 +282,7 @@ export default function Converter({
           <>
             <Link
               href={{
-                pathname: "/withdrawal",
+                pathname: "/withdrawal/" + user?.uid,
                 query: {
                   depositCurrency: myDepositCurrency,
                   withdrawalCurrency: myWithdrawalCurrency,
