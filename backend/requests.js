@@ -161,7 +161,6 @@ export const createWithdrawalUnfunded = async ({
 export const createDeposit = async ({
   fiatAmount,
   fiatCurrency,
-  blockchain,
   withdrawal,
   isProd,
 }) => {
@@ -170,7 +169,6 @@ export const createDeposit = async ({
   const payload = {
     fiatAmount,
     fiatCurrency,
-    blockchain,
     withdrawal,
     username: user.uid,
     isProd,
@@ -264,16 +262,6 @@ export const createCsTicket = async ({ email, category, problemText }) => {
 export const saveUserInfo = async ({ username, miscInfo, contactInfo }) => {
   const url = `/api/saveuserinfo`;
   const payload = { username, miscInfo, contactInfo };
-  if (
-    Object.entries(payload)
-      .map((arr) => arr[1])
-      .some((el) => el == null)
-  ) {
-    throw new Error(
-      "Error prior to making api request, some inputs are not defined",
-      payload
-    );
-  }
 
   return axios
     .post(url, payload)
