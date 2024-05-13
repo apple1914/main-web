@@ -1,5 +1,6 @@
 // import Stepper from "@/components/Stepper";
 import WithdrawalMain from "../components/Common/WithdrawalMain";
+import { Suspense } from "react";
 
 import NavbarTwoFixed from "../components/_App/NavbarTwoFixed";
 import Footer from "../components/_App/Footer";
@@ -28,14 +29,18 @@ function Withdrawal(props) {
   return (
     <>
       <NavbarTwoFixed />
+      <Suspense>
+        <WithdrawalMain
+          lng={lng}
+          handleSaveCustomEvent={handleSaveCustomEvent}
+          depositPrices={depositPrices}
+          withdrawValues={withdrawValues}
+        />
+      </Suspense>
+      <Suspense>
+        <ChatwootWidget lng={lng} />
+      </Suspense>
 
-      <WithdrawalMain
-        lng={lng}
-        handleSaveCustomEvent={handleSaveCustomEvent}
-        depositPrices={depositPrices}
-        withdrawValues={withdrawValues}
-      />
-      <ChatwootWidget lng={lng} />
       <Footer />
       {/* <CaptureMarketingInfo /> */}
       <RedirectIfNotSignedIn />
@@ -45,7 +50,7 @@ function Withdrawal(props) {
 
 export default Withdrawal;
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   // extract the locale identifier from the URL
   const { locale } = context;
   const depositPrices = await getDepositCurrenciesAndRates();
@@ -59,6 +64,5 @@ export async function getStaticProps(context) {
       withdrawValues: withdrawValues,
       lng: locale,
     },
-    revalidate: 60,
   };
 }
