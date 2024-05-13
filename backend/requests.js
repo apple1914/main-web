@@ -87,7 +87,7 @@ export const addWithdrawalAddress = async ({
       .some((el) => el == null)
   ) {
     throw new Error(
-      "Error prior to making api request, some inputs are not defined",
+      "Error prior to making addWithdrawalAddress api request, some inputs are not defined",
       payload
     );
   }
@@ -149,7 +149,7 @@ export const createWithdrawalUnfunded = async ({
       .some((el) => el == null)
   ) {
     throw new Error(
-      "Error prior to making api request, some inputs are not defined",
+      "Error prior to making createWithdrawalUnfunded api request, some inputs are not defined",
       payload
     );
   }
@@ -179,7 +179,7 @@ export const createDeposit = async ({
       .some((el) => el == null)
   ) {
     throw new Error(
-      "Error prior to making api request, some inputs are not defined",
+      "Error prior to making createDeposit api request, some inputs are not defined",
       payload
     );
   }
