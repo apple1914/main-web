@@ -4,9 +4,11 @@ const ChatwootWidget = (props) => {
   const { lng } = props;
   const user = useAuthStore((state) => state.user);
   useEffect(() => {
+    if (!user) {
+      return;
+    }
     // Use setTimeout to update the message after 2000 milliseconds (2 seconds)
     const timeoutId = setTimeout(() => {
-      if (!user) return;
       const username = user.uid;
       const email = user.email;
       if (!!window.$chatwoot) {
@@ -24,8 +26,6 @@ const ChatwootWidget = (props) => {
     if (!user) {
       return;
     }
-    const username = user.uid;
-    const email = user.email;
 
     window.chatwootSettings = {
       hideMessageBubble: false,
