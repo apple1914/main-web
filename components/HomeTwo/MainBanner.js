@@ -59,6 +59,7 @@ const MainBanner = ({ depositPrices, withdrawValues }) => {
                   <Converter
                     depositPrices={depositPrices}
                     withdrawValues={withdrawValues}
+                    showLinkCta={true}
                   />
                 </div>
               </div>

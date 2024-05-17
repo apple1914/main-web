@@ -45,22 +45,13 @@ export const fetchWithdrawalAddressesV2 = async () => {
     const user = auth.currentUser;
     const username = user.uid;
 
-    const data = await axios
+    return axios
       .get(`/api/fetchwithdrawaladdresses?username=${username}`)
       .then((res) => res.data)
       .catch((err) => {
         console.log("ERRRRRR with fetchWithdrawalAddresses", err);
+        return [];
       });
-
-    console.log("Data here is", data);
-    const withdrawalAddresses = data.map((withdawalAddress) => {
-      const withdrawalAddressId = withdawalAddress.withdrawalAddressId;
-      const nickname = withdawalAddress.nickname;
-      return { withdrawalAddressId, nickname };
-    });
-    console.log("withdrawalAddresses here is", withdrawalAddresses);
-
-    return withdrawalAddresses;
   } catch (e) {
     console.log(e);
   }
