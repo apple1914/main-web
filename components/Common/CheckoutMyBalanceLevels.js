@@ -94,13 +94,13 @@ const WithdrawMyBalanceLevels = ({
       );
     case 1:
       return (
-        <>
+        <div className="bg-white shadow rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-10">
           <PickWithdrawalDestination
             incrementLevel={incrementLevel}
             formData={formData}
             setFormData={setFormData}
           />
-        </>
+        </div>
       );
     case 2:
       return (

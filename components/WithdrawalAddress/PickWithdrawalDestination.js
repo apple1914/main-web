@@ -24,13 +24,13 @@ export default function PickWithdrawalDestination({
   const { t } = useTranslation("common");
   const user = useAuthStore((state) => state.user);
   const [withdrawalAddresses, setQWithdrawalDestinations] = useState([]);
-  const [withdrawalAddressId, setWithdrawalAddressId] = useState();
   const [loading, setLoading] = useState(true);
   const [hasNoAvailableDestinations, setHasNoAvailableDestinations] =
     useState(true);
 
   const handleSelectRecipient = async (pickedWithdrawalAddressId) => {
-    setWithdrawalAddressId(pickedWithdrawalAddressId);
+    formData.withdrawalAddressId = pickedWithdrawalAddressId;
+    setFormData(formData);
   };
 
   function updateWithdrawalAddresses(myNewDestinations) {
@@ -40,14 +40,12 @@ export default function PickWithdrawalDestination({
 
   const handleSubmitSelectedAddress = (e) => {
     e.preventDefault();
-    if (!withdrawalAddressId) {
+    if (!formData.withdrawalAddressId) {
       toast.error(t("Please pick a card to withdraw to or add a new one"));
       return;
     }
-    formData.withdrawalAddressId = withdrawalAddressId;
-    setFormData(formData);
-    // alert(withdrawalAddressId)
-    incrementLevel();
+
+    !!incrementLevel && incrementLevel();
   };
 
   useEffect(() => {
@@ -65,7 +63,7 @@ export default function PickWithdrawalDestination({
   }, []);
 
   return (
-    <div className="bg-white shadow rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-10">
+    <>
       <div className="d-flex w-100 justify-content-between align-items-center">
         {hasNoAvailableDestinations == false && (
           <h3 className="text-5 fw-400 mb-0">
@@ -109,22 +107,25 @@ export default function PickWithdrawalDestination({
                         handleSelectRecipient(destination.withdrawalAddressId);
                       }}
                       checked={
-                        !!withdrawalAddressId &&
-                        withdrawalAddressId === destination.withdrawalAddressId
+                        !!formData.withdrawalAddressId &&
+                        formData.withdrawalAddressId ===
+                          destination.withdrawalAddressId
                       }
                     />
                   </div>
                 );
               })}
             </Form.Group>
-            <div className="d-grid w-100 mx-auto mt-3">
-              <button type="submit" className="btn btn-primary">
-                {t("Continue")}
-              </button>
-            </div>
+            {incrementLevel && (
+              <div className="d-grid w-100 mx-auto mt-3">
+                <button type="submit" className="btn btn-primary">
+                  {t("Continue")}
+                </button>
+              </div>
+            )}
           </form>
         ))}
       {/* {hasNoAvailableDestinations == false && <div className="text-center my-3">or</div>} */}
-    </div>
+    </>
   );
 }

@@ -19,15 +19,19 @@ import { useSearchParams } from "next/navigation";
 import { convert } from "../../lib/clientServerUsable/convertWithoutDb";
 import { useRouter } from "next/router";
 
-const DEFAULT_WITHDRAWAL_CURRENCY = "PLN";
-const DEFAULT_DEPOSIT_CURRENCY = "USD";
-const DEFAULT_DEPOSIT_AMOUNT = "100";
+import {
+  DEFAULT_WITHDRAWAL_CURRENCY,
+  DEFAULT_DEPOSIT_CURRENCY,
+  DEFAULT_DEPOSIT_AMOUNT,
+} from "../../utils/defaultConverterPresets";
+
 export default function Converter({
   incrementLevel,
   setFormData,
   formData,
   depositPrices,
   withdrawValues,
+  showLinkCta,
 }) {
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -37,12 +41,16 @@ export default function Converter({
   ]);
 
   const [myDepositAmount, setMyDepositAmount] = useState(
-    Number(DEFAULT_DEPOSIT_AMOUNT)
+    formData?.fiatAmount || Number(DEFAULT_DEPOSIT_AMOUNT)
   );
-  const [myDepositCurrency, setMyDepositCurrency] = useState("USD");
+  const [myDepositCurrency, setMyDepositCurrency] = useState(
+    formData?.fiatCurrency || DEFAULT_DEPOSIT_CURRENCY
+  );
   const [myWithdrawalAmount, setMyWithdrawalAmount] = useState("0");
   const myDepositCurrencies = depositPrices.map((el) => el.currency);
-  const [myWithdrawalCurrency, setMyWithdrawalCurrency] = useState("PLN");
+  const [myWithdrawalCurrency, setMyWithdrawalCurrency] = useState(
+    formData?.convertedFiatCurrency || DEFAULT_WITHDRAWAL_CURRENCY
+  );
   const myWithdrawalCurrencies = withdrawValues.map((el) => el.currency);
   const [exchangeRate, setExchangeRate] = useState("1");
   const [invalid, setInvalid] = useState(false);
@@ -52,21 +60,33 @@ export default function Converter({
 
   const submit = (e) => {
     e.preventDefault();
-    if (formData && setFormData && incrementLevel && !invalid) {
-      formData.fiatAmount = myDepositAmount;
-      formData.fiatCurrency = myDepositCurrency;
-      formData.convertedFiatCurrency = myWithdrawalCurrency;
-      setFormData(formData);
+    if (incrementLevel && !invalid) {
       incrementLevel();
+    }
+  };
+
+  const handleChangeDepositAmount = (value) => {
+    setMyDepositAmount(value);
+    if (formData && setFormData) {
+      formData.fiatAmount = value;
+      setFormData(formData);
     }
   };
 
   const handleChangeDepositCurrency = (value) => {
     setMyDepositCurrency(value);
+    if (formData && setFormData) {
+      formData.fiatCurrency = value;
+      setFormData(formData);
+    }
     setCookie("depositCurrency", value);
   };
   const handleChangeWithdrawCurrency = (value) => {
     setMyWithdrawalCurrency(value);
+    if (formData && setFormData) {
+      formData.convertedFiatCurrency = value;
+      setFormData(formData);
+    }
     setCookie("withdrawalCurrency", value);
   };
 
@@ -76,30 +96,25 @@ export default function Converter({
       const withdrawalCurrency =
         searchParams.get("withdrawalCurrency") ||
         searchParams.get("toCurrency") ||
-        getCookie("withdrawalCurrency") ||
-        DEFAULT_WITHDRAWAL_CURRENCY;
-
-      setMyWithdrawalCurrency(withdrawalCurrency);
+        getCookie("withdrawalCurrency");
+      !!withdrawalCurrency && handleChangeWithdrawCurrency(withdrawalCurrency);
 
       const depositCurrency =
         searchParams.get("depositCurrency") ||
         searchParams.get("fromCurrency") ||
-        getCookie("depositCurrency") ||
-        DEFAULT_DEPOSIT_CURRENCY;
+        getCookie("depositCurrency");
 
-      setMyDepositCurrency(depositCurrency);
+      !!depositCurrency && handleChangeDepositCurrency(depositCurrency);
 
-      const amount =
-        searchParams.get("amount") ||
-        getCookie("amount") ||
-        DEFAULT_DEPOSIT_AMOUNT;
+      const amount = searchParams.get("amount") || getCookie("amount");
+
       if (
         amount != null &&
         depositPrices.find((el) => el.currency === myDepositCurrency)[
           "fiatAmountMinimum"
         ] <= Number(amount)
       ) {
-        setMyDepositAmount(Number(amount));
+        handleChangeDepositAmount(Number(amount));
       }
     }
   }, [router.isReady]);
@@ -177,7 +192,7 @@ export default function Converter({
                 ) {
                   setInvalid(false);
                 }
-                setMyDepositAmount(Number(e.target.value));
+                handleChangeDepositAmount(Number(e.target.value));
               }
             }}
             placeholder=""
@@ -259,9 +274,35 @@ export default function Converter({
           </span>
         </div>
       </div>
-
-      <div className="d-grid w-100 mx-auto">
-        {incrementLevel ? (
+      {showLinkCta === true && (
+        <div className="d-grid w-100 mx-auto">
+          <Link
+            href={{
+              pathname: "/withdrawal",
+              query: {
+                depositCurrency: myDepositCurrency,
+                withdrawalCurrency: myWithdrawalCurrency,
+                amount: myDepositAmount,
+              },
+            }}
+            className={`btn btn-primary text-white ${
+              invalid || conversionRateLoader ? "disabled" : ""
+            }`}
+          >
+            {conversionRateLoader ? (
+              <span
+                className="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              />
+            ) : (
+              <p>{t("Withdrawal")}</p>
+            )}
+          </Link>
+        </div>
+      )}
+      {!!incrementLevel && (
+        <div className="d-grid w-100 mx-auto">
           <button
             className={`btn btn-primary ${
               invalid || conversionRateLoader ? "disabled" : ""
@@ -278,52 +319,8 @@ export default function Converter({
               t("Continue")
             )}
           </button>
-        ) : (
-          <>
-            <Link
-              href={{
-                pathname: "/withdrawal",
-                query: {
-                  depositCurrency: myDepositCurrency,
-                  withdrawalCurrency: myWithdrawalCurrency,
-                  amount: myDepositAmount,
-                },
-              }}
-              className={`btn btn-primary text-white ${
-                invalid || conversionRateLoader ? "disabled" : ""
-              }`}
-            >
-              {conversionRateLoader ? (
-                <span
-                  className="spinner-border spinner-border-sm"
-                  role="status"
-                  aria-hidden="true"
-                />
-              ) : (
-                <p>{t("Withdrawal")}</p>
-              )}
-            </Link>
-            {/* <Link
-              href={{
-                pathname: "/mybalance/view",
-              }}
-              className={`btn btn-outline-primary text-primary ${
-                invalid || conversionRateLoader ? "disabled" : ""
-              } mt-3`}
-            >
-              {conversionRateLoader ? (
-                <span
-                  className="spinner-border spinner-border-sm"
-                  role="status"
-                  aria-hidden="true"
-                />
-              ) : (
-                <p>{t("myDeposit.button")}</p>
-              )}
-            </Link> */}
-          </>
-        )}
-      </div>
+        </div>
+      )}
     </form>
   );
 }

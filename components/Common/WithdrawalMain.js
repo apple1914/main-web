@@ -3,6 +3,13 @@ import React, { useEffect, useState } from "react";
 import WithdrawalLevels from "./WithdrawalLevels";
 import Leveler from "./Leveler";
 import { useTranslation } from "next-i18next";
+
+import {
+  DEFAULT_WITHDRAWAL_CURRENCY,
+  DEFAULT_DEPOSIT_CURRENCY,
+  DEFAULT_DEPOSIT_AMOUNT,
+} from "../../utils/defaultConverterPresets";
+
 const WithdrawalMain = ({
   lng,
   handleSaveCustomEvent,
@@ -12,10 +19,10 @@ const WithdrawalMain = ({
   const { t } = useTranslation("common"); //usage - just use t("adfdsf") and it will work!
 
   const [formData, setFormData] = useState({
-    fiatAmount: 0.0,
-    fiatCurrency: "",
+    fiatAmount: DEFAULT_DEPOSIT_AMOUNT,
+    fiatCurrency: DEFAULT_DEPOSIT_CURRENCY,
     withdrawalAddressId: "",
-    convertedFiatCurrency: "",
+    convertedFiatCurrency: DEFAULT_WITHDRAWAL_CURRENCY,
     flowType: "withdrawal",
   });
 
