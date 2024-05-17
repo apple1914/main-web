@@ -42,7 +42,6 @@ const WithdrawalLevels = ({
             depositPrices={depositPrices}
             withdrawValues={withdrawValues}
             allInputsAreReady={allInputsAreReady}
-            withdrawalAddresses={[]}
           />
         </div>
       );

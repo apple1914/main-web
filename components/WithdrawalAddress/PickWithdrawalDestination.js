@@ -61,6 +61,13 @@ export default function PickWithdrawalDestination({
                 value={destination.withdrawalAddressId}
               >
                 {destination.nickname}
+                {/* {JSON.stringify(destination)} */}
+                {!!destination?.createdAt?.seconds &&
+                  " (" +
+                    t("added on") +
+                    " " +
+                    secsToAddedOnDateString(destination.createdAt.seconds) +
+                    ")"}
               </option>
               // </div>
             );
@@ -70,3 +77,14 @@ export default function PickWithdrawalDestination({
     </div>
   );
 }
+
+const secsToAddedOnDateString = (seconds) => {
+  const date = new Date(seconds * 1000);
+  const month = date.toLocaleString("default", { month: "numeric" });
+  const day = date.toLocaleString("default", { day: "numeric" });
+  const time = date.toLocaleString("default", {
+    hour: "numeric",
+    minute: "numeric",
+  });
+  return day + "/" + month + " " + time;
+};

@@ -53,8 +53,8 @@ const WithdrawalMain = ({
 
   function incrementLevel() {
     const newLevel = level + 1;
-    // setLevel(newLevel);
-    console.log("inc level called, formData:", formData);
+    setLevel(newLevel);
+    // console.log("inc level called, formData:", formData);
   }
   return (
     <div id="content" className="py-4 bg-white">

@@ -24,17 +24,29 @@ export default function HybridConverterAndPicker({
   withdrawValues,
   lng,
   allInputsAreReady,
-  withdrawalAddresses,
 }) {
   const { t } = useTranslation("common");
 
   const handleClickContinue = () => {
     if (allInputsAreReady) {
       incrementLevel();
-    } else {
-      alert("some is undefiend! " + JSON.stringify(formData));
     }
   };
+
+  const user = useAuthStore((state) => state.user);
+  const [withdrawalAddresses, setWithdrawalAddressData] = useState([]);
+  const [hasDestinations, setHasDestinations] = useState(false);
+  useEffect(() => {
+    if (!!user) {
+      fetchWithdrawalAddressesV2().then((data) => {
+        if (!!data && data.length > 0) {
+          console.log(data);
+          setWithdrawalAddressData(data);
+          setHasDestinations(true);
+        }
+      });
+    }
+  }, [user]);
 
   return (
     <div>
@@ -46,14 +58,17 @@ export default function HybridConverterAndPicker({
         withdrawValues={withdrawValues}
       />
       <div className="py-3 mx-3 w-100"></div>
-      {withdrawalAddresses.length > 0 && (
-        <PickWithdrawalDestination
-          formData={formData}
-          setFormData={setFormData}
-          lng={lng}
-          withdrawalAddresses={withdrawalAddresses}
-        />
-      )}
+      <div>
+        {hasDestinations && (
+          <PickWithdrawalDestination
+            formData={formData}
+            setFormData={setFormData}
+            lng={lng}
+            withdrawalAddresses={withdrawalAddresses}
+          />
+        )}
+      </div>
+
       {allInputsAreReady && (
         <div className="d-grid w-100 mx-auto mt-3">
           <button
@@ -69,9 +84,7 @@ export default function HybridConverterAndPicker({
         </div>
       )}
 
-      {withdrawalAddresses.length > 0 && (
-        <div className="text-center my-3">or</div>
-      )}
+      {hasDestinations && <div className="text-center my-3">{t("or")}</div>}
       <Offramper
         // triggerUpdateRecipients={triggerUpdateRecipients}
         lng={lng}

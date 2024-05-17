@@ -41,7 +41,6 @@ export default function PickWithdrawalDestination({
     e.preventDefault();
     console.log("launched handled log");
   };
-
   useEffect(() => {
     if (!!user) {
       fetchWithdrawalAddressesV2().then((data) => {
