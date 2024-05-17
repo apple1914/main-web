@@ -28,7 +28,7 @@ function Withdrawal(props) {
   return (
     <>
       <NavbarTwoFixed />
-
+6
       <WithdrawalMain
         lng={lng}
         handleSaveCustomEvent={handleSaveCustomEvent}

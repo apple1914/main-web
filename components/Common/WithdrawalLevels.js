@@ -15,6 +15,7 @@ const WithdrawalLevels = ({
   lng,
   depositPrices,
   withdrawValues,
+  allInputsAreReady,
 }) => {
   switch (level) {
     // case 0:
@@ -40,6 +41,8 @@ const WithdrawalLevels = ({
             lng={lng}
             depositPrices={depositPrices}
             withdrawValues={withdrawValues}
+            allInputsAreReady={allInputsAreReady}
+            withdrawalAddresses={[]}
           />
         </div>
       );

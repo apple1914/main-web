@@ -130,7 +130,7 @@
     "Balance":"Balance",
     "Status":"Status",
     "Add New Card For Withdrawal":"Add New Card For Withdrawal",
-    "pickWithdrawalDestination.h1":"Bank card info for where you want to receive this withdrawal",
+    "pickWithdrawalDestination.h1":"Pick card you're withdrawing to",
     "status.success":"Payment Success! Your money will be delivered soon",
     "status.failure":"Failed",
     "processWithdrawalStatusComponent.success":"Success! Your money will be delivered soon",
@@ -225,5 +225,6 @@
     "successTustiSupport.text":"If you have encountered an issue, please contact support",
     "or":"or",
     "Please pick a card to withdraw to or add a new one":"Please pick a card to withdraw to or add a new one",
-    "click the blue icon in the bottom left corner to chat with us right now":"click the blue icon in the bottom left corner to chat with us right now"
+    "click the blue icon in the bottom left corner to chat with us right now":"click the blue icon in the bottom left corner to chat with us right now",
+    "Choose":"Please pick an option"
 }

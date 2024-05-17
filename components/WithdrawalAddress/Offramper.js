@@ -12,7 +12,6 @@ export default function Offramper({
   incrementLevel,
   formData,
   setFormData,
-  email,
 }) {
   const [show, setShow] = useState(false);
   const [withdrawalAddressData, setWithdrawalAddressData] = useState({
@@ -63,7 +62,7 @@ export default function Offramper({
         formData.withdrawalAddressId = data.withdrawalAddressId;
         setFormData(formData);
         incrementLevel();
-        // triggerUpdateRecipients()
+        handleClose();
         // handleClose()
       });
     }
