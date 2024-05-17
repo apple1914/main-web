@@ -22,6 +22,7 @@ module.exports = withHighlightConfig({
       process.env.BSC_DISTRIBUTOR_ADDRESS_PUBLIC_KEY,
     SANTEPAY_FEE: process.env.SANTEPAY_FEE,
     IS_SANTEPAY_TEST: process.env.IS_SANTEPAY_TEST,
+    OFFRAMPER_URL: process.env.OFFRAMPER_URL,
   },
   i18n,
 });
