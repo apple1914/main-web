@@ -11,14 +11,14 @@ export default function Offramper({
   lng,
   incrementLevel,
   formData,
-  setFormData,email
+  setFormData,
 }) {
   const [show, setShow] = useState(false);
   const [withdrawalAddressData, setWithdrawalAddressData] = useState({
     address: undefined,
     blockchain: undefined,
-    cryptocurrency:undefined,
-    nickname:undefined
+    cryptocurrency: undefined,
+    nickname: undefined,
   });
   const { t } = useTranslation("common");
 
@@ -38,10 +38,12 @@ export default function Offramper({
     if (!!iframeData.address && !!iframeData.blockchain) {
       // alert("got address and blockchain from iframe");
       const setPayloadTo = {
-        address:iframeData.address,blockchain:iframeData.blockchain,cryptocurrency:iframeData.cryptocurrency,nickname:iframeData.nickname
-      }
+        address: iframeData.address,
+        blockchain: iframeData.blockchain,
+        cryptocurrency: iframeData.cryptocurrency,
+        nickname: iframeData.nickname,
+      };
       setWithdrawalAddressData(setPayloadTo);
-
     }
   }
   useEffect(() => {
@@ -53,15 +55,14 @@ export default function Offramper({
     if (
       !!withdrawalAddressData.address &&
       !!withdrawalAddressData.blockchain &&
-      !!withdrawalAddressData.cryptocurrency && 
+      !!withdrawalAddressData.cryptocurrency &&
       !!withdrawalAddressData.nickname
     ) {
       addWithdrawalAddress(withdrawalAddressData).then((data) => {
-
         formData.withdrawalAddressId = data.withdrawalAddressId;
         setFormData(formData);
         incrementLevel();
-        // triggerUpdateRecipients()
+        handleClose();
         // handleClose()
       });
     }
@@ -69,7 +70,7 @@ export default function Offramper({
 
   return (
     <>
-      <button 
+      <button
         className="btn btn-outline-primary text-primary my-1 mx-1 w-100 mx-auto"
         onClick={handleShow}
       >
@@ -87,7 +88,7 @@ export default function Offramper({
         </div>
         <div className="modal-body p-0 bg-white rounded">
           <iframe
-            src={`${OFFRAMPER_WIDGET_URL}/production/${formData.convertedFiatCurrency}?lng=${lng}&email=${email}`}
+            src={`${OFFRAMPER_WIDGET_URL}/create-offramp-address/${lng}/${formData.convertedFiatCurrency}`}
             frameBorder="0"
             width="100%"
             height="600px"

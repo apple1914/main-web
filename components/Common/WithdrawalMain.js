@@ -3,6 +3,13 @@ import React, { useEffect, useState } from "react";
 import WithdrawalLevels from "./WithdrawalLevels";
 import Leveler from "./Leveler";
 import { useTranslation } from "next-i18next";
+
+import {
+  DEFAULT_WITHDRAWAL_CURRENCY,
+  DEFAULT_DEPOSIT_CURRENCY,
+  DEFAULT_DEPOSIT_AMOUNT,
+} from "../../utils/defaultConverterPresets";
+
 const WithdrawalMain = ({
   lng,
   handleSaveCustomEvent,
@@ -10,14 +17,32 @@ const WithdrawalMain = ({
   withdrawValues,
 }) => {
   const { t } = useTranslation("common"); //usage - just use t("adfdsf") and it will work!
-
-  const [formData, setFormData] = useState({
-    fiatAmount: 0.0,
-    fiatCurrency: "",
+  const [allInputsAreReady, setAllInputsAreReady] = useState(false);
+  const [formData, trigSetFormData] = useState({
+    fiatAmount: DEFAULT_DEPOSIT_AMOUNT,
+    fiatCurrency: DEFAULT_DEPOSIT_CURRENCY,
     withdrawalAddressId: "",
-    convertedFiatCurrency: "",
+    convertedFiatCurrency: DEFAULT_WITHDRAWAL_CURRENCY,
     flowType: "withdrawal",
   });
+
+  const setFormData = (val) => {
+    trigSetFormData(val);
+    console.log("triggered");
+    if (
+      !!val.fiatAmount &&
+      !!val.fiatCurrency &&
+      !!val.withdrawalAddressId &&
+      !!val.convertedFiatCurrency &&
+      val.withdrawalAddressId !== "defaultWithdrawalAddressId"
+    ) {
+      console.log("PING");
+      setAllInputsAreReady(true);
+    } else {
+      console.log("PONG");
+      setAllInputsAreReady(false);
+    }
+  };
 
   const [level, setLevel] = useState(0);
 
@@ -29,6 +54,7 @@ const WithdrawalMain = ({
   function incrementLevel() {
     const newLevel = level + 1;
     setLevel(newLevel);
+    // console.log("inc level called, formData:", formData);
   }
   return (
     <div id="content" className="py-4 bg-white">
@@ -44,6 +70,7 @@ const WithdrawalMain = ({
               incrementLevel={incrementLevel}
               depositPrices={depositPrices}
               withdrawValues={withdrawValues}
+              allInputsAreReady={allInputsAreReady}
             />
           </div>
         </div>

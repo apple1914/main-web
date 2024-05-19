@@ -14,7 +14,7 @@ const Add = (props) => {
   return (
     <>
       <NavbarTwoFixed />
-      <CheckoutMyBalanceMain flowType={flowType} />
+      <CheckoutMyBalanceMain flowType={flowType} lng={lng} />
 
       <Footer />
       {/* <CaptureMarketingInfo /> */}

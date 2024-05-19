@@ -1,10 +1,11 @@
 import React from "react";
 
-import Converter from "../Converters/Converter";
-import PickWithdrawalDestination from "./PickWithdrawalDestination";
+// import Converter from "../Converters/Converter";
+import HybridConverterAndPicker from "../WithdrawalAddress/HybridConverterAndPicker";
+
 import DepositInitIfNoFunds from "./DepositInitIfNoFunds";
 // const IS_PAUSED = true;
-import IndefiniteMaintenance from "./IndefiniteMaintenance";
+// import IndefiniteMaintenance from "./IndefiniteMaintenance";
 
 const WithdrawalLevels = ({
   formData,
@@ -14,33 +15,37 @@ const WithdrawalLevels = ({
   lng,
   depositPrices,
   withdrawValues,
+  allInputsAreReady,
 }) => {
   switch (level) {
+    // case 0:
+    //   return (
+    //     <div className="bg-white shadow-lg rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4">
+    //       <HybridConverterAndPicker
+    //         incrementLevel={incrementLevel}
+    //         formData={formData}
+    //         setFormData={setFormData}
+    //         lng={lng}
+    //         depositPrices={depositPrices}
+    //         withdrawValues={withdrawValues}
+    //       />
+    //     </div>
+    //   );
     case 0:
       return (
-        <div className="bg-white shadow-lg rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4">
-          <Converter
+        <div className="bg-white shadow rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-10">
+          <HybridConverterAndPicker
             incrementLevel={incrementLevel}
             formData={formData}
             setFormData={setFormData}
             lng={lng}
             depositPrices={depositPrices}
             withdrawValues={withdrawValues}
+            allInputsAreReady={allInputsAreReady}
           />
         </div>
       );
     case 1:
-      return (
-        <>
-          <PickWithdrawalDestination
-            incrementLevel={incrementLevel}
-            formData={formData}
-            setFormData={setFormData}
-            lng={lng}
-          />
-        </>
-      );
-    case 2:
       return (
         <>
           <DepositInitIfNoFunds formData={formData} lng={lng} />
@@ -50,14 +55,14 @@ const WithdrawalLevels = ({
     default: //should jsut be the withdrwal level 0 basically
       return (
         <>
-          <div className="bg-white shadow-lg rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4">
-            <Converter
-              incrementLevel={incrementLevel}
-              formData={formData}
-              setFormData={setFormData}
-              lng={lng}
-            />
-          </div>
+          <ConverterAndPicker
+            incrementLevel={incrementLevel}
+            formData={formData}
+            setFormData={setFormData}
+            lng={lng}
+            depositPrices={depositPrices}
+            withdrawValues={withdrawValues}
+          />
         </>
       );
   }

@@ -16,7 +16,6 @@ import { useTranslation } from "next-i18next";
 // })
 
 export default function PickWithdrawalDestination({
-  incrementLevel,
   formData,
   setFormData,
   lng,
@@ -24,13 +23,13 @@ export default function PickWithdrawalDestination({
   const { t } = useTranslation("common");
   const user = useAuthStore((state) => state.user);
   const [withdrawalAddresses, setQWithdrawalDestinations] = useState([]);
-  const [withdrawalAddressId, setWithdrawalAddressId] = useState();
   const [loading, setLoading] = useState(true);
   const [hasNoAvailableDestinations, setHasNoAvailableDestinations] =
     useState(true);
 
   const handleSelectRecipient = async (pickedWithdrawalAddressId) => {
-    setWithdrawalAddressId(pickedWithdrawalAddressId);
+    formData.withdrawalAddressId = pickedWithdrawalAddressId;
+    setFormData(formData);
   };
 
   function updateWithdrawalAddresses(myNewDestinations) {
@@ -38,18 +37,10 @@ export default function PickWithdrawalDestination({
     setQWithdrawalDestinations(myNewDestinations);
   }
 
-  const handleSubmitSelectedAddress = (e) => {
+  const handleLog = (e) => {
     e.preventDefault();
-    if (!withdrawalAddressId) {
-      toast.error(t("Please pick a card to withdraw to or add a new one"));
-      return;
-    }
-    formData.withdrawalAddressId = withdrawalAddressId;
-    setFormData(formData);
-    // alert(withdrawalAddressId)
-    incrementLevel();
+    console.log("launched handled log");
   };
-
   useEffect(() => {
     if (!!user) {
       fetchWithdrawalAddressesV2().then((data) => {
@@ -65,7 +56,7 @@ export default function PickWithdrawalDestination({
   }, []);
 
   return (
-    <div className="bg-white shadow rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-10">
+    <div>
       <div className="d-flex w-100 justify-content-between align-items-center">
         {hasNoAvailableDestinations == false && (
           <h3 className="text-5 fw-400 mb-0">
@@ -74,7 +65,7 @@ export default function PickWithdrawalDestination({
         )}
       </div>
       <hr className="mx-n3 mx-sm-n5 mb-4" />
-      {!!user && (
+      {/* {!!user && (
         <Offramper
           // triggerUpdateRecipients={triggerUpdateRecipients}
           lng={lng}
@@ -83,7 +74,7 @@ export default function PickWithdrawalDestination({
           setFormData={setFormData}
           email={user.email}
         />
-      )}
+      )} */}
       {hasNoAvailableDestinations == false && (
         <div className="text-center my-3">or</div>
       )}
@@ -93,11 +84,18 @@ export default function PickWithdrawalDestination({
             <div className="spinner-border" role="status"></div>
           </div>
         ) : (
-          <form onSubmit={(e) => handleSubmitSelectedAddress(e)}>
+          <form onSubmit={(e) => handleLog(e)}>
             <Form.Group controlId="formBasicCheckbox">
               {withdrawalAddresses.map((destination) => {
                 return (
-                  <div className="border rounded py-2 my-2">
+                  <div
+                    key={
+                      destination.withdrawalAddressId +
+                      "-" +
+                      formData.withdrawalAddressId
+                    }
+                    className="border rounded py-2 my-2"
+                  >
                     <Form.Check
                       id={destination.withdrawalAddressId}
                       className="mx-2"
@@ -109,19 +107,15 @@ export default function PickWithdrawalDestination({
                         handleSelectRecipient(destination.withdrawalAddressId);
                       }}
                       checked={
-                        !!withdrawalAddressId &&
-                        withdrawalAddressId === destination.withdrawalAddressId
+                        !!formData.withdrawalAddressId &&
+                        formData.withdrawalAddressId ===
+                          destination.withdrawalAddressId
                       }
                     />
                   </div>
                 );
               })}
             </Form.Group>
-            <div className="d-grid w-100 mx-auto mt-3">
-              <button type="submit" className="btn btn-primary">
-                {t("Continue")}
-              </button>
-            </div>
           </form>
         ))}
       {/* {hasNoAvailableDestinations == false && <div className="text-center my-3">or</div>} */}

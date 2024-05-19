@@ -15,13 +15,13 @@ module.exports = withHighlightConfig({
   reactStrictMode: true,
   env: {
     IS_WITHDRAWALS_PAUSED: process.env.IS_WITHDRAWALS_PAUSED,
-    IS_TEST_ENV: process.env.IS_TEST_ENV,
     TRANSAK_API_KEY_PROD: process.env.TRANSAK_API_KEY_PROD,
     TRANSAK_API_KEY_PROD: process.env.TRANSAK_API_KEY_TEST_LEVII,
     BSC_DISTRIBUTOR_ADDRESS_PUBLIC_KEY:
       process.env.BSC_DISTRIBUTOR_ADDRESS_PUBLIC_KEY,
     SANTEPAY_FEE: process.env.SANTEPAY_FEE,
     IS_SANTEPAY_TEST: process.env.IS_SANTEPAY_TEST,
+    OFFRAMPER_URL: process.env.OFFRAMPER_URL,
   },
   i18n,
 });
