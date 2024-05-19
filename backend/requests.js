@@ -1,8 +1,6 @@
 import { auth } from "../lib/firebase/firebase";
 import axios from "axios";
 
-import { THIS_BACKEND_URL } from "../utils/importantUrls";
-
 const MIXPANEL_SECRET = process.env.MIXPANEL_SECRET;
 const MIXPANEL_TOKEN = process.env.MIXPANEL_TOKEN;
 
@@ -94,30 +92,6 @@ export const addWithdrawalAddress = async ({
   return result;
 };
 
-// export const createDeposit = async ({ fiatAmount,
-//   fiatCurrency,
-//   blockchain,withdrawal}) => {
-//   try {
-//       const user = auth.currentUser;
-//       const token = user && (await user.getIdToken());
-
-//       const payloadHeader = {
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${token}`,
-//         },
-//       };
-//       const payload = {
-//         fiatAmount,
-//         fiatCurrency,
-//         blockchain,withdrawal
-//       }
-//       const res = await axios.post(`${THIS_BACKEND_URL}/deposits`, payload,payloadHeader);
-//       return res.data
-//     } catch (e) {
-//       console.log(e);
-//     }
-// }
 export const createWithdrawalUnfunded = async ({
   withdrawalAddressId,
   fiatAmount,
@@ -239,15 +213,7 @@ export const convert = async (
 };
 
 export const createCsTicket = async ({ email, category, problemText }) => {
-  const payload = {
-    email,
-    category,
-    problemText,
-  };
-  const headers = { "Content-Type": "application/json" };
-  const url = `${THIS_BACKEND_URL}/customerSupport/createCsTicket`;
-  // alert(url)
-  return axios.post(url, payload, { headers });
+  return;
 };
 
 export const saveUserInfo = async ({ username, miscInfo, contactInfo }) => {
@@ -263,36 +229,7 @@ export const saveUserInfo = async ({ username, miscInfo, contactInfo }) => {
 };
 
 export const fetchOnrampSettings = async ({ depositId }) => {
-  try {
-    const user = auth.currentUser;
-    const token = user && (await user.getIdToken());
-
-    const payloadHeader = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const url = `${THIS_BACKEND_URL}/deposits/${depositId}`;
-
-    const data = await axios
-      .get(url, payloadHeader)
-      .then((res) => res.data)
-      .catch((err) => {
-        console.log("ERRRRRR with fetchOnrampSettings", err);
-      });
-
-    const withdrawalAddresses = data.map((withdawalAddress) => {
-      const withdrawalAddressId = withdawalAddress.withdrawalAddressId;
-      const nickname = withdawalAddress.nickname;
-      return { withdrawalAddressId, nickname };
-    });
-    console.log("withdrawalAddresses here is", withdrawalAddresses);
-
-    return withdrawalAddresses;
-  } catch (e) {
-    console.log(e);
-  }
+  return;
 };
 
 export const saveBillingInfo = async (payload) => {
