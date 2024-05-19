@@ -45,7 +45,7 @@ export default function PickWithdrawalDestination({
             if (!e.target.value) return;
             handleSelectRecipient(e.target.value);
           }}
-          placeholder={"ASS"}
+          placeholder={"Pick"}
         >
           <option
             key={"defaultWithdrawalAddressId"}

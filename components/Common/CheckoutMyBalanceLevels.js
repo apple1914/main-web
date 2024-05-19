@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import PickWithdrawalDestination from "./PickWithdrawalDestination";
+import PickWithdrawalDestination from "../WithdrawalAddress/PickWithdrawalDestination";
 import DepositInitAddBalance from "./DepositInitAddBalance";
 import ConfirmWithdrawal from "./ConfirmWithdrawal";
 import { useTranslation } from "next-i18next";
@@ -82,6 +82,7 @@ const WithdrawMyBalanceLevels = ({
   setFormData,
   level,
   incrementLevel,
+  lng,
 }) => {
   switch (level) {
     case 0:
@@ -96,10 +97,34 @@ const WithdrawMyBalanceLevels = ({
       return (
         <div className="bg-white shadow rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-10">
           <PickWithdrawalDestination
-            incrementLevel={incrementLevel}
             formData={formData}
             setFormData={setFormData}
           />
+          {!!formData.withdrawalAddressId && (
+            <div className="d-grid w-100 mx-auto mt-3">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (!!formData.withdrawalAddressId) {
+                    incrementLevel();
+                  }
+                }}
+              >
+                {t("Continue")}
+              </button>
+            </div>
+          )}
+          <div className="m-3">
+            <Offramper
+              // triggerUpdateRecipients={triggerUpdateRecipients}
+              lng={lng}
+              incrementLevel={incrementLevel}
+              formData={formData}
+              setFormData={setFormData}
+            />
+          </div>
         </div>
       );
     case 2:

@@ -4,7 +4,7 @@ import CheckoutMyBalanceLevels from "./CheckoutMyBalanceLevels";
 import { useTranslation } from "next-i18next";
 // import { getBalance } from "../../backend/requests";
 
-const CheckoutMyBalanceMain = ({ flowType }) => {
+const CheckoutMyBalanceMain = ({ flowType, lng }) => {
   const { t } = useTranslation("common"); //usage - just use t("adfdsf") and it will work!
 
   // const [amount, setAmount] = useState(0.0);
